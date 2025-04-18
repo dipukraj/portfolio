@@ -482,5 +482,11 @@ footer {
     transform: scale(1.1);
   }
   
-   
+  /* Make sure it works on mobile */
+  @media (max-width: 600px) {
+    .social-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
   
