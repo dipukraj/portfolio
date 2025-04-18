@@ -35,20 +35,60 @@
   <!-- About Section -->
   <section id="about" class="section">
     <h2>About Me</h2>
-    <p>Hello! I'm a passionate developer who loves to build web applications.</p>
+    <p>I'm a passionate web designer and developer who loves bringing ideas to life through code. From creating stunning websites to writing clean and efficient code, I enjoy every part of the process. Designing user-friendly and visually appealing web experiences is what I do best. Coding isn’t just my skill — it’s my passion!
+    </p>
   </section>
 
   <!-- Skills Section -->
   <section id="skills" class="section">
-    <h2>Skills</h2>
-    <ul>
-      <li>HTML</li>
-      <li>CSS</li>
-      <li>JavaScript</li>
-      <li>React</li>
-      <li>Node.js</li>
-    </ul>
+    <h2 onclick="toggleSkills()">Skills &#9662;</h2>
+  
+    <div id="skillsContent" style="display: none;">
+      <div class="accordion">
+        <button class="accordion-btn" onclick="toggleSection('webDev')">Web Development</button>
+        <div id="webDev" class="panel">
+          <ul>
+            <li>Designing Websites (Frontend)</li>
+          </ul>
+        </div>
+  
+        <button class="accordion-btn" onclick="toggleSection('progLang')">Programming Languages</button>
+        <div id="progLang" class="panel">
+          <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>C</li>
+            <li>C++</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
+   
+  </style>
+  
+  <script>
+    function toggleSkills() {
+      const content = document.getElementById("skillsContent");
+      content.style.display = content.style.display === "none" ? "block" : "none";
+    }
+  
+    function toggleSection(id) {
+      const panel = document.getElementById(id);
+      const btn = panel.previousElementSibling;
+  
+      if (panel.style.display === "block") {
+        panel.style.display = "none";
+        btn.classList.remove("active");
+      } else {
+        panel.style.display = "block";
+        btn.classList.add("active");
+      }
+    }
+  </script>
+  
+  
 
   <!-- Experience Section -->
   <section id="experience" class="section">
