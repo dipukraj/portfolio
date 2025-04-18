@@ -414,8 +414,8 @@ footer {
 
 /* contacts */
 
-/* <style>
-  .social-icons {
+
+ .social-icons {
     margin-top: 20px;
   }
 
@@ -426,10 +426,8 @@ footer {
 
   .social-icon {
     width: 40px; /* Icon size */
-    /* transition: transform 0.3s;
+    transition: transform 0.3s;
   }
 
-  .social-icons a:hover .social-icon {
-    transform: scale(1.1); /* Hover effect */
-  /* }
-</style> */
+  /* .social-icons a:hover .social-icon {
+    transform: scale(1.1); Hover effect */
