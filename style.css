@@ -272,7 +272,7 @@ footer {
 
 
     /* Experience*/
-    
+
     /* <style>
   .accordion-btn {
     background-color: #f1f1f1;
@@ -297,4 +297,139 @@ footer {
   .accordion-btn.active {
     background-color: #ddd;
   }
+</style> */
+
+
+/* education */
+/* <style>
+  .accordion-btn {
+    background-color: #f1f1f1;
+    color: #333;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 16px;
+    transition: 0.3s;
+    margin-top: 5px;
+  }
+
+  .panel {
+    display: none;
+    padding-left: 15px;
+    background-color: #fafafa;
+    padding: 10px;
+  }
+
+  .accordion-btn.active {
+    background-color: #ddd;
+  }
+</style> */
+
+
+
+/* my services */
+
+    .my services{
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+  
+    h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+  
+    .service-box {
+      background-color: rgb(201, 224, 232); /* Light blue background */
+    padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+  
+    .service-box h3 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+  
+    .service-box p {
+      margin: 5px 0 0;
+      color: #555;
+    }
+  
+
+/* my work image */
+  
+  .work-image {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+
+
+
+
+
+
+/* see more button */
+
+  h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .centered-button-container {
+    margin-top: 20px;
+  }
+
+  .see-more-btn {
+    display: inline-block;
+    background-color: #4CAF50; /* Bright green */
+    color: white;
+    padding: 14px 40px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .see-more-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.1);
+  }
+
+  .see-more-btn:focus {
+    outline: none;
+  }
+
+
+
+
+/* contacts */
+
+/* <style>
+  .social-icons {
+    margin-top: 20px;
+  }
+
+  .social-icons a {
+    margin: 0 15px;
+    text-decoration: none;
+  }
+
+  .social-icon {
+    width: 40px; /* Icon size */
+    /* transition: transform 0.3s;
+  }
+
+  .social-icons a:hover .social-icon {
+    transform: scale(1.1); /* Hover effect */
+  /* }
 </style> */
