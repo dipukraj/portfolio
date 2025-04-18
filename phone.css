@@ -1,0 +1,25 @@
+/* 🔽 Mobile screen ke liye styles */
+@media only screen and (max-width: 600px) {
+    body {
+      padding: 1rem;
+      font-size: 16px;
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  
+    .typewriter {
+      font-size: 1rem;
+    }
+  
+    .btn {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+    }
+  
+    .section {
+      padding: 2rem 1rem;
+    }
+  }
+  
