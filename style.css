@@ -364,9 +364,9 @@ footer {
   
   .work-image {
     width: 100%;
-    max-width: 400px;
+    max-width: 300px;
     margin-top: 20px;
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
@@ -389,9 +389,9 @@ footer {
 
   .see-more-btn {
     display: inline-block;
-    background-color: #4CAF50; /* Bright green */
+    background-color: #66cd69; /* Bright green */
     color: white;
-    padding: 14px 40px;
+    padding: 10px 20px;
     text-decoration: none;
     font-size: 18px;
     font-weight: 600;
@@ -434,3 +434,12 @@ footer {
   }
 
    
+
+  /* See More Button Distance */
+  .centered-button-container {
+    display: flex;
+    justify-content: center; /* Horizontal center */
+    align-items: center;     /* Vertical center */
+    height: 5vh;   
+    margin-top: 20px;
+  }
