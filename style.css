@@ -458,3 +458,35 @@ footer {
     height: 5vh;   
     margin-top: 20px;
   }
+
+
+
+/* social media icon */
+  .social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+  }
+  
+  .social-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+  
+  .social-icon:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Make sure it works on mobile */
+  @media (max-width: 600px) {
+    .social-icon {
+      width: 35px;
+      height: 35px;
+    }
+  }
+  
