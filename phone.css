@@ -23,3 +23,11 @@
     }
   }
   
+
+  /* Make sure it works on mobile */
+  @media (max-width: 600px) {
+    .social-icon {
+      width: 35px;
+      height: 35px;
+    }
+  }
