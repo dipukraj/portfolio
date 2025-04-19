@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,13 +8,13 @@
   <title>Dipu K Raj | Portfolio</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <script src="phone.css"></script>
+  <!-- <link rel="stylesheet" href="phone.css"> -->
 </head>
 <body>
   <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="logo">✨Sukoon.</div>
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#hero">Home</a></li>
       <li><a href="#about">About</a></li>
@@ -27,7 +29,7 @@
     <div id="bgcover"></div>
     <h1>Hi, I'm <span>Dipu K Raj</span></h1>
     <h2><span>From India</span></h2>
-    <p class="typewriter">Frontend Web Designer</p>
+    <p class="typewriter"></p> <!-- Text will be added by JS -->
     <a href="#contact" class="btn">Contact Me</a>
   </header>
 
@@ -40,19 +42,18 @@
 
   <!-- Skills Section -->
   <section id="skills" class="section">
-    <h2 onclick="toggleSkills()">Skills &#9662;</h2>
-  
-    <div id="skillsContent" style="display: none;">
+    <h2 class="toggle-heading" onclick="toggleAccordion('skillsContent')">Skills ▾</h2>
+    <div id="skillsContent" class="accordion-content" style="display: none;">
       <div class="accordion">
-        <button class="accordion-btn" id="webDev-btn" onclick="toggleSection('webDev')">Web Development</button>
-        <div id="webDev" class="panel">
+        <button class="accordion-btn" id="webDev-btn" onclick="togglePanel('webDev', this)">Web Development</button>
+        <div id="webDev" class="panel" style="display: none;">
           <ul>
             <li>Designing Websites (Frontend)</li>
           </ul>
         </div>
   
-        <button class="accordion-btn" id="progLang-btn" onclick="toggleSection('progLang')">Programming Languages</button>
-        <div id="progLang" class="panel">
+        <button class="accordion-btn" id="progLang-btn" onclick="togglePanel('progLang', this)">Programming Languages</button>
+        <div id="progLang" class="panel" style="display: none;">
           <ul>
             <li>HTML</li>
             <li>CSS</li>
@@ -65,91 +66,44 @@
       </div>
     </div>
   </section>
-   
-  </style>
-  
-  <script>
-    function toggleSkills() {
-      const content = document.getElementById("skillsContent");
-      content.style.display = content.style.display === "none" ? "block" : "none";
-    }
-  
-    function toggleSection(id) {
-      const panel = document.getElementById(id);
-      const btn = panel.previousElementSibling;
-  
-      if (panel.style.display === "block") {
-        panel.style.display = "none";
-        btn.classList.remove("active");
-      } else {
-        panel.style.display = "block";
-        btn.classList.add("active");
-      }
-    }
-  </script>
-  
-  
 
   <!-- Experience Section -->
   <section id="experience" class="section">
-    <h2 onclick="toggleExperience()">Experience &#9662;</h2>
-  
-    <div id="experienceContent" style="display: none;">
+    <h2 class="toggle-heading" onclick="toggleAccordion('experienceContent')">Experience ▾</h2>
+    <div id="experienceContent" class="accordion-content" style="display: none;">
       <div class="accordion">
-        <button class="accordion-btn" id="exp1-btn" onclick="toggleSection('exp1')">XYZ Company (2022–2024)</button>
-        <div id="exp1" class="panel">
+        <button class="accordion-btn" id="exp1-btn" onclick="togglePanel('exp1', this)">XYZ Company (2022–2024)</button>
+        <div id="exp1" class="panel" style="display: none;">
           <p>Worked as a Frontend Developer. Developed responsive UI using React and improved performance by 30%.</p>
         </div>
   
-        <button class="accordion-btn" id="exp2-btn" onclick="toggleSection('exp2')">ABC Solutions (2021)</button>
-        <div id="exp2" class="panel">
+        <button class="accordion-btn" id="exp2-btn" onclick="togglePanel('exp2', this)">ABC Solutions (2021)</button>
+        <div id="exp2" class="panel" style="display: none;">
           <p>Interned for Web Design. Created user-friendly layouts and learned about UX principles.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <script>
-    function toggleExperience() {
-      const content = document.getElementById("experienceContent");
-      content.style.display = content.style.display === "none" ? "block" : "none";
-    }
-  
-    function toggleSection(id) {
-      const panel = document.getElementById(id);
-      const btn = panel.previousElementSibling;
-  
-      if (panel.style.display === "block") {
-        panel.style.display = "none";
-        btn.classList.remove("active");
-      } else {
-        panel.style.display = "block";
-        btn.classList.add("active");
-      }
-    }
-  </script>
-  
-
   <!-- Education Section -->
   <section id="education" class="section">
-    <h2 onclick="toggleEducation()">Education &#9662;</h2>
-  
-    <div id="educationContent" style="display: none;">
+    <h2 class="toggle-heading" onclick="toggleAccordion('educationContent')">Education ▾</h2>
+    <div id="educationContent" class="accordion-content" style="display: none;">
       <div class="accordion">
-        <button class="accordion-btn" id="edu1-btn" onclick="toggleSection('edu1')">Bachelor Degree from Patliputra University (2020–2023)</button>
-        <div id="edu1" class="panel">
+        <button class="accordion-btn" id="edu1-btn" onclick="togglePanel('edu1', this)">Bachelor Degree from Patliputra University (2020–2023)</button>
+        <div id="edu1" class="panel" style="display: none;">
           <p>Bachelor of Science in Mathematics.<br>
              Studied software development, data structures, algorithms, and AI/ML fundamentals.</p>
         </div>
   
-        <button class="accordion-btn" id="edu2-btn" onclick="toggleSection('edu2')">Senior Secondary from Bihar School Examination Board - Patna(2018–2020)</button>
-        <div id="edu2" class="panel">
+        <button class="accordion-btn" id="edu2-btn" onclick="togglePanel('edu2', this)">Senior Secondary from Bihar School Examination Board - Patna(2018–2020)</button>
+        <div id="edu2" class="panel" style="display: none;">
           <p>A N College patna Education with PCM stream.<br>
              Scored 85% in Physics, Chemistry, and Mathematics.</p>
         </div>
 
-        <button class="accordion-btn" id="edu3-btn" onclick="toggleSection('edu3')">Secondary From Bihar School Examination Board - Patna (2017–2018)</button>
-        <div id="edu3" class="panel">
+        <button class="accordion-btn" id="edu3-btn" onclick="togglePanel('edu3', this)">Secondary From Bihar School Examination Board - Patna (2017–2018)</button>
+        <div id="edu3" class="panel" style="display: none;">
           <p>Ishwari Bhagat High School Goth Parsahi Education with All stream.<br>
              Achieved 80% in Science and Mathematics.</p>
         </div>
@@ -157,30 +111,9 @@
     </div>
   </section>
 
-  <script>
-    function toggleEducation() {
-      const content = document.getElementById("educationContent");
-      content.style.display = content.style.display === "none" ? "block" : "none";
-    }
-  
-    function toggleSection(id) {
-      const panel = document.getElementById(id);
-      const btn = panel.previousElementSibling;
-  
-      if (panel.style.display === "block") {
-        panel.style.display = "none";
-        btn.classList.remove("active");
-      } else {
-        panel.style.display = "block";
-        btn.classList.add("active");
-      }
-    }
-  </script>
-
   <!-- My Services Section -->
   <section id="services" class="section">
     <h2>My Services</h2>
-  
     <div class="service-box">
       <h3>Web Design</h3>
       <div class="service-content">
@@ -197,28 +130,22 @@
       </div>
     </div>
   </section>
-  
-   
-  
 
   <!-- My Work Section -->
   <section id="work" class="section">
     <h2>My Work</h2>
-    <p>Checkout some of my work on <a href="https://github.com/dipukraj"> projects </a> section or visit my GitHub.</p>
-    <img src="/image/MY work.jpg" alt="My Work Sample" class="work-image">
+    <div class="work-container">
+      <img src="/image/MY work.jpg" alt="My Work Sample" class="work-image">
+      <p>Checkout some of my work on <a href="https://github.com/dipukraj" target="_blank" rel="noopener noreferrer"> projects </a> section or visit my GitHub.</p>
+    </div>
   </section>
-
-  
-
 
   <!-- see more button -->
   <section>
     <div class="centered-button-container">
-    <a href="#projects" class="see-more-btn">See More</a>
-  </div>
+      <a href="#projects" class="see-more-btn">See More</a>
+    </div>
   </section>
-
-
 
   <!-- Download CV Section -->
   <section id="cv" class="section">
@@ -231,61 +158,55 @@
     <h2>Projects</h2>
     <div class="project">
       <h3>Project One</h3>
-      <p>Short description of your project here.</p>
+      <p>Short description of your project here. Example: A responsive portfolio website built with HTML, CSS, and JavaScript.</p>
     </div>
     <div class="project">
       <h3>Project Two</h3>
-      <p>Short description of your project here.</p>
+      <p>Short description of your project here. Example: A simple task management app using local storage.</p>
     </div>
+    <!-- Add more projects as needed -->
   </section>
 
   <!-- Contact Section -->
   <section id="contact" class="section">
     <h2>Contact Me</h2>
-    <p>Email: kumardipu1436@gmail.com</p>
+    <p>Email: <a href="mailto:kumardipu1436@gmail.com">kumardipu1436@gmail.com</a></p>
   
     <!-- Social Media Icons -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <div class="social-icons">
-      <a href="https://www.facebook.com/dipu.kraj.92" target="_blank">
+      <a href="https://www.facebook.com/dipu.kraj.92" target="_blank" rel="noopener noreferrer" aria-label="Facebook Profile">
         <img src="/image/facebook-logo-2019.png" alt="Facebook" class="social-icon">
       </a>
-      <a href="https://www.instagram.com/r.p.dipu" target="_blank">
+      <a href="https://www.instagram.com/r.p.dipu" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
         <img src="/image/Instagram_logo_2022.svg.webp" alt="Instagram" class="social-icon">
       </a>
-      <a href="https://github.com/dipukraj" target="_blank">
+      <a href="https://github.com/dipukraj" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
         <img src="image/github logo.png" alt="GitHub" class="social-icon">
       </a>
-      <a href="https://www.linkedin.com/in/dipukraj" target="_blank">
+      <a href="https://www.linkedin.com/in/dipukraj" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
         <img src="/image/LinkedIn_icon.svg.png" alt="LinkedIn" class="social-icon">
       </a>
-      <a href="https://www.youtube.com/@explorewithdipu" target="_blank">
+      <a href="https://www.youtube.com/@explorewithdipu" target="_blank" rel="noopener noreferrer" aria-label="YouTube Channel">
         <img src="/image/youtube2 logo.webp" alt="YouTube" class="social-icon">
       </a>
-      <a href="https://t.me/dipukraj" target="_blank">
+      <a href="https://t.me/dipukraj" target="_blank" rel="noopener noreferrer" aria-label="Telegram Profile">
         <img src="/image/telegram logo.webp" alt="Telegram" class="social-icon">
       </a>
-      <p>   
-      </p>
-
-
-      
-        <form class="contact-form" action="#" method="post">
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="Your Email" required>
-          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-          <button type="submit">Submit</button>
-        </form>
-      </section>
-      
-      
     </div>
+    
+    <form class="contact-form" action="#" method="post">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
   </section>
 
   <footer>
-    <p>&copy;Made With ✨Sukoon By Dipu K Raj ❤️ </p>
+    <p>© Made With ✨Sukoon By Dipu K Raj ❤️ </p>
   </footer>
 
   <script src="script.js"></script>
+  
 </body>
 </html>
