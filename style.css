@@ -393,12 +393,13 @@ footer {
     background-color: #1e293b;
     flex-direction: column;
     width: 250px;
-    height: 100vh;
-    padding: 80px 20px 20px;
+    height: 60vh;
+    padding: 60px 60px 20px;
     border-radius: 0 0 0 8px;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     transition: right 0.3s ease;
+    gap: 0;
   }
 
   .nav-links.active {
@@ -406,7 +407,7 @@ footer {
   }
 
   .nav-links li {
-    margin: 15px 0;
+    margin:  5px 0;
     width: 100%;
   }
   
