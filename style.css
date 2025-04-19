@@ -41,15 +41,71 @@ body {
   gap: 1.5rem;
 }
 
+.nav-links li {
+  position: relative;
+}
+
 .nav-links li a {
   text-decoration: none;
   color: #f1f5f9;
   font-weight: bold;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 5px;
+  position: relative;
+  z-index: 1;
 }
 
 .nav-links li a:hover {
   color: #38bdf8;
+}
+
+/* Enhanced hover box for navigation links */
+.nav-links li a::before {
+  content: attr(data-info);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px) scale(0.8);
+  background: linear-gradient(145deg, rgba(56, 189, 248, 0.2), rgba(15, 23, 42, 0.3));
+  color: #f1f5f9;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);
+  }
+  100% {
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
+  }
+}
+
+.nav-links li a:hover::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(5px) scale(1);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .nav-links li a::before {
+    display: none;
+  }
 }
 
 .menu-toggle {
@@ -393,13 +449,12 @@ footer {
     background-color: #1e293b;
     flex-direction: column;
     width: 250px;
-    height: 60vh;
-    padding: 60px 60px 20px;
+    height: 100vh;
+    padding: 80px 20px 20px;
     border-radius: 0 0 0 8px;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     transition: right 0.3s ease;
-    gap: 0;
   }
 
   .nav-links.active {
@@ -407,7 +462,7 @@ footer {
   }
 
   .nav-links li {
-    margin:  5px 0;
+    margin: 15px 0;
     width: 100%;
   }
   
@@ -710,7 +765,3 @@ footer {
     grid-template-columns: 1fr;
   }
 }
-
-
-
- 
