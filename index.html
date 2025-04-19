@@ -7,23 +7,21 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <script src="phone.css"></script>
-
-
-  <!-- Navigation Bar -->
-<nav class="navbar">
-  <div class="logo">✨Sukoon.</div>
-  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#hero">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#work">Portfolio</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
 </head>
 <body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">✨Sukoon.</div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Portfolio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
   <!-- Header / Hero Section -->
   <header id="hero">
     <div id="bgcover"></div>
@@ -36,7 +34,7 @@
   <!-- About Section -->
   <section id="about" class="section">
     <h2>About Me</h2>
-    <p>I'm a passionate web designer and developer who loves bringing ideas to life through code. From creating stunning websites to writing clean and efficient code, I enjoy every part of the process. Designing user-friendly and visually appealing web experiences is what I do best. Coding isn’t just my skill — it’s my passion!
+    <p>I'm a passionate web designer and developer who loves bringing ideas to life through code. From creating stunning websites to writing clean and efficient code, I enjoy every part of the process. Designing user-friendly and visually appealing web experiences is what I do best. Coding isn't just my skill — it's my passion!
     </p>
   </section>
 
@@ -46,14 +44,14 @@
   
     <div id="skillsContent" style="display: none;">
       <div class="accordion">
-        <button class="accordion-btn" onclick="toggleSection('webDev')">Web Development</button>
+        <button class="accordion-btn" id="webDev-btn" onclick="toggleSection('webDev')">Web Development</button>
         <div id="webDev" class="panel">
           <ul>
             <li>Designing Websites (Frontend)</li>
           </ul>
         </div>
   
-        <button class="accordion-btn" onclick="toggleSection('progLang')">Programming Languages</button>
+        <button class="accordion-btn" id="progLang-btn" onclick="toggleSection('progLang')">Programming Languages</button>
         <div id="progLang" class="panel">
           <ul>
             <li>HTML</li>
@@ -98,12 +96,12 @@
   
     <div id="experienceContent" style="display: none;">
       <div class="accordion">
-        <button class="accordion-btn" onclick="toggleSection('exp1')">XYZ Company (2022–2024)</button>
+        <button class="accordion-btn" id="exp1-btn" onclick="toggleSection('exp1')">XYZ Company (2022–2024)</button>
         <div id="exp1" class="panel">
           <p>Worked as a Frontend Developer. Developed responsive UI using React and improved performance by 30%.</p>
         </div>
   
-        <button class="accordion-btn" onclick="toggleSection('exp2')">ABC Solutions (2021)</button>
+        <button class="accordion-btn" id="exp2-btn" onclick="toggleSection('exp2')">ABC Solutions (2021)</button>
         <div id="exp2" class="panel">
           <p>Interned for Web Design. Created user-friendly layouts and learned about UX principles.</p>
         </div>
@@ -138,19 +136,23 @@
   
     <div id="educationContent" style="display: none;">
       <div class="accordion">
-        <button class="accordion-btn" onclick="toggleSection('edu1')">ABC University (2020–2024)</button>
+        <button class="accordion-btn" id="edu1-btn" onclick="toggleSection('edu1')">ABC University (2020–2024)</button>
         <div id="edu1" class="panel">
           <p>Bachelor of Technology in Computer Science.<br>
              Studied software development, data structures, algorithms, and AI/ML fundamentals.</p>
         </div>
   
-        <!-- Example: Add more if needed -->
-        <!--
-        <button class="accordion-btn" onclick="toggleSection('edu2')">XYZ School (2018–2020)</button>
+        <button class="accordion-btn" id="edu2-btn" onclick="toggleSection('edu2')">XYZ School (2018–2020)</button>
         <div id="edu2" class="panel">
-          <p>Completed Higher Secondary Education with PCM stream.</p>
+          <p>Completed Higher Secondary Education with PCM stream.<br>
+             Scored 85% in Physics, Chemistry, and Mathematics.</p>
         </div>
-        -->
+
+        <button class="accordion-btn" id="edu3-btn" onclick="toggleSection('edu3')">ABC High School (2016–2018)</button>
+        <div id="edu3" class="panel">
+          <p>Completed High School Education with Science stream.<br>
+             Achieved 90% in Science and Mathematics.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -181,7 +183,18 @@
   
     <div class="service-box">
       <h3>Web Design</h3>
-      <p>I create modern, responsive websites using the latest technologies to ensure performance and user experience.</p>
+      <div class="service-content">
+        <p>I create modern, responsive websites using the latest technologies to ensure performance and user experience.</p>
+        <div class="service-details">
+          <p>Here you can write about your specific web design services, such as:</p>
+          <ul>
+            <li>Custom Website Design</li>
+            <li>Responsive Layout Development</li>
+            <li>User Interface Design</li>
+            <li>Website Optimization</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
   
@@ -241,20 +254,30 @@
         <img src="/image/Instagram_logo_2022.svg.webp" alt="Instagram" class="social-icon">
       </a>
       <a href="https://github.com/dipukraj" target="_blank">
-        <img src="/image/github logo.png" alt="GitHub" class="social-icon">
+        <img src="image/github logo.png" alt="GitHub" class="social-icon">
       </a>
       <a href="https://www.linkedin.com/in/dipukraj" target="_blank">
         <img src="/image/LinkedIn_icon.svg.png" alt="LinkedIn" class="social-icon">
       </a>
       <a href="https://www.youtube.com/@explorewithdipu" target="_blank">
-        <img src="/image/youtube2 logo.webp" alt="GitHub" class="social-icon">
+        <img src="/image/youtube2 logo.webp" alt="YouTube" class="social-icon">
       </a>
       <a href="https://t.me/dipukraj" target="_blank">
-        <img src="/image/telegram logo.webp" alt="GitHub" class="social-icon">
+        <img src="/image/telegram logo.webp" alt="Telegram" class="social-icon">
       </a>
-      <p>
-         
+      <p>   
       </p>
+
+
+      
+        <form class="contact-form" action="#" method="post">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+          <button type="submit">Submit</button>
+        </form>
+      </section>
+      
       
     </div>
   </section>
