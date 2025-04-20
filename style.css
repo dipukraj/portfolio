@@ -229,6 +229,7 @@ ul {
   gap: 2rem;
 }
 
+
 .skill-card {
   background: rgba(255, 255, 255, 0.05);
   padding: 1.5rem;
@@ -763,5 +764,108 @@ footer {
   
   .service-details ul {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Profile Image Section */
+#profile-image {
+  position: fixed;
+  top: 150px;
+  right: 30px;
+  width: 30%;
+  max-width: 300px;
+  padding: 1rem;
+  z-index: 10;
+}
+
+.profile-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(30, 41, 59, 0.7);
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  transition: all 0.3s ease;
+}
+
+.profile-image-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
+  border-color: rgba(56, 189, 248, 0.6);
+}
+
+.profile-image {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  object-fit: contain;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background-color: rgba(15, 23, 42, 0.5);
+}
+
+.image-caption {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #38bdf8;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.image-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.image-btn {
+  background-color: rgba(56, 189, 248, 0.2);
+  color: #f1f5f9;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.image-btn:hover {
+  background-color: rgba(56, 189, 248, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Adjust the skills, experience, and education sections to make room for the image */
+#skills, #experience, #education {
+  width: 65%;
+  margin-right: 35%;
+  position: relative;
+  z-index: 5;
+}
+
+/* Responsive adjustments for the profile image */
+@media (max-width: 768px) {
+  #profile-image {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    max-width: 300px;
+    padding: 1rem;
+    margin: 2rem auto;
+  }
+  
+  #skills, #experience, #education {
+    width: 100%;
+    margin-right: 0;
+  }
+  
+  .profile-image-container {
+    max-width: 300px;
+    margin: 0 auto;
   }
 }

@@ -74,6 +74,15 @@ function toggleSection(id) {
   }
 }
 
+// Function to change profile image
+function changeProfileImage(imagePath) {
+  const profileImage = document.getElementById('profile-img');
+  if (profileImage) {
+    profileImage.src = imagePath;
+    console.log('Image changed to:', imagePath);
+  }
+}
+
 // Initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", function() {
   // Start typewriter effect
