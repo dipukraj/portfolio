@@ -108,13 +108,15 @@ body {
   }
 }
 
+/* Menu toggle button - hidden by default */
 .menu-toggle {
-  font-size: 1.8rem;
-  cursor: pointer;
   display: none;
   background: transparent;
-  color: white;
   border: none;
+  color: #f1f5f9;
+  font-size: 1.8rem;
+  cursor: pointer;
+  z-index: 1001;
 }
 
 /* Hero section */
@@ -456,6 +458,7 @@ footer {
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     transition: right 0.3s ease;
+    overflow-y: auto;
   }
 
   .nav-links.active {
@@ -869,3 +872,8 @@ footer {
     margin: 0 auto;
   }
 }
+
+
+
+ 
+ 

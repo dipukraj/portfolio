@@ -16,17 +16,18 @@ function typeEffect() {
 
 // Menu toggle functionality
 function toggleMenu() {
+  console.log("Toggle menu clicked");
   const navLinks = document.getElementById("navLinks");
   const menuToggle = document.querySelector(".menu-toggle");
   
-  navLinks.classList.toggle("active");
-  
   if (navLinks.classList.contains("active")) {
-    menuToggle.innerHTML = "✕";
-    document.body.style.overflow = "hidden"; // Prevent scrolling when menu is open
-  } else {
+    navLinks.classList.remove("active");
     menuToggle.innerHTML = "☰";
     document.body.style.overflow = ""; // Restore scrolling
+  } else {
+    navLinks.classList.add("active");
+    menuToggle.innerHTML = "✕";
+    document.body.style.overflow = "hidden"; // Prevent scrolling when menu is open
   }
 }
 
@@ -89,7 +90,14 @@ document.addEventListener("DOMContentLoaded", function() {
   typeEffect();
   
   // Add event listener for menu toggle
-  menuToggle.addEventListener("click", toggleMenu);
+  const menuToggleBtn = document.querySelector(".menu-toggle");
+  if (menuToggleBtn) {
+    menuToggleBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      e.stopPropagation(); // Prevent event from bubbling up
+      toggleMenu();
+    });
+  }
   
   // Initialize all accordion panels to be hidden
   const panels = document.querySelectorAll(".panel");
