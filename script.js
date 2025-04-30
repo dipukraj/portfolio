@@ -84,6 +84,19 @@ function changeProfileImage(imagePath) {
   }
 }
 
+// Function to highlight projects
+function highlightProject(projectId) {
+  // Remove highlight from all projects
+  const projects = document.querySelectorAll('.project');
+  projects.forEach(project => {
+    project.classList.remove('highlighted');
+  });
+  
+  // Add highlight to the selected project
+  const project = document.querySelector(`.project:nth-child(${projectId.charAt(projectId.length - 1)})`);
+  project.classList.add('highlighted');
+}
+
 // Initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", function() {
   // Start typewriter effect

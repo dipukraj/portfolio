@@ -291,6 +291,7 @@ ul {
   text-decoration: none;
 }
 
+
 /* Contact section */
 #contact {
   text-align: left;
@@ -871,6 +872,35 @@ footer {
     max-width: 300px;
     margin: 0 auto;
   }
+}
+
+/* Project Highlight Styles */
+.highlight-btn {
+  background: linear-gradient(145deg, #38bdf8, #0ea5e9);
+  color: #0f172a;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+}
+
+.highlight-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+}
+
+.project.highlighted {
+  background: linear-gradient(145deg, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.2));
+  border: 2px solid #38bdf8;
+  border-radius: 15px;
+  padding: 20px;
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(56, 189, 248, 0.2);
 }
 
 
