@@ -291,6 +291,45 @@ ul {
   text-decoration: none;
 }
 
+/* Project Title Highlight */
+.project h3 a {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  background: linear-gradient(145deg, rgba(56, 189, 248, 0.2), rgba(15, 23, 42, 0.3));
+  padding: 8px 15px;
+  border-radius: 10px;
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
+}
+
+.project h3 a:hover {
+  color: #0ea5e9;
+  background: linear-gradient(145deg, rgba(56, 189, 248, 0.3), rgba(15, 23, 42, 0.4));
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.3);
+}
+
+/* Keep other project elements unchanged */
+.project p {
+  color: #f1f5f9;
+  margin: 10px 0;
+}
+
+.project .highlight-btn {
+  /* Keep the highlight button styling as is */
+  background: linear-gradient(145deg, #38bdf8, #0ea5e9);
+  color: #0f172a;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+}
 
 /* Contact section */
 #contact {
@@ -901,6 +940,94 @@ footer {
   transform: scale(1.02);
   transition: all 0.3s ease;
   box-shadow: 0 8px 25px rgba(56, 189, 248, 0.2);
+}
+
+/* Work Section Text Box */
+.work-text-box {
+  background: linear-gradient(145deg, rgba(63, 181, 232, 0.141), rgba(31, 49, 94, 0.2));
+  border: 2px solid #38bdf8;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px 0;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
+  transition: all 0.3s ease;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.work-text-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(56, 189, 248, 0.3);
+  border-color: #0ea5e9;
+}
+
+.work-text-box p {
+  color: #f1f5f9;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.work-text-box a {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  background: linear-gradient(145deg, rgba(56, 189, 248, 0.2), rgba(15, 23, 42, 0.3));
+  padding: 5px 10px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.work-text-box a:hover {
+  color: #0ea5e9;
+  background: linear-gradient(145deg, rgba(56, 189, 248, 0.3), rgba(15, 23, 42, 0.4));
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
+}
+
+/* Get in Touch Button */
+.get-in-touch-container {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.get-in-touch-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(145deg, #38bdf8, #0ea5e9);
+  color: #0f172a;
+  text-decoration: none;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+  transition: all 0.3s ease;
+  border: 3px solid #38bdf8;
+  padding: 20px;
+  line-height: 1.4;
+}
+
+.get-in-touch-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
+  background: linear-gradient(145deg, #0ea5e9, #38bdf8);
+  border-color: #0ea5e9;
+}
+
+@media (max-width: 768px) {
+  .get-in-touch-btn {
+    width: 120px;
+    height: 120px;
+    font-size: 1rem;
+  }
 }
 
 
