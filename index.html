@@ -213,13 +213,51 @@
    
   
 
+  <!-- My Skills Section -->
+  <section id="my-skills" class="section">
+    <h2>My Skills</h2>
+    <div class="skills-progress">
+      <div class="skill-item">
+        <div class="skill-name">C/C++</div>
+        <div class="progress-bar">
+          <div class="progress" style="width: 85%">85%</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">Python</div>
+        <div class="progress-bar">
+          <div class="progress" style="width: 80%">80%</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">HTML/CSS</div>
+        <div class="progress-bar">
+          <div class="progress" style="width: 90%">90%</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">JavaScript</div>
+        <div class="progress-bar">
+          <div class="progress" style="width: 80%">80%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- My Work Section -->
   <section id="work" class="section">
     <h2>My Work</h2>
     <div class="work-text-box">
-      <p>Checkout some of my work on <a href="https://github.com/dipukraj"> projects 🔛</a> section or visit my GitHub.</p>
+      <p>Checkout some of my work on <a href="https://github.com/dipukraj"> projects </a> section or visit my GitHub.</p>
     </div>
-    <img src="/image/MY work.jpg" alt="My Work Sample" class="work-image">
+    <div class="work-images-container">
+      <img src="/image/MY work.jpg" alt="My Work Sample 1" class="work-image active" id="workImage1">
+      <img src="/image/my work car.jpg" alt="My Work Sample 2" class="work-image" id="workImage2">
+      <div class="image-switch-buttons">
+        <button onclick="switchWorkImage('workImage1')" class="image-switch-btn active">Image 1</button>
+        <button onclick="switchWorkImage('workImage2')" class="image-switch-btn">Image 2</button>
+      </div>
+    </div>
   </section>
 
   

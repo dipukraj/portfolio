@@ -97,6 +97,29 @@ function highlightProject(projectId) {
   project.classList.add('highlighted');
 }
 
+// Function to switch work images
+function switchWorkImage(imageId) {
+  // Hide all images
+  const images = document.querySelectorAll('.work-image');
+  images.forEach(img => {
+    img.classList.remove('active');
+  });
+  
+  // Show selected image
+  const selectedImage = document.getElementById(imageId);
+  selectedImage.classList.add('active');
+  
+  // Update button states
+  const buttons = document.querySelectorAll('.image-switch-btn');
+  buttons.forEach(btn => {
+    btn.classList.remove('active');
+  });
+  
+  // Activate the clicked button
+  const clickedButton = document.querySelector(`.image-switch-btn[onclick*="${imageId}"]`);
+  clickedButton.classList.add('active');
+}
+
 // Initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", function() {
   // Start typewriter effect
