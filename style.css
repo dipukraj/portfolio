@@ -1244,6 +1244,34 @@ footer {
   text-shadow: 0 2px 4px rgba(130, 215, 31, 0.3);
 }
 
+/* Design Section */
+#design .progress {
+  background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+}
+
+#design .progress-bar {
+  background: rgba(56, 189, 248, 0.1);
+}
+
+#design .skill-name {
+  color: #38bdf8;
+}
+
+#design .progress::after {
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.2) 50%, 
+    rgba(255, 255, 255, 0.1) 100%);
+}
+
+#design h2 {
+  color: #38bdf8;
+  text-align: left;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  text-shadow: 0 2px 4px rgba(56, 189, 248, 0.3);
+}
+
 
 
  
