@@ -1216,6 +1216,34 @@ footer {
   }
 }
 
+/* Soft Skills Section */
+#soft-skills .progress {
+  background: linear-gradient(90deg, #82d71f, #6ab318);
+}
+
+#soft-skills .progress-bar {
+  background: rgba(130, 215, 31, 0.1);
+}
+
+#soft-skills .skill-name {
+  color: #82d71f;
+}
+
+#soft-skills .progress::after {
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.2) 50%, 
+    rgba(255, 255, 255, 0.1) 100%);
+}
+
+#soft-skills h2 {
+  color: #82d71f;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  text-shadow: 0 2px 4px rgba(130, 215, 31, 0.3);
+}
+
 
 
  
