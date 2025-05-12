@@ -4,30 +4,29 @@ let navLinks = document.getElementById("navLinks");
 let text = " | Web Developer | Designer | Coder";
 let index = 0;
 
-// Typewriter effect
+// Typewriter effect with improved performance
 function typeEffect() {
   const typewriter = document.querySelector('.typewriter');
   if (typewriter && index < text.length) {
     typewriter.innerHTML += text.charAt(index);
     index++;
-    setTimeout(typeEffect, 100);
+    requestAnimationFrame(() => setTimeout(typeEffect, 100));
   }
 }
 
-// Menu toggle functionality
+// Improved menu toggle functionality
 function toggleMenu() {
-  console.log("Toggle menu clicked");
   const navLinks = document.getElementById("navLinks");
   const menuToggle = document.querySelector(".menu-toggle");
   
   if (navLinks.classList.contains("active")) {
     navLinks.classList.remove("active");
     menuToggle.innerHTML = "☰";
-    document.body.style.overflow = ""; // Restore scrolling
+    document.body.style.overflow = "";
   } else {
     navLinks.classList.add("active");
     menuToggle.innerHTML = "✕";
-    document.body.style.overflow = "hidden"; // Prevent scrolling when menu is open
+    document.body.style.overflow = "hidden";
   }
 }
 
@@ -37,9 +36,7 @@ document.addEventListener("click", function(event) {
   const menuToggle = document.querySelector(".menu-toggle");
   
   if (!navLinks.contains(event.target) && !menuToggle.contains(event.target) && navLinks.classList.contains("active")) {
-    navLinks.classList.remove("active");
-    menuToggle.innerHTML = "☰";
-    document.body.style.overflow = "";
+    toggleMenu();
   }
 });
 
@@ -66,35 +63,15 @@ function toggleSection(id) {
   const panel = document.getElementById(id);
   const btn = panel.previousElementSibling;
 
-  if (panel.style.display === "block") {
-    panel.style.display = "none";
-    btn.classList.remove("active");
-  } else {
-    panel.style.display = "block";
-    btn.classList.add("active");
-  }
-}
-
-// Function to change profile image
-function changeProfileImage(imagePath) {
-  const profileImage = document.getElementById('profile-img');
-  if (profileImage) {
-    profileImage.src = imagePath;
-    console.log('Image changed to:', imagePath);
-  }
-}
-
-// Function to highlight projects
-function highlightProject(projectId) {
-  // Remove highlight from all projects
-  const projects = document.querySelectorAll('.project');
-  projects.forEach(project => {
-    project.classList.remove('highlighted');
+  requestAnimationFrame(() => {
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+      btn.classList.remove("active");
+    } else {
+      panel.style.display = "block";
+      btn.classList.add("active");
+    }
   });
-  
-  // Add highlight to the selected project
-  const project = document.querySelector(`.project:nth-child(${projectId.charAt(projectId.length - 1)})`);
-  project.classList.add('highlighted');
 }
 
 // Function to switch work images
@@ -120,24 +97,69 @@ function switchWorkImage(imageId) {
   clickedButton.classList.add('active');
 }
 
+// Improved profile image change
+function changeProfileImage(imagePath) {
+  const profileImage = document.getElementById('profile-img');
+  if (profileImage) {
+    profileImage.style.opacity = '0';
+    setTimeout(() => {
+      profileImage.src = imagePath;
+      profileImage.style.opacity = '1';
+    }, 300);
+  }
+}
+
+// Function to highlight projects
+function highlightProject(projectId) {
+  // Remove highlight from all projects
+  const projects = document.querySelectorAll('.project');
+  projects.forEach(project => {
+    project.classList.remove('highlighted');
+  });
+  
+  // Add highlight to the selected project
+  const project = document.querySelector(`.project:nth-child(${projectId.charAt(projectId.length - 1)})`);
+  project.classList.add('highlighted');
+}
+
 // Initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", function() {
+  // Show first image by default
+  const firstImage = document.getElementById('workImage1');
+  if (firstImage) {
+    firstImage.classList.add('active');
+  }
+  
   // Start typewriter effect
   typeEffect();
   
   // Add event listener for menu toggle
   const menuToggleBtn = document.querySelector(".menu-toggle");
   if (menuToggleBtn) {
-    menuToggleBtn.addEventListener("click", function(e) {
-      e.preventDefault();
-      e.stopPropagation(); // Prevent event from bubbling up
-      toggleMenu();
-    });
+    menuToggleBtn.addEventListener("click", toggleMenu);
   }
   
-  // Initialize all accordion panels to be hidden
+  // Initialize all accordion panels
   const panels = document.querySelectorAll(".panel");
   panels.forEach(panel => {
     panel.style.display = "none";
+  });
+
+  // Add smooth scroll behavior
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+        // Close mobile menu if open
+        if (navLinks.classList.contains('active')) {
+          toggleMenu();
+        }
+      }
+    });
   });
 });
