@@ -646,6 +646,15 @@ footer {
 }
 
 /* Experience buttons */
+#exp3-btn {
+  background-color: #10b981;
+  color: #0f172a;
+}
+
+#exp3-btn:hover {
+  background-color: #059669;
+}
+
 #exp1-btn {
   background-color: #f59e0b;
   color: #0f172a;
