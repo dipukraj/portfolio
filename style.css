@@ -1006,8 +1006,8 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   background: linear-gradient(145deg, #38bdf8, #0ea5e9);
   color: #0f172a;
   text-decoration: none;
@@ -1587,13 +1587,28 @@ img {
 
 @media (max-width: 768px) {
   .contact-buttons {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     gap: 15px;
+    margin-top: 15px;
   }
   
   .contact-btn {
-    width: 200px;
+    width: auto;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-buttons {
+    flex-direction: row;
+    gap: 10px;
+  }
+  
+  .contact-btn {
+    padding: 8px 15px;
+    font-size: 0.85rem;
   }
 }
 
