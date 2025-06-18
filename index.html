@@ -555,7 +555,7 @@ Looking forward to learning and growing in one of India's leading power companie
 
 
       
-        <form class="contact-form" action="#" method="post">
+        <form class="contact-form" action="#" method="post" onsubmit="return sendSMS(event)">
           <input type="text" name="name" placeholder="Your Name" required>
           <input type="email" name="email" placeholder="Your Email" required>
           <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
@@ -572,6 +572,21 @@ Looking forward to learning and growing in one of India's leading power companie
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    function sendSMS(event) {
+      event.preventDefault();
+      var form = event.target;
+      var name = form.name.value.trim();
+      var email = form.email.value.trim();
+      var message = form.message.value.trim();
+      var smsBody = encodeURIComponent(
+        'Name: ' + name + '\nEmail: ' + email + '\nMessage: ' + message
+      );
+      var phone = '+917295808100'; // Change to your number if needed
+      window.location.href = 'sms:' + phone + '?body=' + smsBody;
+      return false;
+    }
+  </script>
 
 </body>
 </html>
