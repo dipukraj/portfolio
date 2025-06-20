@@ -1612,5 +1612,25 @@ img {
   }
 }
 
+.whatsapp-float {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  z-index: 2000;
+  background: #25d366;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  padding: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+  background: #1ebe5d;
+}
+
  
  
