@@ -1632,5 +1632,12 @@ img {
   background: #1ebe5d;
 }
 
+.panel-readmore-left {
+  display: block;
+  text-align: left;
+  margin-top: 10px;
+  width: fit-content;
+}
+
  
  
