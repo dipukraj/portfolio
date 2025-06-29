@@ -1639,5 +1639,18 @@ img {
   width: fit-content;
 }
 
+@media (max-width: 480px) {
+  .panel-readmore-left {
+    font-size: 0.95rem;
+    padding: 7px 16px !important;
+    white-space: nowrap;
+    border-radius: 10px;
+  }
+  .panel-readmore-left.btn {
+    padding: 7px 16px;
+    font-size: 0.95rem;
+  }
+}
+
  
  
