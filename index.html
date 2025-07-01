@@ -389,26 +389,39 @@
     <h2>My Certificates</h2>
     <p>Here are some of my certificates:</p>
     <ul>
-      <li>Internship Certification from Cisco</li>
-      <li>HTML Spoken Tutorial Programming Certification</li>
-      <li>Introduction to Data Science for Cisco Certification</li>
-      <li>Introduction to Cyber Security for Cisco Certification</li>
-      <li>JAVA Spoken Tutorial Programming Certification</li>
-      <li>Python Essentials 1 Certification for Cisco</li>
-      <li>Python Essentials 2 Certification for Cisco</li>
-      <li>C++ Spoken Tutorial Programming Certification</li>
-      <li>C Spoken Tutorial Programming Certification</li>
-      <li>NTPC Quiz'25 Certification</li>
-      <li>Python for Machine Learning iHUB DivyaSampark(IIT Roorkee) Certification</li>
-      <li>Data Science iHUB DivyaSampark(IIT Roorkee) Certification</li>
-      <li>Web Development iHUB DivyaSampark(IIT Roorkee) Certification</li>
-      <li>Parakh Certification</li>
-      <li>E-Yantra Certification</li>
-      <li>Basic MATLAB Certification</li>
-      <li>Pahal for Teaching Certification</li>
-      <li>Graphics Design Certification</li>
-      <!-- Add more certificates as needed -->
+      <li><a href="/image certificate/Cisco Certificate _page-0001.jpg" onclick="showCertificate(1)">Internship Certification from Cisco</a></li>
+      <li><a href="/image certificate/Spoken Tutorial Html Certificate _page-0001.jpg" onclick="showCertificate(2)">HTML Spoken Tutorial Programming Certification</a></li>
+      <li><a href="/image certificate/Data Science Certificate Cisco_page-0001.jpg" onclick="showCertificate(3)">Introduction to Data Science for Cisco Certification</a></li>
+      <li><a href="/image certificate/Cyble Security Certificate_page-0001.jpg" onclick="showCertificate(4)">Introduction to Cyber Security for Cisco Certification</a></li>
+      <li><a href="/image certificate/Spoken Tutorial Java Certificate _page-0001.jpg" onclick="showCertificate(5)">JAVA Spoken Tutorial Programming Certification</a></li>
+      <li><a href="/image certificate/Python 1 Certificate Cisco_page-0001.jpg" onclick="showCertificate(6)">Python Essentials 1 Certification for Cisco</a></li>
+      <li><a href="/image certificate/Python 2 Certificate Cisco_page-0001.jpg" onclick="showCertificate(7)">Python Essentials 2 Certification for Cisco</a></li>
+      <li><a href="/image certificate/Spoken Tutorial Cpp Certificate _page-0001.jpg" onclick="showCertificate(8)">C++ Spoken Tutorial Programming Certification</a></li>
+      <li><a href="/image certificate/Spoken Tutorial C Certificate _page-0001.jpg" onclick="showCertificate(9)">C Spoken Tutorial Programming Certification</a></li>
+      <li><a href="/image certificate/NTPC'25.jpg" onclick="showCertificate(10)">NTPC Quiz'25 Certification</a></li>
+      <li><a href="/image certificate/IIT Roorkee.jpg" onclick="showCertificate(11)">Python for Machine Learning iHUB DivyaSampark(IIT Roorkee) Certification</a></li>
+      <li><a href="/image certificate/IIT Roorkee.jpg" onclick="showCertificate(12)">Data Science iHUB DivyaSampark(IIT Roorkee) Certification</a></li>
+      <li><a href="/image certificate/IIT Roorkee.jpg" onclick="showCertificate(13)">Web Development iHUB DivyaSampark(IIT Roorkee) Certification</a></li>
+      <li><a href="/image certificate/Parakh Result 1st year Institute_page-0001.jpg" onclick="showCertificate(14)">Parakh Certification</a></li>
+      <li><a href="/image certificate/E-Yantra Certificate_page-0001.jpg" onclick="showCertificate(15)">E-Yantra Certification</a></li>
+      <li><a href="/image certificate/basic matlab.jpg" onclick="showCertificate(16)">Basic MATLAB Certification</a></li>
+      <li><a href="/image certificate/pahal certificate .jpg" onclick="showCertificate(17)">Pahal for Teaching Certification</a></li>
+      <li><a href="#" onclick="showCertificate(18)">Graphics Design Certification</a></li>
+      <li><a href="#" onclick="showCertificate(19)">Bihar Vision Certification</a></li>
+      <li><a href="#" onclick="showCertificate(20)">Svastik Quiz (National Institute of Science Communication and Policy Research, New Delhi) Certification</a></li>
+      <li><a href="#" onclick="showCertificate(21)">Swachh Bharat Mission Quiz Certification</a></li>
+      <li><a href="#" onclick="showCertificate(22)">Insurance Awareness Quiz Certification</a></li>
+      <li><a href="#" onclick="showCertificate(23)">Mahakumbh 2025 Quiz Certification</a></li>
+      <li><a href="#" onclick="showCertificate(24)">Senior Citizens'Welfare Awareness Quiz Certification</a></li>
+      <li><a href="#" onclick="showCertificate(25)">Dr. B.R. Ambedkar Quiz 2024 Certification</a></li>
+      <li><a href="#" onclick="showCertificate(26)">Swasth Dhara Quiz'2.0 Certification</a></li>
+      <li><a href="#" onclick="showCertificate(27)">The Viksit Bharat Quiz Challenge Certification</a></li>
     </ul>
+    <!-- Certificate Modal -->
+    <div id="certificateModal" style="display:none; position:fixed; z-index:3000; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
+      <span onclick="closeCertificate()" style="position:absolute; top:30px; right:50px; color:#fff; font-size:2.5rem; cursor:pointer; z-index:3100;">&times;</span>
+      <img id="certificateImg" src="" alt="Certificate Image" style="max-width:90vw; max-height:80vh; border-radius:12px; box-shadow:0 8px 40px #000; background:#fff; padding:10px;" />
+    </div>
   </section>
 
   <!-- Extra Curricular Activities Section -->
@@ -603,6 +616,25 @@
       window.location.href = 'sms:' + phone + '?body=' + smsBody;
       return false;
     }
+    function showCertificate(num) {
+      var modal = document.getElementById('certificateModal');
+      var img = document.getElementById('certificateImg');
+      img.src = 'image/certificate' + num + '.jpg';
+      modal.style.display = 'flex';
+    }
+    function closeCertificate() {
+      var modal = document.getElementById('certificateModal');
+      var img = document.getElementById('certificateImg');
+      modal.style.display = 'none';
+      img.src = '';
+    }
+    // Close modal on outside click
+    window.addEventListener('click', function(e) {
+      var modal = document.getElementById('certificateModal');
+      if (modal && e.target === modal) {
+        closeCertificate();
+      }
+    });
   </script>
 
   <!-- Floating WhatsApp Button -->

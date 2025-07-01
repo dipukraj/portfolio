@@ -1652,5 +1652,22 @@ img {
   }
 }
 
+/* Certificate section links styling */
+#certificate ul li a {
+  color: #38bdf8;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s, text-decoration 0.2s;
+  text-decoration: none;
+  font-size: 1.08rem;
+  display: inline-block;
+}
+#certificate ul li a:hover, #certificate ul li a:focus {
+  color: #0ea5e9;
+  background: rgba(56, 189, 248, 0.12);
+  text-decoration: underline;
+}
+
  
  
