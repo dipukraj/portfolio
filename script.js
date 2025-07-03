@@ -122,6 +122,49 @@ function highlightProject(projectId) {
   project.classList.add('highlighted');
 }
 
+// Language Switcher Logic
+const translations = {
+  en: {
+    about: "I'm a passionate web designer and developer who loves bringing ideas to life through code. Whether it's crafting beautiful websites, designing intuitive user interfaces, or writing clean and efficient code — I enjoy every step of the journey. I also have a strong interest in graphic design, which helps me create visually striking and user-friendly web experiences. From layout to functionality, I love combining creativity with technology to build things that not only work well but also look great. Designing websites isn't just something I do — it's something I genuinely love. If you're someone who shares the same excitement for creativity and tech, we'll definitely get along!",
+    skills: "Skills🔛▼",
+    contact: "Contact Me",
+    email: "Email: kumardipu1436@gmail.com"
+  },
+  hi: {
+    about: "मैं एक जुनूनी वेब डिज़ाइनर और डेवलपर हूँ, जिसे कोड के ज़रिए विचारों को जीवन में लाना पसंद है। सुंदर वेबसाइट बनाना, सहज यूज़र इंटरफेस डिज़ाइन करना, या साफ़ और कुशल कोड लिखना — मुझे इस यात्रा का हर कदम पसंद है। मुझे ग्राफ़िक डिज़ाइन में भी गहरी रुचि है, जिससे मैं आकर्षक और यूज़र-फ्रेंडली वेब अनुभव बना पाता हूँ। रचनात्मकता और तकनीक को मिलाकर ऐसी चीज़ें बनाना जो न सिर्फ़ अच्छी दिखें बल्कि बेहतरीन काम भी करें, यही मेरा जुनून है। वेबसाइट डिज़ाइन करना मेरे लिए सिर्फ़ काम नहीं, बल्कि मेरा शौक़ है। अगर आप भी रचनात्मकता और तकनीक के लिए उत्साहित हैं, तो हम ज़रूर अच्छे दोस्त बन सकते हैं!",
+    skills: "कौशल🔛▼",
+    contact: "संपर्क करें",
+    email: "ईमेल: kumardipu1436@gmail.com"
+  },
+  bho: {
+    about: "हम एक जोशिला वेब डिज़ाइनर आ डेवलपर बानी, जेकरा के कोड से नया-नया आइडिया के जिनगी देवे में मजा आवेला। सुंदर वेबसाइट बनावल, बढ़िया यूज़र इंटरफेस डिज़ाइन करे, आ साफ-सुथरा कोड लिखे — हमके ई सब काम बहुते पसंद बा। हमके ग्राफ़िक डिज़ाइन में भी गहरी दिलचस्पी बा, जेसे हम आकर्षक आ यूज़र-फ्रेंडली वेबसाइट बना सकी। रचनात्मकता आ तकनीक के मिलाके कुछ नया बनावल हमार शौक बा। वेबसाइट डिज़ाइन हमार पेशा ना, हमार जूनून बा। अगर रउआ के भी रचनात्मकता आ तकनीक में रुचि बा, त हमनी के जरूर बनेम!",
+    skills: "कौशल🔛▼",
+    contact: "संपर्क करीं",
+    email: "ईमेल: kumardipu1436@gmail.com"
+  },
+  mai: {
+    about: "हम एक उत्साही वेब डिज़ाइनर आ डेवलपर छी, जे कोड के माध्यम सऽ विचार के जीवन दैत छी। सुंदर वेबसाइट बनब, सहज यूज़र इंटरफेस डिज़ाइन करब, आ साफ-सुथरा कोड लिखब — हम अहि यात्रा के हर पग के आनंद लैत छी। हम ग्राफ़िक डिज़ाइन में सेहो गहरी रुचि रखैत छी, जे सऽ हम आकर्षक आ यूज़र-फ्रेंडली वेब अनुभव बना सकी। रचनात्मकता आ तकनीक के जोड़ि कऽ किछु नव बनब हमरा बहुत पसंद अछि। वेबसाइट डिज़ाइन करब हमर पेशा नहि, हमर शौक अछि। जँ अहाँ के सेहो रचनात्मकता आ तकनीक में रुचि अछि, तऽ हम सभ जरूर मिलब!",
+    skills: "कौशल🔛▼",
+    contact: "संपर्क करू",
+    email: "ईमेल: kumardipu1436@gmail.com"
+  }
+};
+
+function updateLanguage(lang) {
+  // About section
+  const aboutP = document.querySelector('#about p');
+  if (aboutP) aboutP.textContent = translations[lang].about;
+  // Skills section heading
+  const skillsH2 = document.querySelector('#skills h2');
+  if (skillsH2) skillsH2.textContent = translations[lang].skills;
+  // Contact section heading
+  const contactH2 = document.querySelector('#contact h2');
+  if (contactH2) contactH2.textContent = translations[lang].contact;
+  // Contact email
+  const contactEmail = document.querySelector('#contact p');
+  if (contactEmail) contactEmail.textContent = translations[lang].email;
+}
+
 // Initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", function() {
   // Show first image by default
@@ -162,4 +205,101 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
   });
+
+  // Animated Welcome overlay with multiple languages
+  const welcomeOverlay = document.getElementById('welcome-overlay');
+  const welcomeMessage = document.getElementById('welcome-message');
+  const messages = [
+    'Welcome',
+    'स्वागत है',
+    'रउआ के स्वागत बा',
+    'अहाँ के स्वागत छै'
+  ];
+  let msgIndex = 0;
+
+  function showNextMessage() {
+    if (msgIndex >= messages.length) {
+      welcomeOverlay.classList.add('hide');
+      setTimeout(() => {
+        welcomeOverlay.style.display = 'none';
+      }, 700);
+      return;
+    }
+    welcomeMessage.textContent = messages[msgIndex];
+    welcomeMessage.classList.add('show');
+    setTimeout(() => {
+      welcomeMessage.classList.remove('show');
+      setTimeout(() => {
+        msgIndex++;
+        showNextMessage();
+      }, 400); // fade out duration
+    }, 1000); // show each message for 1s
+  }
+
+  if (welcomeOverlay && welcomeMessage) {
+    showNextMessage();
+  }
+
+  // Visitor Counter (localStorage based)
+  const counterDiv = document.getElementById('visitor-counter');
+  if (counterDiv) {
+    let count = localStorage.getItem('visitorCount');
+    if (!count) {
+      count = 1;
+    } else {
+      count = parseInt(count, 10) + 1;
+    }
+    localStorage.setItem('visitorCount', count);
+    counterDiv.textContent = `Visitor Count: ${count}`;
+  }
+
+  const langSwitcher = document.getElementById('language-switcher');
+  if (langSwitcher) {
+    langSwitcher.addEventListener('change', function() {
+      updateLanguage(this.value);
+    });
+  }
+
+  // Restore theme from localStorage
+  const savedTheme = localStorage.getItem('theme');
+  setTheme(savedTheme === 'light' ? 'light' : 'dark');
+  // Toggle on both buttons
+  const toggleBtn = document.getElementById('theme-toggle');
+  const toggleBtnMobile = document.getElementById('theme-toggle-mobile');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', function() {
+      if (document.body.classList.contains('light-mode')) {
+        setTheme('dark');
+      } else {
+        setTheme('light');
+      }
+    });
+  }
+  if (toggleBtnMobile) {
+    toggleBtnMobile.addEventListener('click', function() {
+      if (document.body.classList.contains('light-mode')) {
+        setTheme('dark');
+      } else {
+        setTheme('light');
+      }
+    });
+  }
 });
+
+// Dark/Light Mode Toggle
+function setTheme(mode) {
+  const body = document.body;
+  const toggleBtn = document.getElementById('theme-toggle');
+  const toggleBtnMobile = document.getElementById('theme-toggle-mobile');
+  if (mode === 'light') {
+    body.classList.add('light-mode');
+    if (toggleBtn) toggleBtn.textContent = '☀️';
+    if (toggleBtnMobile) toggleBtnMobile.textContent = '☀️';
+    localStorage.setItem('theme', 'light');
+  } else {
+    body.classList.remove('light-mode');
+    if (toggleBtn) toggleBtn.textContent = '🌙';
+    if (toggleBtnMobile) toggleBtnMobile.textContent = '🌙';
+    localStorage.setItem('theme', 'dark');
+  }
+}
