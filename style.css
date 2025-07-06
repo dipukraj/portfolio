@@ -674,6 +674,11 @@ footer {
     transition: all 0.3s ease;
   }
   
+  /* Light mode mobile navigation text fix */
+  body.light-mode .nav-links li a {
+    color: #0f172a;
+  }
+  
   .nav-links li a:hover {
     background-color: rgba(56, 189, 248, 0.2);
     padding-left: 20px;
