@@ -284,6 +284,28 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
   }
+
+  // Settings FAB logic
+  const settingsIcon = document.getElementById('settings-icon');
+  const colorPalette = document.getElementById('color-palette');
+  if (settingsIcon && colorPalette) {
+    settingsIcon.addEventListener('click', function() {
+      colorPalette.classList.toggle('active');
+    });
+    document.querySelectorAll('.color-option').forEach(opt => {
+      opt.addEventListener('click', function() {
+        setPrimaryColor(this.getAttribute('data-color'));
+        colorPalette.classList.remove('active');
+      });
+    });
+    // Restore saved color
+    const savedColor = localStorage.getItem('primaryColor');
+    if (savedColor) {
+      setPrimaryColor(savedColor);
+    } else {
+      setPrimaryColor('#38bdf8');
+    }
+  }
 });
 
 // Dark/Light Mode Toggle
@@ -302,4 +324,18 @@ function setTheme(mode) {
     if (toggleBtnMobile) toggleBtnMobile.textContent = '🌙';
     localStorage.setItem('theme', 'dark');
   }
+}
+
+// Floating Settings Color Palette Logic
+function setPrimaryColor(color) {
+  document.documentElement.style.setProperty('--primary-color', color);
+  localStorage.setItem('primaryColor', color);
+  // Update selected state
+  document.querySelectorAll('.color-option').forEach(opt => {
+    if (opt.getAttribute('data-color') === color) {
+      opt.classList.add('selected');
+    } else {
+      opt.classList.remove('selected');
+    }
+  });
 }
