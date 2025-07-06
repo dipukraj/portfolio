@@ -11,19 +11,29 @@ html {
   -webkit-overflow-scrolling: touch;
 }
 
+:root {
+  --primary-color: #38bdf8;
+  --main-bg-color-dark: #0f172a;
+  --navbar-bg-color-dark: #1e293b;
+  --main-bg-color-light: #f1f5f9;
+  --navbar-bg-color-light: #e0e7ef;
+  --main-bg-color: var(--main-bg-color-dark);
+  --navbar-bg-color: var(--navbar-bg-color-dark);
+}
+
 body {
-  background-color: #0f172a;
+  background-color: var(--main-bg-color);
   color: #f1f5f9;
   line-height: 1.6;
 }
 
 body.light-mode {
-  background-color: #f1f5f9;
+  background-color: var(--main-bg-color);
   color: #0f172a;
   transition: background 0.4s, color 0.4s;
 }
 body.light-mode .navbar {
-  background-color: #e0e7ef;
+  background-color: var(--navbar-bg-color);
 }
 body.light-mode .logo {
   color: #0ea5e9;
@@ -144,7 +154,7 @@ body.light-mode #theme-toggle {
   position: sticky;
   top: 0;
   width: 100%;
-  background-color: #1e293b;
+  background-color: var(--navbar-bg-color);
   padding: 1rem 2rem;
   z-index: 999;
   display: flex;

@@ -285,6 +285,18 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
+  // Restore saved color and backgrounds
+  const savedColor = localStorage.getItem('primaryColor');
+  const savedBgColor = localStorage.getItem('mainBgColor');
+  const savedNavbarColor = localStorage.getItem('navbarBgColor');
+  if (savedColor) setPrimaryColor(savedColor);
+  if (savedBgColor && document.body.classList.contains('light-mode')) {
+    document.documentElement.style.setProperty('--main-bg-color', savedBgColor);
+  }
+  if (savedNavbarColor && document.body.classList.contains('light-mode')) {
+    document.documentElement.style.setProperty('--navbar-bg-color', savedNavbarColor);
+  }
+
   // Settings FAB logic
   const settingsIcon = document.getElementById('settings-icon');
   const colorPalette = document.getElementById('color-palette');
@@ -294,17 +306,12 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     document.querySelectorAll('.color-option').forEach(opt => {
       opt.addEventListener('click', function() {
-        setPrimaryColor(this.getAttribute('data-color'));
+        if (document.body.classList.contains('light-mode')) {
+          setPrimaryColor(this.getAttribute('data-color'));
+        }
         colorPalette.classList.remove('active');
       });
     });
-    // Restore saved color
-    const savedColor = localStorage.getItem('primaryColor');
-    if (savedColor) {
-      setPrimaryColor(savedColor);
-    } else {
-      setPrimaryColor('#38bdf8');
-    }
   }
 });
 
@@ -315,11 +322,18 @@ function setTheme(mode) {
   const toggleBtnMobile = document.getElementById('theme-toggle-mobile');
   if (mode === 'light') {
     body.classList.add('light-mode');
+    // Use saved or default color for backgrounds
+    const savedBgColor = localStorage.getItem('mainBgColor');
+    const savedNavbarColor = localStorage.getItem('navbarBgColor');
+    document.documentElement.style.setProperty('--main-bg-color', savedBgColor || '#f1f5f9');
+    document.documentElement.style.setProperty('--navbar-bg-color', savedNavbarColor || '#e0e7ef');
     if (toggleBtn) toggleBtn.textContent = '☀️';
     if (toggleBtnMobile) toggleBtnMobile.textContent = '☀️';
     localStorage.setItem('theme', 'light');
   } else {
     body.classList.remove('light-mode');
+    document.documentElement.style.setProperty('--main-bg-color', '#0f172a');
+    document.documentElement.style.setProperty('--navbar-bg-color', '#1e293b');
     if (toggleBtn) toggleBtn.textContent = '🌙';
     if (toggleBtnMobile) toggleBtnMobile.textContent = '🌙';
     localStorage.setItem('theme', 'dark');
@@ -329,6 +343,12 @@ function setTheme(mode) {
 // Floating Settings Color Palette Logic
 function setPrimaryColor(color) {
   document.documentElement.style.setProperty('--primary-color', color);
+  if (document.body.classList.contains('light-mode')) {
+    document.documentElement.style.setProperty('--main-bg-color', color);
+    document.documentElement.style.setProperty('--navbar-bg-color', color);
+    localStorage.setItem('mainBgColor', color);
+    localStorage.setItem('navbarBgColor', color);
+  }
   localStorage.setItem('primaryColor', color);
   // Update selected state
   document.querySelectorAll('.color-option').forEach(opt => {
