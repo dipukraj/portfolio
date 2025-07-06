@@ -53,6 +53,23 @@ body.light-mode .project {
   border-color: #bae6fd;
   box-shadow: 0 4px 15px rgba(56, 189, 248, 0.08);
 }
+
+/* Light mode text color fixes */
+body.light-mode .service-content,
+body.light-mode .service-content p,
+body.light-mode .achievement-item li,
+body.light-mode .service-details p,
+body.light-mode .service-details li {
+  color: #0f172a;
+}
+
+body.light-mode .service-details li:before {
+  color: #0ea5e9;
+}
+
+body.light-mode .achievement-item li:before {
+  color: #0ea5e9;
+}
 body.light-mode h2, body.light-mode .project-title, body.light-mode .service-box h3 {
   color: #0ea5e9;
 }
