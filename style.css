@@ -467,6 +467,11 @@ ul {
   margin: 10px 0;
 }
 
+/* Light mode project description text fix */
+body.light-mode .project p {
+  color: #0f172a;
+}
+
 .project .highlight-btn {
   /* Keep the highlight button styling as is */
   background: linear-gradient(145deg, #38bdf8, #0ea5e9);
