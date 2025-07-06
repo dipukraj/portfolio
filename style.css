@@ -1786,6 +1786,12 @@ img {
   text-align: left;
   margin-top: 10px;
   width: fit-content;
+  color: #0f172a;
+}
+
+/* Dark mode button text color fix */
+body:not(.light-mode) .panel-readmore-left {
+  color: #0f172a;
 }
 
 @media (max-width: 480px) {
