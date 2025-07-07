@@ -2037,5 +2037,12 @@ body.light-mode .accordion-btn.active {
   color: #0f172a;
 }
 
+body.light-mode .skills-progress .skill-name {
+  color: #0f172a;
+}
+body.light-mode .skills-progress .progress {
+  color: #0f172a;
+}
+
  
  
