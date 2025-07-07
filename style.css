@@ -2027,5 +2027,15 @@ body, .navbar, .logo, .btn, .highlight-btn, .see-more-btn, .get-in-touch-btn, .p
   }
 }
 
+body.light-mode .panel {
+  background-color: #fff;
+  color: #0f172a;
+}
+
+body.light-mode .accordion-btn.active {
+  background-color: #e0e7ef;
+  color: #0f172a;
+}
+
  
  
