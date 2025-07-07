@@ -358,4 +358,13 @@ function setPrimaryColor(color) {
       opt.classList.remove('selected');
     }
   });
+  // Change the color of the 'Hi, I\'m' text only in light mode
+  var heroName = document.getElementById('hero-name-color');
+  if (heroName) {
+    if (document.body.classList.contains('light-mode')) {
+      heroName.style.color = color;
+    } else {
+      heroName.style.color = '#fff';
+    }
+  }
 }
