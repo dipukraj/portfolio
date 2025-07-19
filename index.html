@@ -19,12 +19,15 @@
   <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="logo">✨5ukoon...</div>
-    <select id="language-switcher" style="margin-left: 1.5rem; padding: 6px 12px; border-radius: 6px; font-size: 1rem;">
-      <option value="en">English</option>
-      <option value="hi">हिन्दी</option>
-      <option value="bho">भोजपुरी</option>
-      <option value="mai">मैथिली</option>
-    </select>
+    <div class="language-switcher-container" style="display: inline-flex; align-items: center; margin-left: 1.5rem;">
+      <span class="globe-icon" style="font-size: 1.3rem; margin-right: 0.5rem;">🌐</span>
+      <select id="language-switcher" style="padding: 6px 12px; border-radius: 6px; font-size: 1rem;">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="bho">भोजपुरी</option>
+        <option value="mai">मैथिली</option>
+      </select>
+    </div>
     <button id="theme-toggle" title="Toggle dark/light mode" style="margin-left: 1.5rem; font-size: 1.5rem; background:none; border:none; color:#38bdf8; cursor:pointer;">🌙</button>
     <button class="menu-toggle" type="button">☰</button>
     <ul class="nav-links" id="navLinks">
