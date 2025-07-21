@@ -661,15 +661,14 @@ footer {
   }
 
   .nav-links li {
-    margin: 15px 0;
-    width: 100%;
+    margin: 6px 0 !important;
   }
   
   .nav-links li a {
     display: block;
-    padding: 12px 15px;
+    padding: 8px 10px !important;
     text-align: left;
-    font-size: 18px;
+    font-size: 16px !important;
     border-radius: 5px;
     transition: all 0.3s ease;
   }
