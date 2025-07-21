@@ -2097,5 +2097,18 @@ body.light-mode .skills-progress .progress {
   }
 }
 
+#website .btn {
+  background: linear-gradient(90deg, #ec4899 0%, #f472b6 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 15px rgba(236, 72, 153, 0.15);
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+#website .btn:hover {
+  background: linear-gradient(90deg, #f472b6 0%, #ec4899 100%);
+  color: #fff;
+  transform: scale(1.06);
+}
+
  
  
