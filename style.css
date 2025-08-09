@@ -1189,9 +1189,9 @@ footer {
 
 @media (max-width: 768px) {
   .get-in-touch-btn {
-    width: 100px;
-    height: 100px;
-    font-size: 1rem;
+    width: 85px;
+    height: 85px;
+    font-size: 0.95rem;
   }
 }
 
