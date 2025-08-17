@@ -2110,5 +2110,157 @@ body.light-mode .skills-progress .progress {
   transform: scale(1.06);
 }
 
+/* Comprehensive Mobile Responsiveness - Consistent across all devices */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.8rem 1rem;
+  }
+  
+  .logo {
+    font-size: 1.3rem;
+  }
+  
+  .language-switcher-container {
+    margin-left: 1rem !important;
+  }
+  
+  #language-switcher {
+    padding: 3px 6px !important;
+    font-size: 0.85rem !important;
+  }
+  
+  .globe-icon {
+    font-size: 1.2rem !important;
+  }
+  
+  .section {
+    padding: 1.5rem 1rem;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  .get-in-touch-btn {
+    width: 80px;
+    height: 80px;
+    font-size: 0.9rem;
+  }
+  
+  .work-image {
+    max-width: 280px;
+  }
+  
+  .social-icons a {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    padding: 18px 20px;
+    font-size: 18px;
+  }
+  
+  .contact-form button {
+    padding: 14px 35px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar {
+    padding: 0.6rem 0.8rem;
+  }
+  
+  .logo {
+    font-size: 1.2rem;
+  }
+  
+  .language-switcher-container {
+    margin-left: 0.8rem !important;
+  }
+  
+  #language-switcher {
+    padding: 2px 5px !important;
+    font-size: 0.8rem !important;
+  }
+  
+  .globe-icon {
+    font-size: 1.1rem !important;
+  }
+  
+  .section {
+    padding: 1.2rem 0.8rem;
+  }
+  
+  h2 {
+    font-size: 1.6rem;
+  }
+  
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .get-in-touch-btn {
+    width: 75px;
+    height: 75px;
+    font-size: 0.85rem;
+  }
+  
+  .work-image {
+    max-width: 250px;
+  }
+  
+  .social-icons a {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    padding: 16px 18px;
+    font-size: 16px;
+  }
+  
+  .contact-form button {
+    padding: 12px 30px;
+    font-size: 16px;
+  }
+}
+
+/* Standardize mobile navigation across all devices */
+@media (max-width: 768px) {
+  .nav-links {
+    width: 280px;
+    padding: 80px 25px 25px;
+  }
+  
+  .nav-links li a {
+    padding: 10px 12px !important;
+    font-size: 16px !important;
+    margin: 4px 0;
+  }
+  
+  .nav-links li a:hover {
+    padding-left: 20px !important;
+  }
+}
+
+/* Ensure consistent button spacing in website section */
+@media (max-width: 768px) {
+  #website .btn {
+    margin: 0.5rem;
+    padding: 0.7rem 1.4rem;
+    font-size: 0.95rem;
+  }
+}
+
  
  
