@@ -207,6 +207,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // Animated Welcome overlay with multiple languages
+  /*
   const welcomeOverlay = document.getElementById('welcome-overlay');
   const welcomeMessage = document.getElementById('welcome-message');
   const messages = [
@@ -239,6 +240,7 @@ document.addEventListener("DOMContentLoaded", function() {
   if (welcomeOverlay && welcomeMessage) {
     showNextMessage();
   }
+  */
 
   // Visitor Counter (localStorage based)
   const counterDiv = document.getElementById('visitor-counter');

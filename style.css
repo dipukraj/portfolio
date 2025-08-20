@@ -11,6 +11,39 @@ html {
   -webkit-overflow-scrolling: touch;
 }
 
+/* Basic performance optimizations - keeping it simple */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Remove conflicting will-change properties */
+.nav-links,
+.work-image,
+.profile-image {
+  /* will-change removed to fix mobile issues */
+}
+
+/* Keep essential animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes rotateGlobe {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Remove problematic transform properties */
+.navbar,
+.section,
+.btn,
+.get-in-touch-btn {
+  /* transform: translateZ(0) removed */
+  /* backface-visibility: hidden removed */
+}
+
 :root {
   --primary-color: #38bdf8;
   --main-bg-color-dark: #0f172a;

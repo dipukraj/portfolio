@@ -4,18 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dipu K Raj | Portfolio</title>
+  
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   
+  <!-- Preload hero background image -->
+  <link rel="preload" href="/image/bg.jpg" as="image">
 </head>
 <body>
   <!-- Welcome Overlay -->
-  <div id="welcome-overlay">
+  <!-- <div id="welcome-overlay">
     <div class="welcome-content">
       <div id="welcome-message"></div>
     </div>
-  </div>
-
+  </div> -->
   <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="logo">✨5ukoon...</div>
@@ -221,7 +223,7 @@
   <!-- Profile Image Section -->
   <section id="profile-image" class="section">
     <div class="profile-image-container">
-      <img src="image/Laptop image.jpg" alt="Dipu K Raj" class="profile-image" id="profile-img">
+      <img src="image/Laptop image.jpg" alt="Dipu K Raj" class="profile-image" id="profile-img" loading="lazy">
       <p class="image-caption">Dipu K Raj</p>
       <div class="image-controls">
         <button onclick="changeProfileImage('image/Laptop image.jpg')" class="image-btn">Image 1</button>
@@ -511,8 +513,8 @@
       <p>Checkout some of my work on <a href="https://github.com/dipukraj"> projects 🔛</a> section or visit my GitHub.</p>
     </div>
     <div class="work-images-container">
-      <img src="image/MY work.jpg" alt="My Work Sample 1" class="work-image active" id="workImage1">
-      <img src="image/my work car.jpg" alt="My Work Sample 2" class="work-image" id="workImage2">
+      <img src="image/MY work.jpg" alt="My Work Sample 1" class="work-image active" id="workImage1" loading="lazy">
+      <img src="image/my work car.jpg" alt="My Work Sample 2" class="work-image" id="workImage2" loading="lazy">
       <div class="image-switch-buttons">
         <button onclick="switchWorkImage('workImage1')" class="image-switch-btn active">Image 1</button>
         <button onclick="switchWorkImage('workImage2')" class="image-switch-btn">Image 2</button>
@@ -599,28 +601,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <div class="social-icons">
       <a href="https://www.facebook.com/dipu.kraj.92" target="_blank">
-        <img src="/image/facebook-logo-2019.png" alt="Facebook" class="social-icon">
+        <img src="/image/facebook-logo-2019.png" alt="Facebook" class="social-icon" loading="lazy">
       </a>
       <a href="https://www.instagram.com/r.p.dipu" target="_blank">
-        <img src="/image/Instagram_logo_2022.svg.webp" alt="Instagram" class="social-icon">
+        <img src="/image/Instagram_logo_2022.svg.webp" alt="Instagram" class="social-icon" loading="lazy">
       </a>
       <a href="https://github.com/dipukraj" target="_blank">
-        <img src="image/github logo.png" alt="GitHub" class="social-icon">
+        <img src="image/github logo.png" alt="GitHub" class="social-icon" loading="lazy">
       </a>
       <a href="https://www.linkedin.com/in/dipukraj" target="_blank">
-        <img src="/image/LinkedIn_icon.svg.png" alt="LinkedIn" class="social-icon">
+        <img src="/image/LinkedIn_icon.svg.png" alt="LinkedIn" class="social-icon" loading="lazy">
       </a>
       <a href="https://www.youtube.com/@explorewithdipu" target="_blank">
-        <img src="/image/youtube2 logo.webp" alt="YouTube" class="social-icon">
+        <img src="/image/youtube2 logo.webp" alt="YouTube" class="social-icon" loading="lazy">
       </a>
       <a href="https://www.twitter.com/@DipuKRaj" target="_blank">
-        <img src="/image/twitter logo.png" alt="Twitter" class="social-icon">
+        <img src="/image/twitter logo.png" alt="Twitter" class="social-icon" loading="lazy">
       </a>
       <a href="https://www.snapchat.com/add/diwakar_dipu217" target="_blank">
-        <img src="/image/snapchat logo.png" alt="Twitter" class="social-icon">
+        <img src="/image/snapchat logo.png" alt="Twitter" class="social-icon" loading="lazy">
       </a>
       <a href="https://t.me/dipukraj" target="_blank">
-        <img src="/image/telegram logo.webp" alt="Telegram" class="social-icon">
+        <img src="/image/telegram logo.webp" alt="Telegram" class="social-icon" loading="lazy">
       </a>
       <p>   
       </p>
