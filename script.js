@@ -395,3 +395,361 @@ function setPrimaryColor(color) {
     }
   }
 }
+
+// Live Chat System
+function initializeLiveChat() {
+  const chatToggle = document.getElementById('chat-toggle');
+  const chatWindow = document.getElementById('chat-window');
+  const closeChat = document.getElementById('close-chat');
+  const chatInput = document.getElementById('chat-input');
+  const sendMessage = document.getElementById('send-message');
+  const chatMessages = document.getElementById('chat-messages');
+  
+  // Chat toggle functionality
+  chatToggle.addEventListener('click', () => {
+    chatWindow.style.display = chatWindow.style.display === 'none' ? 'flex' : 'none';
+    if (chatWindow.style.display === 'flex') {
+      chatInput.focus();
+    }
+  });
+  
+  // Close chat
+  closeChat.addEventListener('click', () => {
+    chatWindow.style.display = 'none';
+  });
+  
+  // Send message functionality
+  function sendChatMessage() {
+    const message = chatInput.value.trim();
+    if (message) {
+      // Add message to Firebase
+      const chatRef = database.ref('chatMessages');
+      const newMessage = {
+        text: message,
+        sender: 'visitor',
+        timestamp: Date.now(),
+        visitorId: generateVisitorId()
+      };
+      
+      chatRef.push(newMessage);
+      chatInput.value = '';
+    }
+  }
+  
+  // Send button click
+  sendMessage.addEventListener('click', sendChatMessage);
+  
+  // Enter key press
+  chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      sendChatMessage();
+    }
+  });
+  
+  // Generate unique visitor ID
+  function generateVisitorId() {
+    let visitorId = localStorage.getItem('visitorId');
+    if (!visitorId) {
+      visitorId = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem('visitorId', visitorId);
+    }
+    return visitorId;
+  }
+  
+  // Listen for real-time messages
+  const chatRef = database.ref('chatMessages');
+  chatRef.on('child_added', (snapshot) => {
+    const message = snapshot.val();
+    displayMessage(message);
+  });
+  
+  // Display message in chat
+  function displayMessage(message) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${message.sender}`;
+    
+    const messageP = document.createElement('p');
+    messageP.textContent = message.text;
+    messageDiv.appendChild(messageP);
+    
+    chatMessages.appendChild(messageDiv);
+    
+    // Auto scroll to bottom
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    
+    // Add timestamp
+    const timestamp = new Date(message.timestamp).toLocaleTimeString();
+    const timeSpan = document.createElement('span');
+    timeSpan.style.fontSize = '0.7rem';
+    timeSpan.style.opacity = '0.7';
+    timeSpan.style.marginTop = '5px';
+    timeSpan.style.display = 'block';
+    timeSpan.textContent = timestamp;
+    messageDiv.appendChild(timeSpan);
+  }
+  
+  // Auto-response system
+  function addAutoResponse(message) {
+    const responses = {
+      'hello': 'Hello! How can I help you today? 😊',
+      'hi': 'Hi there! Welcome to my portfolio! 👋',
+      'help': 'I\'m here to help! What would you like to know? 🤔',
+      'contact': 'You can contact me via email: kumardipu1436@gmail.com or through the contact form above! 📧',
+      'project': 'Check out my projects section to see my work! 🚀',
+      'skill': 'I specialize in web development, Python, and design. Check my skills section for details! 💻',
+      'thank': 'You\'re welcome! Feel free to ask anything else! 😊'
+    };
+    
+    const lowerMessage = message.toLowerCase();
+    for (let key in responses) {
+      if (lowerMessage.includes(key)) {
+        return responses[key];
+      }
+    }
+    return 'Thanks for your message! I\'ll get back to you soon! 📝';
+  }
+  
+  // Listen for visitor messages and add auto-response
+  chatRef.on('child_added', (snapshot) => {
+    const message = snapshot.val();
+    if (message.sender === 'visitor') {
+      // Add auto-response after 2 seconds
+      setTimeout(() => {
+        const autoResponse = {
+          text: addAutoResponse(message.text),
+          sender: 'admin',
+          timestamp: Date.now()
+        };
+        chatRef.push(autoResponse);
+      }, 2000);
+    }
+  });
+}
+
+// Initialize live chat when DOM is loaded
+document.addEventListener("DOMContentLoaded", function() {
+  // Initialize live chat
+  initializeLiveChat();
+});
+
+// Live Notifications System
+function showNotification(message, type = 'info', duration = 5000) {
+  const container = document.getElementById('notifications-container');
+  const notification = document.createElement('div');
+  notification.className = `notification ${type}`;
+  notification.innerHTML = `<p>${message}</p>`;
+  
+  container.appendChild(notification);
+  
+  setTimeout(() => {
+    notification.style.animation = 'slideOut 0.3s ease forwards';
+    setTimeout(() => {
+      container.removeChild(notification);
+    }, 300);
+  }, duration);
+}
+
+// Live Analytics System
+function initializeAnalytics() {
+  const analyticsToggle = document.getElementById('analytics-toggle');
+  const analyticsPanel = document.getElementById('analytics-panel');
+  const closeAnalytics = document.getElementById('close-analytics');
+  
+  analyticsToggle.addEventListener('click', () => {
+    analyticsPanel.style.display = analyticsPanel.style.display === 'none' ? 'block' : 'none';
+    if (analyticsPanel.style.display === 'block') {
+      updateAnalytics();
+    }
+  });
+  
+  closeAnalytics.addEventListener('click', () => {
+    analyticsPanel.style.display = 'none';
+  });
+  
+  // Update analytics data
+  function updateAnalytics() {
+    // Total visitors
+    const visitorRef = database.ref('visitorCount');
+    visitorRef.once('value', (snapshot) => {
+      const count = snapshot.val() || 0;
+      document.getElementById('total-visitors').textContent = count;
+    });
+    
+    // Online now (active in last 5 minutes)
+    const onlineRef = database.ref('onlineUsers');
+    onlineRef.once('value', (snapshot) => {
+      const onlineCount = snapshot.numChildren() || 0;
+      document.getElementById('online-now').textContent = onlineCount;
+    });
+    
+    // Page views
+    const pageViewsRef = database.ref('pageViews');
+    pageViewsRef.once('value', (snapshot) => {
+      const views = snapshot.val() || 0;
+      document.getElementById('page-views').textContent = views;
+    });
+    
+    // Chat messages
+    const chatRef = database.ref('chatMessages');
+    chatRef.once('value', (snapshot) => {
+      const chatCount = snapshot.numChildren() || 0;
+      document.getElementById('chat-count').textContent = chatCount;
+    });
+  }
+  
+  // Track page view
+  const pageViewsRef = database.ref('pageViews');
+  pageViewsRef.transaction((currentViews) => {
+    return (currentViews || 0) + 1;
+  });
+  
+  // Track online status
+  const visitorId = generateVisitorId();
+  const onlineRef = database.ref(`onlineUsers/${visitorId}`);
+  onlineRef.set({
+    timestamp: Date.now(),
+    userAgent: navigator.userAgent
+  });
+  
+  // Remove from online users when page unloads
+  window.addEventListener('beforeunload', () => {
+    onlineRef.remove();
+  });
+  
+  // Clean up old online users (older than 5 minutes)
+  setInterval(() => {
+    const cutoff = Date.now() - (5 * 60 * 1000);
+    onlineRef.orderByChild('timestamp').startAt(0).endAt(cutoff).remove();
+  }, 60000); // Check every minute
+}
+
+// Live Status Indicator
+function initializeStatusIndicator() {
+  const statusIndicator = document.getElementById('status-indicator');
+  const statusDot = statusIndicator.querySelector('.status-dot');
+  const statusText = statusIndicator.querySelector('.status-text');
+  
+  // Update status based on connection
+  function updateStatus() {
+    if (navigator.onLine) {
+      statusDot.style.background = '#10b981';
+      statusText.textContent = 'Online';
+      statusText.style.color = '#10b981';
+    } else {
+      statusDot.style.background = '#ef4444';
+      statusText.textContent = 'Offline';
+      statusText.style.color = '#ef4444';
+    }
+  }
+  
+  window.addEventListener('online', updateStatus);
+  window.addEventListener('offline', updateStatus);
+  updateStatus();
+}
+
+// Live Comments/Feedback System
+function initializeFeedback() {
+  const feedbackToggle = document.getElementById('feedback-toggle');
+  const feedbackPanel = document.getElementById('feedback-panel');
+  const closeFeedback = document.getElementById('close-feedback');
+  const stars = document.querySelectorAll('.star');
+  const feedbackText = document.getElementById('feedback-text');
+  const submitFeedback = document.getElementById('submit-feedback');
+  
+  let selectedRating = 0;
+  
+  feedbackToggle.addEventListener('click', () => {
+    feedbackPanel.style.display = feedbackPanel.style.display === 'none' ? 'block' : 'none';
+  });
+  
+  closeFeedback.addEventListener('click', () => {
+    feedbackPanel.style.display = 'none';
+  });
+  
+  // Star rating functionality
+  stars.forEach((star, index) => {
+    star.addEventListener('click', () => {
+      selectedRating = index + 1;
+      stars.forEach((s, i) => {
+        if (i < selectedRating) {
+          s.classList.add('active');
+        } else {
+          s.classList.remove('active');
+        }
+      });
+    });
+    
+    star.addEventListener('mouseenter', () => {
+      stars.forEach((s, i) => {
+        if (i <= index) {
+          s.style.opacity = '1';
+        }
+      });
+    });
+    
+    star.addEventListener('mouseleave', () => {
+      stars.forEach((s, i) => {
+        if (i >= selectedRating) {
+          s.style.opacity = '0.3';
+        }
+      });
+    });
+  });
+  
+  // Submit feedback
+  submitFeedback.addEventListener('click', () => {
+    const text = feedbackText.value.trim();
+    
+    if (selectedRating === 0) {
+      showNotification('Please select a rating!', 'warning');
+      return;
+    }
+    
+    if (text.length < 10) {
+      showNotification('Please write at least 10 characters!', 'warning');
+      return;
+    }
+    
+    const feedback = {
+      rating: selectedRating,
+      text: text,
+      timestamp: Date.now(),
+      visitorId: generateVisitorId(),
+      userAgent: navigator.userAgent
+    };
+    
+    const feedbackRef = database.ref('feedback');
+    feedbackRef.push(feedback).then(() => {
+      showNotification('Thank you for your feedback! 😊', 'success');
+      feedbackText.value = '';
+      selectedRating = 0;
+      stars.forEach(star => star.classList.remove('active'));
+      feedbackPanel.style.display = 'none';
+    }).catch((error) => {
+      showNotification('Error submitting feedback. Please try again.', 'error');
+    });
+  });
+}
+
+// Generate unique visitor ID (reuse from chat)
+function generateVisitorId() {
+  let visitorId = localStorage.getItem('visitorId');
+  if (!visitorId) {
+    visitorId = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem('visitorId', visitorId);
+  }
+  return visitorId;
+}
+
+// Initialize all systems when DOM is loaded
+document.addEventListener("DOMContentLoaded", function() {
+  // Initialize all new systems
+  initializeAnalytics();
+  initializeStatusIndicator();
+  initializeFeedback();
+  
+  // Show welcome notification
+  setTimeout(() => {
+    showNotification('Welcome to my portfolio! Feel free to explore! 🚀', 'success', 3000);
+  }, 1000);
+});

@@ -645,12 +645,127 @@
     </div>
   </section>
 
+  <!-- Live Notifications System -->
+  <div id="notifications-container" class="notifications-container"></div>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/917295808100" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+    <img src="/image/whatsapp logo2.webp" alt="WhatsApp" style="width:40px;height:40px;" />
+  </a>
+
+  <!-- Floating Settings Button and Color Palette -->
+  <div id="settings-fab">
+    <div id="settings-icon" title="Theme Settings">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 8 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 8a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 8 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09A1.65 1.65 0 0 0 16 4.6a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 8c.14.31.22.65.22 1v.09A1.65 1.65 0 0 0 21 12c0 .35-.08.69-.22 1z"/></svg>
+    </div>
+    <div id="color-palette">
+      <div class="color-option" data-color="#38bdf8" style="background:#38bdf8"></div>
+      <div class="color-option" data-color="#10b981" style="background:#10b981"></div>
+      <div class="color-option" data-color="#a78bfa" style="background:#a78bfa"></div>
+      <div class="color-option" data-color="#f59e42" style="background:#f59e42"></div>
+      <div class="color-option" data-color="#ec4899" style="background:#ec4899"></div>
+    </div>
+  </div>
+
   <footer>
     <div id="visitor-counter"></div>
-     
+    
+    <!-- Real-time Features in Footer -->
+    <div class="footer-features">
+      <!-- Online Status -->
+      <div id="status-indicator" class="footer-status">
+        <span class="status-dot"></span>
+        <span class="status-text">Online</span>
+      </div>
+      
+      <!-- Analytics Button -->
+      <button id="analytics-toggle" class="footer-btn analytics-btn">
+        <span>📊</span>
+        <span>Analytics</span>
+      </button>
+      
+      <!-- Feedback Button -->
+      <button id="feedback-toggle" class="footer-btn feedback-btn">
+        <span>💭</span>
+        <span>Feedback</span>
+      </button>
+      
+      <!-- Live Chat Button -->
+      <button id="chat-toggle" class="footer-btn chat-btn">
+        <span>💬</span>
+        <span>Live Chat</span>
+      </button>
+    </div>
+    
+    <!-- Analytics Panel -->
+    <div id="analytics-panel" class="analytics-panel" style="display: none;">
+      <div class="analytics-header">
+        <h3>📊 Live Analytics</h3>
+        <button id="close-analytics" class="close-analytics">✕</button>
+      </div>
+      <div class="analytics-content">
+        <div class="analytics-item">
+          <span class="analytics-label">Total Visitors:</span>
+          <span id="total-visitors" class="analytics-value">0</span>
+        </div>
+        <div class="analytics-item">
+          <span class="analytics-label">Online Now:</span>
+          <span id="online-now" class="analytics-value">0</span>
+        </div>
+        <div class="analytics-item">
+          <span class="analytics-label">Page Views:</span>
+          <span id="page-views" class="analytics-value">0</span>
+        </div>
+        <div class="analytics-item">
+          <span class="analytics-label">Chat Messages:</span>
+          <span id="chat-count" class="analytics-value">0</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Feedback Panel -->
+    <div id="feedback-panel" class="feedback-panel" style="display: none;">
+      <div class="feedback-header">
+        <h3>💭 Leave Feedback</h3>
+        <button id="close-feedback" class="close-feedback">✕</button>
+      </div>
+      <div class="feedback-content">
+        <div class="rating-container">
+          <span>Rate my portfolio:</span>
+          <div class="stars">
+            <span class="star" data-rating="1">⭐</span>
+            <span class="star" data-rating="2">⭐</span>
+            <span class="star" data-rating="3">⭐</span>
+            <span class="star" data-rating="4">⭐</span>
+            <span class="star" data-rating="5">⭐</span>
+          </div>
+        </div>
+        <textarea id="feedback-text" placeholder="Share your thoughts about my portfolio..." maxlength="500"></textarea>
+        <button id="submit-feedback" class="submit-feedback">Submit Feedback</button>
+      </div>
+    </div>
+    
+    <!-- Live Chat Window -->
+    <div id="chat-window" class="chat-window" style="display: none;">
+      <div class="chat-header">
+        <h3>💬 Live Chat</h3>
+        <button id="close-chat" class="close-chat">✕</button>
+      </div>
+      
+      <div id="chat-messages" class="chat-messages">
+        <div class="message system">
+          <p>Welcome! How can I help you today? 😊</p>
+        </div>
+      </div>
+      
+      <div class="chat-input-container">
+        <input type="text" id="chat-input" placeholder="Type your message..." maxlength="200">
+        <button id="send-message" class="send-btn">Send</button>
+      </div>
+    </div>
+    
     <h5> Made With ✨5ukoon By Dipu K Raj ❤️</h5>
     <p> &copy;2025 | All Rights Reserved.</p>
-     
   </footer>
 
   <script src="script.js"></script>
@@ -688,25 +803,6 @@
       }
     });
   </script>
-
-  <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/917295808100" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
-    <img src="/image/whatsapp logo2.webp" alt="WhatsApp" style="width:40px;height:40px;" />
-  </a>
-
-  <!-- Floating Settings Button and Color Palette -->
-  <div id="settings-fab">
-    <div id="settings-icon" title="Theme Settings">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 8 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 8a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 8 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09A1.65 1.65 0 0 0 16 4.6a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 8c.14.31.22.65.22 1v.09A1.65 1.65 0 0 0 21 12c0 .35-.08.69-.22 1z"/></svg>
-    </div>
-    <div id="color-palette">
-      <div class="color-option" data-color="#38bdf8" style="background:#38bdf8"></div>
-      <div class="color-option" data-color="#10b981" style="background:#10b981"></div>
-      <div class="color-option" data-color="#a78bfa" style="background:#a78bfa"></div>
-      <div class="color-option" data-color="#f59e42" style="background:#f59e42"></div>
-      <div class="color-option" data-color="#ec4899" style="background:#ec4899"></div>
-    </div>
-  </div>
 
 </body>
 </html>
