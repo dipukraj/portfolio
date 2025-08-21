@@ -1,8 +1,43 @@
+// Firebase Configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBVlZh8IrDTfnt9zUhdmqyjd3T2JJNKE94",
+  authDomain: "dipu-portfolio.firebaseapp.com",
+  databaseURL: "https://dipu-portfolio-default-rtdb.firebaseio.com",
+  projectId: "dipu-portfolio",
+  storageBucket: "dipu-portfolio.firebasestorage.app",
+  messagingSenderId: "845529374157",
+  appId: "1:845529374157:web:bec00f53d20e4f1d67f884",
+  measurementId: "G-V8QBNCK2QX"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
 // Global variables
 let menuToggle = document.querySelector(".menu-toggle");
 let navLinks = document.getElementById("navLinks");
 let text = " Web Developer | Designer | Coder";
 let index = 0;
+
+// Real-time Visitor Counter
+function updateVisitorCount() {
+  const visitorRef = database.ref('visitorCount');
+  
+  // Increment visitor count
+  visitorRef.transaction((currentCount) => {
+    return (currentCount || 0) + 1;
+  });
+  
+  // Listen for real-time updates
+  visitorRef.on('value', (snapshot) => {
+    const count = snapshot.val() || 0;
+    const counterDiv = document.getElementById('visitor-counter');
+    if (counterDiv) {
+      counterDiv.textContent = `Visitor Count: ${count}`;
+    }
+  });
+}
 
 // Typewriter effect with improved performance
 function typeEffect() {
@@ -242,18 +277,8 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   */
 
-  // Visitor Counter (localStorage based)
-  const counterDiv = document.getElementById('visitor-counter');
-  if (counterDiv) {
-    let count = localStorage.getItem('visitorCount');
-    if (!count) {
-      count = 1;
-    } else {
-      count = parseInt(count, 10) + 1;
-    }
-    localStorage.setItem('visitorCount', count);
-    counterDiv.textContent = `Visitor Count: ${count}`;
-  }
+  // Real-time Visitor Counter
+  updateVisitorCount();
 
   const langSwitcher = document.getElementById('language-switcher');
   if (langSwitcher) {
