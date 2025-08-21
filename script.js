@@ -421,6 +421,13 @@ function initializeLiveChat() {
   // Send message functionality
   function sendChatMessage() {
     const message = chatInput.value.trim();
+    // Basic rate limit: 1 message per 2 seconds
+    const lastSent = Number(localStorage.getItem('lastChatSentTs') || 0);
+    const now = Date.now();
+    if (now - lastSent < 2000) {
+      showNotification('Please wait a moment before sending again.', 'warning');
+      return;
+    }
     if (message) {
       // Add message to Firebase
       const chatRef = database.ref('chatMessages');
@@ -432,6 +439,7 @@ function initializeLiveChat() {
       };
       
       chatRef.push(newMessage);
+      localStorage.setItem('lastChatSentTs', String(now));
       chatInput.value = '';
     }
   }
@@ -528,8 +536,19 @@ function initializeLiveChat() {
 
 // Initialize live chat when DOM is loaded
 document.addEventListener("DOMContentLoaded", function() {
-  // Initialize live chat
-  initializeLiveChat();
+  // Lazy-init live chat on first interaction
+  const chatToggleBtn = document.getElementById('chat-toggle');
+  if (chatToggleBtn) {
+    let chatInitialized = false;
+    const initChatOnce = () => {
+      if (!chatInitialized) {
+        initializeLiveChat();
+        chatInitialized = true;
+      }
+    };
+    chatToggleBtn.addEventListener('pointerdown', initChatOnce, { once: true });
+    chatToggleBtn.addEventListener('click', initChatOnce, { once: true });
+  }
 });
 
 // Live Notifications System
@@ -699,6 +718,13 @@ function initializeFeedback() {
   // Submit feedback
   submitFeedback.addEventListener('click', () => {
     const text = feedbackText.value.trim();
+    // Basic rate limit: 1 feedback per 30 seconds
+    const lastFeedback = Number(localStorage.getItem('lastFeedbackTs') || 0);
+    const nowTs = Date.now();
+    if (nowTs - lastFeedback < 30000) {
+      showNotification('Please wait before submitting another feedback.', 'warning');
+      return;
+    }
     
     if (selectedRating === 0) {
       showNotification('Please select a rating!', 'warning');
@@ -725,6 +751,7 @@ function initializeFeedback() {
       selectedRating = 0;
       stars.forEach(star => star.classList.remove('active'));
       feedbackPanel.style.display = 'none';
+      localStorage.setItem('lastFeedbackTs', String(nowTs));
     }).catch((error) => {
       showNotification('Error submitting feedback. Please try again.', 'error');
     });
@@ -743,13 +770,44 @@ function generateVisitorId() {
 
 // Initialize all systems when DOM is loaded
 document.addEventListener("DOMContentLoaded", function() {
-  // Initialize all new systems
-  initializeAnalytics();
+  // Lazy-init analytics on first open
+  const analyticsToggle = document.getElementById('analytics-toggle');
+  if (analyticsToggle) {
+    let analyticsInitialized = false;
+    const initAnalyticsOnce = () => {
+      if (!analyticsInitialized) {
+        initializeAnalytics();
+        analyticsInitialized = true;
+      }
+    };
+    analyticsToggle.addEventListener('pointerdown', initAnalyticsOnce, { once: true });
+    analyticsToggle.addEventListener('click', initAnalyticsOnce, { once: true });
+  }
+
+  // Always-on, lightweight
   initializeStatusIndicator();
-  initializeFeedback();
-  
+
+  // Lazy-init feedback on first open
+  const feedbackToggle = document.getElementById('feedback-toggle');
+  if (feedbackToggle) {
+    let feedbackInitialized = false;
+    const initFeedbackOnce = () => {
+      if (!feedbackInitialized) {
+        initializeFeedback();
+        feedbackInitialized = true;
+      }
+    };
+    feedbackToggle.addEventListener('pointerdown', initFeedbackOnce, { once: true });
+    feedbackToggle.addEventListener('click', initFeedbackOnce, { once: true });
+  }
+
   // Show welcome notification
   setTimeout(() => {
     showNotification('Welcome to my portfolio! Feel free to explore! 🚀', 'success', 3000);
   }, 1000);
+
+  // Register Service Worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js').catch(() => {});
+  }
 });
