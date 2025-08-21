@@ -3148,6 +3148,12 @@ body.light-mode .skills-progress .progress {
   animation: modalFadeIn 0.3s ease-out;
 }
 
+#certificateImg.zoomed {
+  max-width: none !important;
+  max-height: none !important;
+  cursor: zoom-out !important;
+}
+
 #certificateModal button {
   transition: all 0.3s ease;
 }
