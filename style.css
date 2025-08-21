@@ -837,6 +837,10 @@ footer {
     max-height: 75vh;
   }
   
+  .chat-window {
+    height: 450px;
+  }
+  
   .analytics-panel {
     min-height: 300px;
   }
@@ -864,6 +868,10 @@ footer {
     width: 95%;
     max-width: 280px;
     max-height: 70vh;
+  }
+  
+  .chat-window {
+    height: 420px;
   }
   
   .analytics-panel {
@@ -2521,11 +2529,13 @@ body.light-mode .skills-progress .progress {
 }
 
 .chat-window {
-  position: absolute;
-  bottom: 70px;
-  right: 0;
-  width: 350px;
-  height: 450px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 500px;
+  max-height: 500px;
   background: rgba(30, 41, 59, 0.95);
   border-radius: 15px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
@@ -2533,6 +2543,10 @@ body.light-mode .skills-progress .progress {
   display: flex;
   flex-direction: column;
   backdrop-filter: blur(10px);
+  z-index: 2000;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: panelSlideIn 0.3s ease-out;
 }
 
 .chat-header {
@@ -2573,6 +2587,8 @@ body.light-mode .skills-progress .progress {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-height: 300px;
+  max-height: 350px;
 }
 
 .message {
@@ -2618,6 +2634,9 @@ body.light-mode .skills-progress .progress {
   border-top: 1px solid rgba(56, 189, 248, 0.2);
   display: flex;
   gap: 10px;
+  margin-top: auto;
+  background: rgba(15, 23, 42, 0.8);
+  border-radius: 0 0 13px 13px;
 }
 
 #chat-input {
@@ -2672,9 +2691,10 @@ body.light-mode .skills-progress .progress {
   }
   
   .chat-window {
-    width: 300px;
-    height: 400px;
-    bottom: 60px;
+    width: 90%;
+    max-width: 320px;
+    height: 450px;
+    max-height: 75vh;
   }
   
   .chat-toggle {
@@ -2689,8 +2709,10 @@ body.light-mode .skills-progress .progress {
 
 @media (max-width: 480px) {
   .chat-window {
-    width: 280px;
-    height: 380px;
+    width: 95%;
+    max-width: 280px;
+    height: 420px;
+    max-height: 70vh;
   }
   
   .chat-header h3 {
@@ -3118,6 +3140,120 @@ body.light-mode .skills-progress .progress {
   .notification {
     max-width: 220px;
     padding: 10px 14px;
+  }
+} 
+
+/* Certificate Modal Styles */
+#certificateModal {
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+#certificateModal button {
+  transition: all 0.3s ease;
+}
+
+#certificateModal button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+}
+
+#certificateModal button:active {
+  transform: scale(0.95);
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(5px);
+  }
+}
+
+/* Certificate image loading animation */
+#certificateImg {
+  transition: opacity 0.3s ease;
+}
+
+/* Mobile responsive for certificate modal */
+@media (max-width: 768px) {
+  #certificateModal button {
+    font-size: 1.5rem !important;
+    width: 40px !important;
+    height: 40px !important;
+  }
+  
+  #certificateModal button:last-child {
+    font-size: 0.9rem !important;
+    padding: 10px 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #certificateModal button {
+    font-size: 1.3rem !important;
+    width: 35px !important;
+    height: 35px !important;
+  }
+  
+  #certificateModal button:last-child {
+    font-size: 0.8rem !important;
+    padding: 8px 16px !important;
+  }
+} 
+
+/* Certificate Modal - Ensure Close Buttons are Visible */
+#certificateModal {
+  position: fixed !important;
+  z-index: 9999 !important;
+  background: rgba(0,0,0,0.95) !important;
+}
+
+#certificateModal div[onclick="closeCertificate()"] {
+  cursor: pointer !important;
+  z-index: 10000 !important;
+  position: absolute !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+}
+
+#certificateModal div[onclick="closeCertificate()"]:hover {
+  transform: scale(1.1) !important;
+  transition: transform 0.2s ease !important;
+}
+
+#certificateModal div[onclick="closeCertificate()"]:active {
+  transform: scale(0.95) !important;
+}
+
+/* Mobile responsive for certificate modal close buttons */
+@media (max-width: 768px) {
+  #certificateModal div[onclick="closeCertificate()"] {
+    font-size: 1.5rem !important;
+    padding: 12px 20px !important;
+  }
+  
+  #certificateModal div[onclick="closeCertificate()"]:first-child {
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 2rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #certificateModal div[onclick="closeCertificate()"] {
+    font-size: 1.2rem !important;
+    padding: 10px 16px !important;
+  }
+  
+  #certificateModal div[onclick="closeCertificate()"]:first-child {
+    width: 45px !important;
+    height: 45px !important;
+    font-size: 1.8rem !important;
   }
 } 
  
