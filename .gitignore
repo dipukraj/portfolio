@@ -1,0 +1,7 @@
+node_modules/
+.vscode/
+*.mp4
+*.avi
+*.mov
+*.zip
+*.rar
