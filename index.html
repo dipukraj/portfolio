@@ -1,10 +1,12 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dipu K Raj | Portfolio</title>
-  <meta name="description" content="Dipu K Raj – Web designer and developer portfolio showcasing projects, skills, services, and contact information.">
+  <meta name="description"
+    content="Dipu K Raj – Web designer and developer portfolio showcasing projects, skills, services, and contact information.">
   <link rel="canonical" href="https://dipukraj.me/">
   <meta property="og:title" content="Dipu K Raj | Portfolio">
   <meta property="og:description" content="Web Designer & Developer – projects, skills, services and contact.">
@@ -16,7 +18,7 @@
   <meta name="twitter:description" content="Web Designer & Developer – projects, skills, services and contact.">
   <meta name="twitter:image" content="/image/bg.jpg">
   <link rel="manifest" href="/manifest.webmanifest">
-  
+
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,14 +26,15 @@
   <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://dipu-portfolio-default-rtdb.firebaseio.com" crossorigin>
   <link rel="preconnect" href="https://dipu-portfolio.firebasestorage.app" crossorigin>
-  
+
   <!-- Firebase SDK -->
   <script defer src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
-  
+
   <!-- Preload hero background image -->
   <link rel="preload" href="/image/bg.jpg" as="image">
 </head>
+
 <body>
   <!-- Welcome Overlay -->
   <!-- <div id="welcome-overlay">
@@ -51,7 +54,8 @@
         <option value="mai">मैथिली</option>
       </select>
     </div>
-    <button id="theme-toggle" title="Toggle dark/light mode" style="margin-left: 1.5rem; font-size: 1.5rem; background:none; border:none; color:#38bdf8; cursor:pointer;">🌙</button>
+    <button id="theme-toggle" title="Toggle dark/light mode"
+      style="margin-left: 1.5rem; font-size: 1.5rem; background:none; border:none; color:#38bdf8; cursor:pointer;">🌙</button>
     <button class="menu-toggle" type="button">☰</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#hero" data-info="Welcome to my portfolio">Home</a></li>
@@ -66,7 +70,8 @@
 
   <!-- Header / Hero Section -->
   <header id="hero">
-    <button id="theme-toggle-mobile" title="Toggle dark/light mode" style="position:absolute;top:20px;right:20px;font-size:1.8rem;background:none;border:none;color:#38bdf8;cursor:pointer;z-index:1100;">🌙</button>
+    <button id="theme-toggle-mobile" title="Toggle dark/light mode"
+      style="position:absolute;top:20px;right:20px;font-size:1.8rem;background:none;border:none;color:#38bdf8;cursor:pointer;z-index:1100;">🌙</button>
     <div id="bgcover"></div>
     <h1><span id="hero-name-color">Hi, I'm</span> <span>Dipu K Raj</span></h1>
     <h2><span>From India</span></h2>
@@ -87,14 +92,20 @@
   <!-- About Section -->
   <section id="about" class="section">
     <h2>About Me</h2>
-    <p>I'm a passionate web designer and developer who loves bringing ideas to life through code. Whether it's crafting beautiful websites, designing intuitive user interfaces, or writing clean and efficient code — I enjoy every step of the journey. I also have a strong interest in graphic design, which helps me create visually striking and user-friendly web experiences. From layout to functionality, I love combining creativity with technology to build things that not only work well but also look great. Designing websites isn't just something I do — it's something I genuinely love. If you're someone who shares the same excitement for creativity and tech, we'll definitely get along!
+    <p>I'm a passionate web designer and developer who loves bringing ideas to life through code. Whether it's crafting
+      beautiful websites, designing intuitive user interfaces, or writing clean and efficient code — I enjoy every step
+      of the journey. I also have a strong interest in graphic design, which helps me create visually striking and
+      user-friendly web experiences. From layout to functionality, I love combining creativity with technology to build
+      things that not only work well but also look great. Designing websites isn't just something I do — it's something
+      I genuinely love. If you're someone who shares the same excitement for creativity and tech, we'll definitely get
+      along!
     </p>
   </section>
 
   <!-- Skills Section -->
   <section id="skills" class="section">
     <h2 onclick="toggleSkills()">Skills🔛&#9662;</h2>
-  
+
     <div id="skillsContent" style="display: none;">
       <div class="accordion">
         <button class="accordion-btn" id="webDev-btn" onclick="toggleSection('webDev')">Web Development 🔛</button>
@@ -103,8 +114,9 @@
             <li>Designing Websites (Frontend & Backend)</li>
           </ul>
         </div>
-  
-        <button class="accordion-btn" id="progLang-btn" onclick="toggleSection('progLang')">Programming Languages 🔛</button>
+
+        <button class="accordion-btn" id="progLang-btn" onclick="toggleSection('progLang')">Programming Languages
+          🔛</button>
         <div id="progLang" class="panel">
           <ul>
             <li>HTML</li>
@@ -118,19 +130,19 @@
       </div>
     </div>
   </section>
-   
+
   </style>
-  
+
   <script>
     function toggleSkills() {
       const content = document.getElementById("skillsContent");
       content.style.display = content.style.display === "none" ? "block" : "none";
     }
-  
+
     function toggleSection(id) {
       const panel = document.getElementById(id);
       const btn = panel.previousElementSibling;
-  
+
       if (panel.style.display === "block") {
         panel.style.display = "none";
         btn.classList.remove("active");
@@ -140,20 +152,22 @@
       }
     }
   </script>
-  
-  
+
+
 
   <!-- Experience Section -->
   <section id="experience" class="section">
     <h2 onclick="toggleExperience()">Experience🔛&#9662;</h2>
-  
+
     <div id="experienceContent" style="display: none;">
       <div class="accordion">
         <button class="accordion-btn" id="exp3-btn" onclick="toggleSection('exp3')">NTPC Limited (2025) 🔛</button>
         <div id="exp3" class="panel">
-          <p>I have been selected for a one-year internship at NTPC Limited under the Scheme 2025, in the domain of PR and Corporate Communication...</p>
-          <p>This opportunity comes with a monthly stipend and structured training modules focusing on real-world industry exposure, project planning, communication, safety, and professional development.
-             Looking forward to learning and growing in one of India's leading power companies!</p>
+          <p>I have been selected for a one-year internship at NTPC Limited under the Scheme 2025, in the domain of PR
+            and Corporate Communication...</p>
+          <p>This opportunity comes with a monthly stipend and structured training modules focusing on real-world
+            industry exposure, project planning, communication, safety, and professional development.
+            Looking forward to learning and growing in one of India's leading power companies!</p>
           <a href="https://ntpc.co.in/kahalgaon" class="btn panel-readmore-left">Read more</a>
         </div>
 
@@ -161,8 +175,9 @@
         <div id="exp1" class="panel">
           <p>Worked as a Frontend Developer. Developed responsive UI using React and improved performance by 30%.</p>
         </div>
-  
-        <button class="accordion-btn" id="exp2-btn" onclick="toggleSection('exp2')">E-Yantra , Parakh(AICTE) , NTPC , Spoken Tutorial (2024) 🔛</button>
+
+        <button class="accordion-btn" id="exp2-btn" onclick="toggleSection('exp2')">E-Yantra , Parakh(AICTE) , NTPC ,
+          Spoken Tutorial (2024) 🔛</button>
         <div id="exp2" class="panel">
           <p>Interned for Web Design. Created user-friendly layouts and learned about UX principles.</p>
         </div>
@@ -175,11 +190,11 @@
       const content = document.getElementById("experienceContent");
       content.style.display = content.style.display === "none" ? "block" : "none";
     }
-  
+
     function toggleSection(id) {
       const panel = document.getElementById(id);
       const btn = panel.previousElementSibling;
-  
+
       if (panel.style.display === "block") {
         panel.style.display = "none";
         btn.classList.remove("active");
@@ -189,33 +204,37 @@
       }
     }
   </script>
-  
+
 
   <!-- Education Section -->
   <section id="education" class="section">
     <h2 onclick="toggleEducation()">Education🔛&#9662;</h2>
-  
+
     <div id="educationContent" style="display: none;">
       <div class="accordion">
-        <button class="accordion-btn" id="edu1-btn" onclick="toggleSection('edu1')">Bihar Engineering University - Patna (2022–2026) 🔛</button>
+        <button class="accordion-btn" id="edu1-btn" onclick="toggleSection('edu1')">Bihar Engineering University - Patna
+          (2022–2026) 🔛</button>
         <div id="edu1" class="panel">
           <p>Bachelor of Technology in Electronics & Communication.<br>
-             Studied software development, data structures, algorithms, and AI/ML fundamentals.</p>
-             <a href="https://www.gecvaishali.ac.in/" class="btn panel-readmore-left">Read more</a>
-        </div>
-  
-        <button class="accordion-btn" id="edu2-btn" onclick="toggleSection('edu2')">Senior Secondary from Bihar School Examination Board - Patna (2018–2020) 🔛</button>
-        <div id="edu2" class="panel">
-          <p>A N College Patna in Completed Higher Secondary Education with PCM stream.<br>
-             Scored 85% in Physics, Chemistry, and Mathematics.</p>
-             <a href="https://www.ancpatna.ac.in/" class="btn panel-readmore-left">Read more</a>
+            Studied software development, data structures, algorithms, and AI/ML fundamentals.</p>
+          <a href="https://www.gecvaishali.ac.in/" class="btn panel-readmore-left">Read more</a>
         </div>
 
-        <button class="accordion-btn" id="edu3-btn" onclick="toggleSection('edu3')">Secondary from Bihar School Examination Board - Patna (2017–2018) 🔛</button>
+        <button class="accordion-btn" id="edu2-btn" onclick="toggleSection('edu2')">Senior Secondary from Bihar School
+          Examination Board - Patna (2018–2020) 🔛</button>
+        <div id="edu2" class="panel">
+          <p>A N College Patna in Completed Higher Secondary Education with PCM stream.<br>
+            Scored 85% in Physics, Chemistry, and Mathematics.</p>
+          <a href="https://www.ancpatna.ac.in/" class="btn panel-readmore-left">Read more</a>
+        </div>
+
+        <button class="accordion-btn" id="edu3-btn" onclick="toggleSection('edu3')">Secondary from Bihar School
+          Examination Board - Patna (2017–2018) 🔛</button>
         <div id="edu3" class="panel">
           <p>Ishwari Bhagat High School Goth Parsahi in Completed Education with All stream.<br>
-             Achieved 80% in Science and Mathematics.</p>
-             <a href="https://schools.org.in/madhubani/10051204902/ishwari-bhagat-hs-goth-parsahi.html" class="btn panel-readmore-left">Read more</a>
+            Achieved 80% in Science and Mathematics.</p>
+          <a href="https://schools.org.in/madhubani/10051204902/ishwari-bhagat-hs-goth-parsahi.html"
+            class="btn panel-readmore-left">Read more</a>
         </div>
       </div>
     </div>
@@ -226,11 +245,11 @@
       const content = document.getElementById("educationContent");
       content.style.display = content.style.display === "none" ? "block" : "none";
     }
-  
+
     function toggleSection(id) {
       const panel = document.getElementById(id);
       const btn = panel.previousElementSibling;
-  
+
       if (panel.style.display === "block") {
         panel.style.display = "none";
         btn.classList.remove("active");
@@ -256,11 +275,12 @@
   <!-- My Services Section -->
   <section id="services" class="section">
     <h2>My Services</h2>
-  
+
     <div class="service-box">
       <h3>Web Design</h3>
       <div class="service-content">
-        <p>I'm passionate about front-end web development, and I enjoy building visually appealing and user-friendly websites using HTML, CSS, and JavaScript.</p>
+        <p>I'm passionate about front-end web development, and I enjoy building visually appealing and user-friendly
+          websites using HTML, CSS, and JavaScript.</p>
         <div class="service-details">
           <p>Here you can write about your specific web design services, such as:</p>
           <ul>
@@ -273,9 +293,9 @@
       </div>
     </div>
   </section>
-  
-   
-  
+
+
+
 
   <!-- My Skills Section -->
   <section id="my-skills" class="section">
@@ -420,7 +440,7 @@
         <h3>Dipu K Raj</h3>
         <ul>
           <li>5ukoon</li>
-           
+
         </ul>
       </div>
     </div>
@@ -432,62 +452,102 @@
     <p>Here are some of my certificates:</p>
     <ul>
       <li><a href="#" onclick="showCertificate(1); return false;">1- Internship Certification from Cisco</a></li>
-      <li><a href="#" onclick="showCertificate(2); return false;">2- HTML Spoken Tutorial Programming Certification</a></li>
-      <li><a href="#" onclick="showCertificate(3); return false;">3- Introduction to Data Science for Cisco Certification</a></li>
-      <li><a href="#" onclick="showCertificate(4); return false;">4- Introduction to Cyber Security for Cisco Certification</a></li>
-      <li><a href="#" onclick="showCertificate(5); return false;">5- JAVA Spoken Tutorial Programming Certification</a></li>
-      <li><a href="#" onclick="showCertificate(6); return false;">6- Python Essentials 1 Certification for Cisco</a></li>
-      <li><a href="#" onclick="showCertificate(7); return false;">7- Python Essentials 2 Certification for Cisco</a></li>
-      <li><a href="#" onclick="showCertificate(8); return false;">8- C++ Spoken Tutorial Programming Certification</a></li>
-      <li><a href="#" onclick="showCertificate(9); return false;">9- C Spoken Tutorial Programming Certification</a></li>
+      <li><a href="#" onclick="showCertificate(2); return false;">2- HTML Spoken Tutorial Programming Certification</a>
+      </li>
+      <li><a href="#" onclick="showCertificate(3); return false;">3- Introduction to Data Science for Cisco
+          Certification</a></li>
+      <li><a href="#" onclick="showCertificate(4); return false;">4- Introduction to Cyber Security for Cisco
+          Certification</a></li>
+      <li><a href="#" onclick="showCertificate(5); return false;">5- JAVA Spoken Tutorial Programming Certification</a>
+      </li>
+      <li><a href="#" onclick="showCertificate(6); return false;">6- Python Essentials 1 Certification for Cisco</a>
+      </li>
+      <li><a href="#" onclick="showCertificate(7); return false;">7- Python Essentials 2 Certification for Cisco</a>
+      </li>
+      <li><a href="#" onclick="showCertificate(8); return false;">8- C++ Spoken Tutorial Programming Certification</a>
+      </li>
+      <li><a href="#" onclick="showCertificate(9); return false;">9- C Spoken Tutorial Programming Certification</a>
+      </li>
       <li><a href="#" onclick="showCertificate(10); return false;">10- NTPC Quiz'25 Certification</a></li>
-      <li><a href="#" onclick="showCertificate(11); return false;">11- Python for Machine Learning iHUB DivyaSampark(IIT Roorkee) Certification</a></li>
-      <li><a href="#" onclick="showCertificate(12); return false;">12- Data Science iHUB DivyaSampark(IIT Roorkee) Certification</a></li>
-      <li><a href="#" onclick="showCertificate(13); return false;">13- Web Development iHUB DivyaSampark(IIT Roorkee) Certification</a></li>
+      <li><a href="#" onclick="showCertificate(11); return false;">11- Python for Machine Learning iHUB DivyaSampark(IIT
+          Roorkee) Certification</a></li>
+      <li><a href="#" onclick="showCertificate(12); return false;">12- Data Science iHUB DivyaSampark(IIT Roorkee)
+          Certification</a></li>
+      <li><a href="#" onclick="showCertificate(13); return false;">13- Web Development iHUB DivyaSampark(IIT Roorkee)
+          Certification</a></li>
       <li><a href="#" onclick="showCertificate(14); return false;">14- Parakh Certification</a></li>
       <li><a href="#" onclick="showCertificate(15); return false;">15- E-Yantra Certification</a></li>
       <li><a href="#" onclick="showCertificate(16); return false;">16- Basic MATLAB Certification</a></li>
       <li><a href="#" onclick="showCertificate(17); return false;">17- Pahal for Teaching Certification</a></li>
       <li><a href="#" onclick="showCertificate(18); return false;">18- Graphics Design Certification</a></li>
       <li><a href="#" onclick="showCertificate(19); return false;">19- Bihar Vision Certification</a></li>
-      <li><a href="#" onclick="showCertificate(20); return false;">20- Svastik Quiz (National Institute of Science Communication and Policy Research, New Delhi) Certification</a></li>
+      <li><a href="#" onclick="showCertificate(20); return false;">20- Svastik Quiz (National Institute of Science
+          Communication and Policy Research, New Delhi) Certification</a></li>
       <li><a href="#" onclick="showCertificate(21); return false;">21- Swachh Bharat Mission Quiz Certification</a></li>
       <li><a href="#" onclick="showCertificate(22); return false;">22- Insurance Awareness Quiz Certification</a></li>
       <li><a href="#" onclick="showCertificate(23); return false;">23- Mahakumbh 2025 Quiz Certification</a></li>
-      <li><a href="#" onclick="showCertificate(24); return false;">24- Senior Citizens'Welfare Awareness Quiz Certification</a></li>
-      <li><a href="#" onclick="showCertificate(25); return false;">25- Dr. B.R. Ambedkar Quiz 2024 Certification</a></li>
+      <li><a href="#" onclick="showCertificate(24); return false;">24- Senior Citizens'Welfare Awareness Quiz
+          Certification</a></li>
+      <li><a href="#" onclick="showCertificate(25); return false;">25- Dr. B.R. Ambedkar Quiz 2024 Certification</a>
+      </li>
       <li><a href="#" onclick="showCertificate(26); return false;">26- Swasth Dhara Quiz'2.0 Certification</a></li>
-      <li><a href="#" onclick="showCertificate(27); return false;">27- The Viksit Bharat Quiz Challenge Certification</a></li>
+      <li><a href="#" onclick="showCertificate(27); return false;">27- The Viksit Bharat Quiz Challenge
+          Certification</a></li>
       <li><a href="#" onclick="showCertificate(28); return false;">28- National Health Authority Certification</a></li>
-      <li><a href="#" onclick="showCertificate(29); return false;">29- Ministry of Defence National Security Certification</a></li>
-      <li><a href="#" onclick="showCertificate(30); return false;">30- Gyan Vigyan Technological Quiz Certification</a></li>  
-      <li><a href="#" onclick="showCertificate(31); return false;">31- Wheat Procurement AT MSP Quiz Certification</a></li>
+      <li><a href="#" onclick="showCertificate(29); return false;">29- Ministry of Defence National Security
+          Certification</a></li>
+      <li><a href="#" onclick="showCertificate(30); return false;">30- Gyan Vigyan Technological Quiz Certification</a>
+      </li>
+      <li><a href="#" onclick="showCertificate(31); return false;">31- Wheat Procurement AT MSP Quiz Certification</a>
+      </li>
       <li><a href="#" onclick="showCertificate(32); return false;">32- Digital India Quiz Certification</a></li>
-      <li><a href="#" onclick="showCertificate(33); return false;">33- Energy Conservation, Bureau of Energy Efficiency(BEE) Certification</a></li>
+      <li><a href="#" onclick="showCertificate(33); return false;">33- Energy Conservation, Bureau of Energy
+          Efficiency(BEE) Certification</a></li>
       <li><a href="#" onclick="showCertificate(34); return false;">34- Red Ribbon Certification</a></li>
-      <li><a href="#" onclick="showCertificate(35); return false;">35- Ministry of Tribal Affairs Quiz Certification</a></li>
-      <li><a href="#" onclick="showCertificate(36); return false;">36- Department of Youth Affairs Quiz Certification</a></li>
-      <li><a href="#" onclick="showCertificate(37); return false;">37- 6th National Online Quiz on Insolvency & Bankruptcy Code Certification</a></li>
-      <li><a href="#" onclick="showCertificate(38); return false;">38- Indian Independence Day Quiz 2025 Certification</a></li>
+      <li><a href="#" onclick="showCertificate(35); return false;">35- Ministry of Tribal Affairs Quiz Certification</a>
+      </li>
+      <li><a href="#" onclick="showCertificate(36); return false;">36- Department of Youth Affairs Quiz
+          Certification</a></li>
+      <li><a href="#" onclick="showCertificate(37); return false;">37- 6th National Online Quiz on Insolvency &
+          Bankruptcy Code Certification</a></li>
+      <li><a href="#" onclick="showCertificate(38); return false;">38- Indian Independence Day Quiz 2025
+          Certification</a></li>
       <li><a href="#" onclick="showCertificate(39); return false;">39- ALIMCO Awareness Challenge Certification</a></li>
-      <li><a href="#" onclick="showCertificate(40); return false;">40- UP International Trade Show Certification</a></li>
-      <li><a href="#" onclick="showCertificate(41); return false;">41- Bharat Ranbhomi-Border of India Quiz Certification</a></li>
+      <li><a href="#" onclick="showCertificate(40); return false;">40- UP International Trade Show Certification</a>
+      </li>
+      <li><a href="#" onclick="showCertificate(41); return false;">41- Bharat Ranbhomi-Border of India Quiz
+          Certification</a></li>
       <li><a href="#" onclick="showCertificate(42); return false;">42- Quiz on Handloom 2025 Certification</a></li>
-      <li><a href="#" onclick="showCertificate(43); return false;">43- Horrors Remembrance Day 14th August Certification</a></li>
+      <li><a href="#" onclick="showCertificate(43); return false;">43- Horrors Remembrance Day 14th August
+          Certification</a></li>
       <li><a href="#" onclick="showCertificate(44); return false;">44- Har Ghar Tirange Quiz 2025 Certification</a></li>
-      <li><a href="#" onclick="showCertificate(45); return false;">45- Bridging Handloom Traditions & Modern Art Quiz Certification</a></li>
+      <li><a href="#" onclick="showCertificate(45); return false;">45- Bridging Handloom Traditions & Modern Art Quiz
+          Certification</a></li>
       <li><a href="#" onclick="showCertificate(46); return false;">46- IIT Delhi Offer Letter</a></li>
+      <li><a href="#" onclick="showCertificate(47); return false;">47- Cyber Security Deloitte Certification</a></li>
+      <li><a href="#" onclick="showCertificate(48); return false;">48- Cybersecurity Tata Certification</a></li>
+      <li><a href="#" onclick="showCertificate(49); return false;">49- Cybersecurity Telstra Certification</a></li>
+      <li><a href="#" onclick="showCertificate(50); return false;">50- Data Analytics Deloitte Certification</a></li>
+      <li><a href="#" onclick="showCertificate(51); return false;">51- Software Forage Certification</a></li>
+      <li><a href="#" onclick="showCertificate(52); return false;">52- Solutions Architecture Amazon Certification</a>
+      </li>
+      <li><a href="#" onclick="showCertificate(53); return false;">53- Technology Deloitte Certification</a></li>
     </ul>
     <!-- Certificate Modal -->
-    <div id="certificateModal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.95);">
+    <div id="certificateModal"
+      style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.95);">
       <!-- Close Button - Top Right (Red Circular) -->
-      <div onclick="closeCertificate()" style="position:absolute; top:30px; right:30px; width:60px; height:60px; background:#ff4444; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:2.5rem; color:white; font-weight:bold; z-index:10000; box-shadow:0 4px 15px rgba(0,0,0,0.3);">×</div>
-      
+      <div onclick="closeCertificate()"
+        style="position:absolute; top:30px; right:30px; width:60px; height:60px; background:#ff4444; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:2.5rem; color:white; font-weight:bold; z-index:10000; box-shadow:0 4px 15px rgba(0,0,0,0.3);">
+        ×</div>
+
       <!-- Certificate Image -->
-      <div style="position:absolute; top:0; left:0; width:100vw; height:100vh; display:flex; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; overflow:auto;">
-        <img id="certificateImg" src="" alt="Certificate Image" style="max-width:95vw; max-height:95vh; width:auto; height:auto; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.5); background:white; padding:0; cursor: zoom-in; transition: transform 0.2s ease;" />
+      <div
+        style="position:absolute; top:0; left:0; width:100vw; height:100vh; display:flex; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; overflow:auto;">
+        <img id="certificateImg" src="" alt="Certificate Image"
+          style="max-width:95vw; max-height:95vh; width:auto; height:auto; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.5); background:white; padding:0; cursor: zoom-in; transition: transform 0.2s ease;" />
       </div>
-      
+
     </div>
   </section>
 
@@ -537,7 +597,8 @@
   <section id="work" class="section">
     <h2>My Work</h2>
     <div class="work-text-box">
-      <p>Checkout some of my work on <a href="https://github.com/dipukraj"> projects 🔛</a> section or visit my GitHub.</p>
+      <p>Checkout some of my work on <a href="https://github.com/dipukraj"> projects 🔛</a> section or visit my GitHub.
+      </p>
     </div>
     <div class="work-images-container">
       <img src="image/MY work.jpg" alt="My Work Sample 1" class="work-image active" id="workImage1" loading="lazy">
@@ -561,8 +622,8 @@
   <!-- see more button -->
   <section>
     <div class="centered-button-container">
-    <a href="#projects" class="see-more-btn">See More</a>
-  </div>
+      <a href="#projects" class="see-more-btn">See More</a>
+    </div>
   </section>
 
 
@@ -624,9 +685,9 @@
   <section id="contact" class="section">
     <h2>Contact Me</h2>
     <p>Email: websitedeveloper108@gmail.com</p>
-  
+
     <!-- Social Media Icons -->
-    
+
     <div class="social-icons">
       <a href="https://www.facebook.com/dipu.kraj.92" target="_blank" rel="noopener noreferrer">
         <img src="/image/facebook-logo-2019.png" alt="Facebook" class="social-icon" loading="lazy">
@@ -652,21 +713,21 @@
       <a href="https://t.me/dipukraj" target="_blank" rel="noopener noreferrer">
         <img src="/image/telegram logo.webp" alt="Telegram" class="social-icon" loading="lazy">
       </a>
-      <p>   
+      <p>
       </p>
 
 
-      
-        <form class="contact-form" action="#" method="post" onsubmit="return sendSMS(event)">
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="Your Email" required>
-          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-          <button type="submit">Submit</button>
-        </form>
-      </section>
-      
-      
-    </div>
+
+      <form class="contact-form" action="#" method="post" onsubmit="return sendSMS(event)">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+  </section>
+
+
+  </div>
   </section>
 
   <!-- Live Notifications System -->
@@ -680,7 +741,12 @@
   <!-- Floating Settings Button and Color Palette -->
   <div id="settings-fab">
     <div id="settings-icon" title="Theme Settings">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 8 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 8a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 8 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09A1.65 1.65 0 0 0 16 4.6a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 8c.14.31.22.65.22 1v.09A1.65 1.65 0 0 0 21 12c0 .35-.08.69-.22 1z"/></svg>
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3" />
+        <path
+          d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 8 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 8a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 8 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09A1.65 1.65 0 0 0 16 4.6a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 8c.14.31.22.65.22 1v.09A1.65 1.65 0 0 0 21 12c0 .35-.08.69-.22 1z" />
+      </svg>
     </div>
     <div id="color-palette">
       <div class="color-option" data-color="#38bdf8" style="background:#38bdf8"></div>
@@ -693,7 +759,7 @@
 
   <footer>
     <div id="visitor-counter"></div>
-    
+
     <!-- Real-time Features in Footer -->
     <div class="footer-features">
       <!-- Online Status -->
@@ -701,26 +767,26 @@
         <span class="status-dot"></span>
         <span class="status-text">Online</span>
       </div>
-      
+
       <!-- Analytics Button -->
       <button id="analytics-toggle" class="footer-btn analytics-btn">
         <span>📊</span>
         <span>Analytics</span>
       </button>
-      
+
       <!-- Feedback Button -->
       <button id="feedback-toggle" class="footer-btn feedback-btn">
         <span>💭</span>
         <span>Feedback</span>
       </button>
-      
+
       <!-- Live Chat Button -->
       <button id="chat-toggle" class="footer-btn chat-btn">
         <span>💬</span>
         <span>Live Chat</span>
       </button>
     </div>
-    
+
     <!-- Analytics Panel -->
     <div id="analytics-panel" class="analytics-panel" style="display: none;">
       <div class="analytics-header">
@@ -746,7 +812,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Feedback Panel -->
     <div id="feedback-panel" class="feedback-panel" style="display: none;">
       <div class="feedback-header">
@@ -768,26 +834,26 @@
         <button id="submit-feedback" class="submit-feedback">Submit Feedback</button>
       </div>
     </div>
-    
+
     <!-- Live Chat Window -->
     <div id="chat-window" class="chat-window" style="display: none;">
       <div class="chat-header">
         <h3>💬 Live Chat</h3>
         <button id="close-chat" class="close-chat">✕</button>
       </div>
-      
+
       <div id="chat-messages" class="chat-messages">
         <div class="message system">
           <p>Welcome! How can I help you today? 😊</p>
         </div>
       </div>
-      
+
       <div class="chat-input-container">
         <input type="text" id="chat-input" placeholder="Type your message..." maxlength="200">
         <button id="send-message" class="send-btn">Send</button>
       </div>
     </div>
-    
+
     <h5> Made With ✨5ukoon By Dipu K Raj ❤️</h5>
     <p> &copy;2025 | All Rights Reserved.</p>
   </footer>
@@ -854,15 +920,22 @@
       43: "/image certificate/Horrors Rememberance Day 14th August.jpg",
       44: "/image certificate/Har Gar Tiranga Quiz 2025.jpg",
       45: "/image certificate/Bridging Handloom Traditions & Modern Art Quiz.jpg",
-      46: "/image certificate/IIT Delhi offer letter.jpg"
+      46: "/image certificate/IIT Delhi offer letter.jpg",
+      47: "/image certificate/Cyber deloitte.jpg",
+      48: "/image certificate/2- cybersecurity tata.jpg",
+      49: "/image certificate/3- cybersecurity telstra.jpg",
+      50: "/image certificate/4- Data Analytics deloitte.jpg",
+      51: "/image certificate/5-Software forage.jpg",
+      52: "/image certificate/6- solutions Architecture Amazon.jpg",
+      53: "/image certificate/7- Technology deloitte.jpg"
     };
     function showCertificate(num) {
       var modal = document.getElementById('certificateModal');
       var img = document.getElementById('certificateImg');
       var path = certificatePaths[num];
-      
+
       modal.style.display = 'flex';
-      
+
       if (path) {
         img.style.display = 'block';
         img.src = path;
@@ -872,33 +945,33 @@
         // Optional: show a small note if image missing
         // alert('Certificate image not available.');
       }
-      
+
       document.body.style.overflow = 'hidden';
     }
-    
+
     function closeCertificate() {
       var modal = document.getElementById('certificateModal');
       var img = document.getElementById('certificateImg');
-      
+
       // Hide modal
       modal.style.display = 'none';
       img.src = '';
       img.classList.remove('zoomed');
-      
+
       // Restore body scroll
       document.body.style.overflow = '';
     }
-    
+
     // Close modal on outside click
-    window.addEventListener('click', function(e) {
+    window.addEventListener('click', function (e) {
       var modal = document.getElementById('certificateModal');
       if (modal && e.target === modal) {
         closeCertificate();
       }
     });
-    
+
     // Close modal with Escape key
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
         var modal = document.getElementById('certificateModal');
         if (modal && modal.style.display === 'flex') {
@@ -907,10 +980,10 @@
       }
     });
     // Click to zoom image
-    (function() {
+    (function () {
       var img = document.getElementById('certificateImg');
       if (img) {
-        img.addEventListener('click', function(e) {
+        img.addEventListener('click', function (e) {
           e.stopPropagation();
           img.classList.toggle('zoomed');
         });
@@ -919,4 +992,5 @@
   </script>
 
 </body>
+
 </html>
