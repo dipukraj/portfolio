@@ -17,7 +17,7 @@ const database = firebase.database();
 // Global variables
 let menuToggle = document.querySelector(".menu-toggle");
 let navLinks = document.getElementById("navLinks");
-let text = "Web Developer | Designer | Coder";
+let text = " Web Developer | Designer | Coder";
 let index = 0;
 
 // Real-time Visitor Counter
