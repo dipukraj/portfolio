@@ -1,4 +1,4 @@
- // Firebase Configuration
+// Firebase Configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBVlZh8IrDTfnt9zUhdmqyjd3T2JJNKE94",
   authDomain: "dipu-portfolio.firebaseapp.com",
@@ -23,12 +23,12 @@ let index = 0;
 // Real-time Visitor Counter
 function updateVisitorCount() {
   const visitorRef = database.ref('visitorCount');
-  
+
   // Increment visitor count
   visitorRef.transaction((currentCount) => {
     return (currentCount || 0) + 1;
   });
-  
+
   // Listen for real-time updates
   visitorRef.on('value', (snapshot) => {
     const count = snapshot.val() || 0;
@@ -53,7 +53,7 @@ function typeEffect() {
 function toggleMenu() {
   const navLinks = document.getElementById("navLinks");
   const menuToggle = document.querySelector(".menu-toggle");
-  
+
   if (navLinks.classList.contains("active")) {
     navLinks.classList.remove("active");
     menuToggle.innerHTML = "☰";
@@ -66,10 +66,10 @@ function toggleMenu() {
 }
 
 // Close menu when clicking outside
-document.addEventListener("click", function(event) {
+document.addEventListener("click", function (event) {
   const navLinks = document.getElementById("navLinks");
   const menuToggle = document.querySelector(".menu-toggle");
-  
+
   if (!navLinks.contains(event.target) && !menuToggle.contains(event.target) && navLinks.classList.contains("active")) {
     toggleMenu();
   }
@@ -116,17 +116,17 @@ function switchWorkImage(imageId) {
   images.forEach(img => {
     img.classList.remove('active');
   });
-  
+
   // Show selected image
   const selectedImage = document.getElementById(imageId);
   selectedImage.classList.add('active');
-  
+
   // Update button states
   const buttons = document.querySelectorAll('.image-switch-btn');
   buttons.forEach(btn => {
     btn.classList.remove('active');
   });
-  
+
   // Activate the clicked button
   const clickedButton = document.querySelector(`.image-switch-btn[onclick*="${imageId}"]`);
   clickedButton.classList.add('active');
@@ -151,7 +151,7 @@ function highlightProject(projectId) {
   projects.forEach(project => {
     project.classList.remove('highlighted');
   });
-  
+
   // Add highlight to the selected project
   const project = document.querySelector(`.project:nth-child(${projectId.charAt(projectId.length - 1)})`);
   project.classList.add('highlighted');
@@ -201,22 +201,22 @@ function updateLanguage(lang) {
 }
 
 // Initialize when DOM is loaded
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Show first image by default
   const firstImage = document.getElementById('workImage1');
   if (firstImage) {
     firstImage.classList.add('active');
   }
-  
+
   // Start typewriter effect
   typeEffect();
-  
+
   // Add event listener for menu toggle
   const menuToggleBtn = document.querySelector(".menu-toggle");
   if (menuToggleBtn) {
     menuToggleBtn.addEventListener("click", toggleMenu);
   }
-  
+
   // Initialize all accordion panels
   const panels = document.querySelectorAll(".panel");
   panels.forEach(panel => {
@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const langSwitcher = document.getElementById('language-switcher');
   if (langSwitcher) {
-    langSwitcher.addEventListener('change', function() {
+    langSwitcher.addEventListener('change', function () {
       updateLanguage(this.value);
     });
   }
@@ -294,7 +294,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const toggleBtn = document.getElementById('theme-toggle');
   const toggleBtnMobile = document.getElementById('theme-toggle-mobile');
   if (toggleBtn) {
-    toggleBtn.addEventListener('click', function() {
+    toggleBtn.addEventListener('click', function () {
       if (document.body.classList.contains('light-mode')) {
         setTheme('dark');
       } else {
@@ -303,7 +303,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
   if (toggleBtnMobile) {
-    toggleBtnMobile.addEventListener('click', function() {
+    toggleBtnMobile.addEventListener('click', function () {
       if (document.body.classList.contains('light-mode')) {
         setTheme('dark');
       } else {
@@ -328,11 +328,11 @@ document.addEventListener("DOMContentLoaded", function() {
   const settingsIcon = document.getElementById('settings-icon');
   const colorPalette = document.getElementById('color-palette');
   if (settingsIcon && colorPalette) {
-    settingsIcon.addEventListener('click', function() {
+    settingsIcon.addEventListener('click', function () {
       colorPalette.classList.toggle('active');
     });
     document.querySelectorAll('.color-option').forEach(opt => {
-      opt.addEventListener('click', function() {
+      opt.addEventListener('click', function () {
         if (document.body.classList.contains('light-mode')) {
           setPrimaryColor(this.getAttribute('data-color'));
         }
@@ -404,7 +404,7 @@ function initializeLiveChat() {
   const chatInput = document.getElementById('chat-input');
   const sendMessage = document.getElementById('send-message');
   const chatMessages = document.getElementById('chat-messages');
-  
+
   // Chat toggle functionality
   chatToggle.addEventListener('click', () => {
     chatWindow.style.display = chatWindow.style.display === 'none' ? 'flex' : 'none';
@@ -412,12 +412,12 @@ function initializeLiveChat() {
       chatInput.focus();
     }
   });
-  
+
   // Close chat
   closeChat.addEventListener('click', () => {
     chatWindow.style.display = 'none';
   });
-  
+
   // Send message functionality
   function sendChatMessage() {
     const message = chatInput.value.trim();
@@ -437,23 +437,23 @@ function initializeLiveChat() {
         timestamp: Date.now(),
         visitorId: generateVisitorId()
       };
-      
+
       chatRef.push(newMessage);
       localStorage.setItem('lastChatSentTs', String(now));
       chatInput.value = '';
     }
   }
-  
+
   // Send button click
   sendMessage.addEventListener('click', sendChatMessage);
-  
+
   // Enter key press
   chatInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
       sendChatMessage();
     }
   });
-  
+
   // Generate unique visitor ID
   function generateVisitorId() {
     let visitorId = localStorage.getItem('visitorId');
@@ -463,28 +463,28 @@ function initializeLiveChat() {
     }
     return visitorId;
   }
-  
+
   // Listen for real-time messages
   const chatRef = database.ref('chatMessages');
   chatRef.on('child_added', (snapshot) => {
     const message = snapshot.val();
     displayMessage(message);
   });
-  
+
   // Display message in chat
   function displayMessage(message) {
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${message.sender}`;
-    
+
     const messageP = document.createElement('p');
     messageP.textContent = message.text;
     messageDiv.appendChild(messageP);
-    
+
     chatMessages.appendChild(messageDiv);
-    
+
     // Auto scroll to bottom
     chatMessages.scrollTop = chatMessages.scrollHeight;
-    
+
     // Add timestamp
     const timestamp = new Date(message.timestamp).toLocaleTimeString();
     const timeSpan = document.createElement('span');
@@ -495,7 +495,7 @@ function initializeLiveChat() {
     timeSpan.textContent = timestamp;
     messageDiv.appendChild(timeSpan);
   }
-  
+
   // Auto-response system
   function addAutoResponse(message) {
     const responses = {
@@ -507,7 +507,7 @@ function initializeLiveChat() {
       'skill': 'I specialize in web development, Python, and design. Check my skills section for details! 💻',
       'thank': 'You\'re welcome! Feel free to ask anything else! 😊'
     };
-    
+
     const lowerMessage = message.toLowerCase();
     for (let key in responses) {
       if (lowerMessage.includes(key)) {
@@ -516,7 +516,7 @@ function initializeLiveChat() {
     }
     return 'Thanks for your message! I\'ll get back to you soon! 📝';
   }
-  
+
   // Listen for visitor messages and add auto-response
   chatRef.on('child_added', (snapshot) => {
     const message = snapshot.val();
@@ -535,7 +535,7 @@ function initializeLiveChat() {
 }
 
 // Initialize live chat when DOM is loaded
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Lazy-init live chat on first interaction
   const chatToggleBtn = document.getElementById('chat-toggle');
   if (chatToggleBtn) {
@@ -557,9 +557,9 @@ function showNotification(message, type = 'info', duration = 5000) {
   const notification = document.createElement('div');
   notification.className = `notification ${type}`;
   notification.innerHTML = `<p>${message}</p>`;
-  
+
   container.appendChild(notification);
-  
+
   setTimeout(() => {
     notification.style.animation = 'slideOut 0.3s ease forwards';
     setTimeout(() => {
@@ -573,18 +573,18 @@ function initializeAnalytics() {
   const analyticsToggle = document.getElementById('analytics-toggle');
   const analyticsPanel = document.getElementById('analytics-panel');
   const closeAnalytics = document.getElementById('close-analytics');
-  
+
   analyticsToggle.addEventListener('click', () => {
     analyticsPanel.style.display = analyticsPanel.style.display === 'none' ? 'block' : 'none';
     if (analyticsPanel.style.display === 'block') {
       updateAnalytics();
     }
   });
-  
+
   closeAnalytics.addEventListener('click', () => {
     analyticsPanel.style.display = 'none';
   });
-  
+
   // Update analytics data
   function updateAnalytics() {
     // Total visitors
@@ -593,21 +593,21 @@ function initializeAnalytics() {
       const count = snapshot.val() || 0;
       document.getElementById('total-visitors').textContent = count;
     });
-    
+
     // Online now (active in last 5 minutes)
     const onlineRef = database.ref('onlineUsers');
     onlineRef.once('value', (snapshot) => {
       const onlineCount = snapshot.numChildren() || 0;
       document.getElementById('online-now').textContent = onlineCount;
     });
-    
+
     // Page views
     const pageViewsRef = database.ref('pageViews');
     pageViewsRef.once('value', (snapshot) => {
       const views = snapshot.val() || 0;
       document.getElementById('page-views').textContent = views;
     });
-    
+
     // Chat messages
     const chatRef = database.ref('chatMessages');
     chatRef.once('value', (snapshot) => {
@@ -615,13 +615,13 @@ function initializeAnalytics() {
       document.getElementById('chat-count').textContent = chatCount;
     });
   }
-  
+
   // Track page view
   const pageViewsRef = database.ref('pageViews');
   pageViewsRef.transaction((currentViews) => {
     return (currentViews || 0) + 1;
   });
-  
+
   // Track online status
   const visitorId = generateVisitorId();
   const onlineRef = database.ref(`onlineUsers/${visitorId}`);
@@ -629,12 +629,12 @@ function initializeAnalytics() {
     timestamp: Date.now(),
     userAgent: navigator.userAgent
   });
-  
+
   // Remove from online users when page unloads
   window.addEventListener('beforeunload', () => {
     onlineRef.remove();
   });
-  
+
   // Clean up old online users (older than 5 minutes)
   setInterval(() => {
     const cutoff = Date.now() - (5 * 60 * 1000);
@@ -647,7 +647,7 @@ function initializeStatusIndicator() {
   const statusIndicator = document.getElementById('status-indicator');
   const statusDot = statusIndicator.querySelector('.status-dot');
   const statusText = statusIndicator.querySelector('.status-text');
-  
+
   // Update status based on connection
   function updateStatus() {
     if (navigator.onLine) {
@@ -660,7 +660,7 @@ function initializeStatusIndicator() {
       statusText.style.color = '#ef4444';
     }
   }
-  
+
   window.addEventListener('online', updateStatus);
   window.addEventListener('offline', updateStatus);
   updateStatus();
@@ -674,17 +674,17 @@ function initializeFeedback() {
   const stars = document.querySelectorAll('.star');
   const feedbackText = document.getElementById('feedback-text');
   const submitFeedback = document.getElementById('submit-feedback');
-  
+
   let selectedRating = 0;
-  
+
   feedbackToggle.addEventListener('click', () => {
     feedbackPanel.style.display = feedbackPanel.style.display === 'none' ? 'block' : 'none';
   });
-  
+
   closeFeedback.addEventListener('click', () => {
     feedbackPanel.style.display = 'none';
   });
-  
+
   // Star rating functionality
   stars.forEach((star, index) => {
     star.addEventListener('click', () => {
@@ -697,7 +697,7 @@ function initializeFeedback() {
         }
       });
     });
-    
+
     star.addEventListener('mouseenter', () => {
       stars.forEach((s, i) => {
         if (i <= index) {
@@ -705,7 +705,7 @@ function initializeFeedback() {
         }
       });
     });
-    
+
     star.addEventListener('mouseleave', () => {
       stars.forEach((s, i) => {
         if (i >= selectedRating) {
@@ -714,7 +714,7 @@ function initializeFeedback() {
       });
     });
   });
-  
+
   // Submit feedback
   submitFeedback.addEventListener('click', () => {
     const text = feedbackText.value.trim();
@@ -725,17 +725,17 @@ function initializeFeedback() {
       showNotification('Please wait before submitting another feedback.', 'warning');
       return;
     }
-    
+
     if (selectedRating === 0) {
       showNotification('Please select a rating!', 'warning');
       return;
     }
-    
+
     if (text.length < 10) {
       showNotification('Please write at least 10 characters!', 'warning');
       return;
     }
-    
+
     const feedback = {
       rating: selectedRating,
       text: text,
@@ -743,7 +743,7 @@ function initializeFeedback() {
       visitorId: generateVisitorId(),
       userAgent: navigator.userAgent
     };
-    
+
     const feedbackRef = database.ref('feedback');
     feedbackRef.push(feedback).then(() => {
       showNotification('Thank you for your feedback! 😊', 'success');
@@ -769,7 +769,7 @@ function generateVisitorId() {
 }
 
 // Initialize all systems when DOM is loaded
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Lazy-init analytics on first open
   const analyticsToggle = document.getElementById('analytics-toggle');
   if (analyticsToggle) {
@@ -808,6 +808,100 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Register Service Worker
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js').catch(() => {});
+    navigator.serviceWorker.register('/service-worker.js').catch(() => { });
+  }
+});
+
+//Certificate display function
+function showCertificate(certNumber) {
+  const modal = document.getElementById('certificateModal');
+  const img = document.getElementById('certificateImg');
+
+  // Certificate image mapping
+  const certificateImages = {
+    1: 'image certificate/certificate1.jpg',
+    2: 'image certificate/certificate2.jpg',
+    3: 'image certificate/certificate3.jpg',
+    4: 'image certificate/certificate4.jpg',
+    5: 'image certificate/certificate5.jpg',
+    6: 'image certificate/certificate6.jpg',
+    7: 'image certificate/certificate7.jpg',
+    8: 'image certificate/certificate8.jpg',
+    9: 'image certificate/certificate9.jpg',
+    10: 'image certificate/certificate10.jpg',
+    11: 'image certificate/certificate11.jpg',
+    12: 'image certificate/certificate12.jpg',
+    13: 'image certificate/certificate13.jpg',
+    14: 'image certificate/certificate14.jpg',
+    15: 'image certificate/certificate15.jpg',
+    16: 'image certificate/certificate16.jpg',
+    17: 'image certificate/certificate17.jpg',
+    18: 'image certificate/certificate18.jpg',
+    19: 'image certificate/certificate19.jpg',
+    20: 'image certificate/certificate20.jpg',
+    21: 'image certificate/certificate21.jpg',
+    22: 'image certificate/certificate22.jpg',
+    23: 'image certificate/certificate23.jpg',
+    24: 'image certificate/certificate24.jpg',
+    25: 'image certificate/certificate25.jpg',
+    26: 'image certificate/certificate26.jpg',
+    27: 'image certificate/certificate27.jpg',
+    28: 'image certificate/certificate28.jpg',
+    29: 'image certificate/certificate29.jpg',
+    30: 'image certificate/certificate30.jpg',
+    31: 'image certificate/certificate31.jpg',
+    32: 'image certificate/certificate32.jpg',
+    33: 'image certificate/certificate33.jpg',
+    34: 'image certificate/certificate34.jpg',
+    35: 'image certificate/certificate35.jpg',
+    36: 'image certificate/certificate36.jpg',
+    37: 'image certificate/certificate37.jpg',
+    38: 'image certificate/certificate38.jpg',
+    39: 'image certificate/certificate39.jpg',
+    40: 'image certificate/certificate40.jpg',
+    41: 'image certificate/certificate41.jpg',
+    42: 'image certificate/certificate42.jpg',
+    43: 'image certificate/certificate43.jpg',
+    44: 'image certificate/certificate44.jpg',
+    45: 'image certificate/certificate45.jpg',
+    46: 'image certificate/certificate46.jpg',
+    // New certificates
+    47: 'image certificate/1- cyber deloitte.jpg',
+    48: 'image certificate/2- cybersecurity tata.jpg',
+    49: 'image certificate/3- cybersecurity telstra.jpg',
+    50: 'image certificate/4- Data Analytics deloitte.jpg',
+    51: 'image certificate/5-Software forage.jpg',
+    52: 'image certificate/6- solutions Architecture Amazon.jpg',
+    53: 'image certificate/7- Technology deloitte.jpg'
+  };
+
+  if (certificateImages[certNumber]) {
+    img.src = certificateImages[certNumber];
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  }
+}
+
+// Close certificate modal
+function closeCertificate() {
+  const modal = document.getElementById('certificateModal');
+  modal.style.display = 'none';
+  document.body.style.overflow = ''; // Restore scrolling
+}
+
+// Close modal when clicking outside the image
+document.addEventListener('click', function (event) {
+  const modal = document.getElementById('certificateModal');
+  const img = document.getElementById('certificateImg');
+
+  if (event.target === modal && !img.contains(event.target)) {
+    closeCertificate();
+  }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape') {
+    closeCertificate();
   }
 });
