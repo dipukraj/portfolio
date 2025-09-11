@@ -872,7 +872,12 @@ function showCertificate(certNumber) {
     50: 'image certificate/4- Data Analytics deloitte.jpg',
     51: 'image certificate/5-Software forage.jpg',
     52: 'image certificate/6- solutions Architecture Amazon.jpg',
-    53: 'image certificate/7- Technology deloitte.jpg'
+    53: 'image certificate/7- Technology deloitte.jpg',
+    // New certificates (54-57)
+    54: 'image certificate/national space day certificate.jpg',
+    55: 'image certificate/quiz on decoding indian diplomacy.jpg',
+    56: 'image certificate/viksit bharat leaders dialogue.png',
+    57: 'image certificate/zaptriq AI ISO Certificate.jpg',
   };
 
   if (certificateImages[certNumber]) {

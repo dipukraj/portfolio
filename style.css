@@ -3264,3 +3264,21 @@ body.light-mode .skills-progress .progress {
 } 
  
  
+/* 
+Debug: Ensure certificates 54-57 are visible */
+#certificate ul li:nth-child(n+54) {
+  display: list-item !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Highlight new certificates for debugging */
+#certificate ul li:nth-child(54),
+#certificate ul li:nth-child(55),
+#certificate ul li:nth-child(56),
+#certificate ul li:nth-child(57) {
+  background-color: rgba(56, 189, 248, 0.1) !important;
+  border-left: 3px solid #38bdf8 !important;
+  padding-left: 10px !important;
+  margin: 5px 0 !important;
+}
