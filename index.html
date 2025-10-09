@@ -546,6 +546,13 @@
       <li><a href="#" onclick="showCertificate(56); return false;">56- Viksit Bharat Young Leaders Dialogue
           Certification</a></li>
       <li><a href="#" onclick="showCertificate(57); return false;">57- Zaptriq AI ISO Certification</a></li>
+      <li><a href="#" onclick="showCertificate(58); return false;">58- ESTIC 2025 Quiz Certification </a></li>
+      <li><a href="#" onclick="showCertificate(59); return false;">59- Clean Sport Quiz Certification</a></li>
+      <li><a href="#" onclick="showCertificate(60); return false;">60- Cyber Hygiene Online Practics Certification</a>
+      </li>
+      <li><a href="#" onclick="showCertificate(61); return false;">61- Digital Literacy & Cyber Security Quiz
+          Certification</a></li>
+      <li><a href="#" onclick="showCertificate(62); return false;">62- Next Gen GST Reforms Quiz Certification</a></li>
     </ul>
     <!-- Certificate Modal -->
     <div id="certificateModal"
@@ -955,8 +962,18 @@
       55: "/image certificate/quiz on decoding indian diplomacy.jpg",
       56: "/image certificate/viksit bharat leaders dialogue.png",
       57: "/image certificate/zaptriq AI ISO Certificate.jpg",
+      58: "/image certificate/ESTIC 2025 Quiz.jpg",
+      59: "/image certificate/Clean Sport Quiz.jpg",
+      60: "/image certificate/Cyber hygiene practices Quiz.jpg",
+      61: "/image certificate/Digital literacy & Cyber Security Quiz.jpg",
+      62: "/image certificate/Next Gen GST Reforms Quiz.jpg",
     };
     function showCertificate(num) {
+      // Debug: Check if function is called for certificate 62
+      if (num === 62) {
+        console.log('Certificate 62 clicked, path:', certificatePaths[62]);
+      }
+
       var modal = document.getElementById('certificateModal');
       var img = document.getElementById('certificateImg');
       var path = certificatePaths[num];
