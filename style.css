@@ -2367,7 +2367,7 @@ body.light-mode .skills-progress .progress {
   
   .btn {
     padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
   }
   
   .get-in-touch-btn {
@@ -2429,7 +2429,7 @@ body.light-mode .skills-progress .progress {
   
   .btn {
     padding: 0.5rem 1rem;
-    font-size: 0.85rem;
+    font-size: 0.7rem;
   }
   
   .get-in-touch-btn {
@@ -2480,7 +2480,7 @@ body.light-mode .skills-progress .progress {
 /* Ensure consistent button spacing in website section */
 @media (max-width: 768px) {
   #website {
-    text-align: center;
+    text-align: left;
   }
   
   #website .btn {
