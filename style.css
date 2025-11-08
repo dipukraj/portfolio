@@ -1060,6 +1060,39 @@ footer {
   color: #0f172a;
 }
 
+/* AI Tools for Developers button */
+#designTools-btn {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 15px rgba(110, 142, 251, 0.3);
+  transition: all 0.3s ease;
+}
+
+#designTools-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(110, 142, 251, 0.4);
+}
+
+#designTools-btn.active {
+  background: linear-gradient(135deg, #5a7df4, #8f5fe3);
+  box-shadow: 0 4px 15px rgba(90, 125, 244, 0.4);
+}
+
+/* Light mode styles */
+body.light-mode #designTools-btn {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: #fff;
+}
+
+body.light-mode #designTools-btn:hover {
+  box-shadow: 0 6px 20px rgba(110, 142, 251, 0.4);
+}
+
+body.light-mode #designTools-btn.active {
+  background: linear-gradient(135deg, #5a7df4, #8f5fe3);
+}
+
 #progLang-btn:hover {
   background-color: #6ab318;
 }
