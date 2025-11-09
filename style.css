@@ -1065,11 +1065,6 @@ footer {
   color: #ffffff;
 }
 
-#designTools-btn {
-  background-color: #8b5cf6;
-  color: #ffffff;
-}
-
 /* Hover effects for all skill buttons */
 #progLang-btn:hover,
 #tools-btn:hover,
@@ -1090,7 +1085,7 @@ footer {
 /* AI Tools for Developers button */
 #designTools-btn {
   background: linear-gradient(135deg, #6e8efb, #a777e3);
-  color: #fff;
+  color: #fff !important;
   border: none;
   box-shadow: 0 4px 15px rgba(110, 142, 251, 0.3);
   transition: all 0.3s ease;
