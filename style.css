@@ -1054,10 +1054,37 @@ footer {
   background-color: #0ea5e9;
 }
 
-/* Programming Languages button */
+/* Skills Section Buttons */
 #progLang-btn {
   background-color: #82d71f;
   color: #0f172a;
+}
+
+#tools-btn {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+#designTools-btn {
+  background-color: #8b5cf6;
+  color: #ffffff;
+}
+
+/* Hover effects for all skill buttons */
+#progLang-btn:hover,
+#tools-btn:hover,
+#designTools-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* Active state for all skill buttons */
+#progLang-btn.active,
+#tools-btn.active,
+#designTools-btn.active {
+  opacity: 0.8;
+  transform: translateY(0);
 }
 
 /* AI Tools for Developers button */
