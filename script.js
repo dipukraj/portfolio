@@ -157,51 +157,228 @@ function highlightProject(projectId) {
   project.classList.add('highlighted');
 }
 
-// Language Switcher Logic
+// Language Switcher Logic with comprehensive translations
 const translations = {
   en: {
-    about: "I'm a passionate web designer and developer who loves bringing ideas to life through code. Whether it's crafting beautiful websites, designing intuitive user interfaces, or writing clean and efficient code — I enjoy every step of the journey. I also have a strong interest in graphic design, which helps me create visually striking and user-friendly web experiences. From layout to functionality, I love combining creativity with technology to build things that not only work well but also look great. Designing websites isn't just something I do — it's something I genuinely love. If you're someone who shares the same excitement for creativity and tech, we'll definitely get along!",
-    skills: "Skills🔛▼",
+    // Hero Section
+    heroGreeting: "Hi, I'm",
+    heroLocation: "From India",
+    heroTitle: "Full-Stack Web |",
+    heroButton: "Contact Me",
+    callMe: "Call Me",
+    messageMe: "Message Me",
+    
+    // Sections
+    about: "About Me",
+    aboutText: "Hi, I'm Dipu K Raj, a passionate full-stack web and game developer who loves bringing ideas to life through code. I enjoy creating sleek, responsive front-end designs, powerful back-end systems, and immersive game experiences that connect creativity with technology. With a strong eye for design and a love for problem-solving, I aim to build projects that are both visually appealing and technically strong. Whether it's web development or game design, I'm always excited to learn, experiment, and create something meaningful. For me, coding isn't just a profession — it's a passion!",
+    
+    skills: "Skills",
     contact: "Contact Me",
-    email: "Email: kumardipu1436@gmail.com"
+    email: "Email:  websitedeveloper108@gmail.com",
+    
+    // Navigation
+    navHome: "Home",
+    navAbout: "About",
+    navProjects: "My Projects",
+    navWork: "My Work",
+    navContact: "Contact",
+    navCertificate: "Certificate",
+    navWebsite: "Website",
+    navGames: "Games"
   },
   hi: {
-    about: "मैं एक जुनूनी वेब डिज़ाइनर और डेवलपर हूँ, जिसे कोड के ज़रिए विचारों को जीवन में लाना पसंद है। सुंदर वेबसाइट बनाना, सहज यूज़र इंटरफेस डिज़ाइन करना, या साफ़ और कुशल कोड लिखना — मुझे इस यात्रा का हर कदम पसंद है। मुझे ग्राफ़िक डिज़ाइन में भी गहरी रुचि है, जिससे मैं आकर्षक और यूज़र-फ्रेंडली वेब अनुभव बना पाता हूँ। रचनात्मकता और तकनीक को मिलाकर ऐसी चीज़ें बनाना जो न सिर्फ़ अच्छी दिखें बल्कि बेहतरीन काम भी करें, यही मेरा जुनून है। वेबसाइट डिज़ाइन करना मेरे लिए सिर्फ़ काम नहीं, बल्कि मेरा शौक़ है। अगर आप भी रचनात्मकता और तकनीक के लिए उत्साहित हैं, तो हम ज़रूर अच्छे दोस्त बन सकते हैं!",
-    skills: "कौशल🔛▼",
+    // Hero Section
+    heroGreeting: "नमस्ते, मैं हूँ",
+    heroLocation: "भारत से",
+    heroTitle: "फुल-स्टैक वेब |",
+    heroButton: "संपर्क करें",
+    callMe: "कॉल करें",
+    messageMe: "मैसेज करें",
+    
+    // Sections
+    about: "परिचय",
+    aboutText: "नमस्ते, मैं दिपू के राज हूँ, एक उत्साही फुल-स्टैक वेब और गेम डेवलपर, जो कोड के माध्यम से विचारों को साकार करना पसंद करता है। मुझे आकर्षक, रिस्पॉन्सिव फ्रंट-एंड डिज़ाइन, शक्तिशाली बैक-एंड सिस्टम और इमर्सिव गेम अनुभव बनाने में मज़ा आता है जो रचनात्मकता को तकनीक से जोड़ते हैं। डिज़ाइन के प्रति गहरी समझ और समस्या-समाधान के प्रति प्रेम के साथ, मेरा लक्ष्य ऐसे प्रोजेक्ट बनाना है जो देखने में आकर्षक और तकनीकी रूप से मज़बूत हों। चाहे वेब डेवलपमेंट हो या गेम डिज़ाइन, मैं हमेशा सीखने, प्रयोग करने और कुछ सार्थक बनाने के लिए उत्साहित रहता हूँ। मेरे लिए, कोडिंग सिर्फ़ एक पेशा नहीं है - यह एक जुनून है!",
+    
+    skills: "कौशल",
     contact: "संपर्क करें",
-    email: "ईमेल: kumardipu1436@gmail.com"
+    email: "ईमेल:  websitedeveloper108@gmail.com",
+    
+    // Navigation
+    navHome: "होम",
+    navAbout: "परिचय",
+    navProjects: "मेरे प्रोजेक्ट",
+    navWork: "मेरा काम",
+    navContact: "संपर्क",
+    navCertificate: "प्रमाणपत्र",
+    navWebsite: "वेबसाइट",
+    navGames: "गेम्स"
   },
   bho: {
-    about: "हम एक जोशिला वेब डिज़ाइनर आ डेवलपर बानी, जेकरा के कोड से नया-नया आइडिया के जिनगी देवे में मजा आवेला। सुंदर वेबसाइट बनावल, बढ़िया यूज़र इंटरफेस डिज़ाइन करे, आ साफ-सुथरा कोड लिखे — हमके ई सब काम बहुते पसंद बा। हमके ग्राफ़िक डिज़ाइन में भी गहरी दिलचस्पी बा, जेसे हम आकर्षक आ यूज़र-फ्रेंडली वेबसाइट बना सकी। रचनात्मकता आ तकनीक के मिलाके कुछ नया बनावल हमार शौक बा। वेबसाइट डिज़ाइन हमार पेशा ना, हमार जूनून बा। अगर रउआ के भी रचनात्मकता आ तकनीक में रुचि बा, त हमनी के जरूर बनेम!",
-    skills: "कौशल🔛▼",
+    // Hero Section
+    heroGreeting: "प्रणाम, हम बानी",
+    heroLocation: "भारत से",
+    heroTitle: "फुल-स्टैक वेब |",
+    heroButton: "हमरा से बात करीं",
+    callMe: "कॉल करीं",
+    messageMe: "मैसेज करीं",
+    
+    // Sections
+    about: "हमार बारे में",
+    aboutText: "हम Dipu K Raj बानी, एगो जोशिला full-stack web आ game developer. हमरा के कोडिंग के माध्यम से आइडिया के हकीकत में बदलल बहुते अच्छा लागेला। हम responsive आ सुंदर web design बनावे में, मजबूत backend system तैयार करे में, आ मजेदार game experience डेवलप करे में माहिर बानी। डिजाइन पर हमारा नजर तेज बा, आ समस्या के हल निकालल हमरा के बहुते पसंद बा। हम चाहीला कि हमार हर प्रोजेक्ट देखे में नीक लागो आ तकनीकी रूप से मजबूत होखो। चाहे web development होखे चाहे game design, हम हर नया चीज सीखे, प्रयोग करे आ कुछ न कुछ नया बनावे में हमेशा तैयार रहेली। हमरा खातिर coding खाली पेशा ना, एकर नाम जुनून ह!",
+    
+    skills: "कौशल",
     contact: "संपर्क करीं",
-    email: "ईमेल: kumardipu1436@gmail.com"
+    email: "ईमेल:  websitedeveloper108@gmail.com",
+    
+    // Navigation
+    navHome: "घर",
+    navAbout: "हमार बारे में",
+    navProjects: "हमार प्रोजेक्ट",
+    navWork: "हमार काम",
+    navContact: "संपर्क",
+    navCertificate: "प्रमाणपत्र",
+    navWebsite: "वेबसाइट",
+    navGames: "गेम"
   },
   mai: {
-    about: "हम एक उत्साही वेब डिज़ाइनर आ डेवलपर छी, जे कोड के माध्यम सऽ विचार के जीवन दैत छी। सुंदर वेबसाइट बनब, सहज यूज़र इंटरफेस डिज़ाइन करब, आ साफ-सुथरा कोड लिखब — हम अहि यात्रा के हर पग के आनंद लैत छी। हम ग्राफ़िक डिज़ाइन में सेहो गहरी रुचि रखैत छी, जे सऽ हम आकर्षक आ यूज़र-फ्रेंडली वेब अनुभव बना सकी। रचनात्मकता आ तकनीक के जोड़ि कऽ किछु नव बनब हमरा बहुत पसंद अछि। वेबसाइट डिज़ाइन करब हमर पेशा नहि, हमर शौक अछि। जँ अहाँ के सेहो रचनात्मकता आ तकनीक में रुचि अछि, तऽ हम सभ जरूर मिलब!",
-    skills: "कौशल🔛▼",
+    // Hero Section
+    heroGreeting: "प्रणाम, हम छी",
+    heroLocation: "भारत सँ",
+    heroTitle: "फुल-स्टैक वेब |",
+    heroButton: "हमरा संगे जुड़ू",
+    callMe: "कॉल करू",
+    messageMe: "संदेश भेजू",
+    
+    // Sections
+    about: "हमर बारे में",
+    aboutText: "हम Dipu K Raj छी, एकटा उत्साही full-stack web आ game developer। हमरा coding मार्फत विचार केँ हकीकत बनाब'मे बहुत आनंद भेटैत अछि। हम responsive आ आकर्षक front-end design बनाबै छी, मजबूत back-end system तैयार करैत छी, आ मनोरंजक game अनुभव बनाब'मे रुचि राखैत छी — जत' सृजनशीलता आ तकनीक एक संग जुड़ि जाइत अछि। डिजाइन पर हमर नजर पैघ अछि, आ समस्या समाधान कर'मे हमरा बहुत नीक लगैत अछि। हमर उद्देश्य एहेन project बनाब'क अछि जे देखबा में सुन्दर होआय आ तकनीकी रूप सँ मजबूती सेहो रखैत होआय। वेब development हो कि game design — हम सदा नया सीखबाक, प्रयोग करबाक आ कुछ अर्थपूर्ण बनाब'क उत्साह राखैत छी। हमर लेल coding खाली पेशा नहि, एकटा जुनून अछि।",
+    
+    skills: "कौशल",
     contact: "संपर्क करू",
-    email: "ईमेल: kumardipu1436@gmail.com"
+    email: "ईमेल:  websitedeveloper108@gmail.com",
+    
+    // Navigation
+    navHome: "मुखपृष्ठ",
+    navAbout: "हमर बारे में",
+    navProjects: "हमर प्रोजेक्ट",
+    navWork: "हमर काम",
+    navContact: "संपर्क",
+    navCertificate: "प्रमाणपत्र",
+    navWebsite: "वेबसाइट",
+    navGames: "गेम"
   }
 };
 
 function updateLanguage(lang) {
-  // About section
+  // Get the translations for the selected language, default to English if not found
+  const t = translations[lang] || translations['en'];
+  
+  // Update hero section
+  const heroGreeting = document.querySelector('#hero-name-color');
+  if (heroGreeting) heroGreeting.textContent = t.heroGreeting;
+  
+  const heroLocation = document.querySelector('#hero h2 span');
+  if (heroLocation) heroLocation.textContent = t.heroLocation;
+  
+  const heroTitle = document.querySelector('.typewriter');
+  if (heroTitle) heroTitle.textContent = t.heroTitle;
+  
+  const heroButton = document.querySelector('.get-in-touch-btn');
+  if (heroButton) heroButton.textContent = t.heroButton;
+  
+  const callMe = document.querySelector('.call-btn');
+  if (callMe) callMe.innerHTML = `<i class="fas fa-phone"></i> ${t.callMe}`;
+  
+  const messageMe = document.querySelector('.message-btn');
+  if (messageMe) messageMe.innerHTML = `<i class="fas fa-comment"></i> ${t.messageMe}`;
+  
+  // Update about section
+  const aboutH2 = document.querySelector('#about h2');
+  if (aboutH2) aboutH2.textContent = t.about;
+  
   const aboutP = document.querySelector('#about p');
-  if (aboutP) aboutP.textContent = translations[lang].about;
-  // Skills section heading
+  if (aboutP) aboutP.textContent = t.aboutText;
+  
+  // Update skills section heading
   const skillsH2 = document.querySelector('#skills h2');
-  if (skillsH2) skillsH2.textContent = translations[lang].skills;
-  // Contact section heading
+  if (skillsH2) skillsH2.textContent = t.skills;
+  
+  // Update contact section
   const contactH2 = document.querySelector('#contact h2');
-  if (contactH2) contactH2.textContent = translations[lang].contact;
-  // Contact email
+  if (contactH2) contactH2.textContent = t.contact;
+  
   const contactEmail = document.querySelector('#contact p');
-  if (contactEmail) contactEmail.textContent = translations[lang].email;
+  if (contactEmail) contactEmail.innerHTML = t.email;
+  
+  // Update navigation links
+  const navLinks = {
+    'navHome': 'a[href="#hero"]',
+    'navAbout': 'a[href="#about"]',
+    'navProjects': 'a[href="#projects"]',
+    'navWork': 'a[href="#work"]',
+    'navContact': 'a[href="#contact"]',
+    'navCertificate': 'a[href="#certificate"]',
+    'navWebsite': 'a[href="#website"]',
+    'navGames': 'a[href="#games"]'
+  };
+  
+  Object.entries(navLinks).forEach(([key, selector]) => {
+    const element = document.querySelector(selector);
+    if (element && t[key]) {
+      element.textContent = t[key];
+    }
+  });
+  
+  // Update HTML lang attribute
+  document.documentElement.lang = lang;
+  
+  // Save selected language to localStorage
+  localStorage.setItem('preferredLanguage', lang);
+  
+  // Debug log
+  console.log(`Language changed to: ${lang}`);
+}
+
+// Language switcher event listener
+function initializeLanguageSwitcher() {
+  const languageSwitcher = document.getElementById('language-switcher');
+  if (languageSwitcher) {
+    // Load saved language or default to English
+    const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+    
+    // Set the selected value
+    languageSwitcher.value = savedLanguage;
+    
+    // Update the UI immediately
+    updateLanguage(savedLanguage);
+    
+    // Add change event listener
+    languageSwitcher.addEventListener('change', function(e) {
+      const lang = e.target.value;
+      updateLanguage(lang);
+    });
+  }
+}
+
+// Load saved language or default to English
+function loadPreferredLanguage() {
+  const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+  updateLanguage(savedLanguage);
+  
+  // Update the dropdown to reflect the current language
+  const languageSwitcher = document.getElementById('language-switcher');
+  if (languageSwitcher) {
+    languageSwitcher.value = savedLanguage;
+  }
 }
 
 // Initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", function () {
+  // Initialize language switcher
+  initializeLanguageSwitcher();
+  
+  // Load preferred language
+  loadPreferredLanguage();
   // Show first image by default
   const firstImage = document.getElementById('workImage1');
   if (firstImage) {
