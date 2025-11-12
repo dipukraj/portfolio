@@ -170,9 +170,9 @@ const translations = {
     
     // Sections
     about: "About Me",
-    aboutText: "Hi, I'm Dipu K Raj, a passionate full-stack web and game developer who loves bringing ideas to life through code. I enjoy creating sleek, responsive front-end designs, powerful back-end systems, and immersive game experiences that connect creativity with technology. With a strong eye for design and a love for problem-solving, I aim to build projects that are both visually appealing and technically strong. Whether it's web development or game design, I'm always excited to learn, experiment, and create something meaningful. For me, coding isn't just a profession — it's a passion!",
+    aboutText: "Hi, I'm Dipu K Raj, a passionate full-stack web and game developer who loves bringing ideas to life through code. I enjoy creating sleek, responsive front-end designs, powerful back-end systems, and immersive game experiences that connect creativity with technology. With a strong eye for design and a love for problem-solving, I aim to build projects that are both visually appealing and technically strong. Whether it's web development or game design, I'm always excited to learn, experiment, and create something meaningful. For me, coding isn't just a profession — it's a passion.💻🔥",
     
-    skills: "Skills",
+    skills: "Skills🔛",
     contact: "Contact Me",
     email: "Email:  websitedeveloper108@gmail.com",
     
