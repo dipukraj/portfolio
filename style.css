@@ -1,4 +1,10 @@
- /* Reset and base styles */
+ /* Favicon styles */
+link[rel="icon"] {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
