@@ -1822,6 +1822,117 @@ body.light-mode #designTools-btn.active {
   }
 }
 
+/* Projects Section Styles */
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 20px 0;
+}
+
+.project-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.1);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(56, 189, 248, 0.2);
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.project-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.05);
+}
+
+.project-content {
+  padding: 20px;
+}
+
+.project-content h3 {
+  margin: 0 0 10px 0;
+  color: #38bdf8;
+  font-size: 1.4rem;
+}
+
+.project-content p {
+  color: #94a3b8;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.project-btn {
+  display: inline-block;
+  padding: 8px 20px;
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.project-btn:hover {
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(14, 165, 233, 0.3);
+}
+
+/* Light mode styles */
+body.light-mode .project-card {
+  background: #ffffff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+body.light-mode .project-card:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  border-color: #bae6fd;
+}
+
+body.light-mode .project-content p {
+  color: #64748b;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .projects-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .project-image {
+    height: 180px;
+  }
+}
+
 /* Add smooth transitions for all interactive elements */
 .nav-links li a,
 .btn,
@@ -3364,4 +3475,279 @@ Debug: Ensure certificates 54-57 are visible */
   border-left: 3px solid #38bdf8 !important;
   padding-left: 10px !important;
   margin: 5px 0 !important;
+}
+/*
+ Website Section - Square Cards Grid */
+/* Website Section - Circular Image Cards */
+.website-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.website-card {
+  background: rgba(30, 41, 59, 0.6);
+  border-radius: 15px;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(56, 189, 248, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.website-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
+  border-color: #38bdf8;
+}
+
+.website-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 1.5rem;
+  border: 3px solid rgba(56, 189, 248, 0.5);
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
+  background: rgba(30, 41, 59, 0.8);
+}
+
+.website-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block;
+  border-radius: 50%;
+}
+
+.website-card:hover .website-image {
+  border-color: #38bdf8;
+  transform: scale(1.05);
+}
+
+.website-card:hover .website-image img {
+  transform: scale(1.1);
+}
+
+.website-content {
+  padding: 0 0.5rem;
+  margin-top: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.website-content h3 {
+  color: #38bdf8;
+  font-size: 1.4rem;
+  margin: 0 0 0.8rem 0;
+  font-weight: 600;
+}
+
+.website-content p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+  flex: 1;
+  padding: 0 0.5rem;
+}
+
+.website-card .btn {
+  width: 100%;
+  max-width: 180px;
+  margin: 1rem auto 0;
+  padding: 10px 20px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(56, 189, 248, 0.2);
+}
+
+.website-card .btn:hover {
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(14, 165, 233, 0.3);
+}
+
+/* Light mode styling for website cards */
+body.light-mode .website-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(14, 165, 233, 0.3);
+}
+
+body.light-mode .website-card:hover {
+  box-shadow: 0 10px 30px rgba(14, 165, 233, 0.2);
+  border-color: #0ea5e9;
+}
+
+body.light-mode .website-image {
+  background: rgba(14, 165, 233, 0.05);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .website-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 0.5rem;
+  }
+  
+  .website-card {
+    padding: 1.5rem 1rem;
+    max-width: 240px;
+  }
+  
+  .website-image {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .website-card .btn {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .website-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+/* G
+/* Games Section - Square Cards Grid (Same as Website Section) */
+.games-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+  gap: 2rem !important;
+}
+
+.game-card {
+  background: rgba(30, 41, 59, 0.6);
+  border-radius: 15px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(56, 189, 248, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
+  border-color: #38bdf8;
+}
+
+.game-image {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid rgba(56, 189, 248, 0.3);
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.game-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.game-card:hover .game-image {
+  border-color: #38bdf8;
+  transform: scale(1.05);
+}
+
+.game-card:hover .game-image img {
+  transform: scale(1.1);
+}
+
+.game-card .btn {
+  width: 100%;
+  max-width: 200px;
+  margin: 1rem auto 0;
+  padding: 10px 20px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.game-card .btn:hover {
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(14, 165, 233, 0.3);
+}
+
+/* Light mode styling for game cards */
+body.light-mode .game-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(14, 165, 233, 0.3);
+}
+
+body.light-mode .game-card:hover {
+  box-shadow: 0 10px 30px rgba(14, 165, 233, 0.2);
+  border-color: #0ea5e9;
+}
+
+body.light-mode .game-image {
+  background: rgba(14, 165, 233, 0.05);
+}
+
+/* Mobile responsive for games */
+@media (max-width: 768px) {
+  .games-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 0.5rem;
+  }
+  
+  .game-card {
+    padding: 1rem;
+  }
+  
+  .game-card .btn {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .games-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
