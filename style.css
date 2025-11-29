@@ -3476,22 +3476,22 @@ Debug: Ensure certificates 54-57 are visible */
   padding-left: 10px !important;
   margin: 5px 0 !important;
 }
-/*
- Website Section - Square Cards Grid */
 /* Website Section - Circular Image Cards */
 .website-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 2rem;
-  padding: 1rem;
+  padding: 1.5rem;
   max-width: 1400px;
   margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .website-card {
   background: rgba(30, 41, 59, 0.6);
   border-radius: 15px;
-  padding: 1rem 1.5rem;
+  padding: 1.5rem;
   text-align: center;
   transition: all 0.3s ease;
   border: 2px solid rgba(56, 189, 248, 0.2);
@@ -3499,8 +3499,10 @@ Debug: Ensure certificates 54-57 are visible */
   flex-direction: column;
   align-items: center;
   height: 100%;
-  max-width: 350px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .website-card:hover {
@@ -3609,16 +3611,16 @@ body.light-mode .website-image {
 }
 
 /* Mobile responsive */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .website-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
-    padding: 0.5rem;
+    padding: 1rem;
   }
   
   .website-card {
-    padding: 1.5rem 1rem;
-    max-width: 240px;
+    padding: 1.5rem;
+    max-width: 100%;
   }
   
   .website-image {
