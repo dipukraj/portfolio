@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel | Contact Messages</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Firebase SDK (same as main site) -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+
+    .admin-container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: #020617;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .admin-header h1 {
+      font-size: 1.6rem;
+      margin: 0;
+    }
+
+    .admin-meta {
+      font-size: 0.85rem;
+      opacity: 0.8;
+      text-align: right;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+    }
+
+    .status-pill span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    thead {
+      background: #020617;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    th,
+    td {
+      padding: 0.6rem 0.7rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+      vertical-align: top;
+    }
+
+    th {
+      text-align: left;
+      font-weight: 600;
+      color: #bfdbfe;
+    }
+
+    tbody tr:nth-child(even) {
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    tbody tr:hover {
+      background: rgba(30, 64, 175, 0.35);
+    }
+
+    .message-cell {
+      white-space: pre-wrap;
+      max-width: 320px;
+    }
+
+    .id-cell {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      max-width: 180px;
+      word-break: break-all;
+    }
+
+    .time-cell {
+      font-size: 0.8rem;
+      color: #a5b4fc;
+    }
+
+    .actions-cell button {
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.75rem;
+    }
+
+    .btn-delete {
+      background: rgba(239, 68, 68, 0.15);
+      color: #fecaca;
+    }
+
+    .btn-delete:hover {
+      background: rgba(239, 68, 68, 0.35);
+    }
+
+    .info-text {
+      margin-top: 0.6rem;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      background: rgba(59, 130, 246, 0.2);
+      color: #bfdbfe;
+    }
+
+    .admin-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .summary-item {
+      padding: 0.6rem 0.75rem;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .summary-label {
+      font-size: 0.75rem;
+      color: #9ca3af;
+    }
+
+    .summary-value {
+      display: block;
+      margin-top: 0.2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .load-status {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 0.5rem;
+    }
+
+    .error-text {
+      color: #fecaca;
+    }
+
+    .empty-text {
+      text-align: center;
+      padding: 1rem 0;
+      color: #9ca3af;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .admin-container {
+        margin: 1rem;
+        padding: 1rem;
+      }
+
+      table {
+        font-size: 0.8rem;
+      }
+
+      .message-cell {
+        max-width: 220px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="admin-container">
+    <div class="admin-header">
+      <h1>Contact Messages Admin</h1>
+      <div class="admin-meta">
+        <div class="status-pill">
+          <span class="dot"></span>
+          <span>Protected View</span>
+        </div>
+        <div style="margin-top:0.25rem;">
+          Data from <span class="badge">Firebase Realtime Database</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="info-text">
+      Is page ka URL sirf aap ke liye hai. Page load hote hi ek simple password prompt aayega.
+      Ye production-level security nahi hai, lekin portfolio use ke liye theek hai. 🙂
+    </p>
+
+    <div id="loadStatus" class="load-status">Waiting for authentication…</div>
+
+    <div class="admin-summary">
+      <div class="summary-item">
+        <span class="summary-label">Total Visitors</span>
+        <span class="summary-value" id="sumVisitors">-</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Page Views</span>
+        <span class="summary-value" id="sumPageViews">-</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Online Now</span>
+        <span class="summary-value" id="sumOnlineNow">-</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Total Feedback</span>
+        <span class="summary-value" id="sumFeedback">-</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Total Contact Messages</span>
+        <span class="summary-value" id="sumMessages">-</span>
+      </div>
+    </div>
+
+    <h2 style="margin-top:1rem;">Contact Messages</h2>
+    <div style="overflow-x:auto; margin-top:0.4rem;">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Time</th>
+            <th>Entry ID</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="messagesBody">
+          <tr>
+            <td colspan="6" class="empty-text">No data loaded yet.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="margin-top:1.5rem;">Feedback</h2>
+    <div style="overflow-x:auto; margin-top:0.4rem;">
+      <table>
+        <thead>
+          <tr>
+            <th>Rating</th>
+            <th>Feedback</th>
+            <th>Time</th>
+            <th>Visitor ID</th>
+          </tr>
+        </thead>
+        <tbody id="feedbackBody">
+          <tr>
+            <td colspan="4" class="empty-text">No feedback loaded yet.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="margin-top:1.5rem;">Online Users (last 5 minutes)</h2>
+    <div style="overflow-x:auto; margin-top:0.4rem;">
+      <table>
+        <thead>
+          <tr>
+            <th>Visitor ID</th>
+            <th>Last Active</th>
+            <th>User Agent</th>
+          </tr>
+        </thead>
+        <tbody id="onlineBody">
+          <tr>
+            <td colspan="3" class="empty-text">No online user data loaded yet.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // NOTE: Yahi password aap change kar sakte hain
+    const ADMIN_PASSWORD = '5ukoonAdmin';
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBVlZh8IrDTfnt9zUhdmqyjd3T2JJNKE94",
+      authDomain: "dipu-portfolio.firebaseapp.com",
+      databaseURL: "https://dipu-portfolio-default-rtdb.firebaseio.com",
+      projectId: "dipu-portfolio",
+      storageBucket: "dipu-portfolio.firebasestorage.app",
+      messagingSenderId: "845529374157",
+      appId: "1:845529374157:web:bec00f53d20e4f1d67f884",
+      measurementId: "G-V8QBNCK2QX"
+    };
+
+    let db = null;
+
+    function initFirebase() {
+      if (!firebase.apps || firebase.apps.length === 0) {
+        firebase.initializeApp(firebaseConfig);
+      }
+      db = firebase.database();
+    }
+
+    function formatTimestamp(ts) {
+      if (!ts) return '-';
+      try {
+        const d = new Date(ts);
+        return d.toLocaleString();
+      } catch {
+        return String(ts);
+      }
+    }
+
+    function setLoadStatus(text, isError = false) {
+      const el = document.getElementById('loadStatus');
+      if (!el) return;
+      el.textContent = text;
+      el.classList.toggle('error-text', isError);
+    }
+
+    function clearTableBody(bodyId) {
+      const tbody = document.getElementById(bodyId);
+      if (!tbody) return;
+      while (tbody.firstChild) {
+        tbody.removeChild(tbody.firstChild);
+      }
+    }
+
+    function addEmptyRow(bodyId, colSpan, message) {
+      const tbody = document.getElementById(bodyId);
+      if (!tbody) return;
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+      td.colSpan = colSpan;
+      td.className = 'empty-text';
+      td.textContent = message;
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+    }
+
+    function deleteMessage(key) {
+      if (!db || !key) return;
+      const yes = confirm('Are you sure you want to delete this message?');
+      if (!yes) return;
+      db.ref('contactMessages/' + key).remove()
+        .then(() => {
+          alert('Message deleted.');
+        })
+        .catch((err) => {
+          console.error(err);
+          alert('Error deleting message. Check console.');
+        });
+    }
+
+    function loadMessages() {
+      if (!db) return;
+      setLoadStatus('Loading messages from Firebase…');
+
+      const ref = db.ref('contactMessages').orderByChild('timestamp');
+      ref.on('value', (snapshot) => {
+        clearTableBody('messagesBody');
+        const tbody = document.getElementById('messagesBody');
+        if (!tbody) return;
+
+        if (!snapshot.exists()) {
+          addEmptyRow('messagesBody', 6, 'No messages found yet.');
+          setLoadStatus('0 messages.');
+          return;
+        }
+
+        const rows = [];
+        snapshot.forEach((child) => {
+          rows.push({ key: child.key, data: child.val() });
+        });
+
+        // Latest first
+        rows.sort((a, b) => (b.data.timestamp || 0) - (a.data.timestamp || 0));
+
+        rows.forEach(({ key, data }) => {
+          const tr = document.createElement('tr');
+
+          const tdName = document.createElement('td');
+          tdName.textContent = data.name || '-';
+
+          const tdEmail = document.createElement('td');
+          tdEmail.textContent = data.email || '-';
+
+          const tdMessage = document.createElement('td');
+          tdMessage.className = 'message-cell';
+          tdMessage.textContent = data.message || '-';
+
+          const tdTime = document.createElement('td');
+          tdTime.className = 'time-cell';
+          tdTime.textContent = formatTimestamp(data.timestamp);
+
+          const tdId = document.createElement('td');
+          tdId.className = 'id-cell';
+          tdId.textContent = key;
+
+          const tdActions = document.createElement('td');
+          tdActions.className = 'actions-cell';
+          const delBtn = document.createElement('button');
+          delBtn.textContent = 'Delete';
+          delBtn.className = 'btn-delete';
+          delBtn.onclick = () => deleteMessage(key);
+          tdActions.appendChild(delBtn);
+
+          tr.appendChild(tdName);
+          tr.appendChild(tdEmail);
+          tr.appendChild(tdMessage);
+          tr.appendChild(tdTime);
+          tr.appendChild(tdId);
+          tr.appendChild(tdActions);
+
+          tbody.appendChild(tr);
+        });
+
+        setLoadStatus(rows.length + ' messages loaded (live updates enabled).');
+
+        // Update summary count for messages
+        const sumMessages = document.getElementById('sumMessages');
+        if (sumMessages) {
+          sumMessages.textContent = rows.length;
+        }
+      }, (error) => {
+        console.error(error);
+        setLoadStatus('Error loading messages from Firebase.', true);
+        clearTableBody('messagesBody');
+        addEmptyRow('messagesBody', 6, 'Error loading messages. Check console for details.');
+      });
+    }
+
+    function loadFeedback() {
+      if (!db) return;
+      const tbodyId = 'feedbackBody';
+
+      const ref = db.ref('feedback').orderByChild('timestamp');
+      ref.on('value', (snapshot) => {
+        clearTableBody(tbodyId);
+        const tbody = document.getElementById(tbodyId);
+        if (!tbody) return;
+
+        if (!snapshot.exists()) {
+          addEmptyRow(tbodyId, 4, 'No feedback entries yet.');
+          const sumFeedback = document.getElementById('sumFeedback');
+          if (sumFeedback) sumFeedback.textContent = '0';
+          return;
+        }
+
+        const rows = [];
+        snapshot.forEach((child) => {
+          rows.push({ key: child.key, data: child.val() });
+        });
+
+        // Latest first
+        rows.sort((a, b) => (b.data.timestamp || 0) - (a.data.timestamp || 0));
+
+        rows.forEach(({ data }) => {
+          const tr = document.createElement('tr');
+
+          const tdRating = document.createElement('td');
+          tdRating.textContent = data.rating != null ? String(data.rating) : '-';
+
+          const tdText = document.createElement('td');
+          tdText.className = 'message-cell';
+          tdText.textContent = data.text || '-';
+
+          const tdTime = document.createElement('td');
+          tdTime.className = 'time-cell';
+          tdTime.textContent = formatTimestamp(data.timestamp);
+
+          const tdVisitor = document.createElement('td');
+          tdVisitor.className = 'id-cell';
+          tdVisitor.textContent = data.visitorId || '-';
+
+          tr.appendChild(tdRating);
+          tr.appendChild(tdText);
+          tr.appendChild(tdTime);
+          tr.appendChild(tdVisitor);
+
+          tbody.appendChild(tr);
+        });
+
+        const sumFeedback = document.getElementById('sumFeedback');
+        if (sumFeedback) sumFeedback.textContent = rows.length;
+      }, (error) => {
+        console.error(error);
+        clearTableBody(tbodyId);
+        addEmptyRow(tbodyId, 4, 'Error loading feedback. Check console for details.');
+      });
+    }
+
+    function loadOnlineUsers() {
+      if (!db) return;
+      const tbodyId = 'onlineBody';
+
+      const ref = db.ref('onlineUsers');
+      ref.on('value', (snapshot) => {
+        clearTableBody(tbodyId);
+        const tbody = document.getElementById(tbodyId);
+        if (!tbody) return;
+
+        if (!snapshot.exists()) {
+          addEmptyRow(tbodyId, 3, 'No online users at the moment.');
+          const sumOnline = document.getElementById('sumOnlineNow');
+          if (sumOnline) sumOnline.textContent = '0';
+          return;
+        }
+
+        let count = 0;
+        snapshot.forEach((child) => {
+          const data = child.val() || {};
+          const tr = document.createElement('tr');
+
+          const tdId = document.createElement('td');
+          tdId.className = 'id-cell';
+          tdId.textContent = child.key;
+
+          const tdTime = document.createElement('td');
+          tdTime.className = 'time-cell';
+          tdTime.textContent = formatTimestamp(data.timestamp);
+
+          const tdAgent = document.createElement('td');
+          tdAgent.className = 'message-cell';
+          tdAgent.textContent = data.userAgent || '-';
+
+          tr.appendChild(tdId);
+          tr.appendChild(tdTime);
+          tr.appendChild(tdAgent);
+
+          tbody.appendChild(tr);
+          count++;
+        });
+
+        const sumOnline = document.getElementById('sumOnlineNow');
+        if (sumOnline) sumOnline.textContent = count;
+      }, (error) => {
+        console.error(error);
+        clearTableBody(tbodyId);
+        addEmptyRow(tbodyId, 3, 'Error loading online users. Check console for details.');
+      });
+    }
+
+    function loadSummary() {
+      if (!db) return;
+
+      // Total visitors
+      db.ref('visitorCount').on('value', (snapshot) => {
+        const el = document.getElementById('sumVisitors');
+        if (el) el.textContent = snapshot.val() != null ? snapshot.val() : '0';
+      });
+
+      // Page views
+      db.ref('pageViews').on('value', (snapshot) => {
+        const el = document.getElementById('sumPageViews');
+        if (el) el.textContent = snapshot.val() != null ? snapshot.val() : '0';
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      setLoadStatus('Authenticating…');
+
+      let isAdmin = false;
+      try {
+        isAdmin = sessionStorage.getItem('isAdmin') === '1';
+      } catch (e) {
+        isAdmin = false;
+      }
+
+      if (!isAdmin) {
+        const pass = prompt('Enter admin password:');
+        if (pass !== ADMIN_PASSWORD) {
+          setLoadStatus('Access denied. Incorrect password.', true);
+          clearTableBody('messagesBody');
+          addEmptyRow('messagesBody', 6, 'Access denied. Reload the page and enter the correct password.');
+          return;
+        }
+        try {
+          sessionStorage.setItem('isAdmin', '1');
+        } catch (e) { }
+      }
+
+      try {
+        initFirebase();
+        setLoadStatus('Authenticated. Connecting to Firebase…');
+        loadSummary();
+        loadMessages();
+        loadFeedback();
+        loadOnlineUsers();
+      } catch (e) {
+        console.error(e);
+        setLoadStatus('Error initializing Firebase.', true);
+        clearTableBody('messagesBody');
+        addEmptyRow('messagesBody', 6, 'Error initializing Firebase. Check console for details.');
+      }
+    });
+  </script>
+</body>
+
+</html>
+

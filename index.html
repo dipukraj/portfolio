@@ -931,6 +931,10 @@
 
   <footer>
     <div id="visitor-counter"></div>
+    <button type="button" onclick="openAdminPanel()"
+      style="margin-top:0.25rem;font-size:0.7rem;opacity:0.4;background:none;border:none;color:inherit;cursor:pointer;">
+      Admin Panel
+    </button>
 
     <!-- Real-time Features in Footer -->
     <div class="footer-features">
@@ -1031,7 +1035,21 @@
   </footer>
 
   <script defer src="script.js"></script>
+  <!-- EmailJS for email notifications -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
+    function openAdminPanel() {
+      var pass = prompt('Enter admin password:');
+      if (pass === '5ukoonAdmin') {
+        try {
+          sessionStorage.setItem('isAdmin', '1');
+        } catch (e) { }
+        window.location.href = 'admin.html';
+      } else if (pass !== null) {
+        alert('Incorrect password');
+      }
+    }
+
     function sendSMS(event) {
       event.preventDefault();
       var form = event.target;
@@ -1061,6 +1079,22 @@
           timestamp: Date.now(),
           userAgent: navigator.userAgent
         }).then(function () {
+          // OPTIONAL: Email notification using EmailJS
+          // 1. EmailJS pe free account banaiye
+          // 2. Service ID, Template ID aur Public Key yahan replace kijiye
+          if (window.emailjs) {
+            window.emailjs.init('YOUR_PUBLIC_KEY_HERE'); // TODO: replace with your EmailJS public key
+            window.emailjs.send('YOUR_SERVICE_ID_HERE', 'YOUR_TEMPLATE_ID_HERE', {
+              from_name: name,
+              from_email: email,
+              message: message,
+              to_name: 'Dipu K Raj',
+              to_email: 'websitedeveloper108@gmail.com'
+            }).catch(function (err) {
+              console.error('EmailJS error:', err);
+            });
+          }
+
           if (typeof showNotification === 'function') {
             showNotification('Your message has been sent successfully!', 'success', 4000);
           } else {
