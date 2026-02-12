@@ -2346,8 +2346,68 @@ body:not(.light-mode) .panel-readmore-left {
   color: #38bdf8;
   font-size: 1.1rem;
   font-weight: bold;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   letter-spacing: 1px;
+}
+
+.admin-panel-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 0.5rem;
+  margin-left: auto;
+  padding: 10px 22px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  background: radial-gradient(circle at top left, #facc15, #38bdf8 45%, #0ea5e9 100%);
+  border: 2px solid rgba(248, 250, 252, 0.7);
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.admin-panel-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 10px 28px rgba(56, 189, 248, 0.6);
+  background: radial-gradient(circle at top left, #facc15, #0ea5e9 35%, #38bdf8 100%);
+}
+
+.admin-panel-btn:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.7);
+}
+
+.admin-panel-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(248, 250, 252, 0.6), rgba(248, 250, 252, 0));
+  transform: skewX(-20deg);
+  opacity: 0;
+}
+
+.admin-panel-btn:hover::before {
+  opacity: 1;
+  animation: adminShine 0.7s forwards;
+}
+
+@keyframes adminShine {
+  from {
+    left: -40%;
+  }
+  to {
+    left: 120%;
+  }
 }
 
 #language-switcher {
