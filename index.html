@@ -1038,11 +1038,52 @@
       var name = form.name.value.trim();
       var email = form.email.value.trim();
       var message = form.message.value.trim();
-      var smsBody = encodeURIComponent(
-        'Name: ' + name + '\nEmail: ' + email + '\nMessage: ' + message
-      );
-      var phone = '+917295808100'; // Change to your number if needed
-      window.location.href = 'sms:' + phone + '?body=' + smsBody;
+
+      if (!name || !email || !message) {
+        if (typeof showNotification === 'function') {
+          showNotification('Please fill in all fields.', 'warning', 4000);
+        } else {
+          alert('Please fill in all fields.');
+        }
+        return false;
+      }
+
+      try {
+        if (typeof firebase === 'undefined' || !firebase || !firebase.database) {
+          throw new Error('Firebase is not available');
+        }
+
+        var contactRef = firebase.database().ref('contactMessages');
+        contactRef.push({
+          name: name,
+          email: email,
+          message: message,
+          timestamp: Date.now(),
+          userAgent: navigator.userAgent
+        }).then(function () {
+          if (typeof showNotification === 'function') {
+            showNotification('Your message has been sent successfully!', 'success', 4000);
+          } else {
+            alert('Your message has been sent successfully!');
+          }
+          form.reset();
+        }).catch(function (error) {
+          console.error(error);
+          if (typeof showNotification === 'function') {
+            showNotification('Error sending message. Please try again.', 'error', 4000);
+          } else {
+            alert('Error sending message. Please try again.');
+          }
+        });
+      } catch (e) {
+        console.error(e);
+        if (typeof showNotification === 'function') {
+          showNotification('Unexpected error. Please try again.', 'error', 4000);
+        } else {
+          alert('Unexpected error. Please try again.');
+        }
+      }
+
       return false;
     }
     // Map certificate numbers to actual image paths
