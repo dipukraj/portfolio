@@ -710,11 +710,16 @@ body.light-mode .social-icon-link[href*="t.me"]:hover {
   transform: scale(1.1);
 }
 
-/* Responsive adjustments for social icons */
+/* Responsive adjustments for social icons - mobile pe 4+4 grid, sab equal dikhe */
 @media (max-width: 768px) {
   .social-icons {
-    justify-content: center;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+    gap: 12px 8px;
+    max-width: 100%;
+    margin: 24px auto;
   }
   
   .social-icons a {
@@ -723,32 +728,34 @@ body.light-mode .social-icon-link[href*="t.me"]:hover {
   }
   
   .social-icon-link {
-    width: 44px !important;
-    height: 44px !important;
+    width: 40px !important;
+    height: 40px !important;
   }
   
   .social-icon-link i {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
   }
 }
 
 @media (max-width: 480px) {
   .social-icons {
-    gap: 12px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px 6px;
+    margin: 20px auto;
   }
   
   .social-icons a {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
   }
   
   .social-icon-link {
-    width: 42px !important;
-    height: 42px !important;
+    width: 36px !important;
+    height: 36px !important;
   }
   
   .social-icon-link i {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 }
 
@@ -2909,14 +2916,20 @@ body.light-mode .skills-progress .progress {
     padding: 10px !important;
   }
   
-  /* Social icons */
+  /* Social icons - 4 columns grid, 2 rows equal */
   .social-icons {
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 12px;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    gap: 10px 6px;
   }
   
   .social-icons a {
+    width: 38px !important;
+    height: 38px !important;
+  }
+  
+  .social-icon-link {
     width: 38px !important;
     height: 38px !important;
   }
@@ -3172,10 +3185,26 @@ body.light-mode .skills-progress .progress {
     max-width: 100% !important;
   }
   
-  /* Social icons - smaller */
+  /* Social icons - 4 columns grid, smaller size */
+  .social-icons {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    gap: 8px 5px;
+  }
+  
   .social-icons a {
-    width: 35px !important;
-    height: 35px !important;
+    width: 34px !important;
+    height: 34px !important;
+  }
+  
+  .social-icon-link {
+    width: 34px !important;
+    height: 34px !important;
+  }
+  
+  .social-icon-link i {
+    font-size: 0.9rem !important;
   }
   
   /* Contact form - compact */
