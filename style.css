@@ -1091,20 +1091,38 @@ footer {
     padding-left: 20px;
   }
 
-  .hero h1 {
-    font-size: 2rem;
+  /* Hero background image - mobile pe thoda upper dikhe */
+  #hero {
+    background-position: center 25%;
   }
 
-  .hero h1 span {
+  .hero h1,
+  #hero h1 {
+    font-size: 2.25rem;
+  }
+
+  .hero h1 span,
+  #hero h1 span {
     color: #38bdf8;
   }
 
-  .hero h2 {
-    font-size: 1.5rem;
+  .hero h2,
+  #hero h2 {
+    font-size: 1.6rem;
   }
 
-  .hero .typewriter {
-    font-size: 1.2rem;
+  .hero .typewriter,
+  #hero .typewriter {
+    font-size: 1.3rem;
+  }
+  
+  h2 {
+    font-size: 1.9rem;
+  }
+  
+  .section p,
+  #about p {
+    font-size: 1.05rem;
   }
 
   .work-image {
@@ -2756,7 +2774,7 @@ body.light-mode .skills-progress .progress {
   }
   
   .logo {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     white-space: nowrap;
   }
   
@@ -2767,37 +2785,38 @@ body.light-mode .skills-progress .progress {
   
   #language-switcher {
     padding: 4px 8px !important;
-    font-size: 0.8rem !important;
+    font-size: 0.9rem !important;
     max-width: 100px;
   }
   
   .globe-icon {
-    font-size: 1.1rem !important;
+    font-size: 1.2rem !important;
   }
   
-  /* Hero section - better text sizing */
+  /* Hero section - readable text size on mobile */
   #hero {
     padding: 1rem !important;
     min-height: 100vh;
     height: auto;
+    background-position: center 20%;
   }
   
   #hero h1 {
-    font-size: 1.8rem !important;
+    font-size: 2.2rem !important;
     line-height: 1.3;
     word-wrap: break-word;
     padding: 0 0.5rem;
   }
   
   #hero h2 {
-    font-size: 1.3rem !important;
+    font-size: 1.5rem !important;
     line-height: 1.4;
     word-wrap: break-word;
     padding: 0 0.5rem;
   }
   
   #hero .typewriter {
-    font-size: 1rem !important;
+    font-size: 1.25rem !important;
     line-height: 1.5;
     word-wrap: break-word;
     padding: 0 0.5rem;
@@ -2811,24 +2830,25 @@ body.light-mode .skills-progress .progress {
   }
   
   h2 {
-    font-size: 1.6rem !important;
+    font-size: 1.85rem !important;
     line-height: 1.3;
     word-wrap: break-word;
     padding: 0 0.5rem;
   }
   
-  /* Text content - prevent overflow */
+  /* Text content - readable size, prevent overflow */
   p {
     word-wrap: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
     line-height: 1.6;
+    font-size: 1rem !important;
   }
   
-  /* Buttons - better sizing */
+  /* Buttons - readable size */
   .btn {
-    padding: 0.7rem 1.3rem !important;
-    font-size: 0.85rem !important;
+    padding: 0.75rem 1.4rem !important;
+    font-size: 0.95rem !important;
     white-space: nowrap;
     min-width: auto;
     width: auto;
@@ -2836,9 +2856,9 @@ body.light-mode .skills-progress .progress {
   }
   
   .get-in-touch-btn {
-    width: 75px !important;
-    height: 75px !important;
-    font-size: 0.85rem !important;
+    width: 80px !important;
+    height: 80px !important;
+    font-size: 0.95rem !important;
     padding: 10px !important;
     line-height: 1.2;
   }
@@ -2851,8 +2871,8 @@ body.light-mode .skills-progress .progress {
   }
   
   .contact-btn {
-    padding: 10px 18px !important;
-    font-size: 0.85rem !important;
+    padding: 11px 20px !important;
+    font-size: 0.95rem !important;
     white-space: nowrap;
   }
   
@@ -2920,7 +2940,7 @@ body.light-mode .skills-progress .progress {
   /* Accordion buttons */
   .accordion-btn {
     padding: 14px 12px !important;
-    font-size: 0.9rem !important;
+    font-size: 1rem !important;
     line-height: 1.4;
     word-wrap: break-word;
   }
@@ -2932,13 +2952,13 @@ body.light-mode .skills-progress .progress {
   }
   
   .project h3 a {
-    font-size: 1.1rem !important;
+    font-size: 1.2rem !important;
     line-height: 1.4;
     word-wrap: break-word;
   }
   
   .project p {
-    font-size: 0.95rem !important;
+    font-size: 1.05rem !important;
     line-height: 1.6;
   }
   
@@ -2955,6 +2975,15 @@ body.light-mode .skills-progress .progress {
     padding: 1.2rem !important;
   }
   
+  .website-content h3,
+  .game-card .btn {
+    font-size: 1.2rem !important;
+  }
+  
+  .website-content p {
+    font-size: 1rem !important;
+  }
+  
   /* Service box */
   .service-box {
     padding: 1.2rem !important;
@@ -2962,11 +2991,11 @@ body.light-mode .skills-progress .progress {
   }
   
   .service-box h3 {
-    font-size: 1.2rem !important;
+    font-size: 1.35rem !important;
   }
   
   .service-content p {
-    font-size: 0.9rem !important;
+    font-size: 1rem !important;
     line-height: 1.6;
   }
   
@@ -2976,17 +3005,17 @@ body.light-mode .skills-progress .progress {
   }
   
   .achievement-item h3 {
-    font-size: 1.1rem !important;
+    font-size: 1.2rem !important;
   }
   
   .achievement-item li {
-    font-size: 0.9rem !important;
+    font-size: 1rem !important;
     line-height: 1.6;
   }
   
   /* Skills progress */
   .skill-name {
-    font-size: 0.95rem !important;
+    font-size: 1.05rem !important;
   }
   
   /* Footer features */
@@ -2998,8 +3027,20 @@ body.light-mode .skills-progress .progress {
   .footer-btn {
     width: 100%;
     max-width: 200px;
-    padding: 10px 15px !important;
-    font-size: 0.85rem !important;
+    padding: 11px 16px !important;
+    font-size: 0.95rem !important;
+  }
+  
+  /* About section & other body text */
+  #about p,
+  .service-details li,
+  .work-text-box p {
+    font-size: 1rem !important;
+  }
+  
+  footer h5,
+  footer p {
+    font-size: 1rem !important;
   }
 }
 
@@ -3025,7 +3066,7 @@ body.light-mode .skills-progress .progress {
   }
   
   .logo {
-    font-size: 1.1rem !important;
+    font-size: 1.2rem !important;
     white-space: nowrap;
   }
   
@@ -3035,32 +3076,32 @@ body.light-mode .skills-progress .progress {
   
   #language-switcher {
     padding: 3px 6px !important;
-    font-size: 0.75rem !important;
+    font-size: 0.85rem !important;
     max-width: 90px;
   }
   
   .globe-icon {
-    font-size: 1rem !important;
+    font-size: 1.1rem !important;
   }
   
-  /* Hero section - compact text */
+  /* Hero section - readable text on small screens */
   #hero {
     padding: 0.8rem !important;
   }
   
   #hero h1 {
-    font-size: 1.5rem !important;
+    font-size: 1.85rem !important;
     line-height: 1.2;
     margin-bottom: 0.8rem;
   }
   
   #hero h2 {
-    font-size: 1.1rem !important;
+    font-size: 1.35rem !important;
     line-height: 1.3;
   }
   
   #hero .typewriter {
-    font-size: 0.9rem !important;
+    font-size: 1.1rem !important;
     line-height: 1.4;
     margin-bottom: 1rem;
   }
@@ -3071,36 +3112,36 @@ body.light-mode .skills-progress .progress {
   }
   
   h2 {
-    font-size: 1.4rem !important;
+    font-size: 1.6rem !important;
     line-height: 1.3;
     margin-bottom: 0.8rem;
   }
   
-  /* All text - better wrapping */
+  /* All text - readable size */
   p, li, span {
-    font-size: 0.9rem !important;
+    font-size: 0.95rem !important;
     line-height: 1.6;
     word-wrap: break-word;
     overflow-wrap: break-word;
   }
   
-  /* Buttons - smaller but touchable */
+  /* Buttons - touchable, readable */
   .btn {
-    padding: 0.6rem 1.1rem !important;
-    font-size: 0.8rem !important;
-    min-height: 44px; /* Touch target size */
+    padding: 0.65rem 1.2rem !important;
+    font-size: 0.9rem !important;
+    min-height: 44px;
   }
   
   .get-in-touch-btn {
-    width: 70px !important;
-    height: 70px !important;
-    font-size: 0.8rem !important;
+    width: 74px !important;
+    height: 74px !important;
+    font-size: 0.9rem !important;
     padding: 8px !important;
   }
   
   .contact-btn {
-    padding: 9px 16px !important;
-    font-size: 0.8rem !important;
+    padding: 10px 18px !important;
+    font-size: 0.9rem !important;
     min-height: 44px;
   }
   
@@ -3131,7 +3172,7 @@ body.light-mode .skills-progress .progress {
   /* Accordion */
   .accordion-btn {
     padding: 12px 10px !important;
-    font-size: 0.85rem !important;
+    font-size: 0.95rem !important;
   }
   
   /* Project cards */
@@ -3140,11 +3181,11 @@ body.light-mode .skills-progress .progress {
   }
   
   .project h3 a {
-    font-size: 1rem !important;
+    font-size: 1.1rem !important;
   }
   
   .project p {
-    font-size: 0.9rem !important;
+    font-size: 0.98rem !important;
   }
   
   /* Website and games */
@@ -3154,12 +3195,12 @@ body.light-mode .skills-progress .progress {
   }
   
   .website-content h3,
-  .game-card h3 {
-    font-size: 1.1rem !important;
+  .game-card .btn {
+    font-size: 1.15rem !important;
   }
   
   .website-content p {
-    font-size: 0.85rem !important;
+    font-size: 0.98rem !important;
   }
   
   /* Service box */
@@ -3168,7 +3209,11 @@ body.light-mode .skills-progress .progress {
   }
   
   .service-box h3 {
-    font-size: 1.1rem !important;
+    font-size: 1.2rem !important;
+  }
+  
+  .service-content p {
+    font-size: 0.98rem !important;
   }
   
   /* Achievement items */
@@ -3177,16 +3222,16 @@ body.light-mode .skills-progress .progress {
   }
   
   .achievement-item h3 {
-    font-size: 1rem !important;
+    font-size: 1.1rem !important;
   }
   
   .achievement-item li {
-    font-size: 0.85rem !important;
+    font-size: 0.98rem !important;
   }
   
   /* Skills */
   .skill-name {
-    font-size: 0.9rem !important;
+    font-size: 0.98rem !important;
   }
   
   .progress-bar {
@@ -3195,8 +3240,13 @@ body.light-mode .skills-progress .progress {
   
   /* Footer */
   .footer-btn {
-    padding: 9px 14px !important;
-    font-size: 0.8rem !important;
+    padding: 10px 14px !important;
+    font-size: 0.9rem !important;
+  }
+  
+  footer h5,
+  footer p {
+    font-size: 0.98rem !important;
   }
   
   /* Chat window */
@@ -4563,57 +4613,72 @@ body.light-mode .game-image {
   }
 }
 
-/* Extra optimizations for very old phones (320px-375px) */
+/* Extra optimizations for small phones (320px-375px) - still readable text */
 @media (max-width: 375px) {
-  /* Even more compact spacing */
+  /* Compact spacing */
   .section {
     padding: 1rem 0.8rem !important;
   }
   
-  /* Smaller fonts but readable */
+  /* Readable base font */
   body {
-    font-size: 14px;
+    font-size: 15px;
   }
   
   h1 {
-    font-size: 1.5rem !important;
+    font-size: 1.65rem !important;
   }
   
   h2 {
-    font-size: 1.3rem !important;
+    font-size: 1.5rem !important;
   }
   
   h3 {
-    font-size: 1.1rem !important;
+    font-size: 1.15rem !important;
   }
   
-  /* Compact buttons */
+  /* Buttons - readable */
   .btn {
-    padding: 0.6rem 1rem !important;
-    font-size: 0.8rem !important;
+    padding: 0.65rem 1.1rem !important;
+    font-size: 0.9rem !important;
   }
   
-  /* Compact forms */
+  /* Forms */
   .contact-form input,
   .contact-form textarea {
     padding: 12px 14px !important;
-    font-size: 15px !important;
+    font-size: 16px !important;
   }
   
-  /* Compact cards */
+  /* Cards */
   .website-card,
   .game-card,
   .project {
     padding: 1rem !important;
   }
   
-  /* Compact navbar */
   .navbar {
     padding: 0.6rem 0.8rem !important;
   }
   
   .logo {
-    font-size: 1rem !important;
+    font-size: 1.15rem !important;
+  }
+  
+  #hero h1 {
+    font-size: 1.75rem !important;
+  }
+  
+  #hero h2 {
+    font-size: 1.4rem !important;
+  }
+  
+  #hero .typewriter {
+    font-size: 1.15rem !important;
+  }
+  
+  p, .achievement-item li, .service-content p {
+    font-size: 0.98rem !important;
   }
 }
 
