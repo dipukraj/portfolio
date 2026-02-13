@@ -558,6 +558,138 @@ body.light-mode .project p {
   height: 45px;
 }
 
+/* Icon-based social links (Font Awesome) - circular dark bg, white icon */
+.social-icon-link {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50%;
+  background: rgba(30, 41, 59, 0.9);
+  color: #f1f5f9;
+  border: 2px solid rgba(56, 189, 248, 0.3);
+  transition: all 0.3s ease;
+}
+
+.social-icon-link i {
+  font-size: 1.25rem;
+}
+
+.social-icon-link:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Brand colors on hover - cursor le jate hi platform ka color dikhe */
+.social-icon-link[href*="facebook"]:hover {
+  background: #1877F2 !important;
+  color: #fff !important;
+  border-color: #1877F2 !important;
+  box-shadow: 0 4px 15px rgba(24, 119, 242, 0.5);
+}
+
+.social-icon-link[href*="instagram"]:hover {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888) !important;
+  color: #fff !important;
+  border-color: #e6683c !important;
+  box-shadow: 0 4px 15px rgba(220, 39, 67, 0.5);
+}
+
+.social-icon-link[href*="github"]:hover {
+  background: #24292e !important;
+  color: #fff !important;
+  border-color: #24292e !important;
+  box-shadow: 0 4px 15px rgba(36, 41, 46, 0.5);
+}
+
+.social-icon-link[href*="linkedin"]:hover {
+  background: #0A66C2 !important;
+  color: #fff !important;
+  border-color: #0A66C2 !important;
+  box-shadow: 0 4px 15px rgba(10, 102, 194, 0.5);
+}
+
+.social-icon-link[href*="youtube"]:hover {
+  background: #FF0000 !important;
+  color: #fff !important;
+  border-color: #FF0000 !important;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.5);
+}
+
+.social-icon-link[href*="twitter"]:hover {
+  background: #000000 !important;
+  color: #fff !important;
+  border-color: #000000 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.social-icon-link[href*="snapchat"]:hover {
+  background: #FFFC00 !important;
+  color: #1a1a1a !important;
+  border-color: #FFFC00 !important;
+  box-shadow: 0 4px 15px rgba(255, 252, 0, 0.5);
+}
+
+.social-icon-link[href*="t.me"]:hover {
+  background: #26A5E4 !important;
+  color: #fff !important;
+  border-color: #26A5E4 !important;
+  box-shadow: 0 4px 15px rgba(38, 165, 228, 0.5);
+}
+
+body.light-mode .social-icon-link {
+  background: rgba(224, 231, 239, 0.95);
+  color: #0f172a;
+  border-color: rgba(14, 165, 233, 0.4);
+}
+
+/* Light mode - hover par bhi same brand colors */
+body.light-mode .social-icon-link[href*="facebook"]:hover {
+  background: #1877F2 !important;
+  color: #fff !important;
+  border-color: #1877F2 !important;
+}
+
+body.light-mode .social-icon-link[href*="instagram"]:hover {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888) !important;
+  color: #fff !important;
+  border-color: #e6683c !important;
+}
+
+body.light-mode .social-icon-link[href*="github"]:hover {
+  background: #24292e !important;
+  color: #fff !important;
+  border-color: #24292e !important;
+}
+
+body.light-mode .social-icon-link[href*="linkedin"]:hover {
+  background: #0A66C2 !important;
+  color: #fff !important;
+  border-color: #0A66C2 !important;
+}
+
+body.light-mode .social-icon-link[href*="youtube"]:hover {
+  background: #FF0000 !important;
+  color: #fff !important;
+  border-color: #FF0000 !important;
+}
+
+body.light-mode .social-icon-link[href*="twitter"]:hover {
+  background: #000000 !important;
+  color: #fff !important;
+  border-color: #000000 !important;
+}
+
+body.light-mode .social-icon-link[href*="snapchat"]:hover {
+  background: #FFFC00 !important;
+  color: #1a1a1a !important;
+  border-color: #FFFC00 !important;
+}
+
+body.light-mode .social-icon-link[href*="t.me"]:hover {
+  background: #26A5E4 !important;
+  color: #fff !important;
+  border-color: #26A5E4 !important;
+}
+
 .social-icon {
   width: 100%;
   height: 100%;
@@ -586,16 +718,34 @@ body.light-mode .project p {
     width: 40px;
     height: 40px;
   }
+  
+  .social-icon-link {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  
+  .social-icon-link i {
+    font-size: 1.1rem;
+  }
 }
 
 @media (max-width: 480px) {
   .social-icons {
-    gap: 10px;
+    gap: 12px;
   }
   
   .social-icons a {
-    width: 35px;
-    height: 35px;
+    width: 38px;
+    height: 38px;
+  }
+  
+  .social-icon-link {
+    width: 42px !important;
+    height: 42px !important;
+  }
+  
+  .social-icon-link i {
+    font-size: 1rem;
   }
 }
 
