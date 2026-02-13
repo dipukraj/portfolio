@@ -574,7 +574,14 @@ function setPrimaryColor(color) {
 }
 
 // Live Chat System
+let chatListenerRegistered = false; // Prevent duplicate listener registration
+
 function initializeLiveChat() {
+  // Prevent multiple initializations
+  if (chatListenerRegistered) {
+    return;
+  }
+  
   const chatToggle = document.getElementById('chat-toggle');
   const chatWindow = document.getElementById('chat-window');
   const closeChat = document.getElementById('close-chat');
@@ -641,16 +648,50 @@ function initializeLiveChat() {
     return visitorId;
   }
 
-  // Listen for real-time messages
+  // Track processed messages to prevent duplicate responses
+  const processedMessages = new Set();
+  
+  // Listen for real-time messages (single listener for both display and auto-response)
   const chatRef = database.ref('chatMessages');
-  chatRef.on('child_added', (snapshot) => {
-    const message = snapshot.val();
-    displayMessage(message);
-  });
+  
+  // Register listener only once
+  if (!chatListenerRegistered) {
+    chatRef.on('child_added', (snapshot) => {
+      const message = snapshot.val();
+      const messageId = snapshot.key;
+      
+      // Display all messages
+      displayMessage(message);
+      
+      // Auto-response only for visitor messages (and only once per message)
+      if (message.sender === 'visitor' && !processedMessages.has(messageId)) {
+        processedMessages.add(messageId);
+        
+        // Add auto-response after 2 seconds
+        setTimeout(() => {
+          const autoResponse = {
+            text: addAutoResponse(message.text),
+            sender: 'admin',
+            timestamp: Date.now()
+          };
+          chatRef.push(autoResponse);
+        }, 2000);
+      }
+    });
+    
+    chatListenerRegistered = true; // Mark as registered
+  }
 
   // Display message in chat
   function displayMessage(message) {
+    // Check if message already displayed (prevent duplicates)
+    const messageId = 'msg_' + message.timestamp + '_' + (message.text || '').substring(0, 20);
+    if (document.getElementById(messageId)) {
+      return; // Already displayed
+    }
+    
     const messageDiv = document.createElement('div');
+    messageDiv.id = messageId;
     messageDiv.className = `message ${message.sender}`;
 
     const messageP = document.createElement('p');
@@ -673,42 +714,121 @@ function initializeLiveChat() {
     messageDiv.appendChild(timeSpan);
   }
 
-  // Auto-response system
+  // Auto-response system (improved, multi-language & intent-based with priority)
   function addAutoResponse(message) {
-    const responses = {
-      'hello': 'Hello! How can I help you today? 😊',
-      'hi': 'Hi there! Welcome to my portfolio! 👋',
-      'help': 'I\'m here to help! What would you like to know? 🤔',
-      'contact': 'You can contact me via email: kumardipu1436@gmail.com or through the contact form above! 📧',
-      'project': 'Check out my projects section to see my work! 🚀',
-      'skill': 'I specialize in web development, Python, and design. Check my skills section for details! 💻',
-      'thank': 'You\'re welcome! Feel free to ask anything else! 😊'
-    };
+    const lower = (message || '').toLowerCase();
 
-    const lowerMessage = message.toLowerCase();
-    for (let key in responses) {
-      if (lowerMessage.includes(key)) {
-        return responses[key];
-      }
+    // Priority-based matching (first match wins - prevents multiple responses)
+    
+    // 1) Greetings / small talk (highest priority)
+    if (
+      /\b(hi|hello|hey|hii|namaste|namaskar|pranam|pranam ji)\b/.test(lower)
+    ) {
+      return 'Namaste! 😊 Main Dipu ka auto‑chat assistant hoon. Aap jo bhi poochhna chahte hain, seedhe likhiye (English / Hindi / Hinglish), main uske hisaab se help karne ki koshish karunga.';
     }
-    return 'Thanks for your message! I\'ll get back to you soon! 📝';
+
+    // 2) Help / support
+    if (
+      lower.includes('help') ||
+      lower.includes('madad') ||
+      lower.includes('sahayta') ||
+      lower.includes('problem') ||
+      lower.includes('issue') ||
+      lower.includes('error')
+    ) {
+      return 'Bilkul, main madad ke liye yahan hoon. Aap apni problem thoda detail mein likhiye (kis page / section mein dikkat aa rahi hai), main aapko clear steps mein guide karunga. Agar bahut complex ho, to Dipu aapko personally email ya WhatsApp se reply karenge. 🙂';
+    }
+
+    // 3) Contact details
+    if (
+      lower.includes('contact') ||
+      lower.includes('sampark') ||
+      lower.includes('phone') ||
+      lower.includes('mobile') ||
+      lower.includes('number') ||
+      lower.includes('call') ||
+      lower.includes('whatsapp') ||
+      lower.includes('email')
+    ) {
+      return 'Aap Dipu se directly in details par contact kar sakte hain:\n\n📧 Email: websitedeveloper108@gmail.com\n📱 WhatsApp / Call: +91 72958 08100\n\nYa upar wale "Contact Me" form se bhi apna message bhej sakte hain.';
+    }
+
+    // 4) About / who are you
+    if (
+      lower.includes('who are you') ||
+      lower.includes('tum kaun') ||
+      lower.includes('aap kaun') ||
+      lower.includes('kya karte') ||
+      lower.includes('about you') ||
+      lower.includes('portfolio') ||
+      lower.includes('about me')
+    ) {
+      return 'Main Dipu K Raj hoon – full‑stack web & game developer. 😊 Is portfolio mein aapko mere projects, skills, certificates aur contact details sab mil jayenge. Aap "About Me" aur "Projects" sections zaroor dekhiye.';
+    }
+
+    // 5) Skills / technologies
+    if (
+      lower.includes('skill') ||
+      lower.includes('technology') ||
+      lower.includes('tech stack') ||
+      lower.includes('stack') ||
+      lower.includes('language') ||
+      lower.includes('programming')
+    ) {
+      return 'Main mainly in cheezon par kaam karta hoon:\n\n- Frontend: HTML, CSS, JavaScript, TypeScript\n- Backend: Node.js, Express, MongoDB, Firebase\n- Programming: C/C++, Python, Java, C#, MATLAB, Go, Rust, PHP, Ruby, Scala\n- Games: Unity (C#) 2D/3D\n\nDetail mein dekhne ke liye "Skills" aur "My Tech Skills" section kholiye. 💻';
+    }
+
+    // 6) Projects / websites / games
+    if (
+      lower.includes('project') ||
+      lower.includes('website') ||
+      lower.includes('site') ||
+      lower.includes('game') ||
+      lower.includes('portfolio')
+    ) {
+      return 'Aap mere real projects "Projects", "Website" aur "Games" sections mein dekh sakte hain. Har card par "Visit Site" / link diya hai, usse aap live project open kar sakte hain. Agar kisi specific project ke baare mein poochhna hai, uska naam likh ke poochhiye. 🚀';
+    }
+
+    // 7) Price / charges / freelancing
+    if (
+      lower.includes('price') ||
+      lower.includes('charge') ||
+      lower.includes('fees') ||
+      lower.includes('kitna') ||
+      lower.includes('cost') ||
+      lower.includes('paisa') ||
+      lower.includes('bhada') ||
+      lower.includes('website bana') ||
+      lower.includes('portfolio bana')
+    ) {
+      return 'Project ki cost aapki requirement par depend karti hai (kitne pages, features, design complexity, backend, etc.). Aap short mein likhiye ki aapko kaisa website / app chahiye – main aapko approx range bata sakta hoon, aur exact discussion ke liye Dipu aapko WhatsApp / email par contact karenge. 💼';
+    }
+
+    // 8) Location / where are you from
+    if (
+      lower.includes('where are you from') ||
+      lower.includes('kaha se ho') ||
+      lower.includes('kahan se ho') ||
+      lower.includes('location') ||
+      lower.includes('city') ||
+      lower.includes('from india')
+    ) {
+      return 'Main India se hoon 🇮🇳. Aap kahaan se dekh rahe hain, woh bhi likh sakte hain – mujhe bhi jaan kar accha lagega. 🙂';
+    }
+
+    // 9) Thanks / appreciation
+    if (
+      lower.includes('thank') ||
+      lower.includes('shukriya') ||
+      lower.includes('dhanyavaad') ||
+      lower.includes('thanks')
+    ) {
+      return 'Aapka bahut‑bahut dhanyavaad! 😊 Agar aapko mera portfolio pasand aaya ho to feedback section mein rating zaroor dijiye, aur agar aur koi sawal ho to poochhiye.';
+    }
+
+    // 10) Default fallback – be honest about limitations
+    return 'Aapka message mil gaya, dhanyavaad! 🙂 Ye chat ek simple auto‑reply system hai, isliye har question ko bilkul human jaisa samajh nahi pata. Aap apna sawal thoda clear points mein likhiye, ya directly email / WhatsApp par contact kijiye:\n\n📧 Email: websitedeveloper108@gmail.com\n📱 WhatsApp / Call: +91 72958 08100\n\nDipu aapko jald hi personally reply dene ki koshish karenge. 📝';
   }
-
-  // Listen for visitor messages and add auto-response
-  chatRef.on('child_added', (snapshot) => {
-    const message = snapshot.val();
-    if (message.sender === 'visitor') {
-      // Add auto-response after 2 seconds
-      setTimeout(() => {
-        const autoResponse = {
-          text: addAutoResponse(message.text),
-          sender: 'admin',
-          timestamp: Date.now()
-        };
-        chatRef.push(autoResponse);
-      }, 2000);
-    }
-  });
 }
 
 // Initialize live chat when DOM is loaded

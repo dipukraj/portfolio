@@ -2589,127 +2589,486 @@ body.light-mode .skills-progress .progress {
 }
 
 /* Comprehensive Mobile Responsiveness - Consistent across all devices */
+/* Base mobile styles for all small devices */
 @media (max-width: 480px) {
+  /* Prevent horizontal scroll */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+  
+  /* Navbar improvements */
   .navbar {
     padding: 0.8rem 1rem;
-  }
-  
-  .logo {
-    font-size: 1.3rem;
-  }
-  
-  .language-switcher-container {
-    margin-left: 1rem !important;
-  }
-  
-  #language-switcher {
-    padding: 3px 6px !important;
-    font-size: 0.85rem !important;
-  }
-  
-  .globe-icon {
-    font-size: 1.2rem !important;
-  }
-  
-  .section {
-    padding: 1.5rem 1rem;
-  }
-  
-  h2 {
-    font-size: 1.8rem;
-  }
-  
-  .btn {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.7rem;
-  }
-  
-  .get-in-touch-btn {
-    width: 80px;
-    height: 80px;
-    font-size: 0.9rem;
-  }
-  
-  .work-image {
-    max-width: 280px;
-  }
-  
-  .social-icons a {
-    width: 35px;
-    height: 35px;
-  }
-  
-  .contact-form input,
-  .contact-form textarea {
-    padding: 18px 20px;
-    font-size: 18px;
-  }
-  
-  .contact-form button {
-    padding: 14px 35px;
-    font-size: 18px;
-  }
-}
-
-@media (max-width: 360px) {
-  .navbar {
-    padding: 0.6rem 0.8rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
   
   .logo {
     font-size: 1.2rem;
+    white-space: nowrap;
   }
   
   .language-switcher-container {
-    margin-left: 0.8rem !important;
+    margin-left: 0.5rem !important;
+    flex-shrink: 0;
   }
   
   #language-switcher {
-    padding: 2px 5px !important;
+    padding: 4px 8px !important;
     font-size: 0.8rem !important;
+    max-width: 100px;
   }
   
   .globe-icon {
     font-size: 1.1rem !important;
   }
   
+  /* Hero section - better text sizing */
+  #hero {
+    padding: 1rem !important;
+    min-height: 100vh;
+    height: auto;
+  }
+  
+  #hero h1 {
+    font-size: 1.8rem !important;
+    line-height: 1.3;
+    word-wrap: break-word;
+    padding: 0 0.5rem;
+  }
+  
+  #hero h2 {
+    font-size: 1.3rem !important;
+    line-height: 1.4;
+    word-wrap: break-word;
+    padding: 0 0.5rem;
+  }
+  
+  #hero .typewriter {
+    font-size: 1rem !important;
+    line-height: 1.5;
+    word-wrap: break-word;
+    padding: 0 0.5rem;
+  }
+  
+  /* Sections - better padding */
   .section {
-    padding: 1.2rem 0.8rem;
+    padding: 1.5rem 1rem !important;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   
   h2 {
-    font-size: 1.6rem;
+    font-size: 1.6rem !important;
+    line-height: 1.3;
+    word-wrap: break-word;
+    padding: 0 0.5rem;
   }
   
+  /* Text content - prevent overflow */
+  p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.6;
+  }
+  
+  /* Buttons - better sizing */
   .btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.7rem;
+    padding: 0.7rem 1.3rem !important;
+    font-size: 0.85rem !important;
+    white-space: nowrap;
+    min-width: auto;
+    width: auto;
+    max-width: 100%;
   }
   
   .get-in-touch-btn {
-    width: 75px;
-    height: 75px;
-    font-size: 0.85rem;
+    width: 75px !important;
+    height: 75px !important;
+    font-size: 0.85rem !important;
+    padding: 10px !important;
+    line-height: 1.2;
   }
   
+  /* Contact buttons */
+  .contact-buttons {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .contact-btn {
+    padding: 10px 18px !important;
+    font-size: 0.85rem !important;
+    white-space: nowrap;
+  }
+  
+  /* Work images */
   .work-image {
-    max-width: 250px;
+    max-width: 100% !important;
+    width: 100%;
+    height: auto;
+  }
+  
+  .work-images-container {
+    padding: 10px !important;
+  }
+  
+  /* Social icons */
+  .social-icons {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
   }
   
   .social-icons a {
-    width: 32px;
-    height: 32px;
+    width: 38px !important;
+    height: 38px !important;
+  }
+  
+  /* Contact form */
+  .contact-form {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
   }
   
   .contact-form input,
   .contact-form textarea {
-    padding: 16px 18px;
-    font-size: 16px;
+    padding: 14px 16px !important;
+    font-size: 16px !important;
+    width: 100%;
+    box-sizing: border-box;
   }
   
   .contact-form button {
-    padding: 12px 30px;
-    font-size: 16px;
+    padding: 12px 28px !important;
+    font-size: 16px !important;
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  /* Profile image section */
+  #profile-image {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    max-width: 100%;
+    margin: 1rem auto;
+  }
+  
+  /* Skills, experience, education sections */
+  #skills, #experience, #education {
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+  
+  /* Accordion buttons */
+  .accordion-btn {
+    padding: 14px 12px !important;
+    font-size: 0.9rem !important;
+    line-height: 1.4;
+    word-wrap: break-word;
+  }
+  
+  /* Project cards */
+  .project {
+    padding: 1.2rem !important;
+    margin-bottom: 1.5rem;
+  }
+  
+  .project h3 a {
+    font-size: 1.1rem !important;
+    line-height: 1.4;
+    word-wrap: break-word;
+  }
+  
+  .project p {
+    font-size: 0.95rem !important;
+    line-height: 1.6;
+  }
+  
+  /* Website and games grid */
+  .website-grid,
+  .games-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .website-card,
+  .game-card {
+    padding: 1.2rem !important;
+  }
+  
+  /* Service box */
+  .service-box {
+    padding: 1.2rem !important;
+    margin: 1rem auto;
+  }
+  
+  .service-box h3 {
+    font-size: 1.2rem !important;
+  }
+  
+  .service-content p {
+    font-size: 0.9rem !important;
+    line-height: 1.6;
+  }
+  
+  /* Achievement items */
+  .achievement-item {
+    padding: 1.2rem !important;
+  }
+  
+  .achievement-item h3 {
+    font-size: 1.1rem !important;
+  }
+  
+  .achievement-item li {
+    font-size: 0.9rem !important;
+    line-height: 1.6;
+  }
+  
+  /* Skills progress */
+  .skill-name {
+    font-size: 0.95rem !important;
+  }
+  
+  /* Footer features */
+  .footer-features {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .footer-btn {
+    width: 100%;
+    max-width: 200px;
+    padding: 10px 15px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+/* Extra small devices (old phones - 320px to 360px) */
+@media (max-width: 360px) {
+  /* Prevent all horizontal scrolling */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+  
+  /* Navbar - compact */
+  .navbar {
+    padding: 0.6rem 0.8rem !important;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  
+  .logo {
+    font-size: 1.1rem !important;
+    white-space: nowrap;
+  }
+  
+  .language-switcher-container {
+    margin-left: 0.3rem !important;
+  }
+  
+  #language-switcher {
+    padding: 3px 6px !important;
+    font-size: 0.75rem !important;
+    max-width: 90px;
+  }
+  
+  .globe-icon {
+    font-size: 1rem !important;
+  }
+  
+  /* Hero section - compact text */
+  #hero {
+    padding: 0.8rem !important;
+  }
+  
+  #hero h1 {
+    font-size: 1.5rem !important;
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+  }
+  
+  #hero h2 {
+    font-size: 1.1rem !important;
+    line-height: 1.3;
+  }
+  
+  #hero .typewriter {
+    font-size: 0.9rem !important;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+  
+  /* Sections - minimal padding */
+  .section {
+    padding: 1.2rem 0.8rem !important;
+  }
+  
+  h2 {
+    font-size: 1.4rem !important;
+    line-height: 1.3;
+    margin-bottom: 0.8rem;
+  }
+  
+  /* All text - better wrapping */
+  p, li, span {
+    font-size: 0.9rem !important;
+    line-height: 1.6;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Buttons - smaller but touchable */
+  .btn {
+    padding: 0.6rem 1.1rem !important;
+    font-size: 0.8rem !important;
+    min-height: 44px; /* Touch target size */
+  }
+  
+  .get-in-touch-btn {
+    width: 70px !important;
+    height: 70px !important;
+    font-size: 0.8rem !important;
+    padding: 8px !important;
+  }
+  
+  .contact-btn {
+    padding: 9px 16px !important;
+    font-size: 0.8rem !important;
+    min-height: 44px;
+  }
+  
+  /* Work images */
+  .work-image {
+    max-width: 100% !important;
+  }
+  
+  /* Social icons - smaller */
+  .social-icons a {
+    width: 35px !important;
+    height: 35px !important;
+  }
+  
+  /* Contact form - compact */
+  .contact-form input,
+  .contact-form textarea {
+    padding: 12px 14px !important;
+    font-size: 15px !important;
+  }
+  
+  .contact-form button {
+    padding: 11px 25px !important;
+    font-size: 15px !important;
+    min-height: 44px;
+  }
+  
+  /* Accordion */
+  .accordion-btn {
+    padding: 12px 10px !important;
+    font-size: 0.85rem !important;
+  }
+  
+  /* Project cards */
+  .project {
+    padding: 1rem !important;
+  }
+  
+  .project h3 a {
+    font-size: 1rem !important;
+  }
+  
+  .project p {
+    font-size: 0.9rem !important;
+  }
+  
+  /* Website and games */
+  .website-card,
+  .game-card {
+    padding: 1rem !important;
+  }
+  
+  .website-content h3,
+  .game-card h3 {
+    font-size: 1.1rem !important;
+  }
+  
+  .website-content p {
+    font-size: 0.85rem !important;
+  }
+  
+  /* Service box */
+  .service-box {
+    padding: 1rem !important;
+  }
+  
+  .service-box h3 {
+    font-size: 1.1rem !important;
+  }
+  
+  /* Achievement items */
+  .achievement-item {
+    padding: 1rem !important;
+  }
+  
+  .achievement-item h3 {
+    font-size: 1rem !important;
+  }
+  
+  .achievement-item li {
+    font-size: 0.85rem !important;
+  }
+  
+  /* Skills */
+  .skill-name {
+    font-size: 0.9rem !important;
+  }
+  
+  .progress-bar {
+    height: 16px !important;
+  }
+  
+  /* Footer */
+  .footer-btn {
+    padding: 9px 14px !important;
+    font-size: 0.8rem !important;
+  }
+  
+  /* Chat window */
+  .chat-window {
+    width: 95% !important;
+    max-width: 100% !important;
+    height: 400px !important;
+  }
+  
+  /* Menu toggle */
+  .menu-toggle {
+    font-size: 1.6rem !important;
+  }
+  
+  .nav-links {
+    width: 260px !important;
+    padding: 70px 20px 20px !important;
+  }
+  
+  .nav-links li a {
+    font-size: 0.9rem !important;
+    padding: 8px 10px !important;
   }
 }
 
@@ -3811,5 +4170,287 @@ body.light-mode .game-image {
   .games-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+}
+
+/* ============================================
+   COMPREHENSIVE MOBILE OPTIMIZATIONS
+   For old and new mobile phones
+   ============================================ */
+
+/* Performance optimizations for mobile */
+@media (max-width: 768px) {
+  /* Reduce animations on mobile for better performance */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Optimize images */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Prevent text overflow */
+  * {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Better text rendering */
+  body {
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+  
+  /* Fix text alignment issues */
+  .section {
+    text-align: left;
+  }
+  
+  h1, h2, h3 {
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  p, li, span {
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Center align buttons */
+  .btn, .get-in-touch-btn, .contact-btn {
+    text-align: center;
+    display: inline-block;
+  }
+  
+  /* Fix hero section text alignment */
+  #hero {
+    text-align: center;
+  }
+  
+  #hero h1, #hero h2, #hero p {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Fix navbar alignment */
+  .navbar {
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* Fix contact form */
+  .contact-form {
+    text-align: left;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    text-align: left;
+  }
+  
+  /* Fix social icons alignment */
+  .social-icons {
+    justify-content: center;
+    text-align: center;
+  }
+  
+  /* Fix work section */
+  .work-text-box {
+    text-align: center;
+  }
+  
+  /* Fix certificate section */
+  #certificate ul {
+    text-align: left;
+  }
+  
+  #certificate ul li {
+    text-align: left;
+    word-wrap: break-word;
+  }
+  
+  /* Fix project section */
+  .project {
+    text-align: left;
+  }
+  
+  .project h3 {
+    text-align: left;
+  }
+  
+  .project p {
+    text-align: left;
+  }
+  
+  /* Fix service box */
+  .service-box {
+    text-align: left;
+  }
+  
+  .service-content {
+    text-align: left;
+  }
+  
+  /* Fix achievement items */
+  .achievement-item {
+    text-align: left;
+  }
+  
+  .achievement-item h3 {
+    text-align: center;
+  }
+  
+  .achievement-item ul {
+    text-align: left;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent zoom on input focus (iOS) */
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+  
+  /* Better touch targets */
+  button, a, .btn {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Fix floating elements */
+  .whatsapp-float {
+    width: 56px;
+    height: 56px;
+    right: 15px;
+    bottom: 15px;
+  }
+  
+  #settings-fab {
+    left: 15px;
+    bottom: 15px;
+  }
+  
+  /* Fix chat window */
+  .chat-window {
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  /* Fix panels */
+  .analytics-panel,
+  .feedback-panel {
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    right: auto !important;
+    bottom: auto !important;
+  }
+}
+
+/* Extra optimizations for very old phones (320px-375px) */
+@media (max-width: 375px) {
+  /* Even more compact spacing */
+  .section {
+    padding: 1rem 0.8rem !important;
+  }
+  
+  /* Smaller fonts but readable */
+  body {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  h2 {
+    font-size: 1.3rem !important;
+  }
+  
+  h3 {
+    font-size: 1.1rem !important;
+  }
+  
+  /* Compact buttons */
+  .btn {
+    padding: 0.6rem 1rem !important;
+    font-size: 0.8rem !important;
+  }
+  
+  /* Compact forms */
+  .contact-form input,
+  .contact-form textarea {
+    padding: 12px 14px !important;
+    font-size: 15px !important;
+  }
+  
+  /* Compact cards */
+  .website-card,
+  .game-card,
+  .project {
+    padding: 1rem !important;
+  }
+  
+  /* Compact navbar */
+  .navbar {
+    padding: 0.6rem 0.8rem !important;
+  }
+  
+  .logo {
+    font-size: 1rem !important;
+  }
+}
+
+/* Landscape orientation fixes */
+@media (max-width: 768px) and (orientation: landscape) {
+  #hero {
+    min-height: auto;
+    padding: 2rem 1rem;
+  }
+  
+  #hero h1 {
+    font-size: 1.8rem !important;
+  }
+  
+  #hero h2 {
+    font-size: 1.4rem !important;
+  }
+  
+  .section {
+    padding: 1.5rem 1rem;
+  }
+  
+  .chat-window,
+  .analytics-panel,
+  .feedback-panel {
+    max-height: 85vh;
+  }
+}
+
+/* Print styles - hide unnecessary elements */
+@media print {
+  .navbar,
+  .whatsapp-float,
+  #settings-fab,
+  .footer-features,
+  .chat-window,
+  .analytics-panel,
+  .feedback-panel {
+    display: none !important;
   }
 }
