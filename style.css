@@ -4485,7 +4485,7 @@ body.light-mode .game-image {
   /* Center align buttons */
   .btn, .get-in-touch-btn, .contact-btn {
     text-align: center;
-    display: inline-block;
+    /* display: inline-block; */
   }
   
   /* Fix hero section text alignment */
