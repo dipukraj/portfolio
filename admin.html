@@ -243,6 +243,18 @@
         <span class="summary-value" id="sumPageViews">-</span>
       </div>
       <div class="summary-item">
+        <span class="summary-label">Current Device</span>
+        <span class="summary-value" id="currentDevice">-</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Current OS</span>
+        <span class="summary-value" id="currentOS">-</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Current Browser</span>
+        <span class="summary-value" id="currentBrowser">-</span>
+      </div>
+      <div class="summary-item">
         <span class="summary-label">Online Now</span>
         <span class="summary-value" id="sumOnlineNow">-</span>
       </div>
@@ -579,6 +591,54 @@
       });
     }
 
+    function detectDevice() {
+      let ua = navigator.userAgent;
+      let device = "Desktop ";
+      let os = "Unknown OS";
+      let browser = "Unknown Browser";
+
+      /* Device detect */
+      if (/Mobi|Android|iPhone|iPad|iPod/i.test(ua)) {
+          device = "Mobile ";
+      }
+
+      /* OS detect */
+      if (ua.indexOf("Android") !== -1) {
+          os = "Android";
+      } 
+      else if (ua.indexOf("iPhone") !== -1 || ua.indexOf("iPad") !== -1) {
+          os = "iOS";
+      } 
+      else if (ua.indexOf("Windows") !== -1) {
+          os = "Windows";
+      } 
+      else if (ua.indexOf("Mac") !== -1) {
+          os = "MacOS";
+      } 
+      else if (ua.indexOf("Linux") !== -1) {
+          os = "Linux";
+      }
+
+      /* Browser detect */
+      if (ua.indexOf("Chrome") !== -1) {
+          browser = "Google Chrome";
+      }
+      else if (ua.indexOf("Firefox") !== -1) {
+          browser = "Mozilla Firefox";
+      }
+      else if (ua.indexOf("Safari") !== -1) {
+          browser = "Safari";
+      }
+      else if (ua.indexOf("Edge") !== -1) {
+          browser = "Microsoft Edge";
+      }
+
+      // Update UI
+      document.getElementById("currentDevice").innerText = device;
+      document.getElementById("currentOS").innerText = os;
+      document.getElementById("currentBrowser").innerText = browser;
+    }
+
     function loadSummary() {
       if (!db) return;
 
@@ -588,10 +648,28 @@
         if (el) el.textContent = snapshot.val() != null ? snapshot.val() : '0';
       });
 
-      // Page views
+      // Page views from Firebase database
       db.ref('pageViews').on('value', (snapshot) => {
-        const el = document.getElementById('sumPageViews');
-        if (el) el.textContent = snapshot.val() != null ? snapshot.val() : '0';
+        const pageViewsEl = document.getElementById('sumPageViews');
+        if (pageViewsEl) pageViewsEl.textContent = snapshot.val() || '0';
+      });
+
+      // Total feedback
+      db.ref('feedback').on('value', (snapshot) => {
+        const el = document.getElementById('sumFeedback');
+        if (el) el.textContent = snapshot.exists() ? Object.keys(snapshot.val()).length : '0';
+      });
+
+      // Total messages
+      db.ref('contactMessages').on('value', (snapshot) => {
+        const el = document.getElementById('sumMessages');
+        if (el) el.textContent = snapshot.exists() ? Object.keys(snapshot.val()).length : '0';
+      });
+
+      // Online users
+      db.ref('onlineUsers').on('value', (snapshot) => {
+        const el = document.getElementById('sumOnlineNow');
+        if (el) el.textContent = snapshot.exists() ? Object.keys(snapshot.val()).length : '0';
       });
     }
 
@@ -621,6 +699,10 @@
       try {
         initFirebase();
         setLoadStatus('Authenticated. Connecting to Firebase…');
+        
+        // Initialize device detection
+        detectDevice();
+        
         loadSummary();
         loadMessages();
         loadFeedback();
