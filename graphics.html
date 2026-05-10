@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Graphics Design - Dipu K Raj</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --gd-card-bg: rgba(30, 41, 59, 0.6);
+      --gd-border: rgba(56, 189, 248, 0.25);
+      --gd-muted: #94a3b8;
+    }
+
+    body {
+      min-height: 100vh;
+    }
+
+    .gd-header {
+      text-align: center;
+      padding: 2.5rem 1rem 1.25rem;
+    }
+
+    .gd-header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+      color: #7dd3fc;
+    }
+
+    .gd-header p {
+      max-width: 780px;
+      margin: 0.5rem auto 0;
+      color: var(--gd-muted);
+      line-height: 1.7;
+    }
+
+    .gd-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 1.25rem;
+    }
+
+    .gd-actions .btn,
+    .gd-actions .back-button {
+      border-radius: 999px;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0.75rem 1.25rem;
+      background: rgba(56, 189, 248, 0.12);
+      color: #e2e8f0;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      min-height: 44px;
+    }
+
+    .back-button:hover {
+      transform: translateY(-1px);
+      background: rgba(56, 189, 248, 0.2);
+      border-color: rgba(56, 189, 248, 0.55);
+    }
+
+    .gd-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.25rem;
+    }
+
+    .gd-section {
+      margin: 0 auto 26px;
+      padding: 0;
+    }
+
+    .gd-section h2 {
+      font-size: 1.6rem;
+      color: #38bdf8;
+      margin: 0 0 6px 0;
+      text-align: left;
+      letter-spacing: 0.02em;
+    }
+
+    .gd-section .hint {
+      text-align: left;
+      color: var(--gd-muted);
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+    }
+
+    .gd-uploader {
+      display: none;
+    }
+
+    .gd-uploader input[type="file"] {
+      width: 100%;
+      max-width: 320px;
+      color: #e2e8f0;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 12px;
+      padding: 10px;
+    }
+
+    /* 20 square boxes grid (4 boxes per row) */
+    .gd-gallery {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .gd-box {
+      background: rgba(30, 41, 59, 0.55);
+      border: 2px solid rgba(56, 189, 248, 0.2);
+      border-radius: 14px;
+      width: 100%;
+      /* Magazine cover pages are portrait */
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+
+    .gd-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(56, 189, 248, 0.18);
+      border-color: rgba(56, 189, 248, 0.55);
+    }
+
+    .gd-box img {
+      width: 100%;
+      height: 100%;
+      /* show full image (no crop) */
+      object-fit: contain;
+      display: block;
+      background: rgba(15, 23, 42, 0.5);
+    }
+
+    .gd-slot {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(15, 23, 42, 0.78);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: #e2e8f0;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .gd-empty {
+      color: rgba(226, 232, 240, 0.95);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 10px;
+    }
+
+    .gd-empty small {
+      color: rgba(148, 163, 184, 0.95);
+      font-weight: 600;
+      font-size: 0.85rem;
+      line-height: 1.2;
+    }
+
+    /* static HTML gallery: images set in HTML */
+
+    .gd-footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #94a3b8;
+    }
+
+    .gd-footer strong {
+      color: #e2e8f0;
+    }
+
+    /* Fullscreen image viewer (lightbox) */
+    .gd-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.92);
+      padding: 18px;
+    }
+
+    .gd-lightbox.open {
+      display: flex;
+    }
+
+    .gd-lightbox-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gd-lightbox-img {
+      max-width: 96vw;
+      max-height: 92vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.55);
+      border: 2px solid rgba(56, 189, 248, 0.25);
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.55);
+    }
+
+    .gd-lightbox-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 2px solid rgba(248, 250, 252, 0.35);
+      background: rgba(15, 23, 42, 0.75);
+      color: #fff;
+      font-size: 1.6rem;
+      font-weight: 900;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .gd-lightbox-close:hover {
+      transform: scale(1.06);
+      background: rgba(30, 41, 59, 0.9);
+      border-color: rgba(56, 189, 248, 0.6);
+    }
+
+    /* Make boxes feel clickable */
+    .gd-box {
+      cursor: zoom-in;
+    }
+
+    @media (max-width: 480px) {
+      .gd-header h1 {
+        font-size: 1.75rem;
+      }
+
+      .gd-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .gd-gallery {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="gd-header">
+    <h1>Graphics Design</h1>
+    <p>
+      Yahan aap apne design images show kar sakte hain. Images ko folder mein rakhiye aur neeche wale boxes ke
+      <code>src</code> mein apna path set kijiye.
+    </p>
+    <div class="gd-actions">
+      <a href="index.html" class="back-button">← Back to Portfolio</a>
+    </div>
+  </header>
+
+  <main class="gd-container">
+    <section class="gd-section" data-category="magazine">
+      <h2>Magazine Design</h2>
+      <div class="hint">20 square boxes (4 in one row)</div>
+      <div class="gd-gallery">
+        <!-- Put your images in: /graphics-design/magazine/ -->
+        <div class="gd-box"><span class="gd-slot">1</span><img src="magazine image/February Magazine NTPC Cover Page.png" alt="Magazine Design 1" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">2</span><img src="graphics-design/magazine/2.png" alt="Magazine Design 2" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">3</span><img src="graphics-design/magazine/3.png" alt="Magazine Design 3" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">4</span><img src="graphics-design/magazine/4.png" alt="Magazine Design 4" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">5</span><img src="graphics-design/magazine/5.png" alt="Magazine Design 5" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">6</span><img src="graphics-design/magazine/6.png" alt="Magazine Design 6" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">7</span><img src="graphics-design/magazine/7.png" alt="Magazine Design 7" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">8</span><img src="graphics-design/magazine/8.png" alt="Magazine Design 8" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">9</span><img src="graphics-design/magazine/9.png" alt="Magazine Design 9" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">10</span><img src="graphics-design/magazine/10.png" alt="Magazine Design 10" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">11</span><img src="graphics-design/magazine/11.png" alt="Magazine Design 11" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">12</span><img src="graphics-design/magazine/12.png" alt="Magazine Design 12" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">13</span><img src="graphics-design/magazine/13.png" alt="Magazine Design 13" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">14</span><img src="graphics-design/magazine/14.png" alt="Magazine Design 14" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">15</span><img src="graphics-design/magazine/15.png" alt="Magazine Design 15" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">16</span><img src="graphics-design/magazine/16.png" alt="Magazine Design 16" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">17</span><img src="graphics-design/magazine/17.png" alt="Magazine Design 17" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">18</span><img src="graphics-design/magazine/18.png" alt="Magazine Design 18" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">19</span><img src="graphics-design/magazine/19.png" alt="Magazine Design 19" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">20</span><img src="graphics-design/magazine/20.png" alt="Magazine Design 20" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="gd-section" data-category="poster">
+      <h2>Poster Design</h2>
+      <div class="hint">20 square boxes (4 in one row)</div>
+      <div class="gd-gallery">
+        <!-- Put your images in: /graphics-design/poster/ -->
+        <div class="gd-box"><span class="gd-slot">1</span><img src="graphics-design/poster/1.png" alt="Poster Design 1" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">2</span><img src="graphics-design/poster/2.png" alt="Poster Design 2" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">3</span><img src="graphics-design/poster/3.png" alt="Poster Design 3" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">4</span><img src="graphics-design/poster/4.png" alt="Poster Design 4" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">5</span><img src="graphics-design/poster/5.png" alt="Poster Design 5" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">6</span><img src="graphics-design/poster/6.png" alt="Poster Design 6" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">7</span><img src="graphics-design/poster/7.png" alt="Poster Design 7" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">8</span><img src="graphics-design/poster/8.png" alt="Poster Design 8" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">9</span><img src="graphics-design/poster/9.png" alt="Poster Design 9" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">10</span><img src="graphics-design/poster/10.png" alt="Poster Design 10" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">11</span><img src="graphics-design/poster/11.png" alt="Poster Design 11" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">12</span><img src="graphics-design/poster/12.png" alt="Poster Design 12" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">13</span><img src="graphics-design/poster/13.png" alt="Poster Design 13" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">14</span><img src="graphics-design/poster/14.png" alt="Poster Design 14" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">15</span><img src="graphics-design/poster/15.png" alt="Poster Design 15" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">16</span><img src="graphics-design/poster/16.png" alt="Poster Design 16" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">17</span><img src="graphics-design/poster/17.png" alt="Poster Design 17" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">18</span><img src="graphics-design/poster/18.png" alt="Poster Design 18" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">19</span><img src="graphics-design/poster/19.png" alt="Poster Design 19" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">20</span><img src="graphics-design/poster/20.png" alt="Poster Design 20" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="gd-section" data-category="banner">
+      <h2>Banner Design</h2>
+      <div class="hint">20 square boxes (4 in one row)</div>
+      <div class="gd-gallery">
+        <!-- Put your images in: /graphics-design/banner/ -->
+        <div class="gd-box"><span class="gd-slot">1</span><img src="graphics-design/banner/1.png" alt="Banner Design 1" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">2</span><img src="graphics-design/banner/2.png" alt="Banner Design 2" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">3</span><img src="graphics-design/banner/3.png" alt="Banner Design 3" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">4</span><img src="graphics-design/banner/4.png" alt="Banner Design 4" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">5</span><img src="graphics-design/banner/5.png" alt="Banner Design 5" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">6</span><img src="graphics-design/banner/6.png" alt="Banner Design 6" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">7</span><img src="graphics-design/banner/7.png" alt="Banner Design 7" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">8</span><img src="graphics-design/banner/8.png" alt="Banner Design 8" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">9</span><img src="graphics-design/banner/9.png" alt="Banner Design 9" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">10</span><img src="graphics-design/banner/10.png" alt="Banner Design 10" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">11</span><img src="graphics-design/banner/11.png" alt="Banner Design 11" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">12</span><img src="graphics-design/banner/12.png" alt="Banner Design 12" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">13</span><img src="graphics-design/banner/13.png" alt="Banner Design 13" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">14</span><img src="graphics-design/banner/14.png" alt="Banner Design 14" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">15</span><img src="graphics-design/banner/15.png" alt="Banner Design 15" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">16</span><img src="graphics-design/banner/16.png" alt="Banner Design 16" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">17</span><img src="graphics-design/banner/17.png" alt="Banner Design 17" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">18</span><img src="graphics-design/banner/18.png" alt="Banner Design 18" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">19</span><img src="graphics-design/banner/19.png" alt="Banner Design 19" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">20</span><img src="graphics-design/banner/20.png" alt="Banner Design 20" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="gd-section" data-category="certificate">
+      <h2>Certificate Design</h2>
+      <div class="hint">20 square boxes (4 in one row)</div>
+      <div class="gd-gallery">
+        <!-- Put your images in: /graphics-design/certificate/ -->
+        <div class="gd-box"><span class="gd-slot">1</span><img src="graphics-design/certificate/1.png" alt="Certificate Design 1" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">2</span><img src="graphics-design/certificate/2.png" alt="Certificate Design 2" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">3</span><img src="graphics-design/certificate/3.png" alt="Certificate Design 3" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">4</span><img src="graphics-design/certificate/4.png" alt="Certificate Design 4" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">5</span><img src="graphics-design/certificate/5.png" alt="Certificate Design 5" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">6</span><img src="graphics-design/certificate/6.png" alt="Certificate Design 6" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">7</span><img src="graphics-design/certificate/7.png" alt="Certificate Design 7" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">8</span><img src="graphics-design/certificate/8.png" alt="Certificate Design 8" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">9</span><img src="graphics-design/certificate/9.png" alt="Certificate Design 9" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">10</span><img src="graphics-design/certificate/10.png" alt="Certificate Design 10" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">11</span><img src="graphics-design/certificate/11.png" alt="Certificate Design 11" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">12</span><img src="graphics-design/certificate/12.png" alt="Certificate Design 12" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">13</span><img src="graphics-design/certificate/13.png" alt="Certificate Design 13" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">14</span><img src="graphics-design/certificate/14.png" alt="Certificate Design 14" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">15</span><img src="graphics-design/certificate/15.png" alt="Certificate Design 15" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">16</span><img src="graphics-design/certificate/16.png" alt="Certificate Design 16" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">17</span><img src="graphics-design/certificate/17.png" alt="Certificate Design 17" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">18</span><img src="graphics-design/certificate/18.png" alt="Certificate Design 18" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">19</span><img src="graphics-design/certificate/19.png" alt="Certificate Design 19" loading="lazy"></div>
+        <div class="gd-box"><span class="gd-slot">20</span><img src="graphics-design/certificate/20.png" alt="Certificate Design 20" loading="lazy"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="gd-footer">
+    <div>Developed with <strong>❤️</strong> and <strong>☕</strong> by <strong>✨5ukoon</strong></div>
+    <div>© 2025 | All Rights Reserved.</div>
+  </footer>
+
+  <!-- Fullscreen image viewer -->
+  <div class="gd-lightbox" id="gd-lightbox" aria-hidden="true">
+    <div class="gd-lightbox-inner" role="dialog" aria-modal="true" aria-label="Image preview">
+      <button type="button" class="gd-lightbox-close" id="gd-lightbox-close" aria-label="Close">✕</button>
+      <img class="gd-lightbox-img" id="gd-lightbox-img" alt="">
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const lightbox = document.getElementById('gd-lightbox');
+      const imgEl = document.getElementById('gd-lightbox-img');
+      const closeBtn = document.getElementById('gd-lightbox-close');
+      if (!lightbox || !imgEl || !closeBtn) return;
+
+      function openLightbox(src, alt) {
+        imgEl.src = src;
+        imgEl.alt = alt || 'Design preview';
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        imgEl.src = '';
+        imgEl.alt = '';
+        document.body.style.overflow = '';
+      }
+
+      document.addEventListener('click', (e) => {
+        const img = e.target && e.target.closest ? e.target.closest('.gd-box img') : null;
+        if (!img) return;
+        const src = img.getAttribute('src');
+        if (!src) return;
+        openLightbox(src, img.getAttribute('alt'));
+      });
+
+      closeBtn.addEventListener('click', closeLightbox);
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+          closeLightbox();
+        }
+      });
+    })();
+  </script>
+
+  <!-- No upload logic. Add your images by editing HTML `src` paths above. -->
+</body>
+
+</html>
