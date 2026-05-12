@@ -108,11 +108,63 @@
       padding: 10px;
     }
 
-    /* 20 square boxes grid (4 boxes per row) */
+    /* Gallery grid (4 boxes per row; Magazine section uses 35 items) */
     .gd-gallery {
       display: grid;
       grid-template-columns: repeat(4, minmax(220px, 1fr));
       gap: 18px;
+    }
+
+    .gd-item {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .gd-item > .gd-box.gd-box--stack {
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    /* Image area when caption sits inside same bordered card (.gd-box--stack) */
+    .gd-media {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .gd-box.gd-box--stack {
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      aspect-ratio: unset;
+      height: auto;
+      overflow: hidden;
+    }
+
+    .gd-caption {
+      margin: 0;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: var(--gd-muted);
+      text-align: left;
+      padding: 12px 14px;
+      min-height: 4.5em;
+      flex: 1 1 auto;
+      background: rgba(15, 23, 42, 0.5);
+      border-top: 1px solid rgba(56, 189, 248, 0.15);
+    }
+
+    .gd-caption:empty {
+      display: none;
     }
 
     .gd-box {
@@ -136,7 +188,8 @@
       border-color: rgba(56, 189, 248, 0.55);
     }
 
-    .gd-box img {
+    .gd-box img,
+    .gd-media img {
       width: 100%;
       height: 100%;
       /* show full image (no crop) */
@@ -290,113 +343,603 @@
   <main class="gd-container">
     <section class="gd-section" data-category="magazine">
       <h2>Magazine Design</h2>
-      <div class="hint">20 square boxes (4 in one row)</div>
+      <div class="hint">35 boxes (4 per row). Text poori bordered card ke andar, photo ke turant niche — <code>p.gd-caption</code> edit karen.</div>
       <div class="gd-gallery">
-        <!-- Put your images in: /graphics-design/magazine/ -->
-        <div class="gd-box"><span class="gd-slot">1</span><img src="magazine image/February Magazine NTPC Cover Page.png" alt="Magazine Design 1" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">2</span><img src="graphics-design/magazine/2.png" alt="Magazine Design 2" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">3</span><img src="graphics-design/magazine/3.png" alt="Magazine Design 3" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">4</span><img src="graphics-design/magazine/4.png" alt="Magazine Design 4" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">5</span><img src="graphics-design/magazine/5.png" alt="Magazine Design 5" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">6</span><img src="graphics-design/magazine/6.png" alt="Magazine Design 6" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">7</span><img src="graphics-design/magazine/7.png" alt="Magazine Design 7" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">8</span><img src="graphics-design/magazine/8.png" alt="Magazine Design 8" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">9</span><img src="graphics-design/magazine/9.png" alt="Magazine Design 9" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">10</span><img src="graphics-design/magazine/10.png" alt="Magazine Design 10" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">11</span><img src="graphics-design/magazine/11.png" alt="Magazine Design 11" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">12</span><img src="graphics-design/magazine/12.png" alt="Magazine Design 12" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">13</span><img src="graphics-design/magazine/13.png" alt="Magazine Design 13" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">14</span><img src="graphics-design/magazine/14.png" alt="Magazine Design 14" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">15</span><img src="graphics-design/magazine/15.png" alt="Magazine Design 15" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">16</span><img src="graphics-design/magazine/16.png" alt="Magazine Design 16" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">17</span><img src="graphics-design/magazine/17.png" alt="Magazine Design 17" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">18</span><img src="graphics-design/magazine/18.png" alt="Magazine Design 18" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">19</span><img src="graphics-design/magazine/19.png" alt="Magazine Design 19" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">20</span><img src="graphics-design/magazine/20.png" alt="Magazine Design 20" loading="lazy"></div>
+        <!-- Put images in magazine folder — caption turant photo ke niche, same bordered card ke andar (21–35: graphics-design/magazine/) -->
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">1</span><img src="magazine image/February Magazine NTPC Cover Page.png" alt="Magazine Design 1" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">2</span><img src="graphics-design/magazine/2.png" alt="Magazine Design 2" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">3</span><img src="graphics-design/magazine/3.png" alt="Magazine Design 3" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">4</span><img src="magazine image/February Magazine NTPC Cover Page 2026.png" alt="Magazine Design 4" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">5</span><img src="magazine image/February Magazine NTPC Cover Page 2026.png" alt="Magazine Design 5" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">6</span><img src="graphics-design/magazine/6.png" alt="Magazine Design 6" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">7</span><img src="graphics-design/magazine/7.png" alt="Magazine Design 7" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">8</span><img src="magazine image/February Magazine NTPC Cover Page.png" alt="Magazine Design 8" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">9</span><img src="graphics-design/magazine/9.png" alt="Magazine Design 9" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">10</span><img src="graphics-design/magazine/10.png" alt="Magazine Design 10" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">11</span><img src="graphics-design/magazine/11.png" alt="Magazine Design 11" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">12</span><img src="graphics-design/magazine/12.png" alt="Magazine Design 12" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">13</span><img src="graphics-design/magazine/13.png" alt="Magazine Design 13" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">14</span><img src="graphics-design/magazine/14.png" alt="Magazine Design 14" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">15</span><img src="graphics-design/magazine/15.png" alt="Magazine Design 15" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">16</span><img src="graphics-design/magazine/16.png" alt="Magazine Design 16" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">17</span><img src="graphics-design/magazine/17.png" alt="Magazine Design 17" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">18</span><img src="graphics-design/magazine/18.png" alt="Magazine Design 18" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">19</span><img src="graphics-design/magazine/19.png" alt="Magazine Design 19" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">20</span><img src="graphics-design/magazine/20.png" alt="Magazine Design 20" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">21</span><img src="graphics-design/magazine/21.png" alt="Magazine Design 21" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">22</span><img src="graphics-design/magazine/22.png" alt="Magazine Design 22" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">23</span><img src="graphics-design/magazine/23.png" alt="Magazine Design 23" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">24</span><img src="graphics-design/magazine/24.png" alt="Magazine Design 24" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">25</span><img src="graphics-design/magazine/25.png" alt="Magazine Design 25" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">26</span><img src="graphics-design/magazine/26.png" alt="Magazine Design 26" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">27</span><img src="graphics-design/magazine/27.png" alt="Magazine Design 27" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">28</span><img src="graphics-design/magazine/28.png" alt="Magazine Design 28" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">29</span><img src="graphics-design/magazine/29.png" alt="Magazine Design 29" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">30</span><img src="graphics-design/magazine/30.png" alt="Magazine Design 30" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">31</span><img src="graphics-design/magazine/31.png" alt="Magazine Design 31" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">32</span><img src="graphics-design/magazine/32.png" alt="Magazine Design 32" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">33</span><img src="graphics-design/magazine/33.png" alt="Magazine Design 33" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">34</span><img src="graphics-design/magazine/34.png" alt="Magazine Design 34" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">35</span><img src="graphics-design/magazine/35.png" alt="Magazine Design 35" loading="lazy"></div>
+            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="gd-section" data-category="poster">
       <h2>Poster Design</h2>
-      <div class="hint">20 square boxes (4 in one row)</div>
+      <div class="hint">20 boxes (4 per row). Text poori card ke andar, photo ke niche — <code>p.gd-caption</code> edit karen.</div>
       <div class="gd-gallery">
         <!-- Put your images in: /graphics-design/poster/ -->
-        <div class="gd-box"><span class="gd-slot">1</span><img src="graphics-design/poster/1.png" alt="Poster Design 1" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">2</span><img src="graphics-design/poster/2.png" alt="Poster Design 2" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">3</span><img src="graphics-design/poster/3.png" alt="Poster Design 3" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">4</span><img src="graphics-design/poster/4.png" alt="Poster Design 4" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">5</span><img src="graphics-design/poster/5.png" alt="Poster Design 5" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">6</span><img src="graphics-design/poster/6.png" alt="Poster Design 6" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">7</span><img src="graphics-design/poster/7.png" alt="Poster Design 7" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">8</span><img src="graphics-design/poster/8.png" alt="Poster Design 8" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">9</span><img src="graphics-design/poster/9.png" alt="Poster Design 9" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">10</span><img src="graphics-design/poster/10.png" alt="Poster Design 10" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">11</span><img src="graphics-design/poster/11.png" alt="Poster Design 11" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">12</span><img src="graphics-design/poster/12.png" alt="Poster Design 12" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">13</span><img src="graphics-design/poster/13.png" alt="Poster Design 13" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">14</span><img src="graphics-design/poster/14.png" alt="Poster Design 14" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">15</span><img src="graphics-design/poster/15.png" alt="Poster Design 15" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">16</span><img src="graphics-design/poster/16.png" alt="Poster Design 16" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">17</span><img src="graphics-design/poster/17.png" alt="Poster Design 17" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">18</span><img src="graphics-design/poster/18.png" alt="Poster Design 18" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">19</span><img src="graphics-design/poster/19.png" alt="Poster Design 19" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">20</span><img src="graphics-design/poster/20.png" alt="Poster Design 20" loading="lazy"></div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">1</span><img src="graphics-design/poster/1.png" alt="Poster Design 1" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">2</span><img src="graphics-design/poster/2.png" alt="Poster Design 2" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">3</span><img src="graphics-design/poster/3.png" alt="Poster Design 3" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">4</span><img src="graphics-design/poster/4.png" alt="Poster Design 4" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">5</span><img src="graphics-design/poster/5.png" alt="Poster Design 5" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">6</span><img src="graphics-design/poster/6.png" alt="Poster Design 6" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">7</span><img src="graphics-design/poster/7.png" alt="Poster Design 7" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">8</span><img src="graphics-design/poster/8.png" alt="Poster Design 8" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">9</span><img src="graphics-design/poster/9.png" alt="Poster Design 9" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">10</span><img src="graphics-design/poster/10.png" alt="Poster Design 10" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">11</span><img src="graphics-design/poster/11.png" alt="Poster Design 11" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">12</span><img src="graphics-design/poster/12.png" alt="Poster Design 12" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">13</span><img src="graphics-design/poster/13.png" alt="Poster Design 13" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">14</span><img src="graphics-design/poster/14.png" alt="Poster Design 14" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">15</span><img src="graphics-design/poster/15.png" alt="Poster Design 15" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">16</span><img src="graphics-design/poster/16.png" alt="Poster Design 16" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">17</span><img src="graphics-design/poster/17.png" alt="Poster Design 17" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">18</span><img src="graphics-design/poster/18.png" alt="Poster Design 18" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">19</span><img src="graphics-design/poster/19.png" alt="Poster Design 19" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">20</span><img src="graphics-design/poster/20.png" alt="Poster Design 20" loading="lazy"></div>
+            <p class="gd-caption">Event / campaign — poster ka naam ya detail — yahan badlein</p>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="gd-section" data-category="banner">
       <h2>Banner Design</h2>
-      <div class="hint">20 square boxes (4 in one row)</div>
+      <div class="hint">20 boxes (4 per row). Text poori card ke andar, photo ke niche — <code>p.gd-caption</code> edit karen.</div>
       <div class="gd-gallery">
         <!-- Put your images in: /graphics-design/banner/ -->
-        <div class="gd-box"><span class="gd-slot">1</span><img src="graphics-design/banner/1.png" alt="Banner Design 1" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">2</span><img src="graphics-design/banner/2.png" alt="Banner Design 2" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">3</span><img src="graphics-design/banner/3.png" alt="Banner Design 3" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">4</span><img src="graphics-design/banner/4.png" alt="Banner Design 4" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">5</span><img src="graphics-design/banner/5.png" alt="Banner Design 5" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">6</span><img src="graphics-design/banner/6.png" alt="Banner Design 6" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">7</span><img src="graphics-design/banner/7.png" alt="Banner Design 7" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">8</span><img src="graphics-design/banner/8.png" alt="Banner Design 8" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">9</span><img src="graphics-design/banner/9.png" alt="Banner Design 9" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">10</span><img src="graphics-design/banner/10.png" alt="Banner Design 10" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">11</span><img src="graphics-design/banner/11.png" alt="Banner Design 11" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">12</span><img src="graphics-design/banner/12.png" alt="Banner Design 12" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">13</span><img src="graphics-design/banner/13.png" alt="Banner Design 13" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">14</span><img src="graphics-design/banner/14.png" alt="Banner Design 14" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">15</span><img src="graphics-design/banner/15.png" alt="Banner Design 15" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">16</span><img src="graphics-design/banner/16.png" alt="Banner Design 16" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">17</span><img src="graphics-design/banner/17.png" alt="Banner Design 17" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">18</span><img src="graphics-design/banner/18.png" alt="Banner Design 18" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">19</span><img src="graphics-design/banner/19.png" alt="Banner Design 19" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">20</span><img src="graphics-design/banner/20.png" alt="Banner Design 20" loading="lazy"></div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">1</span><img src="graphics-design/banner/1.png" alt="Banner Design 1" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">2</span><img src="graphics-design/banner/2.png" alt="Banner Design 2" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">3</span><img src="graphics-design/banner/3.png" alt="Banner Design 3" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">4</span><img src="graphics-design/banner/4.png" alt="Banner Design 4" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">5</span><img src="graphics-design/banner/5.png" alt="Banner Design 5" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">6</span><img src="graphics-design/banner/6.png" alt="Banner Design 6" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">7</span><img src="graphics-design/banner/7.png" alt="Banner Design 7" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">8</span><img src="graphics-design/banner/8.png" alt="Banner Design 8" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">9</span><img src="graphics-design/banner/9.png" alt="Banner Design 9" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">10</span><img src="graphics-design/banner/10.png" alt="Banner Design 10" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">11</span><img src="graphics-design/banner/11.png" alt="Banner Design 11" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">12</span><img src="graphics-design/banner/12.png" alt="Banner Design 12" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">13</span><img src="graphics-design/banner/13.png" alt="Banner Design 13" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">14</span><img src="graphics-design/banner/14.png" alt="Banner Design 14" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">15</span><img src="graphics-design/banner/15.png" alt="Banner Design 15" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">16</span><img src="graphics-design/banner/16.png" alt="Banner Design 16" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">17</span><img src="graphics-design/banner/17.png" alt="Banner Design 17" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">18</span><img src="graphics-design/banner/18.png" alt="Banner Design 18" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">19</span><img src="graphics-design/banner/19.png" alt="Banner Design 19" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">20</span><img src="graphics-design/banner/20.png" alt="Banner Design 20" loading="lazy"></div>
+            <p class="gd-caption">Client / platform ya theme — banner detail — yahan badlein</p>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="gd-section" data-category="certificate">
       <h2>Certificate Design</h2>
-      <div class="hint">20 square boxes (4 in one row)</div>
+      <div class="hint">20 boxes (4 per row). Text poori card ke andar, photo ke niche — <code>p.gd-caption</code> edit karen.</div>
       <div class="gd-gallery">
         <!-- Put your images in: /graphics-design/certificate/ -->
-        <div class="gd-box"><span class="gd-slot">1</span><img src="graphics-design/certificate/1.png" alt="Certificate Design 1" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">2</span><img src="graphics-design/certificate/2.png" alt="Certificate Design 2" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">3</span><img src="graphics-design/certificate/3.png" alt="Certificate Design 3" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">4</span><img src="graphics-design/certificate/4.png" alt="Certificate Design 4" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">5</span><img src="graphics-design/certificate/5.png" alt="Certificate Design 5" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">6</span><img src="graphics-design/certificate/6.png" alt="Certificate Design 6" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">7</span><img src="graphics-design/certificate/7.png" alt="Certificate Design 7" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">8</span><img src="graphics-design/certificate/8.png" alt="Certificate Design 8" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">9</span><img src="graphics-design/certificate/9.png" alt="Certificate Design 9" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">10</span><img src="graphics-design/certificate/10.png" alt="Certificate Design 10" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">11</span><img src="graphics-design/certificate/11.png" alt="Certificate Design 11" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">12</span><img src="graphics-design/certificate/12.png" alt="Certificate Design 12" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">13</span><img src="graphics-design/certificate/13.png" alt="Certificate Design 13" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">14</span><img src="graphics-design/certificate/14.png" alt="Certificate Design 14" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">15</span><img src="graphics-design/certificate/15.png" alt="Certificate Design 15" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">16</span><img src="graphics-design/certificate/16.png" alt="Certificate Design 16" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">17</span><img src="graphics-design/certificate/17.png" alt="Certificate Design 17" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">18</span><img src="graphics-design/certificate/18.png" alt="Certificate Design 18" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">19</span><img src="graphics-design/certificate/19.png" alt="Certificate Design 19" loading="lazy"></div>
-        <div class="gd-box"><span class="gd-slot">20</span><img src="graphics-design/certificate/20.png" alt="Certificate Design 20" loading="lazy"></div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">1</span><img src="graphics-design/certificate/1.png" alt="Certificate Design 1" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">2</span><img src="graphics-design/certificate/2.png" alt="Certificate Design 2" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">3</span><img src="graphics-design/certificate/3.png" alt="Certificate Design 3" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">4</span><img src="graphics-design/certificate/4.png" alt="Certificate Design 4" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">5</span><img src="graphics-design/certificate/5.png" alt="Certificate Design 5" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">6</span><img src="graphics-design/certificate/6.png" alt="Certificate Design 6" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">7</span><img src="graphics-design/certificate/7.png" alt="Certificate Design 7" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">8</span><img src="graphics-design/certificate/8.png" alt="Certificate Design 8" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">9</span><img src="graphics-design/certificate/9.png" alt="Certificate Design 9" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">10</span><img src="graphics-design/certificate/10.png" alt="Certificate Design 10" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">11</span><img src="graphics-design/certificate/11.png" alt="Certificate Design 11" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">12</span><img src="graphics-design/certificate/12.png" alt="Certificate Design 12" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">13</span><img src="graphics-design/certificate/13.png" alt="Certificate Design 13" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">14</span><img src="graphics-design/certificate/14.png" alt="Certificate Design 14" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">15</span><img src="graphics-design/certificate/15.png" alt="Certificate Design 15" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">16</span><img src="graphics-design/certificate/16.png" alt="Certificate Design 16" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">17</span><img src="graphics-design/certificate/17.png" alt="Certificate Design 17" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">18</span><img src="graphics-design/certificate/18.png" alt="Certificate Design 18" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">19</span><img src="graphics-design/certificate/19.png" alt="Certificate Design 19" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
+        <div class="gd-item">
+          <div class="gd-box gd-box--stack">
+            <div class="gd-media"><span class="gd-slot">20</span><img src="graphics-design/certificate/20.png" alt="Certificate Design 20" loading="lazy"></div>
+            <p class="gd-caption">Awarding body ya purpose — certificate detail — yahan badlein</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -439,7 +982,7 @@
       }
 
       document.addEventListener('click', (e) => {
-        const img = e.target && e.target.closest ? e.target.closest('.gd-box img') : null;
+        const img = e.target && e.target.closest ? e.target.closest('.gd-gallery img') : null;
         if (!img) return;
         const src = img.getAttribute('src');
         if (!src) return;
