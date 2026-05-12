@@ -290,6 +290,73 @@ body.light-mode #theme-toggle {
   transform: translateX(-50%) translateY(5px) scale(1);
 }
 
+/* Desktop / tablet navbar — compact links so the bar stays on one row */
+@media (min-width: 769px) {
+  .navbar {
+    padding: 0.55rem 0.85rem;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .navbar .logo {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .navbar .language-switcher-container {
+    margin-left: 0.5rem !important;
+    flex-shrink: 0;
+  }
+
+  .navbar #live-clock {
+    margin-left: 0.5rem !important;
+    font-size: 0.78rem !important;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .navbar #theme-toggle {
+    margin-left: 0.5rem !important;
+    font-size: 1.25rem !important;
+    flex-shrink: 0;
+  }
+
+  .navbar #language-switcher {
+    padding: 3px 6px !important;
+    font-size: 0.78rem !important;
+    max-width: 95px;
+  }
+
+  .navbar .globe-icon {
+    font-size: 1.15rem !important;
+  }
+
+  .nav-links {
+    gap: 0.35rem;
+    flex-wrap: nowrap;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .nav-links li {
+    flex-shrink: 0;
+  }
+
+  .nav-links li a {
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 5px 6px;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .nav-links li a::before {
+    font-size: 0.72rem;
+    padding: 6px 10px;
+  }
+}
+
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .nav-links li a::before {
