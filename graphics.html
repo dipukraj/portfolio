@@ -79,6 +79,44 @@
       color: #38bdf8;
     }
 
+    /* Hamburger: hidden on wide screens */
+    .gd-topbar-toggle {
+      display: none;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      margin: 0;
+      padding: 0;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.65);
+      color: #e2e8f0;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .gd-topbar-toggle:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.55);
+    }
+
+    .gd-topbar-toggle-bars {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 20px;
+    }
+
+    .gd-topbar-toggle-bars span {
+      display: block;
+      height: 2px;
+      border-radius: 1px;
+      background: currentColor;
+    }
+
     .gd-section[id] {
       scroll-margin-top: 56px;
     }
@@ -375,13 +413,67 @@
       cursor: zoom-in;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
       body {
-        scroll-padding-top: 96px;
+        scroll-padding-top: 64px;
       }
 
       .gd-section[id] {
-        scroll-margin-top: 96px;
+        scroll-margin-top: 64px;
+      }
+
+      .gd-topbar {
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+      }
+
+      .gd-topbar-toggle {
+        display: inline-flex;
+      }
+
+      .gd-topbar-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1001;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        gap: 0;
+        padding: 0.4rem 0.5rem 0.65rem;
+        margin: 0;
+        background: rgba(30, 41, 59, 0.98);
+        border-bottom: 1px solid rgba(56, 189, 248, 0.22);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+      }
+
+      .gd-topbar--menu-open .gd-topbar-links {
+        display: flex;
+      }
+
+      .gd-topbar-links li {
+        width: 100%;
+      }
+
+      .gd-topbar-links a {
+        display: block;
+        width: 100%;
+        padding: 0.65rem 0.75rem;
+        border-radius: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        scroll-padding-top: 64px;
+      }
+
+      .gd-section[id] {
+        scroll-margin-top: 64px;
       }
 
       .gd-header h1 {
@@ -403,9 +495,13 @@
 </head>
 
 <body>
-  <nav class="gd-topbar" aria-label="Graphics sections">
+  <nav class="gd-topbar" id="gd-topbar" aria-label="Graphics sections">
     <a href="index.html" class="gd-topbar-brand">← Portfolio</a>
-    <ul class="gd-topbar-links">
+    <button type="button" class="gd-topbar-toggle" id="gd-topbar-toggle" aria-label="Open section menu"
+      aria-expanded="false" aria-controls="gd-topbar-links">
+      <span class="gd-topbar-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+    <ul class="gd-topbar-links" id="gd-topbar-links">
       <li><a href="#magazine">Magazine Design</a></li>
       <li><a href="#poster">Poster Design</a></li>
       <li><a href="#certificate">Certificate Design</a></li>
@@ -1029,7 +1125,7 @@
   </main>
 
   <footer class="gd-footer">
-    <div>Developed with <strong>❤️</strong> and <strong>☕</strong> by <strong>✨5ukoon</strong></div>
+    <div>Developed with <strong>❤️</strong> and <strong>☕</strong> by <strong>✨Sukoon</strong></div>
     <div>© 2025 | All Rights Reserved.</div>
   </footer>
 
@@ -1083,6 +1179,53 @@
         if (e.key === 'Escape' && lightbox.classList.contains('open')) {
           closeLightbox();
         }
+      });
+    })();
+
+    (function () {
+      const topbar = document.getElementById('gd-topbar');
+      const toggle = document.getElementById('gd-topbar-toggle');
+      const links = document.getElementById('gd-topbar-links');
+      if (!topbar || !toggle || !links) return;
+
+      function setOpen(open) {
+        topbar.classList.toggle('gd-topbar--menu-open', open);
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        toggle.setAttribute('aria-label', open ? 'Close section menu' : 'Open section menu');
+      }
+
+      function isMobileMenu() {
+        return window.matchMedia('(max-width: 768px)').matches;
+      }
+
+      toggle.addEventListener('click', function () {
+        if (!isMobileMenu()) return;
+        setOpen(!topbar.classList.contains('gd-topbar--menu-open'));
+      });
+
+      links.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function () {
+          setOpen(false);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!topbar.classList.contains('gd-topbar--menu-open')) return;
+        if (!isMobileMenu()) return;
+        var t = e.target;
+        if (t && topbar.contains(t)) return;
+        setOpen(false);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        if (!topbar.classList.contains('gd-topbar--menu-open')) return;
+        setOpen(false);
+        toggle.focus();
+      });
+
+      window.addEventListener('resize', function () {
+        if (!isMobileMenu()) setOpen(false);
       });
     })();
   </script>
