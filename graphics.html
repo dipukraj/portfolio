@@ -15,6 +15,72 @@
 
     body {
       min-height: 100vh;
+      scroll-padding-top: 56px;
+    }
+
+    /* Sticky section nav (like portfolio top bar) */
+    .gd-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem 0.75rem;
+      padding: 0.55rem 1rem;
+      background: rgba(30, 41, 59, 0.96);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.22);
+      backdrop-filter: blur(10px);
+    }
+
+    .gd-topbar-brand {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #7dd3fc;
+      text-decoration: none;
+      padding: 0.35rem 0.65rem;
+      border-radius: 8px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      white-space: nowrap;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .gd-topbar-brand:hover {
+      background: rgba(56, 189, 248, 0.15);
+      color: #e0f2fe;
+    }
+
+    .gd-topbar-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem 0.4rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .gd-topbar-links a {
+      display: inline-block;
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.4rem 0.55rem;
+      border-radius: 8px;
+      white-space: nowrap;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .gd-topbar-links a:hover {
+      background: rgba(56, 189, 248, 0.18);
+      color: #38bdf8;
+    }
+
+    .gd-section[id] {
+      scroll-margin-top: 56px;
     }
 
     .gd-header {
@@ -310,6 +376,14 @@
     }
 
     @media (max-width: 480px) {
+      body {
+        scroll-padding-top: 96px;
+      }
+
+      .gd-section[id] {
+        scroll-margin-top: 96px;
+      }
+
       .gd-header h1 {
         font-size: 1.75rem;
       }
@@ -329,7 +403,17 @@
 </head>
 
 <body>
-  <header class="gd-header">
+  <nav class="gd-topbar" aria-label="Graphics sections">
+    <a href="index.html" class="gd-topbar-brand">← Portfolio</a>
+    <ul class="gd-topbar-links">
+      <li><a href="#magazine">Magazine Design</a></li>
+      <li><a href="#poster">Poster Design</a></li>
+      <li><a href="#certificate">Certificate Design</a></li>
+      <li><a href="#banner">Banner Design</a></li>
+    </ul>
+  </nav>
+
+  <header class="gd-header" id="gd-top">
     <h1>Graphics Design</h1>
     <p>
       Yahan aap apne design images show kar sakte hain. Images ko folder mein rakhiye aur neeche wale boxes ke
@@ -341,212 +425,212 @@
   </header>
 
   <main class="gd-container">
-    <section class="gd-section" data-category="magazine">
+    <section class="gd-section" id="magazine" data-category="magazine">
       <h2>Magazine Design</h2>
       <div class="hint">35 boxes (4 per row). Text poori bordered card ke andar, photo ke turant niche — <code>p.gd-caption</code> edit karen.</div>
       <div class="gd-gallery">
         <!-- Put images in magazine folder — caption turant photo ke niche, same bordered card ke andar (21–35: graphics-design/magazine/) -->
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">1</span><img src="magazine image/February Magazine NTPC Cover Page.png" alt="Magazine Design 1" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">1</span><img src="magazine image/February Magazine NTPC Cover Page1.png" alt="Magazine Design 1" loading="lazy"></div>
+            <p class="gd-caption">February / 2025 — NTPC Magazine Cover Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">2</span><img src="graphics-design/magazine/2.png" alt="Magazine Design 2" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">2</span><img src="magazine image/February Magazine NTPC Back Page.png" alt="Magazine Design 2" loading="lazy"></div>
+            <p class="gd-caption">February / 2025 — NTPC Magazine Last Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">3</span><img src="graphics-design/magazine/3.png" alt="Magazine Design 3" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">3</span><img src="magazine image/March Magazine NTPC Cover Page1.png" alt="Magazine Design 3" loading="lazy"></div>
+            <p class="gd-caption">March / 2025 — NTPC Magazine Cover Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">4</span><img src="magazine image/February Magazine NTPC Cover Page 2026.png" alt="Magazine Design 4" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">4</span><img src="magazine image/March Magazine NTPC Back Page.png" alt="Magazine Design 4" loading="lazy"></div>
+            <p class="gd-caption">March / 2025 — NTPC Magazine Last Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">5</span><img src="magazine image/February Magazine NTPC Cover Page 2026.png" alt="Magazine Design 5" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">5</span><img src="magazine image/April Magazine NTPC Cover Page1.png" alt="Magazine Design 5" loading="lazy"></div>
+            <p class="gd-caption">April / 2025 — NTPC Magazine Cover Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">6</span><img src="graphics-design/magazine/6.png" alt="Magazine Design 6" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">6</span><img src="magazine image/April Magazine NTPC Back Page.png" alt="Magazine Design 6" loading="lazy"></div>
+            <p class="gd-caption">April / 2025 — NTPC Magazine Last Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">7</span><img src="graphics-design/magazine/7.png" alt="Magazine Design 7" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">7</span><img src="magazine image/June Magazine NTPC Cover Page.png" alt="Magazine Design 7" loading="lazy"></div>
+            <p class="gd-caption">June / 2025 — NTPC Magazine Cover Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">8</span><img src="magazine image/February Magazine NTPC Cover Page.png" alt="Magazine Design 8" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">8</span><img src="magazine image/June Magazine NTPC Back Page1.png" alt="Magazine Design 8" loading="lazy"></div>
+            <p class="gd-caption">June / 2025 — NTPC Magazine Last Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">9</span><img src="graphics-design/magazine/9.png" alt="Magazine Design 9" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">9</span><img src="magazine image/July Magazine NTPC Cover Page.png" alt="Magazine Design 9" loading="lazy"></div>
+            <p class="gd-caption">July / 2025 — NTPC Magazine Cover Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">10</span><img src="graphics-design/magazine/10.png" alt="Magazine Design 10" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">10</span><img src="magazine image/July Magazine NTPC Back Page.png" alt="Magazine Design 10" loading="lazy"></div>
+            <p class="gd-caption">July / 2025 — NTPC Magazine Last Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">11</span><img src="graphics-design/magazine/11.png" alt="Magazine Design 11" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">11</span><img src="magazine image/August Magazine NTPC Cover Page.png" alt="Magazine Design 11" loading="lazy"></div>
+            <p class="gd-caption">August / 2025 — NTPC Magazine Cover Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">12</span><img src="graphics-design/magazine/12.png" alt="Magazine Design 12" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">12</span><img src="magazine image/August Magazine NTPC Back Page.png" alt="Magazine Design 12" loading="lazy"></div>
+            <p class="gd-caption">August / 2025 — NTPC Magazine Last Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">13</span><img src="graphics-design/magazine/13.png" alt="Magazine Design 13" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">13</span><img src="magazine image/September Magazine NTPC Cover Page.png" alt="Magazine Design 13" loading="lazy"></div>
+            <p class="gd-caption">September / 2025 — NTPC Magazine Cover Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">14</span><img src="graphics-design/magazine/14.png" alt="Magazine Design 14" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">14</span><img src="magazine image/September Magazine NTPC Back Page.png" alt="Magazine Design 14" loading="lazy"></div>
+            <p class="gd-caption">September / 2025 — NTPC Magazine Last Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">15</span><img src="graphics-design/magazine/15.png" alt="Magazine Design 15" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">15</span><img src="magazine image/October Magazine NTPC Cover Page.png" alt="Magazine Design 15" loading="lazy"></div>
+            <p class="gd-caption">October / 2025 — NTPC Magazine Cover Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">16</span><img src="graphics-design/magazine/16.png" alt="Magazine Design 16" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">16</span><img src="magazine image/October Magazine NTPC Back Page.png" alt="Magazine Design 16" loading="lazy"></div>
+            <p class="gd-caption">October / 2025 — NTPC Magazine Last Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">17</span><img src="graphics-design/magazine/17.png" alt="Magazine Design 17" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">17</span><img src="magazine image/November Magazine NTPC Cover Page.png" alt="Magazine Design 17" loading="lazy"></div>
+            <p class="gd-caption">November / 2025 — NTPC Magazine Cover Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">18</span><img src="graphics-design/magazine/18.png" alt="Magazine Design 18" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">18</span><img src="magazine image/November Magazine NTPC Back Page.png" alt="Magazine Design 18" loading="lazy"></div>
+            <p class="gd-caption">November / 2025 — NTPC Magazine Last Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">19</span><img src="graphics-design/magazine/19.png" alt="Magazine Design 19" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">19</span><img src="magazine image/December Magazine NTPC Cover Page1.png" alt="Magazine Design 19" loading="lazy"></div>
+            <p class="gd-caption">December / 2025 — NTPC Magazine Cover Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">20</span><img src="graphics-design/magazine/20.png" alt="Magazine Design 20" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">20</span><img src="magazine image/December Magazine NTPC Back Page.png" alt="Magazine Design 20" loading="lazy"></div>
+            <p class="gd-caption">December / 2025 — NTPC Magazine Last Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">21</span><img src="graphics-design/magazine/21.png" alt="Magazine Design 21" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">21</span><img src="magazine image/Rajbhasha Magazine NTPC Cover Page.png" alt="Magazine Design 21" loading="lazy"></div>
+            <p class="gd-caption">January / 2026 — NTPC Rajbhasha Hindi Magazine Cover Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">22</span><img src="graphics-design/magazine/22.png" alt="Magazine Design 22" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">22</span><img src="magazine image/Rajbhasha Hindi Magazine NTPC Back Page.png" alt="Magazine Design 22" loading="lazy"></div>
+            <p class="gd-caption">January / 2026 — NTPC Rajbhasha Hindi Magazine Last Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">23</span><img src="graphics-design/magazine/23.png" alt="Magazine Design 23" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">23</span><img src="magazine image/Narakas Hindi Magazine NTPC Cover Page.png" alt="Magazine Design 23" loading="lazy"></div>
+            <p class="gd-caption">December / 2025 — NTPC Narakas Hindi Magazine Cover Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">24</span><img src="graphics-design/magazine/24.png" alt="Magazine Design 24" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">24</span><img src="magazine image/Narakas Hindi Magazine NTPC Back Page.png" alt="Magazine Design 24" loading="lazy"></div>
+            <p class="gd-caption">December / 2025 — NTPC Narakas Hindi Magazine Last Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">25</span><img src="graphics-design/magazine/25.png" alt="Magazine Design 25" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">25</span><img src="magazine image/MAGAZINES JANUARY  NTPC Cover Page 2026.png" alt="Magazine Design 25" loading="lazy"></div>
+            <p class="gd-caption">January / 2026 — NTPC Magazine Cover Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">26</span><img src="graphics-design/magazine/26.png" alt="Magazine Design 26" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">26</span><img src="magazine image/MAGAZINES JANUARY NTPC Back Page 2026.png" alt="Magazine Design 26" loading="lazy"></div>
+            <p class="gd-caption">January / 2026 — NTPC Magazine Last Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">27</span><img src="graphics-design/magazine/27.png" alt="Magazine Design 27" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">27</span><img src="magazine image/February Magazine NTPC Cover Page2.png" alt="Magazine Design 27" loading="lazy"></div>
+            <p class="gd-caption">February / 2026 — NTPC Magazine Cover Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">28</span><img src="graphics-design/magazine/28.png" alt="Magazine Design 28" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">28</span><img src="magazine image/February Magezine NTPC Back Page 2026.png" alt="Magazine Design 28" loading="lazy"></div>
+            <p class="gd-caption">February / 2026 — NTPC Magazine Last Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">29</span><img src="graphics-design/magazine/29.png" alt="Magazine Design 29" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">29</span><img src="magazine image/March 2026 magazine NTPC Cover Page.png" alt="Magazine Design 29" loading="lazy"></div>
+            <p class="gd-caption">March / 2026 — NTPC Magazine Cover Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">30</span><img src="graphics-design/magazine/30.png" alt="Magazine Design 30" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">30</span><img src="magazine image/March 2026 magazine NTPC Back Page.png" alt="Magazine Design 30" loading="lazy"></div>
+            <p class="gd-caption">March / 2026 — NTPC Magazine Last Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">31</span><img src="graphics-design/magazine/31.png" alt="Magazine Design 31" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">31</span><img src="magazine image/April magazine NTPC Cover Page 2026.png" alt="Magazine Design 31" loading="lazy"></div>
+            <p class="gd-caption">April / 2026 — NTPC Magazine Cover Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">32</span><img src="graphics-design/magazine/32.png" alt="Magazine Design 32" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">32</span><img src="magazine image/April magazine NTPC Back Page 2026.png" alt="Magazine Design 32" loading="lazy"></div>
+            <p class="gd-caption">April / 2026 — NTPC Magazine Last Page</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">33</span><img src="graphics-design/magazine/33.png" alt="Magazine Design 33" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
+            <div class="gd-media"><span class="gd-slot">33</span><img src="magazine image/Core Valu, Our Mission.png" alt="Magazine Design 33" loading="lazy"></div>
+            <p class="gd-caption">March / 2026 — NTPC, Our Vision, Our Mission, Core Values</p>
           </div>
         </div>
         <div class="gd-item">
           <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">34</span><img src="graphics-design/magazine/34.png" alt="Magazine Design 34" loading="lazy"></div>
+            <div class="gd-media"><span class="gd-slot">34</span><img src="magazine image/" alt="Magazine Design 34" loading="lazy"></div>
             <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
           </div>
         </div>
@@ -559,7 +643,7 @@
       </div>
     </section>
 
-    <section class="gd-section" data-category="poster">
+    <section class="gd-section" id="poster" data-category="poster">
       <h2>Poster Design</h2>
       <div class="hint">20 boxes (4 per row). Text poori card ke andar, photo ke niche — <code>p.gd-caption</code> edit karen.</div>
       <div class="gd-gallery">
@@ -687,7 +771,7 @@
       </div>
     </section>
 
-    <section class="gd-section" data-category="banner">
+    <section class="gd-section" id="banner" data-category="banner">
       <h2>Banner Design</h2>
       <div class="hint">20 boxes (4 per row). Text poori card ke andar, photo ke niche — <code>p.gd-caption</code> edit karen.</div>
       <div class="gd-gallery">
@@ -815,7 +899,7 @@
       </div>
     </section>
 
-    <section class="gd-section" data-category="certificate">
+    <section class="gd-section" id="certificate" data-category="certificate">
       <h2>Certificate Design</h2>
       <div class="hint">20 boxes (4 per row). Text poori card ke andar, photo ke niche — <code>p.gd-caption</code> edit karen.</div>
       <div class="gd-gallery">
