@@ -534,6 +534,14 @@ function setTheme(mode) {
     if (toggleBtn) toggleBtn.textContent = '☀️';
     if (toggleBtnMobile) toggleBtnMobile.textContent = '☀️';
     localStorage.setItem('theme', 'light');
+    const savedPrimary = localStorage.getItem('primaryColor');
+    if (savedPrimary) {
+      document.documentElement.style.setProperty('--primary-color', savedPrimary);
+    }
+    var heroNameLight = document.getElementById('hero-name-color');
+    if (heroNameLight) {
+      heroNameLight.style.color = readableTextOnHex(savedPrimary || savedBgColor || '#f1f5f9');
+    }
   } else {
     body.classList.remove('light-mode');
     document.documentElement.style.setProperty('--main-bg-color', '#0f172a');
@@ -541,7 +549,32 @@ function setTheme(mode) {
     if (toggleBtn) toggleBtn.textContent = '🌙';
     if (toggleBtnMobile) toggleBtnMobile.textContent = '🌙';
     localStorage.setItem('theme', 'dark');
+    var heroNameDark = document.getElementById('hero-name-color');
+    if (heroNameDark) {
+      heroNameDark.style.color = '#fff';
+    }
   }
+}
+
+/** Pick dark or light text for readability on a solid hex background (WCAG-ish luminance). */
+function readableTextOnHex(bgHex) {
+  if (!bgHex || typeof bgHex !== 'string') return '#0f172a';
+  var hex = bgHex.replace('#', '').trim();
+  if (hex.length === 3) {
+    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+  }
+  if (hex.length !== 6 || /[^0-9a-f]/i.test(hex)) return '#0f172a';
+  var r = parseInt(hex.slice(0, 2), 16) / 255;
+  var g = parseInt(hex.slice(2, 4), 16) / 255;
+  var b = parseInt(hex.slice(4, 6), 16) / 255;
+  var lin = function (c) {
+    return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  };
+  var R = lin(r),
+    G = lin(g),
+    B = lin(b);
+  var L = 0.2126 * R + 0.7152 * G + 0.0722 * B;
+  return L > 0.45 ? '#0f172a' : '#f8fafc';
 }
 
 // Floating Settings Color Palette Logic
@@ -562,11 +595,11 @@ function setPrimaryColor(color) {
       opt.classList.remove('selected');
     }
   });
-  // Change the color of the 'Hi, I\'m' text only in light mode
+  // Hero "Hi, I'm" must stay readable (same hue as background would make it vanish)
   var heroName = document.getElementById('hero-name-color');
   if (heroName) {
     if (document.body.classList.contains('light-mode')) {
-      heroName.style.color = color;
+      heroName.style.color = readableTextOnHex(color);
     } else {
       heroName.style.color = '#fff';
     }

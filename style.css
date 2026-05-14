@@ -78,21 +78,22 @@ body.light-mode .menu-toggle {
   color: #0f172a;
 }
 body.light-mode .logo {
-  color: var(--primary-color);
+  color: #0f172a;
 }
 body.light-mode .nav-links li a {
   color: #0f172a;
 }
 body.light-mode .nav-links li a:hover {
-  color: var(--primary-color);
+  color: #0f172a;
+  opacity: 0.72;
 }
 body.light-mode .section,
 body.light-mode .service-box,
 body.light-mode .achievement-item,
 body.light-mode .project {
-  background: var(--main-bg-color);
+  background: #ffffff;
   color: #0f172a;
-  border-color: color-mix(in srgb, var(--primary-color) 45%, var(--main-bg-color));
+  border-color: color-mix(in srgb, var(--primary-color) 45%, #ffffff);
   box-shadow: 0 4px 15px color-mix(in srgb, var(--primary-color) 14%, transparent);
 }
 
@@ -112,8 +113,16 @@ body.light-mode .service-details li:before {
 body.light-mode .achievement-item li:before {
   color: var(--primary-color);
 }
-body.light-mode h2, body.light-mode .project-title, body.light-mode .service-box h3 {
-  color: var(--primary-color);
+body.light-mode h2,
+body.light-mode .service-box h3,
+body.light-mode .achievement-item h3 {
+  color: #0f172a;
+}
+/* Titles on cards that use --main-bg-color (same as primary when themed) must stay dark */
+body.light-mode .project-title,
+body.light-mode .project-content h3,
+body.light-mode .project-card .project-title {
+  color: #0f172a;
 }
 body.light-mode .btn, body.light-mode .highlight-btn, body.light-mode .see-more-btn {
   background: var(--primary-color);
@@ -124,46 +133,88 @@ body.light-mode .btn:hover, body.light-mode .highlight-btn:hover, body.light-mod
   color: #fff;
 }
 body.light-mode #visitor-counter {
-  color: var(--primary-color);
+  color: #0f172a;
 }
 body.light-mode #language-switcher {
   background: var(--navbar-bg-color);
-  color: var(--primary-color);
-  border: 1px solid color-mix(in srgb, var(--primary-color) 55%, var(--main-bg-color));
+  color: #0f172a;
+  border: 1px solid color-mix(in srgb, var(--primary-color) 55%, #0f172a);
 }
 body.light-mode #language-switcher:focus {
   border: 1.5px solid var(--primary-color);
 }
 body.light-mode #theme-toggle {
-  color: var(--primary-color);
+  color: #0f172a;
 }
 
-/* Light mode: hero uses same theme color as the rest of the page (no image + dark overlay) */
+/* Light mode hero: background image visible again + overlay for contrast */
 body.light-mode header#hero {
   background-color: var(--main-bg-color);
-  background-image: none;
+  background-image: url("/image/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 body.light-mode #bgcover {
-  background-color: transparent;
+  display: block;
+  background-color: rgba(15, 23, 42, 0.55);
 }
 body.light-mode #hero h1 {
-  color: #0f172a;
-  text-shadow: none;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
 }
 body.light-mode #hero h1 span:not(#hero-name-color) {
-  color: #0f172a;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
+}
+body.light-mode #hero-name-color {
+  color: #fff !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
 }
 body.light-mode #hero h2,
 body.light-mode #hero h2 span {
-  color: var(--primary-color);
-  text-shadow: none;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
 }
 body.light-mode #hero .typewriter {
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.75);
+}
+body.light-mode #theme-toggle-mobile {
+  color: #0f172a !important;
+}
+
+/* Light mode: work / certificate copy was light-on-light; force readable contrast */
+body.light-mode .work-text-box p {
+  color: #1e293b;
+}
+body.light-mode .work-text-box a {
+  color: #0369a1;
+}
+body.light-mode #certificate > p,
+body.light-mode #certificate ul > li {
+  color: #334155;
+}
+body.light-mode #certificate ul li a {
+  color: #0369a1;
+}
+body.light-mode #design h2 {
   color: #0f172a;
   text-shadow: none;
 }
-body.light-mode #theme-toggle-mobile {
-  color: var(--primary-color) !important;
+body.light-mode #live-clock,
+body.light-mode #live-clock span {
+  color: #0f172a !important;
+}
+
+body.light-mode .image-btn {
+  color: #0f172a;
+  background-color: color-mix(in srgb, var(--primary-color) 18%, #ffffff);
+  border-color: color-mix(in srgb, var(--primary-color) 45%, #94a3b8);
+}
+
+body.light-mode .image-switch-btn {
+  color: #0f172a;
 }
 
 #theme-toggle {
@@ -243,7 +294,7 @@ body.light-mode #theme-toggle-mobile {
   top: 0;
   width: 100%;
   background-color: var(--navbar-bg-color);
-  padding: 1rem 2rem;
+  padding: 1.25rem 2rem;
   z-index: 999;
   display: flex;
   justify-content: space-between;
@@ -325,7 +376,7 @@ body.light-mode #theme-toggle-mobile {
 /* Desktop / tablet navbar — compact links so the bar stays on one row */
 @media (min-width: 769px) {
   .navbar {
-    padding: 0.55rem 0.85rem;
+    padding: 0.95rem 1.35rem;
     flex-wrap: nowrap;
     align-items: center;
     gap: 0.35rem;
@@ -611,6 +662,9 @@ ul {
 /* Light mode project description text fix */
 body.light-mode .project p {
   color: #0f172a;
+}
+body.light-mode .project-links a {
+  color: #0369a1;
 }
 
 .project .highlight-btn {
@@ -2009,17 +2063,17 @@ body.light-mode .get-in-touch-btn:hover {
   }
 }
 
-/* Soft Skills Section */
+/* Soft Skills Section (blue — same family as design / site accent) */
 #soft-skills .progress {
-  background: linear-gradient(90deg, #82d71f, #6ab318);
+  background: linear-gradient(90deg, #38bdf8, #0ea5e9);
 }
 
 #soft-skills .progress-bar {
-  background: rgba(130, 215, 31, 0.1);
+  background: rgba(56, 189, 248, 0.1);
 }
 
 #soft-skills .skill-name {
-  color: #82d71f;
+  color: #0ea5e9;
 }
 
 #soft-skills .progress::after {
@@ -2030,11 +2084,11 @@ body.light-mode .get-in-touch-btn:hover {
 }
 
 #soft-skills h2 {
-  color: #82d71f;
+  color: #38bdf8;
   text-align: center;
   margin-bottom: 30px;
   font-size: 2rem;
-  text-shadow: 0 2px 4px rgba(130, 215, 31, 0.3);
+  text-shadow: 0 2px 4px rgba(56, 189, 248, 0.3);
 }
 
 /* Design Section */
@@ -2227,7 +2281,7 @@ body.light-mode .project-card:hover {
 }
 
 body.light-mode .project-content p {
-  color: color-mix(in srgb, #0f172a 78%, var(--main-bg-color));
+  color: #334155;
 }
 
 /* Responsive styles */
@@ -2920,7 +2974,7 @@ body.light-mode .skills-progress .progress {
   
   /* Navbar improvements - three lines icon same line mein, center align */
   .navbar {
-    padding: 0.8rem 1rem;
+    padding: 1rem 1.1rem;
     flex-wrap: nowrap;
     gap: 0.5rem;
     align-items: center;
@@ -3227,7 +3281,7 @@ body.light-mode .skills-progress .progress {
   
   /* Navbar - compact */
   .navbar {
-    padding: 0.6rem 0.8rem !important;
+    padding: 0.85rem 1rem !important;
     flex-wrap: wrap;
     gap: 0.3rem;
   }
@@ -4419,6 +4473,13 @@ body.light-mode .website-image {
   background: color-mix(in srgb, var(--primary-color) 14%, var(--main-bg-color));
 }
 
+body.light-mode .website-content h3 {
+  color: #0f172a;
+}
+body.light-mode .website-content p {
+  color: #334155;
+}
+
 /* Mobile responsive */
 @media (max-width: 992px) {
   .website-grid {
@@ -4841,7 +4902,7 @@ body.light-mode .game-image {
   }
   
   .navbar {
-    padding: 0.6rem 0.8rem !important;
+    padding: 0.85rem 1rem !important;
   }
   
   .logo {
