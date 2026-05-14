@@ -74,23 +74,26 @@ body.light-mode {
 body.light-mode .navbar {
   background-color: var(--navbar-bg-color);
 }
+body.light-mode .menu-toggle {
+  color: #0f172a;
+}
 body.light-mode .logo {
-  color: #0ea5e9;
+  color: var(--primary-color);
 }
 body.light-mode .nav-links li a {
   color: #0f172a;
 }
 body.light-mode .nav-links li a:hover {
-  color: #0ea5e9;
+  color: var(--primary-color);
 }
 body.light-mode .section,
 body.light-mode .service-box,
 body.light-mode .achievement-item,
 body.light-mode .project {
-  background: #fff;
+  background: var(--main-bg-color);
   color: #0f172a;
-  border-color: #bae6fd;
-  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.08);
+  border-color: color-mix(in srgb, var(--primary-color) 45%, var(--main-bg-color));
+  box-shadow: 0 4px 15px color-mix(in srgb, var(--primary-color) 14%, transparent);
 }
 
 /* Light mode text color fixes */
@@ -103,37 +106,66 @@ body.light-mode .service-details li {
 }
 
 body.light-mode .service-details li:before {
-  color: #0ea5e9;
+  color: var(--primary-color);
 }
 
 body.light-mode .achievement-item li:before {
-  color: #0ea5e9;
+  color: var(--primary-color);
 }
 body.light-mode h2, body.light-mode .project-title, body.light-mode .service-box h3 {
-  color: #0ea5e9;
+  color: var(--primary-color);
 }
-body.light-mode .btn, body.light-mode .highlight-btn, body.light-mode .see-more-btn, body.light-mode .get-in-touch-btn {
-  background: #0ea5e9;
+body.light-mode .btn, body.light-mode .highlight-btn, body.light-mode .see-more-btn {
+  background: var(--primary-color);
   color: #fff;
 }
-body.light-mode .btn:hover, body.light-mode .highlight-btn:hover, body.light-mode .see-more-btn:hover, body.light-mode .get-in-touch-btn:hover {
-  background: #38bdf8;
-  color: #0f172a;
+body.light-mode .btn:hover, body.light-mode .highlight-btn:hover, body.light-mode .see-more-btn:hover {
+  background: color-mix(in srgb, var(--primary-color) 82%, #0f172a);
+  color: #fff;
 }
 body.light-mode #visitor-counter {
-  color: #0ea5e9;
+  color: var(--primary-color);
 }
 body.light-mode #language-switcher {
-  background: #e0e7ef;
-  color: #0ea5e9;
-  border: 1px solid #0ea5e9;
+  background: var(--navbar-bg-color);
+  color: var(--primary-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 55%, var(--main-bg-color));
 }
 body.light-mode #language-switcher:focus {
-  border: 1.5px solid #38bdf8;
+  border: 1.5px solid var(--primary-color);
 }
 body.light-mode #theme-toggle {
-  color: #0ea5e9;
+  color: var(--primary-color);
 }
+
+/* Light mode: hero uses same theme color as the rest of the page (no image + dark overlay) */
+body.light-mode header#hero {
+  background-color: var(--main-bg-color);
+  background-image: none;
+}
+body.light-mode #bgcover {
+  background-color: transparent;
+}
+body.light-mode #hero h1 {
+  color: #0f172a;
+  text-shadow: none;
+}
+body.light-mode #hero h1 span:not(#hero-name-color) {
+  color: #0f172a;
+}
+body.light-mode #hero h2,
+body.light-mode #hero h2 span {
+  color: var(--primary-color);
+  text-shadow: none;
+}
+body.light-mode #hero .typewriter {
+  color: #0f172a;
+  text-shadow: none;
+}
+body.light-mode #theme-toggle-mobile {
+  color: var(--primary-color) !important;
+}
+
 #theme-toggle {
   margin-left: 1.5rem;
   font-size: 1.5rem;
@@ -195,8 +227,8 @@ body.light-mode #theme-toggle {
   }
   
   body.light-mode #theme-toggle {
-    background: rgba(224, 231, 239, 0.9);
-    border-color: #0ea5e9;
+    background: color-mix(in srgb, var(--main-bg-color) 92%, transparent);
+    border-color: var(--primary-color);
   }
   
   #theme-toggle:hover {
@@ -333,7 +365,7 @@ body.light-mode #theme-toggle {
   }
 
   .nav-links {
-    gap: 0.35rem;
+    gap: 0.7rem;
     flex-wrap: nowrap;
     flex-shrink: 1;
     min-width: 0;
@@ -344,9 +376,9 @@ body.light-mode #theme-toggle {
   }
 
   .nav-links li a {
-    font-size: 0.78rem;
+    font-size: 0.95rem;
     font-weight: 600;
-    padding: 5px 6px;
+    padding: 8px 12px;
     letter-spacing: 0.01em;
     white-space: nowrap;
   }
@@ -706,9 +738,9 @@ body.light-mode .project p {
 }
 
 body.light-mode .social-icon-link {
-  background: rgba(224, 231, 239, 0.95);
+  background: color-mix(in srgb, var(--main-bg-color) 90%, var(--primary-color) 10%);
   color: #0f172a;
-  border-color: rgba(14, 165, 233, 0.4);
+  border-color: color-mix(in srgb, var(--primary-color) 40%, transparent);
 }
 
 /* Light mode - hover par bhi same brand colors */
@@ -896,6 +928,17 @@ footer {
   background-color: #1e293b;
   color: #94a3b8;
   position: relative;
+}
+
+body.light-mode footer {
+  background-color: var(--main-bg-color);
+  color: color-mix(in srgb, #0f172a 75%, var(--main-bg-color));
+}
+
+body.light-mode .footer-status {
+  background: color-mix(in srgb, var(--main-bg-color) 88%, #0f172a);
+  color: #0f172a;
+  border: 1px solid color-mix(in srgb, var(--primary-color) 38%, var(--main-bg-color));
 }
 
 /* Footer Features Layout */
@@ -1155,6 +1198,11 @@ footer {
     right: 0;
   }
 
+  body.light-mode .nav-links {
+    background-color: var(--navbar-bg-color);
+    box-shadow: -5px 0 15px color-mix(in srgb, var(--primary-color) 12%, transparent);
+  }
+
   .nav-links li {
     margin: 6px 0 !important;
   }
@@ -1170,7 +1218,7 @@ footer {
   
   /* Light mode mobile navigation text fix */
   body.light-mode .nav-links li a {
-    color: #ffffff;
+    color: #0f172a;
   }
   
   .nav-links li a:hover {
@@ -1777,6 +1825,18 @@ body.light-mode #designTools-btn.active {
   border-color: #0ea5e9;
 }
 
+body.light-mode .get-in-touch-btn {
+  background: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 15px color-mix(in srgb, var(--primary-color) 28%, transparent);
+}
+body.light-mode .get-in-touch-btn:hover {
+  background: color-mix(in srgb, var(--primary-color) 85%, #0f172a);
+  border-color: color-mix(in srgb, var(--primary-color) 85%, #0f172a);
+  box-shadow: 0 8px 25px color-mix(in srgb, var(--primary-color) 35%, transparent);
+}
+
 @media (max-width: 768px) {
   .get-in-touch-btn {
     width: 85px;
@@ -2156,18 +2216,18 @@ body.light-mode #designTools-btn.active {
 
 /* Light mode styles */
 body.light-mode .project-card {
-  background: #ffffff;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e2e8f0;
+  background: var(--main-bg-color);
+  box-shadow: 0 5px 15px color-mix(in srgb, var(--primary-color) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 35%, var(--main-bg-color));
 }
 
 body.light-mode .project-card:hover {
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  border-color: #bae6fd;
+  box-shadow: 0 15px 30px color-mix(in srgb, var(--primary-color) 18%, transparent);
+  border-color: color-mix(in srgb, var(--primary-color) 50%, var(--main-bg-color));
 }
 
 body.light-mode .project-content p {
-  color: #64748b;
+  color: color-mix(in srgb, #0f172a 78%, var(--main-bg-color));
 }
 
 /* Responsive styles */
@@ -2760,12 +2820,17 @@ body:not(.light-mode) .panel-readmore-left {
 }
 
 body.light-mode .panel {
-  background-color: #fff;
+  background-color: var(--main-bg-color);
+  color: #0f172a;
+}
+
+body.light-mode .accordion-btn {
+  background-color: color-mix(in srgb, var(--main-bg-color) 90%, #0f172a);
   color: #0f172a;
 }
 
 body.light-mode .accordion-btn.active {
-  background-color: #e0e7ef;
+  background-color: color-mix(in srgb, var(--main-bg-color) 88%, #0f172a);
   color: #0f172a;
 }
 
@@ -4341,17 +4406,17 @@ Debug: Ensure certificates 54-57 are visible */
 
 /* Light mode styling for website cards */
 body.light-mode .website-card {
-  background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(14, 165, 233, 0.3);
+  background: var(--main-bg-color);
+  border-color: color-mix(in srgb, var(--primary-color) 40%, var(--main-bg-color));
 }
 
 body.light-mode .website-card:hover {
-  box-shadow: 0 10px 30px rgba(14, 165, 233, 0.2);
-  border-color: #0ea5e9;
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--primary-color) 22%, transparent);
+  border-color: color-mix(in srgb, var(--primary-color) 55%, var(--main-bg-color));
 }
 
 body.light-mode .website-image {
-  background: rgba(14, 165, 233, 0.05);
+  background: color-mix(in srgb, var(--primary-color) 14%, var(--main-bg-color));
 }
 
 /* Mobile responsive */
@@ -4460,17 +4525,17 @@ body.light-mode .website-image {
 
 /* Light mode styling for game cards */
 body.light-mode .game-card {
-  background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(14, 165, 233, 0.3);
+  background: var(--main-bg-color);
+  border-color: color-mix(in srgb, var(--primary-color) 40%, var(--main-bg-color));
 }
 
 body.light-mode .game-card:hover {
-  box-shadow: 0 10px 30px rgba(14, 165, 233, 0.2);
-  border-color: #0ea5e9;
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--primary-color) 22%, transparent);
+  border-color: color-mix(in srgb, var(--primary-color) 55%, var(--main-bg-color));
 }
 
 body.light-mode .game-image {
-  background: rgba(14, 165, 233, 0.05);
+  background: color-mix(in srgb, var(--primary-color) 14%, var(--main-bg-color));
 }
 
 /* Mobile responsive for games */
