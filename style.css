@@ -160,15 +160,14 @@ body.light-mode #bgcover {
   background-color: rgba(15, 23, 42, 0.55);
 }
 body.light-mode #hero h1 {
+  text-shadow: none;
+}
+body.light-mode header#hero h1 > span:not(#hero-name-color) {
   color: #fff;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
 }
-body.light-mode #hero h1 span:not(#hero-name-color) {
-  color: #fff;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
-}
-body.light-mode #hero-name-color {
-  color: #fff !important;
+body.light-mode header#hero h1 > span#hero-name-color {
+  color: var(--primary-color) !important;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
 }
 body.light-mode #hero h2,

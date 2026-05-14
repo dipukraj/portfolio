@@ -510,9 +510,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     document.querySelectorAll('.color-option').forEach(opt => {
       opt.addEventListener('click', function () {
-        if (document.body.classList.contains('light-mode')) {
-          setPrimaryColor(this.getAttribute('data-color'));
-        }
+        setPrimaryColor(this.getAttribute('data-color'));
         colorPalette.classList.remove('active');
       });
     });
@@ -540,7 +538,11 @@ function setTheme(mode) {
     }
     var heroNameLight = document.getElementById('hero-name-color');
     if (heroNameLight) {
-      heroNameLight.style.color = readableTextOnHex(savedPrimary || savedBgColor || '#f1f5f9');
+      var pcLight =
+        savedPrimary ||
+        getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim() ||
+        '#38bdf8';
+      heroNameLight.style.setProperty('color', pcLight, 'important');
     }
   } else {
     body.classList.remove('light-mode');
@@ -551,7 +553,7 @@ function setTheme(mode) {
     localStorage.setItem('theme', 'dark');
     var heroNameDark = document.getElementById('hero-name-color');
     if (heroNameDark) {
-      heroNameDark.style.color = '#fff';
+      heroNameDark.style.setProperty('color', '#fff', 'important');
     }
   }
 }
@@ -595,13 +597,13 @@ function setPrimaryColor(color) {
       opt.classList.remove('selected');
     }
   });
-  // Hero "Hi, I'm" must stay readable (same hue as background would make it vanish)
+  // Hero greeting: selected primary color in light mode (inline !important wins over h1 white)
   var heroName = document.getElementById('hero-name-color');
   if (heroName) {
     if (document.body.classList.contains('light-mode')) {
-      heroName.style.color = readableTextOnHex(color);
+      heroName.style.setProperty('color', color, 'important');
     } else {
-      heroName.style.color = '#fff';
+      heroName.style.setProperty('color', '#fff', 'important');
     }
   }
 }
