@@ -1,7 +1,7 @@
 {
-  "name": "Dipu K Raj | Portfolio",
-  "short_name": "DipuPortfolio",
-  "start_url": ".",
+  "name": "Dipu K Raj | dipukraj.tech",
+  "short_name": "dipukraj",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#38bdf8",

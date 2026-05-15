@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin.html
+Disallow: /maintenance.html
+
+Sitemap: https://dipukraj.tech/sitemap.xml
