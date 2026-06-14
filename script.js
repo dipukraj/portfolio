@@ -553,7 +553,12 @@ function setTheme(mode) {
     localStorage.setItem('theme', 'dark');
     var heroNameDark = document.getElementById('hero-name-color');
     if (heroNameDark) {
-      heroNameDark.style.setProperty('color', '#fff', 'important');
+      var savedPrimaryDark = localStorage.getItem('primaryColor');
+      var pcDark =
+        savedPrimaryDark ||
+        getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim() ||
+        '#38bdf8';
+      heroNameDark.style.setProperty('color', pcDark, 'important');
     }
   }
 }
@@ -597,14 +602,10 @@ function setPrimaryColor(color) {
       opt.classList.remove('selected');
     }
   });
-  // Hero greeting: selected primary color in light mode (inline !important wins over h1 white)
+  // Hero greeting only: settings color (name stays white via CSS)
   var heroName = document.getElementById('hero-name-color');
   if (heroName) {
-    if (document.body.classList.contains('light-mode')) {
-      heroName.style.setProperty('color', color, 'important');
-    } else {
-      heroName.style.setProperty('color', '#fff', 'important');
-    }
+    heroName.style.setProperty('color', color, 'important');
   }
 }
 

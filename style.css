@@ -501,8 +501,11 @@ header#hero {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-#hero h1 span {
-  color: #38bdf8;
+#hero h1 > span#hero-name-color {
+  color: var(--primary-color);
+}
+#hero h1 > span:not(#hero-name-color) {
+  color: #fff;
 }
 
 #hero h2 {
@@ -1289,9 +1292,13 @@ body.light-mode .footer-status {
     font-size: 2.25rem;
   }
 
-  .hero h1 span,
-  #hero h1 span {
-    color: #38bdf8;
+  .hero h1 > span#hero-name-color,
+  #hero h1 > span#hero-name-color {
+    color: var(--primary-color);
+  }
+  .hero h1 > span:not(#hero-name-color),
+  #hero h1 > span:not(#hero-name-color) {
+    color: #fff;
   }
 
   .hero h2,
