@@ -8,7 +8,10 @@
   <meta name="description" content="Graphics design portfolio by Dipu K Raj (dipukraj) – magazines, invitations, ID cards and more at dipukraj.tech.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://dipukraj.tech/graphics.html">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=6.5">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --gd-card-bg: rgba(30, 41, 59, 0.6);
@@ -19,6 +22,7 @@
     body {
       min-height: 100vh;
       scroll-padding-top: 56px;
+      font-family: 'Outfit', 'Roboto', sans-serif;
     }
 
     /* Sticky section nav (like portfolio top bar) */
@@ -496,6 +500,23 @@
       .gd-gallery {
         grid-template-columns: repeat(1, minmax(0, 1fr));
       }
+    .gd-image-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.75), rgba(15, 23, 42, 0.85));
+      color: #94a3b8;
+      text-align: center;
+      padding: 16px;
+      box-sizing: border-box;
+      border-radius: 12px;
+      user-select: none;
     }
   </style>
 </head>
@@ -733,19 +754,6 @@
             <div class="gd-media"><span class="gd-slot">33</span><img src="magazine image/Core Valu, Our Mission.png" alt="Magazine Design 33" loading="lazy"></div>
             <p class="gd-caption">March / 2026 — NTPC Our Vision, Our Mission, Core Values</p>
           </div>
-        </div>
-        <div class="gd-item">
-          <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">34</span><img src="magazine image/" alt="Magazine Design 34" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
-          </div>
-        </div>
-        <div class="gd-item">
-          <div class="gd-box gd-box--stack">
-            <div class="gd-media"><span class="gd-slot">35</span><img src="graphics-design/magazine/35.png" alt="Magazine Design 35" loading="lazy"></div>
-            <p class="gd-caption">Mahina / saal — magazine ka naam, issue ya detail — yahan badlein</p>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -1310,7 +1318,7 @@
       closeBtn.addEventListener('click', closeLightbox);
 
       lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLightbox();
+        if (e.target === lightbox || e.target.classList.contains('gd-lightbox-inner')) closeLightbox();
       });
 
       document.addEventListener('keydown', (e) => {
@@ -1364,6 +1372,55 @@
 
       window.addEventListener('resize', function () {
         if (!isMobileMenu()) setOpen(false);
+      });
+    })();
+
+    // Image error handling fallback
+    (function () {
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.gd-gallery img').forEach(img => {
+          const handleFallback = () => {
+            if (img.dataset.fallbackTriggered) return;
+            img.dataset.fallbackTriggered = 'true';
+            img.style.display = 'none';
+            
+            const mediaContainer = img.closest('.gd-media') || img.closest('.gd-box');
+            if (mediaContainer) {
+              if (!mediaContainer.querySelector('.gd-image-placeholder')) {
+                const placeholder = document.createElement('div');
+                placeholder.className = 'gd-image-placeholder';
+                placeholder.innerHTML = `
+                  <span style="font-size: 1.8rem; margin-bottom: 6px; display: block;">🎨</span>
+                  <span style="font-size: 0.75rem; font-weight: 500; color: rgba(56, 189, 248, 0.85);">Preview Coming Soon</span>
+                `;
+                mediaContainer.appendChild(placeholder);
+                
+                // Set default cursor on the empty box
+                const parentBox = mediaContainer.closest('.gd-box');
+                if (parentBox) {
+                  parentBox.style.cursor = 'default';
+                  parentBox.classList.add('gd-box--empty-placeholder');
+                }
+              }
+            }
+          };
+
+          const src = img.getAttribute('src');
+          if (!src || src === '' || src.endsWith('/') || src.includes('graphics-design/')) {
+            handleFallback();
+          }
+
+          img.addEventListener('error', handleFallback);
+        });
+
+        // Prevent opening lightbox for empty placeholder boxes
+        document.addEventListener('click', (e) => {
+          const box = e.target.closest('.gd-box');
+          if (box && box.classList.contains('gd-box--empty-placeholder')) {
+            e.stopPropagation();
+            e.preventDefault();
+          }
+        }, true);
       });
     })();
   </script>

@@ -19,6 +19,7 @@ let menuToggle = document.querySelector(".menu-toggle");
 let navLinks = document.getElementById("navLinks");
 let text = "   Game Developer | Coder | Graphics Designer ";
 let index = 0;
+let typewriterTimeout = null;
 
 // Real-time Visitor Counter
 function updateVisitorCount() {
@@ -32,21 +33,39 @@ function updateVisitorCount() {
   // Listen for real-time updates
   visitorRef.on('value', (snapshot) => {
     const count = snapshot.val() || 0;
-    const counterDiv = document.getElementById('visitor-counter');
-    if (counterDiv) {
-      counterDiv.textContent = `Visitor Count: ${count}`;
+    const counterNum = document.querySelector('#visitor-counter .visitor-number');
+    if (counterNum) {
+      counterNum.textContent = count;
+    } else {
+      const counterDiv = document.getElementById('visitor-counter');
+      if (counterDiv) {
+        counterDiv.textContent = `Visitor Count: ${count}`;
+      }
     }
   });
 }
 
 // Typewriter effect with improved performance
-function typeEffect() {
-  const typewriter = document.querySelector('.typewriter');
-  if (typewriter && index < text.length) {
-    typewriter.innerHTML += text.charAt(index);
-    index++;
-    requestAnimationFrame(() => setTimeout(typeEffect, 100));
+function startTypewriter(prefix, suffix) {
+  if (typewriterTimeout) {
+    clearTimeout(typewriterTimeout);
+    typewriterTimeout = null;
   }
+
+  const typewriter = document.querySelector('.typewriter');
+  if (!typewriter) return;
+
+  typewriter.textContent = prefix;
+
+  let index = 0;
+  function type() {
+    if (index < suffix.length) {
+      typewriter.textContent += suffix.charAt(index);
+      index++;
+      typewriterTimeout = setTimeout(type, 100);
+    }
+  }
+  type();
 }
 
 // Improved menu toggle functionality
@@ -110,7 +129,7 @@ function toggleSection(id) {
 }
 
 // Function to switch work images
-function switchWorkImage(imageId) {
+function switchWorkImage(imageId, clickedButton) {
   // Hide all images
   const images = document.querySelectorAll('.work-image');
   images.forEach(img => {
@@ -119,7 +138,9 @@ function switchWorkImage(imageId) {
 
   // Show selected image
   const selectedImage = document.getElementById(imageId);
-  selectedImage.classList.add('active');
+  if (selectedImage) {
+    selectedImage.classList.add('active');
+  }
 
   // Update button states
   const buttons = document.querySelectorAll('.image-switch-btn');
@@ -128,8 +149,12 @@ function switchWorkImage(imageId) {
   });
 
   // Activate the clicked button
-  const clickedButton = document.querySelector(`.image-switch-btn[onclick*="${imageId}"]`);
-  clickedButton.classList.add('active');
+  if (clickedButton) {
+    clickedButton.classList.add('active');
+  } else {
+    const btn = document.querySelector(`.image-switch-btn[onclick*="${imageId}"]`);
+    if (btn) btn.classList.add('active');
+  }
 }
 
 // Improved profile image change
@@ -164,108 +189,136 @@ const translations = {
     heroGreeting: "Hi, I'm",
     heroLocation: "From India",
     heroTitle: "Full-Stack Web |",
+    heroSubTitle: "   Game Developer | Coder | Graphics Designer ",
     heroButton: "Contact Me",
     callMe: "Call Me",
     messageMe: "Message Me",
     
     // Sections
-    about: "About Me",
-    aboutText: "Hi, I'm Dipu K Raj, a passionate full-stack web and game developer who loves bringing ideas to life through code. I enjoy creating sleek, responsive front-end designs, powerful back-end systems, and immersive game experiences that connect creativity with technology. With a strong eye for design and a love for problem-solving, I aim to build projects that are both visually appealing and technically strong. Whether it's web development or game design, I'm always excited to learn, experiment, and create something meaningful. For me, coding isn't just a profession — it's a passion.💻🔥",
+    about: "About <span class=\"text-accent\">Me.</span>",
+    aboutText1: "I am a Full Stack Developer with hands-on experience in building modern, scalable web applications using the MERN stack. I have developed real-world projects involving responsive frontend development, secure backend APIs, database management, and complete end-to-end application development. In addition, I gained valuable experience at NTPC Limited in Corporate Communication, where I contributed to digital content, creative design, and communication initiatives, strengthening my technical, creative, and collaborative skills.",
+    aboutText2: "I am passionate about building technology that solves real-world problems and delivers meaningful user experiences. I enjoy learning new technologies, optimizing application performance, and transforming ideas into reliable, scalable, and user-friendly solutions. My goal is to continuously grow as a developer while creating impactful digital products that make a difference.",
     
-    skills: "Skills🔛",
-    contact: "Contact Me",
-    email: "Email:  websitedeveloper108@gmail.com",
+    servicesHeading: "My <span class=\"text-accent\">Services.</span>",
+    skills: "Technical <span class=\"text-accent\">Skills.</span>",
+    contact: "Contact <span class=\"text-accent\">Me.</span>",
+    email: "Have a question, want to discuss a project, or just want to say hello? My inbox is always open. Drop me a message and I'll get back to you as soon as possible!",
     
     // Navigation
     navHome: "Home",
     navAbout: "About",
+    navServices: "Services",
+    navSkills: "Skills",
+    navExperience: "Experience",
     navProjects: "My Projects",
     navWork: "My Work",
     navContact: "Contact",
     navCertificate: "Certificate",
     navWebsite: "Website",
-    navGames: "Games"
+    navGames: "Games",
+    navGraphics: "Graphics Design"
   },
   hi: {
     // Hero Section
     heroGreeting: "नमस्ते, मैं हूँ",
     heroLocation: "भारत से",
     heroTitle: "फुल-स्टैक वेब |",
+    heroSubTitle: "   गेम डेवलपर | कोडर | ग्राफ़िक्स डिज़ाइन ",
     heroButton: "संपर्क करें",
     callMe: "कॉल करें",
     messageMe: "मैसेज करें",
     
     // Sections
-    about: "परिचय",
-    aboutText: "नमस्ते, मैं दिपू के राज हूँ, एक उत्साही फुल-स्टैक वेब और गेम डेवलपर, जो कोड के माध्यम से विचारों को साकार करना पसंद करता है। मुझे आकर्षक, रिस्पॉन्सिव फ्रंट-एंड डिज़ाइन, शक्तिशाली बैक-एंड सिस्टम और इमर्सिव गेम अनुभव बनाने में मज़ा आता है जो रचनात्मकता को तकनीक से जोड़ते हैं। डिज़ाइन के प्रति गहरी समझ और समस्या-समाधान के प्रति प्रेम के साथ, मेरा लक्ष्य ऐसे प्रोजेक्ट बनाना है जो देखने में आकर्षक और तकनीकी रूप से मज़बूत हों। चाहे वेब डेवलपमेंट हो या गेम डिज़ाइन, मैं हमेशा सीखने, प्रयोग करने और कुछ सार्थक बनाने के लिए उत्साहित रहता हूँ। मेरे लिए, कोडिंग सिर्फ़ एक पेशा नहीं है - यह एक जुनून है!💻🔥",
+    about: "मेरे <span class=\"text-accent\">बारे में.</span>",
+    aboutText1: "मैं एक फुल-स्टैक डेवलपर हूँ, जिसके पास MERN स्टैक का उपयोग करके आधुनिक और स्केलेबल वेब एप्लिकेशन विकसित करने का व्यावहारिक अनुभव है। मैंने ऐसे वास्तविक प्रोजेक्ट्स पर कार्य किया है जिनमें रिस्पॉन्सिव फ्रंटएंड डेवलपमेंट, सुरक्षित बैकएंड APIs, डेटाबेस मैनेजमेंट और एंड-टू-एंड एप्लिकेशन डेवलपमेंट शामिल है। इसके अतिरिक्त, मुझे NTPC Limited के कॉर्पोरेट कम्युनिकेशन विभाग में कार्य करने का अवसर मिला, जहाँ मैंने डिजिटल कंटेंट, क्रिएटिव डिज़ाइन और कम्युनिकेशन से जुड़े कार्यों में योगदान दिया, जिससे मेरी तकनीकी, रचनात्मक और सहयोगात्मक कौशल मजबूत हुए।",
+    aboutText2: "मैं ऐसी तकनीक विकसित करने के लिए जुनूनी हूँ जो वास्तविक समस्याओं का समाधान करे और उपयोगकर्ताओं को सार्थक अनुभव प्रदान करे। मुझे नई तकनीकों को सीखने, एप्लिकेशन के प्रदर्शन को बेहतर बनाने और विचारों को विश्वसनीय, स्केलेबल और उपयोगकर्ता-अनुकूल समाधानों में बदलने का आनंद मिलता है। मेरा लक्ष्य एक डेवलपर के रूप में लगातार आगे बढ़ना है और प्रभावशाली डिजिटल उत्पाद बनाना है जो बदलाव ला सकें।",
     
-    skills: "कौशल🔛",
-    contact: "संपर्क करें",
-    email: "ईमेल:  websitedeveloper108@gmail.com",
+    servicesHeading: "हमारी <span class=\"text-accent\">सेवाएं.</span>",
+    skills: "तकनीकी <span class=\"text-accent\">कौशल.</span>",
+    contact: "संपर्क <span class=\"text-accent\">करें.</span>",
+    email: "कोई सवाल है, किसी प्रोजेक्ट पर चर्चा करना चाहते हैं, या बस नमस्ते कहना चाहते हैं? मेरा इनबॉक्स हमेशा खुला है। मुझे संदेश भेजें और मैं जल्द से जल्द आपसे संपर्क करूँगा!",
     
     // Navigation
     navHome: "होम",
     navAbout: "परिचय",
+    navServices: "सेवाएं",
+    navSkills: "कौशल",
+    navExperience: "अनुभव",
     navProjects: "मेरे प्रोजेक्ट",
     navWork: "मेरा काम",
     navContact: "संपर्क",
     navCertificate: "प्रमाणपत्र",
     navWebsite: "वेबसाइट",
-    navGames: "गेम्स"
+    navGames: "गेम्स",
+    navGraphics: "ग्राफिक्स डिजाइन"
   },
   bho: {
     // Hero Section
     heroGreeting: "प्रणाम, हम बानी",
     heroLocation: "भारत से",
     heroTitle: "फुल-स्टैक वेब |",
+    heroSubTitle: "   गेम डेवलपर | कोडर | ग्राफ़िक्स डिज़ाइन ",
     heroButton: "हमरा से बात करीं",
     callMe: "कॉल करीं",
     messageMe: "मैसेज करीं",
     
     // Sections
-    about: "हमार बारे में",
-    aboutText: "हम Dipu K Raj बानी, एगो जोशिला full-stack web आ game developer. हमरा के कोडिंग के माध्यम से आइडिया के हकीकत में बदलल बहुते अच्छा लागेला। हम responsive आ सुंदर web design बनावे में, मजबूत backend system तैयार करे में, आ मजेदार game experience डेवलप करे में माहिर बानी। डिजाइन पर हमारा नजर तेज बा, आ समस्या के हल निकालल हमरा के बहुते पसंद बा। हम चाहीला कि हमार हर प्रोजेक्ट देखे में नीक लागो आ तकनीकी रूप से मजबूत होखो। चाहे web development होखे चाहे game design, हम हर नया चीज सीखे, प्रयोग करे आ कुछ न कुछ नया बनावे में हमेशा तैयार रहेली। हमरा खातिर coding खाली पेशा ना, एकर नाम जुनून ह!💻🔥",
+    about: "हमरा <span class=\"text-accent\">बारे में.</span>",
+    aboutText1: "हम एगो फुल-स्टैक डेवलपर बानी आ हमरा MERN स्टैक के प्रयोग से आधुनिक वेब एप्लीकेशन बनावे के व्यावहारिक अनुभव बा। हम frontend development, backend APIs, database management आ उपयोगकर्ता-केंद्रित डिजिटल समाधान से जुड़ल रियल-वर्ल्ड प्रोजेक्ट्स पर काम कइले बानी। हमरा NTPC लिमिटेड में कॉर्पोरेट कम्युनिकेशन आ डिजाइन प्रोजेक्ट्स में योगदान देवे के भी अनुभव बा, जहाँ हम डिजिटल कंटेंट, क्रिएटिव डिज़ाइन्स आ कम्युनिकेशन मटेरियल्स पर काम कइलीं, जेकरा से हमार तकनीकी, रचनात्मक आ साथ मिलके काम करे के हुनर अउरी मजबूत भइल।",
+    aboutText2: "हम अइसन तकनीक बनावे खातिर जुनूनी बानी जे असल दुनिया के समस्या के समाधान करेला। हमरा परफॉर्मेंस ऑप्टिमाइज कइल, नया तकनीक एक्सप्लोर कइल आ आईडिया के स्केलेबल, विश्वसनीय आ यूजर-friendly डिजिटल समाधान में बदलल बहुत पसंद बा। हम लगातार सीखत रहीले, अपना हुनर के सुधारत रहीले आ तकनीक के माध्यम से प्रभावशाली डिजिटल अनुभव बनावे पर ध्यान केंद्रित करेलीं।",
     
-    skills: "कौशल🔛",
-    contact: "संपर्क करीं",
-    email: "ईमेल:  websitedeveloper108@gmail.com",
+    servicesHeading: "हमार <span class=\"text-accent\">सेवा.</span>",
+    skills: "तकनीकी <span class=\"text-accent\">कौशल.</span>",
+    contact: "संपर्क <span class=\"text-accent\">करीं.</span>",
+    email: "कोनो सवाल बा, कवनो प्रोजेक्ट पर चर्चा करे के बा, चाहे खाली प्रणाम करे के बा? हमार इनबॉक्स हमेशा खुलल बा। हमरा के संदेश भेजीं आ हम जल्द से जल्द रउआ से संपर्क करब!",
     
     // Navigation
     navHome: "घर",
     navAbout: "हमार बारे में",
+    navServices: "सेवा",
+    navSkills: "कौशल",
+    navExperience: "अनुभव",
     navProjects: "हमार प्रोजेक्ट",
     navWork: "हमार काम",
     navContact: "संपर्क",
     navCertificate: "प्रमाणपत्र",
     navWebsite: "वेबसाइट",
-    navGames: "गेम"
+    navGames: "गेम",
+    navGraphics: "ग्राफिक्स डिजाइन"
   },
   mai: {
     // Hero Section
     heroGreeting: "प्रणाम, हम छी",
-    heroLocation: "भारत सँ",
+    heroLocation: "भारत स",
     heroTitle: "फुल-स्टैक वेब |",
-    heroButton: "हमरा संगे जुड़ू",
+    heroSubTitle: "   गेम डेवलपर | कोडर | ग्राफ़िक्स डिज़ाइन ",
+    heroButton: "हमरा संगे जुड़ू",
     callMe: "कॉल करू",
     messageMe: "संदेश भेजू",
     
     // Sections
-    about: "हमर बारे में",
-    aboutText: "हम Dipu K Raj छी, एकटा उत्साही full-stack web आ game developer। हमरा coding मार्फत विचार केँ हकीकत बनाब'मे बहुत आनंद भेटैत अछि। हम responsive आ आकर्षक front-end design बनाबै छी, मजबूत back-end system तैयार करैत छी, आ मनोरंजक game अनुभव बनाब'मे रुचि राखैत छी — जत' सृजनशीलता आ तकनीक एक संग जुड़ि जाइत अछि। डिजाइन पर हमर नजर पैघ अछि, आ समस्या समाधान कर'मे हमरा बहुत नीक लगैत अछि। हमर उद्देश्य एहेन project बनाब'क अछि जे देखबा में सुन्दर होआय आ तकनीकी रूप सँ मजबूती सेहो रखैत होआय। वेब development हो कि game design — हम सदा नया सीखबाक, प्रयोग करबाक आ कुछ अर्थपूर्ण बनाब'क उत्साह राखैत छी। हमर लेल coding खाली पेशा नहि, एकटा जुनून अछि।💻🔥",
+    about: "हमर <span class=\"text-accent\">बारे में.</span>",
+    aboutText1: "हम एकटा फुल-स्टैक डेवलपर छी आ हमरा MERN स्टैक क प्रयोग स आधुनिक वेब एप्लीकेशन बनाबय क व्यावहारिक अनुभव अछि। हम frontend development, backend APIs, database management आ उपयोगकर्ता-केंद्रित डिजिटल समाधान स जुड़ल रियल-वर्ल्ड प्रोजेक्ट्स पर काज करने छी। हमरा NTPC लिमिटेड में कॉर्पोरेट कम्युनिकेशन आ डिजाइन प्रोजेक्ट्स में योगदान देबाक सेहो अनुभव अछि, जतय हम डिजिटल कंटेंट, क्रिएटिव डिज़ाइन्स आ कम्युनिकेशन मटेरियल्स पर काज करने रही, जेकरा स हमर तकनीकी, रचनात्मक आ संगहि मिलिकय काज करबाक कौशल आओर मजबूत भेल।",
+    aboutText2: "हम एहेन तकनीक बनाबय लेल जुनूनी छी जे असल दुनियाक समस्या सभ क समाधान करैत अछि। हमरा परफॉर्मेंस ऑप्टिमाइज़ करब, नव तकनीक एक्सप्लोर करब आ विचार सभ के स्केलेबल, विश्वसनीय आ यूजर-फ्रेंडली डिजिटल समाधान में बदलब बहुत नीक लगैत अछि। हम लगातार सीखैत छी, अपन कौशल में सुधार करैत छी आ तकनीकक माध्यम स प्रभावशाली डिजिटल अनुभव बनाबय पर ध्यान केंद्रित करैत छी।",
     
-    skills: "कौशल🔛",
-    contact: "संपर्क करू",
-    email: "ईमेल:  websitedeveloper108@gmail.com",
+    servicesHeading: "हमर <span class=\"text-accent\">सेवा.</span>",
+    skills: "तकनीकी <span class=\"text-accent\">कौशल.</span>",
+    contact: "सम्पर्क <span class=\"text-accent\">करू.</span>",
+    email: "कोनो प्रश्न अछि, ककरो प्रोजेक्ट पर विमर्श करय चाहैत छी, या बस प्रणाम करय चाहैत छी? हमर इनबॉक्स सदा खुजल अछि। हमरा संदेश पठाउ आ हम जल्द स जल्द अहाँ स सम्पर्क करब!",
     
     // Navigation
-    navHome: "मुखपृष्ठ",
+    navHome: "मुख्यपृष्ठ",
     navAbout: "हमर बारे में",
+    navServices: "सेवा",
+    navSkills: "कौशल",
+    navExperience: "अनुभव",
     navProjects: "हमर प्रोजेक्ट",
     navWork: "हमर काम",
     navContact: "संपर्क",
     navCertificate: "प्रमाणपत्र",
     navWebsite: "वेबसाइट",
-    navGames: "गेम"
+    navGames: "गेम",
+    navGraphics: "ग्राफिक्स डिजाइन"
   }
 };
 
@@ -274,14 +327,13 @@ function updateLanguage(lang) {
   const t = translations[lang] || translations['en'];
   
   // Update hero section
-  const heroGreeting = document.querySelector('#hero-name-color');
+  const heroGreeting = document.querySelector('#hero-greeting-text');
   if (heroGreeting) heroGreeting.textContent = t.heroGreeting;
   
   const heroLocation = document.querySelector('#hero h2 span');
   if (heroLocation) heroLocation.textContent = t.heroLocation;
   
-  const heroTitle = document.querySelector('.typewriter');
-  if (heroTitle) heroTitle.textContent = t.heroTitle;
+  startTypewriter(t.heroTitle, t.heroSubTitle);
   
   const heroButton = document.querySelector('.get-in-touch-btn');
   if (heroButton) heroButton.textContent = t.heroButton;
@@ -294,18 +346,25 @@ function updateLanguage(lang) {
   
   // Update about section
   const aboutH2 = document.querySelector('#about h2');
-  if (aboutH2) aboutH2.textContent = t.about;
+  if (aboutH2) aboutH2.innerHTML = t.about;
   
-  const aboutP = document.querySelector('#about p');
-  if (aboutP) aboutP.textContent = t.aboutText;
+  const aboutP1 = document.getElementById('about-description-1');
+  if (aboutP1) aboutP1.textContent = t.aboutText1;
+  
+  const aboutP2 = document.getElementById('about-description-2');
+  if (aboutP2) aboutP2.textContent = t.aboutText2;
+  
+  // Update services section heading
+  const servicesH2 = document.querySelector('#services h2');
+  if (servicesH2) servicesH2.innerHTML = t.servicesHeading;
   
   // Update skills section heading
   const skillsH2 = document.querySelector('#skills h2');
-  if (skillsH2) skillsH2.textContent = t.skills;
+  if (skillsH2) skillsH2.innerHTML = t.skills;
   
   // Update contact section
   const contactH2 = document.querySelector('#contact h2');
-  if (contactH2) contactH2.textContent = t.contact;
+  if (contactH2) contactH2.innerHTML = t.contact;
   
   const contactEmail = document.querySelector('#contact p');
   if (contactEmail) contactEmail.innerHTML = t.email;
@@ -314,12 +373,16 @@ function updateLanguage(lang) {
   const navLinks = {
     'navHome': 'a[href="#hero"]',
     'navAbout': 'a[href="#about"]',
+    'navServices': 'a[href="#services"]',
+    'navSkills': 'a[href="#skills"]',
+    'navExperience': 'a[href="#experience"]',
     'navProjects': 'a[href="#projects"]',
     'navWork': 'a[href="#work"]',
     'navContact': 'a[href="#contact"]',
     'navCertificate': 'a[href="#certificate"]',
     'navWebsite': 'a[href="#website"]',
-    'navGames': 'a[href="#games"]'
+    'navGames': 'a[href="#games"]',
+    'navGraphics': 'a[href="graphics.html"]'
   };
   
   Object.entries(navLinks).forEach(([key, selector]) => {
@@ -339,25 +402,27 @@ function updateLanguage(lang) {
   console.log(`Language changed to: ${lang}`);
 }
 
-// Language switcher event listener
 function initializeLanguageSwitcher() {
+  const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+  
   const languageSwitcher = document.getElementById('language-switcher');
   if (languageSwitcher) {
-    // Load saved language or default to English
-    const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
-    
-    // Set the selected value
     languageSwitcher.value = savedLanguage;
-    
-    // Update the UI immediately
-    updateLanguage(savedLanguage);
-    
-    // Add change event listener
-    languageSwitcher.addEventListener('change', function(e) {
-      const lang = e.target.value;
-      updateLanguage(lang);
+    languageSwitcher.addEventListener('change', function (e) {
+      updateLanguage(e.target.value);
     });
   }
+
+  const languageSwitcherMobile = document.getElementById('language-switcher-mobile');
+  if (languageSwitcherMobile) {
+    languageSwitcherMobile.value = savedLanguage;
+    languageSwitcherMobile.addEventListener('change', function (e) {
+      updateLanguage(e.target.value);
+    });
+  }
+
+  // Update the UI immediately
+  updateLanguage(savedLanguage);
 }
 
 // Load saved language or default to English
@@ -365,10 +430,14 @@ function loadPreferredLanguage() {
   const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
   updateLanguage(savedLanguage);
   
-  // Update the dropdown to reflect the current language
   const languageSwitcher = document.getElementById('language-switcher');
   if (languageSwitcher) {
     languageSwitcher.value = savedLanguage;
+  }
+
+  const languageSwitcherMobile = document.getElementById('language-switcher-mobile');
+  if (languageSwitcherMobile) {
+    languageSwitcherMobile.value = savedLanguage;
   }
 }
 
@@ -384,9 +453,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (firstImage) {
     firstImage.classList.add('active');
   }
-
-  // Start typewriter effect
-  typeEffect();
 
   // Add event listener for menu toggle
   const menuToggleBtn = document.querySelector(".menu-toggle");
@@ -418,42 +484,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Animated Welcome overlay with multiple languages
-  /*
-  const welcomeOverlay = document.getElementById('welcome-overlay');
-  const welcomeMessage = document.getElementById('welcome-message');
-  const messages = [
-    'Welcome',
-    'स्वागत है',
-    'रउआ के स्वागत बा',
-    'अहाँ के स्वागत छै'
-  ];
-  let msgIndex = 0;
-
-  function showNextMessage() {
-    if (msgIndex >= messages.length) {
-      welcomeOverlay.classList.add('hide');
-      setTimeout(() => {
-        welcomeOverlay.style.display = 'none';
-      }, 700);
-      return;
-    }
-    welcomeMessage.textContent = messages[msgIndex];
-    welcomeMessage.classList.add('show');
-    setTimeout(() => {
-      welcomeMessage.classList.remove('show');
-      setTimeout(() => {
-        msgIndex++;
-        showNextMessage();
-      }, 400); // fade out duration
-    }, 1000); // show each message for 1s
-  }
-
-  if (welcomeOverlay && welcomeMessage) {
-    showNextMessage();
-  }
-  */
-
   // Real-time Visitor Counter
   updateVisitorCount();
 
@@ -463,13 +493,19 @@ document.addEventListener("DOMContentLoaded", function () {
       updateLanguage(this.value);
     });
   }
+  const langSwitcherMobile = document.getElementById('language-switcher-mobile');
+  if (langSwitcherMobile) {
+    langSwitcherMobile.addEventListener('change', function () {
+      updateLanguage(this.value);
+    });
+  }
 
   // Restore theme from localStorage
   const savedTheme = localStorage.getItem('theme');
   setTheme(savedTheme === 'light' ? 'light' : 'dark');
   // Toggle on both buttons
   const toggleBtn = document.getElementById('theme-toggle');
-  const toggleBtnMobile = document.getElementById('theme-toggle-mobile');
+  const toggleBtnInMenu = document.getElementById('theme-toggle-in-menu');
   if (toggleBtn) {
     toggleBtn.addEventListener('click', function () {
       if (document.body.classList.contains('light-mode')) {
@@ -479,8 +515,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-  if (toggleBtnMobile) {
-    toggleBtnMobile.addEventListener('click', function () {
+  if (toggleBtnInMenu) {
+    toggleBtnInMenu.addEventListener('click', function () {
       if (document.body.classList.contains('light-mode')) {
         setTheme('dark');
       } else {
@@ -521,7 +557,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function setTheme(mode) {
   const body = document.body;
   const toggleBtn = document.getElementById('theme-toggle');
-  const toggleBtnMobile = document.getElementById('theme-toggle-mobile');
+  const toggleBtnInMenu = document.getElementById('theme-toggle-in-menu');
   if (mode === 'light') {
     body.classList.add('light-mode');
     // Use saved or default color for backgrounds
@@ -529,37 +565,20 @@ function setTheme(mode) {
     const savedNavbarColor = localStorage.getItem('navbarBgColor');
     document.documentElement.style.setProperty('--main-bg-color', savedBgColor || '#f1f5f9');
     document.documentElement.style.setProperty('--navbar-bg-color', savedNavbarColor || '#e0e7ef');
-    if (toggleBtn) toggleBtn.textContent = '☀️';
-    if (toggleBtnMobile) toggleBtnMobile.textContent = '☀️';
+    if (toggleBtn) toggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    if (toggleBtnInMenu) toggleBtnInMenu.innerHTML = '<i class="fa-solid fa-sun"></i>';
     localStorage.setItem('theme', 'light');
     const savedPrimary = localStorage.getItem('primaryColor');
     if (savedPrimary) {
       document.documentElement.style.setProperty('--primary-color', savedPrimary);
     }
-    var heroNameLight = document.getElementById('hero-name-color');
-    if (heroNameLight) {
-      var pcLight =
-        savedPrimary ||
-        getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim() ||
-        '#38bdf8';
-      heroNameLight.style.setProperty('color', pcLight, 'important');
-    }
   } else {
     body.classList.remove('light-mode');
     document.documentElement.style.setProperty('--main-bg-color', '#0f172a');
     document.documentElement.style.setProperty('--navbar-bg-color', '#1e293b');
-    if (toggleBtn) toggleBtn.textContent = '🌙';
-    if (toggleBtnMobile) toggleBtnMobile.textContent = '🌙';
+    if (toggleBtn) toggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+    if (toggleBtnInMenu) toggleBtnInMenu.innerHTML = '<i class="fa-solid fa-moon"></i>';
     localStorage.setItem('theme', 'dark');
-    var heroNameDark = document.getElementById('hero-name-color');
-    if (heroNameDark) {
-      var savedPrimaryDark = localStorage.getItem('primaryColor');
-      var pcDark =
-        savedPrimaryDark ||
-        getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim() ||
-        '#38bdf8';
-      heroNameDark.style.setProperty('color', pcDark, 'important');
-    }
   }
 }
 
@@ -690,17 +709,28 @@ function initializeLiveChat() {
   // Listen for real-time messages (single listener for both display and auto-response)
   const chatRef = database.ref('chatMessages');
   
+  // Get visitor ID and record session start time
+  const currentVisitorId = generateVisitorId();
+  const sessionStartTime = Date.now();
+
   // Register listener only once
   if (!chatListenerRegistered) {
     chatRef.on('child_added', (snapshot) => {
       const message = snapshot.val();
       const messageId = snapshot.key;
       
-      // Display all messages
+      // Only process/display messages for this visitor
+      if (message.visitorId !== currentVisitorId) {
+        return;
+      }
+      
+      // Display message
       displayMessage(message);
       
-      // Auto-response only for visitor messages (and only once per message)
-      if (message.sender === 'visitor' && !processedMessages.has(messageId)) {
+      // Auto-response only for visitor messages sent in the current session (and only once per message)
+      if (message.sender === 'visitor' && 
+          message.timestamp >= sessionStartTime && 
+          !processedMessages.has(messageId)) {
         processedMessages.add(messageId);
         
         // Add auto-response after 2 seconds
@@ -708,7 +738,8 @@ function initializeLiveChat() {
           const autoResponse = {
             text: addAutoResponse(message.text),
             sender: 'admin',
-            timestamp: Date.now()
+            timestamp: Date.now(),
+            visitorId: currentVisitorId
           };
           chatRef.push(autoResponse);
         }, 2000);
