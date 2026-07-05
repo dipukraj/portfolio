@@ -134,6 +134,26 @@
       background: rgba(239, 68, 68, 0.35);
     }
 
+    .badge-online {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: rgba(34, 197, 94, 0.2);
+      color: #4ade80;
+      font-weight: 600;
+    }
+
+    .badge-offline {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: rgba(156, 163, 175, 0.2);
+      color: #d1d5db;
+      font-weight: 600;
+    }
+
     .info-text {
       margin-top: 0.6rem;
       font-size: 0.8rem;
@@ -235,8 +255,12 @@
 
     <div class="admin-summary">
       <div class="summary-item">
-        <span class="summary-label">Total Visitors</span>
+        <span class="summary-label">Total Visits</span>
         <span class="summary-value" id="sumVisitors">-</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Unique Visitors</span>
+        <span class="summary-value" id="sumUniqueVisitors">-</span>
       </div>
       <div class="summary-item">
         <span class="summary-label">Page Views</span>
@@ -308,19 +332,22 @@
       </table>
     </div>
 
-    <h2 style="margin-top:1.5rem;">Online Users (last 5 minutes)</h2>
+    <h2 style="margin-top:1.5rem;">Visitor History & Online Status (All Time)</h2>
     <div style="overflow-x:auto; margin-top:0.4rem;">
       <table>
         <thead>
           <tr>
+            <th>Status</th>
             <th>Visitor ID</th>
             <th>Last Active</th>
+            <th>Device</th>
+            <th>OS / Browser</th>
             <th>User Agent</th>
           </tr>
         </thead>
         <tbody id="onlineBody">
           <tr>
-            <td colspan="3" class="empty-text">No online user data loaded yet.</td>
+            <td colspan="6" class="empty-text">No visitor data loaded yet.</td>
           </tr>
         </tbody>
       </table>
@@ -540,54 +567,103 @@
       });
     }
 
+    let onlineUsersSet = new Set();
+    let visitorHistoryData = [];
+
     function loadOnlineUsers() {
       if (!db) return;
-      const tbodyId = 'onlineBody';
-
       const ref = db.ref('onlineUsers');
       ref.on('value', (snapshot) => {
-        clearTableBody(tbodyId);
-        const tbody = document.getElementById(tbodyId);
-        if (!tbody) return;
-
-        if (!snapshot.exists()) {
-          addEmptyRow(tbodyId, 3, 'No online users at the moment.');
-          const sumOnline = document.getElementById('sumOnlineNow');
-          if (sumOnline) sumOnline.textContent = '0';
-          return;
+        onlineUsersSet.clear();
+        if (snapshot.exists()) {
+          snapshot.forEach((child) => {
+            onlineUsersSet.add(child.key);
+          });
         }
-
-        let count = 0;
-        snapshot.forEach((child) => {
-          const data = child.val() || {};
-          const tr = document.createElement('tr');
-
-          const tdId = document.createElement('td');
-          tdId.className = 'id-cell';
-          tdId.textContent = child.key;
-
-          const tdTime = document.createElement('td');
-          tdTime.className = 'time-cell';
-          tdTime.textContent = formatTimestamp(data.timestamp);
-
-          const tdAgent = document.createElement('td');
-          tdAgent.className = 'message-cell';
-          tdAgent.textContent = data.userAgent || '-';
-
-          tr.appendChild(tdId);
-          tr.appendChild(tdTime);
-          tr.appendChild(tdAgent);
-
-          tbody.appendChild(tr);
-          count++;
-        });
-
         const sumOnline = document.getElementById('sumOnlineNow');
-        if (sumOnline) sumOnline.textContent = count;
+        if (sumOnline) sumOnline.textContent = onlineUsersSet.size;
+        
+        refreshVisitorTable();
       }, (error) => {
-        console.error(error);
+        console.error("Error loading online users:", error);
+      });
+    }
+
+    function loadVisitorHistory() {
+      if (!db) return;
+      const ref = db.ref('visitorHistory');
+      ref.on('value', (snapshot) => {
+        visitorHistoryData = [];
+        if (snapshot.exists()) {
+          snapshot.forEach((child) => {
+            visitorHistoryData.push({ key: child.key, data: child.val() || {} });
+          });
+        }
+        
+        // Latest first
+        visitorHistoryData.sort((a, b) => (b.data.timestamp || 0) - (a.data.timestamp || 0));
+        
+        const sumUnique = document.getElementById('sumUniqueVisitors');
+        if (sumUnique) sumUnique.textContent = visitorHistoryData.length;
+
+        refreshVisitorTable();
+      }, (error) => {
+        console.error("Error loading visitor history:", error);
+        const tbodyId = 'onlineBody';
         clearTableBody(tbodyId);
-        addEmptyRow(tbodyId, 3, 'Error loading online users. Check console for details.');
+        addEmptyRow(tbodyId, 6, 'Error loading visitor history. Check console for details.');
+      });
+    }
+
+    function refreshVisitorTable() {
+      const tbodyId = 'onlineBody';
+      clearTableBody(tbodyId);
+      const tbody = document.getElementById(tbodyId);
+      if (!tbody) return;
+
+      if (visitorHistoryData.length === 0) {
+        addEmptyRow(tbodyId, 6, 'No visitor data loaded yet.');
+        return;
+      }
+
+      visitorHistoryData.forEach(({ key, data }) => {
+        const tr = document.createElement('tr');
+
+        // Status Badge
+        const tdStatus = document.createElement('td');
+        const isOnline = onlineUsersSet.has(key);
+        const badge = document.createElement('span');
+        badge.className = isOnline ? 'badge-online' : 'badge-offline';
+        badge.textContent = isOnline ? 'Online' : 'Offline';
+        tdStatus.appendChild(badge);
+
+        const tdId = document.createElement('td');
+        tdId.className = 'id-cell';
+        tdId.textContent = key;
+
+        const tdTime = document.createElement('td');
+        tdTime.className = 'time-cell';
+        tdTime.textContent = formatTimestamp(data.timestamp);
+
+        const tdDevice = document.createElement('td');
+        tdDevice.textContent = data.device || '-';
+
+        const tdOSBrowser = document.createElement('td');
+        tdOSBrowser.textContent = (data.os || '-') + ' / ' + (data.browser || '-');
+
+        const tdAgent = document.createElement('td');
+        tdAgent.className = 'message-cell';
+        tdAgent.style.maxWidth = '200px';
+        tdAgent.textContent = data.userAgent || '-';
+
+        tr.appendChild(tdStatus);
+        tr.appendChild(tdId);
+        tr.appendChild(tdTime);
+        tr.appendChild(tdDevice);
+        tr.appendChild(tdOSBrowser);
+        tr.appendChild(tdAgent);
+
+        tbody.appendChild(tr);
       });
     }
 
@@ -671,6 +747,12 @@
         const el = document.getElementById('sumOnlineNow');
         if (el) el.textContent = snapshot.exists() ? Object.keys(snapshot.val()).length : '0';
       });
+
+      // Unique visitors
+      db.ref('visitorHistory').on('value', (snapshot) => {
+        const el = document.getElementById('sumUniqueVisitors');
+        if (el) el.textContent = snapshot.exists() ? Object.keys(snapshot.val()).length : '0';
+      });
     }
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -707,6 +789,7 @@
         loadMessages();
         loadFeedback();
         loadOnlineUsers();
+        loadVisitorHistory();
       } catch (e) {
         console.error(e);
         setLoadStatus('Error initializing Firebase.', true);

@@ -382,14 +382,16 @@ function updateLanguage(lang) {
     'navCertificate': 'a[href="#certificate"]',
     'navWebsite': 'a[href="#website"]',
     'navGames': 'a[href="#games"]',
-    'navGraphics': 'a[href="graphics.html"]'
+    'navGraphics': '.nav-links a[href*="graphics.html"]'
   };
   
   Object.entries(navLinks).forEach(([key, selector]) => {
-    const element = document.querySelector(selector);
-    if (element && t[key]) {
-      element.textContent = t[key];
-    }
+    const elements = document.querySelectorAll(selector);
+    elements.forEach(element => {
+      if (element && t[key]) {
+        element.textContent = t[key];
+      }
+    });
   });
   
   // Update HTML lang attribute
@@ -986,24 +988,6 @@ function initializeAnalytics() {
     return (currentViews || 0) + 1;
   });
 
-  // Track online status
-  const visitorId = generateVisitorId();
-  const onlineRef = database.ref(`onlineUsers/${visitorId}`);
-  onlineRef.set({
-    timestamp: Date.now(),
-    userAgent: navigator.userAgent
-  });
-
-  // Remove from online users when page unloads
-  window.addEventListener('beforeunload', () => {
-    onlineRef.remove();
-  });
-
-  // Clean up old online users (older than 5 minutes)
-  setInterval(() => {
-    const cutoff = Date.now() - (5 * 60 * 1000);
-    onlineRef.orderByChild('timestamp').startAt(0).endAt(cutoff).remove();
-  }, 60000); // Check every minute
 }
 
 // Live Status Indicator
@@ -1132,8 +1116,97 @@ function generateVisitorId() {
   return visitorId;
 }
 
+// Detect visitor details (device, OS, browser)
+function getVisitorDetails() {
+  const ua = navigator.userAgent;
+  let device = "Desktop";
+  let os = "Unknown OS";
+  let browser = "Unknown Browser";
+
+  /* Device detect */
+  if (/Mobi|Android|iPhone|iPad|iPod/i.test(ua)) {
+    device = "Mobile";
+  } else if (/Tablet|iPad/i.test(ua)) {
+    device = "Tablet";
+  }
+
+  /* OS detect */
+  if (ua.indexOf("Android") !== -1) {
+    os = "Android";
+  } else if (ua.indexOf("iPhone") !== -1 || ua.indexOf("iPad") !== -1 || ua.indexOf("iPod") !== -1) {
+    os = "iOS";
+  } else if (ua.indexOf("Windows") !== -1) {
+    os = "Windows";
+  } else if (ua.indexOf("Mac") !== -1) {
+    os = "MacOS";
+  } else if (ua.indexOf("Linux") !== -1) {
+    os = "Linux";
+  }
+
+  /* Browser detect */
+  if (ua.indexOf("Chrome") !== -1) {
+    browser = "Google Chrome";
+  } else if (ua.indexOf("Firefox") !== -1) {
+    browser = "Mozilla Firefox";
+  } else if (ua.indexOf("Safari") !== -1) {
+    browser = "Safari";
+  } else if (ua.indexOf("Edge") !== -1) {
+    browser = "Microsoft Edge";
+  }
+
+  return { device, os, browser };
+}
+
+// Track visitor in database (both permanent visitorHistory and temporary onlineUsers)
+function trackVisitor() {
+  try {
+    const visitorId = generateVisitorId();
+    const details = getVisitorDetails();
+    const timestamp = Date.now();
+
+    // 1. Save visitor details permanently
+    database.ref(`visitorHistory/${visitorId}`).set({
+      timestamp: timestamp,
+      device: details.device,
+      os: details.os,
+      browser: details.browser,
+      userAgent: navigator.userAgent
+    });
+
+    // 2. Set online status temporarily
+    const onlineRef = database.ref(`onlineUsers/${visitorId}`);
+    onlineRef.set({
+      timestamp: timestamp,
+      device: details.device,
+      os: details.os,
+      browser: details.browser,
+      userAgent: navigator.userAgent
+    });
+
+    // Remove from online users when page unloads
+    window.addEventListener('beforeunload', () => {
+      onlineRef.remove();
+    });
+
+    // 3. Clean up expired online users (older than 5 minutes) globally
+    setInterval(() => {
+      const cutoff = Date.now() - (5 * 60 * 1000);
+      database.ref('onlineUsers').orderByChild('timestamp').endAt(cutoff).once('value', (snapshot) => {
+        snapshot.forEach((child) => {
+          child.ref.remove();
+        });
+      });
+    }, 60000); // Check every minute
+  } catch (e) {
+    console.error("Error in tracking visitor:", e);
+  }
+}
+
 // Initialize all systems when DOM is loaded
 document.addEventListener("DOMContentLoaded", function () {
+  // Always-on tracking of visitor details
+  trackVisitor();
+
   // Lazy-init analytics on first open
   const analyticsToggle = document.getElementById('analytics-toggle');
   if (analyticsToggle) {
