@@ -330,13 +330,13 @@ function updateLanguage(lang) {
   const heroGreeting = document.querySelector('#hero-greeting-text');
   if (heroGreeting) heroGreeting.textContent = t.heroGreeting;
   
-  const heroLocation = document.querySelector('#hero h2 span');
+  const heroLocation = document.getElementById('hero-location-text');
   if (heroLocation) heroLocation.textContent = t.heroLocation;
   
   startTypewriter(t.heroTitle, t.heroSubTitle);
   
-  const heroButton = document.querySelector('.get-in-touch-btn');
-  if (heroButton) heroButton.textContent = t.heroButton;
+  const heroButtonText = document.querySelector('.get-in-touch-btn span');
+  if (heroButtonText) heroButtonText.textContent = t.heroButton;
   
   const callMe = document.querySelector('.call-btn');
   if (callMe) callMe.innerHTML = `<i class="fas fa-phone"></i> ${t.callMe}`;
@@ -371,17 +371,17 @@ function updateLanguage(lang) {
   
   // Update navigation links
   const navLinks = {
-    'navHome': 'a[href="#hero"]',
-    'navAbout': 'a[href="#about"]',
-    'navServices': 'a[href="#services"]',
-    'navSkills': 'a[href="#skills"]',
-    'navExperience': 'a[href="#experience"]',
-    'navProjects': 'a[href="#projects"]',
-    'navWork': 'a[href="#work"]',
-    'navContact': 'a[href="#contact"]',
-    'navCertificate': 'a[href="#certificate"]',
-    'navWebsite': 'a[href="#website"]',
-    'navGames': 'a[href="#games"]',
+    'navHome': '.nav-links a[href="#hero"]',
+    'navAbout': '.nav-links a[href="#about"]',
+    'navServices': '.nav-links a[href="#services"]',
+    'navSkills': '.nav-links a[href="#skills"]',
+    'navExperience': '.nav-links a[href="#experience"]',
+    'navProjects': '.nav-links a[href="#projects"]',
+    'navWork': '.nav-links a[href="#work"]',
+    'navContact': '.nav-links a[href="#contact"]',
+    'navCertificate': '.nav-links a[href="#certificate"]',
+    'navWebsite': '.nav-links a[href="#website"]',
+    'navGames': '.nav-links a[href="#games"]',
     'navGraphics': '.nav-links a[href*="graphics.html"]'
   };
   
