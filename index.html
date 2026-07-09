@@ -1452,6 +1452,13 @@
       <div class="footer-branding">
         <h5>Made With <span class="heart-pulse">❤️</span> by <span class="brand-text">Dipu K Raj</span></h5>
       </div>
+      <div class="footer-tagline" id="footer-tagline-container">
+        <span class="tagline-icon" id="tagline-icon">🎯</span>
+        <div class="tagline-text-wrapper">
+          <span id="rotating-tagline-en">Decisions Decide Destiny</span>
+          <span id="rotating-tagline-hi">निर्णय ही भाग्य तय करते हैं।</span>
+        </div>
+      </div>
       <div class="footer-copyright">
         <p>&copy; 2025 | All Rights Reserved.</p>
       </div>
@@ -1805,6 +1812,70 @@
     // Update the clock immediately and then every second
     updateClock();
     setInterval(updateClock, 1000);
+  </script>
+
+  <!-- Tagline Rotation Script -->
+  <script>
+    (function () {
+      const taglines = [
+        { en: "Decisions Decide Destiny", hi: "निर्णय ही भाग्य तय करते हैं।", icon: "🎯" },
+        { en: "I Believe in Mahadev", hi: "मुझे महादेव पर विश्वास है।", icon: "🔱" },
+        { en: "The truth may hurt for a little, but a lie hurts forever.", hi: "सच कुछ समय के लिए दर्द दे सकता है, लेकिन झूठ हमेशा के लिए चोट पहुँचाता है।", icon: "⚖️" },
+        { en: "You become what you think, and you are defined by what you do.", hi: "आप जो सोचते हैं वही बनते हैं, और आप जो करते हैं वही आपकी पहचान है।", icon: "💭" },
+        { en: "Dream Big. Start Small. Never Stop.", hi: "बड़ा सोचो। शुरुआत छोटी करो। कभी रुको मत।", icon: "🚀" },
+        { en: "Growth begins where comfort ends.", hi: "विकास की शुरुआत वहीं से होती है जहाँ आराम का दायरा खत्म होता है।", icon: "🌱" },
+        { en: "Discipline beats motivation.", hi: "अनुशासन हमेशा प्रेरणा से बेहतर होता है।", icon: "🔥" },
+        { en: "Stay Curious. Keep Learning.", hi: "जिज्ञासु बने रहें। सीखते रहें।", icon: "💡" },
+        { en: "Build Skills, Not Excuses.", hi: "हुनर बनाओ, बहाने नहीं।", icon: "🛠️" },
+        { en: "Success is earned, not given.", hi: "सफलता कमाई जाती है, मुफ्त में नहीं मिलती।", icon: "⏳" },
+        { en: "Every sunrise is another chance to become better.", hi: "हर नया सवेरा खुद को बेहतर बनाने का एक और मौका है।", icon: "🌄" },
+        { en: "Kindness is a strength, not a weakness.", hi: "दयालुता ताकत है, कोई कमजोरी नहीं।", icon: "💙" },
+        { en: "Don't fear failure. Fear never trying.", hi: "असफलता से मत डरो। कोशिश न करने से डरो।", icon: "🦅" },
+        { en: "Small consistent efforts create extraordinary results.", hi: "छोटे और लगातार किए गए प्रयास असाधारण परिणाम लाते हैं।", icon: "⭐" },
+        { en: "Leave every place better than you found it.", hi: "हर जगह को अपने आने से बेहतर बनाकर छोड़ो।", icon: "🌍" },
+        { en: "Never stop learning because life never stops teaching.", hi: "सीखना कभी बंद न करें क्योंकि जीवन कभी सिखाना बंद नहीं करता।", icon: "📚" },
+        { en: "Hard work stays when luck fades away.", hi: "जब किस्मत साथ छोड़ देती है, तब भी मेहनत साथ निभाती है।", icon: "💪" },
+        { en: "Respect everyone, fear no one.", hi: "सबका सम्मान करो, डरो किसी से नहीं।", icon: "❤️" },
+        { en: "Be humble in success and graceful in failure.", hi: "सफलता में विनम्र रहें और असफलता में शालीन।", icon: "🌿" },
+        { en: "Your future is created by what you do today, not tomorrow.", hi: "आपका भविष्य आज के काम से बनता है, कल के नहीं।", icon: "✨" },
+        { en: "Work in silence, let your success make the noise.", hi: "मेहनत खामोशी से करो, अपनी सफलता को शोर मचाने दो।", icon: "🎵" },
+        { en: "Every expert was once a beginner.", hi: "हर विशेषज्ञ कभी न कभी एक शुरुआती नौसिखिया ही था।", icon: "🌌" },
+        { en: "The best investment is investing in yourself.", hi: "सबसे बेहतरीन निवेश खुद पर निवेश करना है।", icon: "🌟" },
+        { en: "Great things take time. Stay patient.", hi: "बेहतरीन चीजें वक्त लेती हैं। धैर्य रखें।", icon: "🔥" },
+        { en: "The world remembers what you built, not the excuses you made.", hi: "दुनिया आपके बनाए काम को याद रखती है, आपके बहानों को नहीं।", icon: "❤️" },
+        { en: "Every scar tells a story of survival, not defeat.", hi: "हर घाव बचने और जीने की कहानी कहता है, हार की नहीं।", icon: "🌙" },
+        { en: "One day, you'll thank yourself for never giving up.", hi: "एक दिन आप खुद को धन्यवाद देंगे कि आपने कभी हार नहीं मानी।", icon: "🌅" },
+        { en: "Become someone your younger self would be proud of.", hi: "ऐसे व्यक्ति बनो जिस पर आपका बचपन गर्व कर सके।", icon: "🌱" },
+        { en: "Character is built when nobody is watching.", hi: "चरित्र का निर्माण तब होता है जब कोई आपको देख नहीं रहा होता।", icon: "🕊️" },
+        { en: "Success is temporary. Values are permanent.", hi: "सफलता अस्थाई है, लेकिन मूल्य स्थाई होते हैं।", icon: "✨" },
+        { en: "The strongest people carry the softest hearts.", hi: "सबसे मजबूत लोगों के दिल सबसे कोमल होते हैं।", icon: "💙" },
+        { en: "Life isn't about finding yourself. It's about creating yourself.", hi: "जीवन खुद को खोजने के बारे में नहीं है, बल्कि खुद को बनाने के बारे में है।", icon: "🌠" },
+        { en: "Radhe Radhe...", hi: "राधे राधे...", icon: "🙏" }
+      ];
+      let currentIndex = 0;
+      const taglineEl = document.getElementById('footer-tagline-container');
+      const textEnEl = document.getElementById('rotating-tagline-en');
+      const textHiEl = document.getElementById('rotating-tagline-hi');
+      const iconEl = document.getElementById('tagline-icon');
+
+      if (!taglineEl || !textEnEl || !textHiEl || !iconEl) return;
+
+      function rotateTagline() {
+        taglineEl.classList.add('fade-out');
+
+        setTimeout(() => {
+          currentIndex = (currentIndex + 1) % taglines.length;
+          const current = taglines[currentIndex];
+          iconEl.textContent = current.icon;
+          textEnEl.textContent = current.en;
+          textHiEl.textContent = current.hi;
+          taglineEl.classList.remove('fade-out');
+        }, 500);
+      }
+
+      // Rotate tagline every 5 seconds
+      setInterval(rotateTagline, 5000);
+    })();
   </script>
 
 </body>
