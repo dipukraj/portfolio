@@ -196,8 +196,9 @@ const translations = {
     
     // Sections
     about: "About <span class=\"text-accent\">Me.</span>",
-    aboutText1: "I am a Full Stack Developer with hands-on experience in building modern, scalable web applications using the MERN stack. I have developed real-world projects involving responsive frontend development, secure backend APIs, database management, and complete end-to-end application development. In addition, I gained valuable experience at NTPC Limited in Corporate Communication, where I contributed to digital content, creative design, and communication initiatives, strengthening my technical, creative, and collaborative skills.",
-    aboutText2: "I am passionate about building technology that solves real-world problems and delivers meaningful user experiences. I enjoy learning new technologies, optimizing application performance, and transforming ideas into reliable, scalable, and user-friendly solutions. My goal is to continuously grow as a developer while creating impactful digital products that make a difference.",
+    aboutText1: "I am a Full Stack Developer currently pursuing an MCA through the collaborative program offered by IIIT Ranchi & IIT Patna. I have hands-on experience in building modern, scalable web applications using the MERN stack, with expertise in responsive frontend development, secure backend APIs, database management, and complete end-to-end application development.",
+    aboutText2: "Alongside my technical journey, I gained one year of professional experience at NTPC Limited in Corporate Communication, where I worked on digital magazines, branding materials, creative designs, and corporate communication initiatives. This experience strengthened my creativity, communication, teamwork, and problem-solving abilities while providing valuable exposure to real-world organizational workflows.",
+    aboutText3: "I am passionate about building technology that solves real-world problems and delivers meaningful user experiences. I enjoy learning new technologies, optimizing application performance, and writing clean, maintainable code. My goal is to continuously grow as a developer while creating reliable, scalable, and impactful digital products that make a difference.",
     
     servicesHeading: "My <span class=\"text-accent\">Services.</span>",
     skills: "Technical <span class=\"text-accent\">Skills.</span>",
@@ -230,8 +231,9 @@ const translations = {
     
     // Sections
     about: "मेरे <span class=\"text-accent\">बारे में.</span>",
-    aboutText1: "मैं एक फुल-स्टैक डेवलपर हूँ, जिसके पास MERN स्टैक का उपयोग करके आधुनिक और स्केलेबल वेब एप्लिकेशन विकसित करने का व्यावहारिक अनुभव है। मैंने ऐसे वास्तविक प्रोजेक्ट्स पर कार्य किया है जिनमें रिस्पॉन्सिव फ्रंटएंड डेवलपमेंट, सुरक्षित बैकएंड APIs, डेटाबेस मैनेजमेंट और एंड-टू-एंड एप्लिकेशन डेवलपमेंट शामिल है। इसके अतिरिक्त, मुझे NTPC Limited के कॉर्पोरेट कम्युनिकेशन विभाग में कार्य करने का अवसर मिला, जहाँ मैंने डिजिटल कंटेंट, क्रिएटिव डिज़ाइन और कम्युनिकेशन से जुड़े कार्यों में योगदान दिया, जिससे मेरी तकनीकी, रचनात्मक और सहयोगात्मक कौशल मजबूत हुए।",
-    aboutText2: "मैं ऐसी तकनीक विकसित करने के लिए जुनूनी हूँ जो वास्तविक समस्याओं का समाधान करे और उपयोगकर्ताओं को सार्थक अनुभव प्रदान करे। मुझे नई तकनीकों को सीखने, एप्लिकेशन के प्रदर्शन को बेहतर बनाने और विचारों को विश्वसनीय, स्केलेबल और उपयोगकर्ता-अनुकूल समाधानों में बदलने का आनंद मिलता है। मेरा लक्ष्य एक डेवलपर के रूप में लगातार आगे बढ़ना है और प्रभावशाली डिजिटल उत्पाद बनाना है जो बदलाव ला सकें।",
+    aboutText1: "मैं एक फुल स्टैक डेवलपर हूँ और वर्तमान में IIIT रांची और IIT पटना द्वारा संचालित सहयोगात्मक कार्यक्रम के माध्यम से MCA कर रहा हूँ। मेरे पास MERN स्टैक का उपयोग करके आधुनिक, स्केलेबल वेब एप्लिकेशन बनाने का व्यावहारिक अनुभव है, जिसमें रिस्पॉन्सिव फ्रंटएंड डेवलपमेंट, सुरक्षित बैकएंड APIs, डेटाबेस मैनेजमेंट और एंड-टू-एंड एप्लिकेशन डेवलपमेंट में विशेषज्ञता शामिल है।",
+    aboutText2: "अपनी तकनीकी यात्रा के साथ-साथ, मैंने NTPC लिमिटेड में कॉर्पोरेट कम्युनिकेशन विभाग में एक वर्ष का व्यावसायिक अनुभव प्राप्त किया है, जहाँ मैंने डिजिटल पत्रिकाओं, ब्रांडिंग सामग्रियों, रचनात्मक डिज़ाइनों और कॉर्पोरेट संचार पहलों पर काम किया। इस अनुभव ने मेरी रचनात्मकता, संचार कौशल, टीमवर्क और समस्या-समाधान क्षमताओं को मजबूत किया, साथ ही वास्तविक संगठनात्मक कार्यप्रणालियों का बहुमूल्य अनुभव भी प्रदान किया।",
+    aboutText3: "मैं ऐसी तकनीक बनाने के लिए जुनूनी हूँ जो वास्तविक दुनिया की समस्याओं का समाधान करे और सार्थक उपयोगकर्ता अनुभव प्रदान करे। मुझे नई तकनीकों को सीखने, एप्लिकेशन प्रदर्शन को अनुकूलित करने और साफ, रखरखाव योग्य कोड लिखने में आनंद आता है। मेरा लक्ष्य एक डेवलपर के रूप में लगातार आगे बढ़ना है और ऐसे विश्वसनीय, स्केलेबल और प्रभावशाली डिजिटल उत्पाद बनाना है जो बदलाव ला सकें।",
     
     servicesHeading: "हमारी <span class=\"text-accent\">सेवाएं.</span>",
     skills: "तकनीकी <span class=\"text-accent\">कौशल.</span>",
@@ -264,8 +266,9 @@ const translations = {
     
     // Sections
     about: "हमरा <span class=\"text-accent\">बारे में.</span>",
-    aboutText1: "हम एगो फुल-स्टैक डेवलपर बानी आ हमरा MERN स्टैक के प्रयोग से आधुनिक वेब एप्लीकेशन बनावे के व्यावहारिक अनुभव बा। हम frontend development, backend APIs, database management आ उपयोगकर्ता-केंद्रित डिजिटल समाधान से जुड़ल रियल-वर्ल्ड प्रोजेक्ट्स पर काम कइले बानी। हमरा NTPC लिमिटेड में कॉर्पोरेट कम्युनिकेशन आ डिजाइन प्रोजेक्ट्स में योगदान देवे के भी अनुभव बा, जहाँ हम डिजिटल कंटेंट, क्रिएटिव डिज़ाइन्स आ कम्युनिकेशन मटेरियल्स पर काम कइलीं, जेकरा से हमार तकनीकी, रचनात्मक आ साथ मिलके काम करे के हुनर अउरी मजबूत भइल।",
-    aboutText2: "हम अइसन तकनीक बनावे खातिर जुनूनी बानी जे असल दुनिया के समस्या के समाधान करेला। हमरा परफॉर्मेंस ऑप्टिमाइज कइल, नया तकनीक एक्सप्लोर कइल आ आईडिया के स्केलेबल, विश्वसनीय आ यूजर-friendly डिजिटल समाधान में बदलल बहुत पसंद बा। हम लगातार सीखत रहीले, अपना हुनर के सुधारत रहीले आ तकनीक के माध्यम से प्रभावशाली डिजिटल अनुभव बनावे पर ध्यान केंद्रित करेलीं।",
+    aboutText1: "हम एगो फुल स्टैक डेवलपर बानी आ वर्तमान में IIIT रांची आ IIT पटना द्वारा संचालित सहयोगात्मक कार्यक्रम के माध्यम से MCA करत बानी। हमरा MERN स्टैक के प्रयोग से आधुनिक आ स्केलेबल वेब एप्लीकेशन बनावे के व्यावहारिक अनुभव बा, जवना में रिस्पॉन्सिव फ्रंटएंड डेवलपमेंट, सुरक्षित बैकएंड APIs, डेटाबेस मैनेजमेंट आ एंड-टू-एंड एप्लिकेशन डेवलपमेंट में विशेषज्ञता बा।",
+    aboutText2: "अपना तकनीकी यात्रा के साथ-साथ, हम NTPC लिमिटेड में कॉर्पोरेट कम्युनिकेशन विभाग में एक साल के व्यावसायिक अनुभव प्राप्त कइले बानी, जहाँ हम डिजिटल पत्रिका, ब्रांडिंग सामग्री, रचनात्मक डिज़ाइन आ कॉर्पोरेट संचार पहल पर काम कइलीं। एहि अनुभव से हमार रचनात्मकता, बातचीत करे के तरीका, टीमवर्क आ समस्या-समाधान के क्षमता अउरी मजबूत भइल, आ साथ ही संगठन के असली कामकाज के सीखे के मौका मिलल।",
+    aboutText3: "हम अइसन तकनीक बनावे खातिर जुनूनी बानी जे असल दुनिया के समस्या के समाधान करे। हमरा नया तकनीक सीखल, एप्लिकेशन के परफॉर्मेंस बेहतर बनावल आ साफ़, रखरखाव योग्य कोड लिखल बहुत पसंद बा। हमार लक्ष्य एगो डेवलपर के रूप में लगातार आगे बढ़ल बा आ अइसन विश्वसनीय, स्केलेबल आ प्रभावशाली डिजिटल उत्पाद बनावल बा जे बदलाव ला सके।",
     
     servicesHeading: "हमार <span class=\"text-accent\">सेवा.</span>",
     skills: "तकनीकी <span class=\"text-accent\">कौशल.</span>",
@@ -298,8 +301,9 @@ const translations = {
     
     // Sections
     about: "हमर <span class=\"text-accent\">बारे में.</span>",
-    aboutText1: "हम एकटा फुल-स्टैक डेवलपर छी आ हमरा MERN स्टैक क प्रयोग स आधुनिक वेब एप्लीकेशन बनाबय क व्यावहारिक अनुभव अछि। हम frontend development, backend APIs, database management आ उपयोगकर्ता-केंद्रित डिजिटल समाधान स जुड़ल रियल-वर्ल्ड प्रोजेक्ट्स पर काज करने छी। हमरा NTPC लिमिटेड में कॉर्पोरेट कम्युनिकेशन आ डिजाइन प्रोजेक्ट्स में योगदान देबाक सेहो अनुभव अछि, जतय हम डिजिटल कंटेंट, क्रिएटिव डिज़ाइन्स आ कम्युनिकेशन मटेरियल्स पर काज करने रही, जेकरा स हमर तकनीकी, रचनात्मक आ संगहि मिलिकय काज करबाक कौशल आओर मजबूत भेल।",
-    aboutText2: "हम एहेन तकनीक बनाबय लेल जुनूनी छी जे असल दुनियाक समस्या सभ क समाधान करैत अछि। हमरा परफॉर्मेंस ऑप्टिमाइज़ करब, नव तकनीक एक्सप्लोर करब आ विचार सभ के स्केलेबल, विश्वसनीय आ यूजर-फ्रेंडली डिजिटल समाधान में बदलब बहुत नीक लगैत अछि। हम लगातार सीखैत छी, अपन कौशल में सुधार करैत छी आ तकनीकक माध्यम स प्रभावशाली डिजिटल अनुभव बनाबय पर ध्यान केंद्रित करैत छी।",
+    aboutText1: "हम एकटा फुल स्टैक डेवलपर छी आ वर्तमान में IIIT रांची आ IIT पटना द्वारा संचालित सहयोगात्मक कार्यक्रमक माध्यम स MCA क रहल छी। हमरा MERN स्टैक क प्रयोग स आधुनिक आ स्केलेबल वेब एप्लीकेशन बनेबाक व्यावहारिक अनुभव अछि, जाहि में रिस्पॉन्सिव फ्रंटएंड डेवलपमेंट, सुरक्षित बैकएंड APIs, डेटाबेस मैनेजमेंट आ एंड-टू-एंड एप्लिकेशन डेवलपमेंट में विशेषज्ञता अछि।",
+    aboutText2: "अपन तकनीकी यात्रा क संग-संग, हम NTPC लिमिटेड में कॉर्पोरेट कम्युनिकेशन विभाग में एक वर्षक व्यावसायिक अनुभव प्राप्त कयने छी, जतय हम डिजिटल पत्रिका, ब्रांडिंग सामग्री, रचनात्मक डिज़ाइन आ कॉर्पोरेट संचार पहल पर काज कयलों। एहि अनुभव स हमर रचनात्मकता, संचार कौशल, टीमवर्क आ समस्या-समाधान क्षमता आओर मजबूत भेल, संगहि संगठनक असली कार्यप्रणाली क सीखबाक मौका भेटल।",
+    aboutText3: "हम एहेन तकनीक बनेबाक लेल जुनूनी छी जे असल दुनियाक समस्या सभ क समाधान करैत अछि। हमरा नव तकनीक सीखब, एप्लिकेशन क परफॉर्मेंस बेहतर बनाबब आ साफ़, रख-रखाव योग्य कोड लिखब बहुत नीक लगैत अछि। हमर लक्ष्य एकटा डेवलपर क रूप में लगातार आगा बढ़ब अछि आ एहेन विश्वसनीय, स्केलेबल आ प्रभावशाली डिजिटल उत्पाद बनेब अछि जे बदलाव आनि सकय।",
     
     servicesHeading: "हमर <span class=\"text-accent\">सेवा.</span>",
     skills: "तकनीकी <span class=\"text-accent\">कौशल.</span>",
@@ -353,6 +357,9 @@ function updateLanguage(lang) {
   
   const aboutP2 = document.getElementById('about-description-2');
   if (aboutP2) aboutP2.textContent = t.aboutText2;
+
+  const aboutP3 = document.getElementById('about-description-3');
+  if (aboutP3) aboutP3.textContent = t.aboutText3;
   
   // Update services section heading
   const servicesH2 = document.querySelector('#services h2');
