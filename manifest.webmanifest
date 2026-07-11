@@ -1,20 +1,37 @@
 {
-  "name": "Dipu K Raj | dipukraj.tech",
+  "name": "Dipu K Raj | Portfolio",
   "short_name": "dipukraj",
-  "start_url": "index.html",
+  "description": "Official portfolio of Dipu K Raj – Full-Stack Web Developer, Game Developer & Graphic Designer.",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#3b82f6",
+  "categories": ["education", "business"],
   "icons": [
     {
-      "src": "image/LinkedIn_icon.svg.png",
+      "src": "/image/favicon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "image/LinkedIn_icon.svg.png",
+      "src": "/image/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/image/favicon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/image/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }

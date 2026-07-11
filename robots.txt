@@ -1,6 +1,8 @@
+# www.robotstxt.org/
+# Googlebot & general search crawlers rules for dipukraj.tech
+
 User-agent: *
 Allow: /
-
 Disallow: /admin.html
 Disallow: /maintenance.html
 
