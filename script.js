@@ -188,8 +188,9 @@ const translations = {
     // Hero Section
     heroGreeting: "Hi, I'm",
     heroLocation: "From India",
-    heroTitle: "Full-Stack Web |",
-    heroSubTitle: "   Game Developer | Coder | Graphics Designer ",
+    heroEducation: "MCA Student @ IIT Patna & IIIT Ranchi",
+    heroTitle: "MCA @ IIT Patna |",
+    heroSubTitle: " Full-Stack Web | Game Developer | Coder | Graphics Designer ",
     heroButton: "Contact Me",
     callMe: "Call Me",
     messageMe: "Message Me",
@@ -223,8 +224,9 @@ const translations = {
     // Hero Section
     heroGreeting: "नमस्ते, मैं हूँ",
     heroLocation: "भारत से",
-    heroTitle: "फुल-स्टैक वेब |",
-    heroSubTitle: "   गेम डेवलपर | कोडर | ग्राफ़िक्स डिज़ाइन ",
+    heroEducation: "MCA छात्र @ IIT Patna & IIIT Ranchi",
+    heroTitle: "IIT Patna से MCA |",
+    heroSubTitle: " फुल-स्टैक वेब | गेम डेवलपर | कोडर | ग्राफ़िक्स डिज़ाइन ",
     heroButton: "संपर्क करें",
     callMe: "कॉल करें",
     messageMe: "मैसेज करें",
@@ -258,8 +260,9 @@ const translations = {
     // Hero Section
     heroGreeting: "प्रणाम, हम बानी",
     heroLocation: "भारत से",
-    heroTitle: "फुल-स्टैक वेब |",
-    heroSubTitle: "   गेम डेवलपर | कोडर | ग्राफ़िक्स डिज़ाइन ",
+    heroEducation: "MCA छात्र @ IIT Patna & IIIT Ranchi",
+    heroTitle: "IIT Patna से MCA |",
+    heroSubTitle: " फुल-स्टैक वेब | गेम डेवलपर | कोडर | ग्राफ़िक्स डिज़ाइन ",
     heroButton: "हमरा से बात करीं",
     callMe: "कॉल करीं",
     messageMe: "मैसेज करीं",
@@ -293,8 +296,9 @@ const translations = {
     // Hero Section
     heroGreeting: "प्रणाम, हम छी",
     heroLocation: "भारत स",
-    heroTitle: "फुल-स्टैक वेब |",
-    heroSubTitle: "   गेम डेवलपर | कोडर | ग्राफ़िक्स डिज़ाइन ",
+    heroEducation: "MCA छात्र @ IIT Patna & IIIT Ranchi",
+    heroTitle: "IIT Patna सँ MCA |",
+    heroSubTitle: " फुल-स्टैक वेब | गेम डेवलपर | कोडर | ग्राफ़िक्स डिज़ाइन ",
     heroButton: "हमरा संगे जुड़ू",
     callMe: "कॉल करू",
     messageMe: "संदेश भेजू",
@@ -336,6 +340,9 @@ function updateLanguage(lang) {
   
   const heroLocation = document.getElementById('hero-location-text');
   if (heroLocation) heroLocation.textContent = t.heroLocation;
+  
+  const heroEducation = document.getElementById('hero-education-text');
+  if (heroEducation) heroEducation.textContent = t.heroEducation;
   
   startTypewriter(t.heroTitle, t.heroSubTitle);
   

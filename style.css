@@ -7156,11 +7156,23 @@ Debug: Ensure certificates 54-57 are visible */
      justify-content: center;
    }
 
-   .footer-bottom-row {
-     flex-direction: column;
-     text-align: center;
-     gap: 0.8rem;
-   }
+    .footer-bottom-row {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.8rem;
+    }
+
+    .footer-bottom-row .footer-tagline {
+      order: 1;
+    }
+
+    .footer-bottom-row .footer-branding {
+      order: 2;
+    }
+
+    .footer-bottom-row .footer-copyright {
+      order: 3;
+    }
  }
 
  @media (max-width: 480px) {
@@ -7193,6 +7205,8 @@ Debug: Ensure certificates 54-57 are visible */
    margin-bottom: 1.25rem;
    display: flex;
    justify-content: center;
+   gap: 12px;
+   flex-wrap: wrap;
    width: 100%;
    z-index: 2;
    position: relative;
