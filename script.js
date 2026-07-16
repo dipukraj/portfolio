@@ -14,6 +14,35 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
+// Firebase Auth setup
+let isUserAuthenticated = false;
+let authCallbacks = [];
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (!user) {
+    firebase.auth().signInAnonymously().catch((err) => {
+      console.error("Anonymous authentication error:", err);
+    });
+  } else {
+    isUserAuthenticated = true;
+    localStorage.setItem('visitorId', user.uid);
+    
+    // Execute deferred callbacks
+    while (authCallbacks.length > 0) {
+      const cb = authCallbacks.shift();
+      try { cb(user); } catch (e) { console.error(e); }
+    }
+  }
+});
+
+function runWithAuth(callback) {
+  if (isUserAuthenticated) {
+    callback(firebase.auth().currentUser);
+  } else {
+    authCallbacks.push(callback);
+  }
+}
+
 // Global variables
 let menuToggle = document.querySelector(".menu-toggle");
 let navLinks = document.getElementById("navLinks");
@@ -23,25 +52,27 @@ let typewriterTimeout = null;
 
 // Real-time Visitor Counter
 function updateVisitorCount() {
-  const visitorRef = database.ref('visitorCount');
+  runWithAuth(() => {
+    const visitorRef = database.ref('visitorCount');
 
-  // Increment visitor count
-  visitorRef.transaction((currentCount) => {
-    return (currentCount || 0) + 1;
-  });
+    // Increment visitor count
+    visitorRef.transaction((currentCount) => {
+      return (currentCount || 0) + 1;
+    });
 
-  // Listen for real-time updates
-  visitorRef.on('value', (snapshot) => {
-    const count = snapshot.val() || 0;
-    const counterNum = document.querySelector('#visitor-counter .visitor-number');
-    if (counterNum) {
-      counterNum.textContent = count;
-    } else {
-      const counterDiv = document.getElementById('visitor-counter');
-      if (counterDiv) {
-        counterDiv.textContent = `Visitor Count: ${count}`;
+    // Listen for real-time updates
+    visitorRef.on('value', (snapshot) => {
+      const count = snapshot.val() || 0;
+      const counterNum = document.querySelector('#visitor-counter .visitor-number');
+      if (counterNum) {
+        counterNum.textContent = count;
+      } else {
+        const counterDiv = document.getElementById('visitor-counter');
+        if (counterDiv) {
+          counterDiv.textContent = `Visitor Count: ${count}`;
+        }
       }
-    }
+    });
   });
 }
 
@@ -684,18 +715,20 @@ function initializeLiveChat() {
       return;
     }
     if (message) {
-      // Add message to Firebase
-      const chatRef = database.ref('chatMessages');
-      const newMessage = {
-        text: message,
-        sender: 'visitor',
-        timestamp: Date.now(),
-        visitorId: generateVisitorId()
-      };
+      runWithAuth((user) => {
+        const visitorId = user.uid;
+        const chatRef = database.ref('chatMessages/' + visitorId);
+        const newMessage = {
+          text: message,
+          sender: 'visitor',
+          timestamp: Date.now(),
+          visitorId: visitorId
+        };
 
-      chatRef.push(newMessage);
-      localStorage.setItem('lastChatSentTs', String(now));
-      chatInput.value = '';
+        chatRef.push(newMessage);
+        localStorage.setItem('lastChatSentTs', String(now));
+        chatInput.value = '';
+      });
     }
   }
 
@@ -711,59 +744,50 @@ function initializeLiveChat() {
 
   // Generate unique visitor ID
   function generateVisitorId() {
-    let visitorId = localStorage.getItem('visitorId');
-    if (!visitorId) {
-      visitorId = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-      localStorage.setItem('visitorId', visitorId);
-    }
-    return visitorId;
+    const user = firebase.auth().currentUser;
+    return user ? user.uid : (localStorage.getItem('visitorId') || 'visitor_anonymous');
   }
 
   // Track processed messages to prevent duplicate responses
   const processedMessages = new Set();
   
-  // Listen for real-time messages (single listener for both display and auto-response)
-  const chatRef = database.ref('chatMessages');
-  
-  // Get visitor ID and record session start time
-  const currentVisitorId = generateVisitorId();
-  const sessionStartTime = Date.now();
+  // Register listener and setup auto-response after auth
+  runWithAuth((user) => {
+    const visitorId = user.uid;
+    const sessionStartTime = Date.now();
+    const chatRef = database.ref('chatMessages/' + visitorId);
 
-  // Register listener only once
-  if (!chatListenerRegistered) {
-    chatRef.on('child_added', (snapshot) => {
-      const message = snapshot.val();
-      const messageId = snapshot.key;
-      
-      // Only process/display messages for this visitor
-      if (message.visitorId !== currentVisitorId) {
-        return;
-      }
-      
-      // Display message
-      displayMessage(message);
-      
-      // Auto-response only for visitor messages sent in the current session (and only once per message)
-      if (message.sender === 'visitor' && 
-          message.timestamp >= sessionStartTime && 
-          !processedMessages.has(messageId)) {
-        processedMessages.add(messageId);
+    // Register listener only once
+    if (!chatListenerRegistered) {
+      chatRef.on('child_added', (snapshot) => {
+        const message = snapshot.val();
+        const messageId = snapshot.key;
         
-        // Add auto-response after 2 seconds
-        setTimeout(() => {
-          const autoResponse = {
-            text: addAutoResponse(message.text),
-            sender: 'admin',
-            timestamp: Date.now(),
-            visitorId: currentVisitorId
-          };
-          chatRef.push(autoResponse);
-        }, 2000);
-      }
-    });
-    
-    chatListenerRegistered = true; // Mark as registered
-  }
+        // Display message
+        displayMessage(message);
+        
+        // Auto-response only for visitor messages sent in the current session (and only once per message)
+        if (message.sender === 'visitor' && 
+            message.timestamp >= sessionStartTime && 
+            !processedMessages.has(messageId)) {
+          processedMessages.add(messageId);
+          
+          // Add auto-response after 2 seconds
+          setTimeout(() => {
+            const autoResponse = {
+              text: addAutoResponse(message.text),
+              sender: 'admin',
+              timestamp: Date.now(),
+              visitorId: visitorId
+            };
+            chatRef.push(autoResponse);
+          }, 2000);
+        }
+      });
+      
+      chatListenerRegistered = true; // Mark as registered
+    }
+  });
 
   // Display message in chat
   function displayMessage(message) {
@@ -967,39 +991,43 @@ function initializeAnalytics() {
 
   // Update analytics data
   function updateAnalytics() {
-    // Total visitors
-    const visitorRef = database.ref('visitorCount');
-    visitorRef.once('value', (snapshot) => {
-      const count = snapshot.val() || 0;
-      document.getElementById('total-visitors').textContent = count;
-    });
+    runWithAuth((user) => {
+      // Total visitors
+      const visitorRef = database.ref('visitorCount');
+      visitorRef.once('value', (snapshot) => {
+        const count = snapshot.val() || 0;
+        document.getElementById('total-visitors').textContent = count;
+      });
 
-    // Online now (active in last 5 minutes)
-    const onlineRef = database.ref('onlineUsers');
-    onlineRef.once('value', (snapshot) => {
-      const onlineCount = snapshot.numChildren() || 0;
-      document.getElementById('online-now').textContent = onlineCount;
-    });
+      // Online now (active in last 5 minutes)
+      const onlineRef = database.ref('onlineUsers');
+      onlineRef.once('value', (snapshot) => {
+        const onlineCount = snapshot.numChildren() || 0;
+        document.getElementById('online-now').textContent = onlineCount;
+      });
 
-    // Page views
-    const pageViewsRef = database.ref('pageViews');
-    pageViewsRef.once('value', (snapshot) => {
-      const views = snapshot.val() || 0;
-      document.getElementById('page-views').textContent = views;
-    });
+      // Page views
+      const pageViewsRef = database.ref('pageViews');
+      pageViewsRef.once('value', (snapshot) => {
+        const views = snapshot.val() || 0;
+        document.getElementById('page-views').textContent = views;
+      });
 
-    // Chat messages
-    const chatRef = database.ref('chatMessages');
-    chatRef.once('value', (snapshot) => {
-      const chatCount = snapshot.numChildren() || 0;
-      document.getElementById('chat-count').textContent = chatCount;
+      // Chat messages (only count this visitor's messages since they cannot access others)
+      const chatRef = database.ref('chatMessages/' + user.uid);
+      chatRef.once('value', (snapshot) => {
+        const chatCount = snapshot.numChildren() || 0;
+        document.getElementById('chat-count').textContent = chatCount;
+      });
     });
   }
 
   // Track page view
-  const pageViewsRef = database.ref('pageViews');
-  pageViewsRef.transaction((currentViews) => {
-    return (currentViews || 0) + 1;
+  runWithAuth(() => {
+    const pageViewsRef = database.ref('pageViews');
+    pageViewsRef.transaction((currentViews) => {
+      return (currentViews || 0) + 1;
+    });
   });
 
 }
@@ -1098,36 +1126,35 @@ function initializeFeedback() {
       return;
     }
 
-    const feedback = {
-      rating: selectedRating,
-      text: text,
-      timestamp: Date.now(),
-      visitorId: generateVisitorId(),
-      userAgent: navigator.userAgent
-    };
+    runWithAuth((user) => {
+      const visitorId = user.uid;
+      const feedback = {
+        rating: selectedRating,
+        text: text,
+        timestamp: Date.now(),
+        visitorId: visitorId,
+        userAgent: navigator.userAgent
+      };
 
-    const feedbackRef = database.ref('feedback');
-    feedbackRef.push(feedback).then(() => {
-      showNotification('Thank you for your feedback! 😊', 'success');
-      feedbackText.value = '';
-      selectedRating = 0;
-      stars.forEach(star => star.classList.remove('active'));
-      feedbackPanel.style.display = 'none';
-      localStorage.setItem('lastFeedbackTs', String(nowTs));
-    }).catch((error) => {
-      showNotification('Error submitting feedback. Please try again.', 'error');
+      const feedbackRef = database.ref('feedback');
+      feedbackRef.push(feedback).then(() => {
+        showNotification('Thank you for your feedback! 😊', 'success');
+        feedbackText.value = '';
+        selectedRating = 0;
+        stars.forEach(star => star.classList.remove('active'));
+        feedbackPanel.style.display = 'none';
+        localStorage.setItem('lastFeedbackTs', String(nowTs));
+      }).catch((error) => {
+        showNotification('Error submitting feedback. Please try again.', 'error');
+      });
     });
   });
 }
 
 // Generate unique visitor ID (reuse from chat)
 function generateVisitorId() {
-  let visitorId = localStorage.getItem('visitorId');
-  if (!visitorId) {
-    visitorId = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-    localStorage.setItem('visitorId', visitorId);
-  }
-  return visitorId;
+  const user = firebase.auth().currentUser;
+  return user ? user.uid : (localStorage.getItem('visitorId') || 'visitor_anonymous');
 }
 
 // Detect visitor details (device, OS, browser)
@@ -1173,47 +1200,33 @@ function getVisitorDetails() {
 
 // Track visitor in database (both permanent visitorHistory and temporary onlineUsers)
 function trackVisitor() {
-  try {
-    const visitorId = generateVisitorId();
-    const details = getVisitorDetails();
-    const timestamp = Date.now();
+  runWithAuth((user) => {
+    try {
+      const visitorId = user.uid;
+      const details = getVisitorDetails();
+      const timestamp = Date.now();
 
-    // 1. Save visitor details permanently
-    database.ref(`visitorHistory/${visitorId}`).set({
-      timestamp: timestamp,
-      device: details.device,
-      os: details.os,
-      browser: details.browser,
-      userAgent: navigator.userAgent
-    });
-
-    // 2. Set online status temporarily
-    const onlineRef = database.ref(`onlineUsers/${visitorId}`);
-    onlineRef.set({
-      timestamp: timestamp,
-      device: details.device,
-      os: details.os,
-      browser: details.browser,
-      userAgent: navigator.userAgent
-    });
-
-    // Remove from online users when page unloads
-    window.addEventListener('beforeunload', () => {
-      onlineRef.remove();
-    });
-
-    // 3. Clean up expired online users (older than 5 minutes) globally
-    setInterval(() => {
-      const cutoff = Date.now() - (5 * 60 * 1000);
-      database.ref('onlineUsers').orderByChild('timestamp').endAt(cutoff).once('value', (snapshot) => {
-        snapshot.forEach((child) => {
-          child.ref.remove();
-        });
+      // 1. Save visitor details permanently
+      database.ref(`visitorHistory/${visitorId}`).set({
+        timestamp: timestamp,
+        device: details.device,
+        os: details.os,
+        browser: details.browser,
+        userAgent: navigator.userAgent
       });
-    }, 60000); // Check every minute
-  } catch (e) {
-    console.error("Error in tracking visitor:", e);
-  }
+
+      // 2. Set online status temporarily (only storing timestamp to hide user details publicly)
+      const onlineRef = database.ref(`onlineUsers/${visitorId}`);
+      onlineRef.set({
+        timestamp: timestamp
+      });
+
+      // Remove from online users when page unloads or client disconnects
+      onlineRef.onDisconnect().remove();
+    } catch (e) {
+      console.error("Error in tracking visitor:", e);
+    }
+  });
 }
 
 // Initialize all systems when DOM is loaded

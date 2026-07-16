@@ -173,6 +173,7 @@
   <!-- Firebase SDK -->
   <script defer src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
 
   <!-- Preload hero background image -->
   <link rel="preload" href="image/bg.jpg" as="image">
@@ -1740,11 +1741,7 @@
         return false;
       }
 
-      try {
-        if (typeof firebase === 'undefined' || !firebase || !firebase.database) {
-          throw new Error('Firebase is not available');
-        }
-
+      function submitMessage() {
         var contactRef = firebase.database().ref('contactMessages');
         contactRef.push({
           name: name,
@@ -1784,6 +1781,23 @@
             alert('Error sending message. Please try again.');
           }
         });
+      }
+
+      try {
+        if (typeof firebase === 'undefined' || !firebase || !firebase.database) {
+          throw new Error('Firebase is not available');
+        }
+
+        if (firebase.auth && firebase.auth().currentUser) {
+          submitMessage();
+        } else if (firebase.auth) {
+          firebase.auth().signInAnonymously().then(submitMessage).catch(function (err) {
+            console.error("Auth fallback error:", err);
+            submitMessage();
+          });
+        } else {
+          submitMessage();
+        }
       } catch (e) {
         console.error(e);
         if (typeof showNotification === 'function') {

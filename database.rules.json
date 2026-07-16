@@ -1,0 +1,51 @@
+{
+  "rules": {
+    "visitorCount": {
+      ".read": "auth != null",
+      ".write": "auth != null && (!data.exists() && newData.val() === 1 || newData.val() === data.val() + 1)",
+      ".validate": "newData.isNumber()"
+    },
+    "pageViews": {
+      ".read": "auth != null",
+      ".write": "auth != null && (!data.exists() && newData.val() === 1 || newData.val() === data.val() + 1)",
+      ".validate": "newData.isNumber()"
+    },
+    "onlineUsers": {
+      ".read": "auth != null",
+      "$uid": {
+        ".write": "auth != null && ($uid === auth.uid || auth.token.email === 'admin@dipu-portfolio.com')",
+        ".validate": "newData.hasChild('timestamp') && newData.child('timestamp').isNumber()"
+      }
+    },
+    "visitorHistory": {
+      ".read": "auth != null && auth.token.email === 'admin@dipu-portfolio.com'",
+      "$uid": {
+        ".write": "auth != null && (auth.token.email === 'admin@dipu-portfolio.com' || ($uid === auth.uid && !data.exists()))",
+        ".validate": "newData.hasChildren(['timestamp', 'device', 'os', 'browser', 'userAgent'])"
+      }
+    },
+    "contactMessages": {
+      ".read": "auth != null && auth.token.email === 'admin@dipu-portfolio.com'",
+      "$messageId": {
+        ".write": "auth != null && (auth.token.email === 'admin@dipu-portfolio.com' || (!data.exists() && newData.exists()))",
+        ".validate": "newData.hasChildren(['name', 'email', 'message', 'timestamp']) && newData.child('name').isString() && newData.child('name').val().length > 0 && newData.child('email').isString() && newData.child('email').val().matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$/) && newData.child('message').isString() && newData.child('message').val().length > 0 && newData.child('timestamp').isNumber()"
+      }
+    },
+    "feedback": {
+      ".read": "auth != null && auth.token.email === 'admin@dipu-portfolio.com'",
+      "$feedbackId": {
+        ".write": "auth != null && (auth.token.email === 'admin@dipu-portfolio.com' || (!data.exists() && newData.exists()))",
+        ".validate": "newData.hasChildren(['rating', 'text', 'timestamp', 'visitorId']) && newData.child('rating').isNumber() && newData.child('rating').val() >= 1 && newData.child('rating').val() <= 5 && newData.child('text').isString() && newData.child('text').val().length >= 10 && newData.child('timestamp').isNumber() && newData.child('visitorId').val() === auth.uid"
+      }
+    },
+    "chatMessages": {
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || auth.token.email === 'admin@dipu-portfolio.com')",
+        "$messageId": {
+          ".write": "auth != null && (auth.uid === $uid || auth.token.email === 'admin@dipu-portfolio.com')",
+          ".validate": "newData.hasChildren(['text', 'sender', 'timestamp', 'visitorId']) && newData.child('text').isString() && newData.child('text').val().length > 0 && (newData.child('sender').val() === 'visitor' || newData.child('sender').val() === 'admin') && newData.child('timestamp').isNumber() && newData.child('visitorId').val() === $uid"
+        }
+      }
+    }
+  }
+}

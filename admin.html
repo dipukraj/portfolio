@@ -23,6 +23,7 @@
   <!-- Firebase SDK (same as main site) -->
   <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
 
   <style>
     body {
@@ -769,46 +770,51 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-      setLoadStatus('Authenticating…');
+      initFirebase();
+      setLoadStatus('Checking session…');
 
-      let isAdmin = false;
-      try {
-        isAdmin = sessionStorage.getItem('isAdmin') === '1';
-      } catch (e) {
-        isAdmin = false;
-      }
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user && user.email === 'admin@dipu-portfolio.com') {
+          setLoadStatus('Authenticated. Connecting to Firebase…');
+          try {
+            sessionStorage.setItem('isAdmin', '1');
+          } catch (e) { }
 
-      if (!isAdmin) {
-        const pass = prompt('Enter admin password:');
-        if (pass !== ADMIN_PASSWORD) {
-          setLoadStatus('Access denied. Incorrect password.', true);
-          clearTableBody('messagesBody');
-          addEmptyRow('messagesBody', 6, 'Access denied. Reload the page and enter the correct password.');
-          return;
+          try {
+            // Initialize device detection
+            detectDevice();
+            
+            loadSummary();
+            loadMessages();
+            loadFeedback();
+            loadOnlineUsers();
+            loadVisitorHistory();
+          } catch (e) {
+            console.error(e);
+            setLoadStatus('Error loading dashboard data.', true);
+          }
+        } else {
+          const pass = prompt('Enter admin password:');
+          if (pass !== ADMIN_PASSWORD) {
+            setLoadStatus('Access denied. Incorrect password.', true);
+            clearTableBody('messagesBody');
+            addEmptyRow('messagesBody', 6, 'Access denied. Reload the page and enter the correct password.');
+            return;
+          }
+
+          setLoadStatus('Authenticating securely with Firebase…');
+          firebase.auth().signInWithEmailAndPassword('admin@dipu-portfolio.com', pass)
+            .then(() => {
+              setLoadStatus('Sign-in successful. Loading dashboard…');
+            })
+            .catch((err) => {
+              console.error("Firebase Auth Error:", err);
+              setLoadStatus('Firebase authentication failed: ' + err.message, true);
+              clearTableBody('messagesBody');
+              addEmptyRow('messagesBody', 6, 'Firebase authentication failed. Enable Email/Password Auth in Firebase Console and create user "admin@dipu-portfolio.com" with password "' + ADMIN_PASSWORD + '".');
+            });
         }
-        try {
-          sessionStorage.setItem('isAdmin', '1');
-        } catch (e) { }
-      }
-
-      try {
-        initFirebase();
-        setLoadStatus('Authenticated. Connecting to Firebase…');
-        
-        // Initialize device detection
-        detectDevice();
-        
-        loadSummary();
-        loadMessages();
-        loadFeedback();
-        loadOnlineUsers();
-        loadVisitorHistory();
-      } catch (e) {
-        console.error(e);
-        setLoadStatus('Error initializing Firebase.', true);
-        clearTableBody('messagesBody');
-        addEmptyRow('messagesBody', 6, 'Error initializing Firebase. Check console for details.');
-      }
+      });
     });
   </script>
   <script defer src="cursor-trail.js"></script>
