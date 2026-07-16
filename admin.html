@@ -794,7 +794,16 @@
             setLoadStatus('Error loading dashboard data.', true);
           }
         } else {
-          const pass = prompt('Enter admin password:');
+          // Attempt to retrieve password from sessionStorage first
+          let pass = null;
+          try {
+            pass = sessionStorage.getItem('adminPassword');
+          } catch (e) { }
+
+          if (!pass) {
+            pass = prompt('Enter admin password:');
+          }
+
           if (pass !== ADMIN_PASSWORD) {
             setLoadStatus('Access denied. Incorrect password.', true);
             clearTableBody('messagesBody');
@@ -806,9 +815,16 @@
           firebase.auth().signInWithEmailAndPassword('admin@dipu-portfolio.com', pass)
             .then(() => {
               setLoadStatus('Sign-in successful. Loading dashboard…');
+              try {
+                sessionStorage.setItem('adminPassword', pass);
+              } catch(e) {}
             })
             .catch((err) => {
               console.error("Firebase Auth Error:", err);
+              // Clear stored password if it failed firebase auth
+              try {
+                sessionStorage.removeItem('adminPassword');
+              } catch(e) {}
               setLoadStatus('Firebase authentication failed: ' + err.message, true);
               clearTableBody('messagesBody');
               addEmptyRow('messagesBody', 6, 'Firebase authentication failed. Enable Email/Password Auth in Firebase Console and create user "admin@dipu-portfolio.com" with password "' + ADMIN_PASSWORD + '".');

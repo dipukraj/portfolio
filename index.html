@@ -1718,6 +1718,7 @@
       if (pass === '5ukoonAdmin') {
         try {
           sessionStorage.setItem('isAdmin', '1');
+          sessionStorage.setItem('adminPassword', pass);
         } catch (e) { }
         window.location.href = 'admin.html';
       } else if (pass !== null) {
