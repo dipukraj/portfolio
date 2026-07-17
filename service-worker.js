@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dipukraj-portfolio-cache-v1';
+const CACHE_NAME = 'dipukraj-portfolio-cache-v2';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -12,7 +12,9 @@ const ASSETS_TO_CACHE = [
   '/image/favicon-144x144.png',
   '/image/favicon-192x192.png',
   '/image/favicon-512x512.png',
-  '/image/bg.jpg'
+  '/image/bg.jpg',
+  '/image/github-thumbnail-image.png',
+  '/image/my-work-car.jpg'
 ];
 
 // Install Service Worker and Cache Assets
