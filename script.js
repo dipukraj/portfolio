@@ -243,13 +243,13 @@ const translations = {
     navServices: "Services",
     navSkills: "Skills",
     navExperience: "Experience",
-    navProjects: "My Projects",
-    navWork: "My Work",
+    navProjects: "Projects",
+    navWork: "Work",
     navContact: "Contact",
-    navCertificate: "Certificate",
-    navWebsite: "Website",
+    navCertificate: "Certificates",
+    navWebsite: "Websites",
     navGames: "Games",
-    navGraphics: "Graphics Design"
+    navGraphics: "Graphics"
   },
   hi: {
     // Hero Section
@@ -279,13 +279,13 @@ const translations = {
     navServices: "सेवाएं",
     navSkills: "कौशल",
     navExperience: "अनुभव",
-    navProjects: "मेरे प्रोजेक्ट",
-    navWork: "मेरा काम",
+    navProjects: "प्रोजेक्ट्स",
+    navWork: "काम",
     navContact: "संपर्क",
     navCertificate: "प्रमाणपत्र",
     navWebsite: "वेबसाइट",
     navGames: "गेम्स",
-    navGraphics: "ग्राफिक्स डिजाइन"
+    navGraphics: "ग्राफ़िक्स"
   },
   bho: {
     // Hero Section
@@ -315,13 +315,13 @@ const translations = {
     navServices: "सेवा",
     navSkills: "कौशल",
     navExperience: "अनुभव",
-    navProjects: "हमार प्रोजेक्ट",
-    navWork: "हमार काम",
+    navProjects: "प्रोजेक्ट्स",
+    navWork: "काम",
     navContact: "संपर्क",
     navCertificate: "प्रमाणपत्र",
     navWebsite: "वेबसाइट",
     navGames: "गेम",
-    navGraphics: "ग्राफिक्स डिजाइन"
+    navGraphics: "ग्राफ़िक्स"
   },
   mai: {
     // Hero Section
@@ -351,13 +351,13 @@ const translations = {
     navServices: "सेवा",
     navSkills: "कौशल",
     navExperience: "अनुभव",
-    navProjects: "हमर प्रोजेक्ट",
-    navWork: "हमर काम",
+    navProjects: "प्रोजेक्ट्स",
+    navWork: "काज",
     navContact: "संपर्क",
     navCertificate: "प्रमाणपत्र",
     navWebsite: "वेबसाइट",
     navGames: "गेम",
-    navGraphics: "ग्राफिक्स डिजाइन"
+    navGraphics: "ग्राफ़िक्स"
   }
 };
 

@@ -290,8 +290,8 @@
       #theme-toggle {
         display: inline-flex !important;
         margin-left: auto !important;
-        width: 38px !important;
-        height: 38px !important;
+        width: 32px !important;
+        height: 32px !important;
         border-radius: 8px !important;
       }
 
@@ -301,6 +301,9 @@
         padding: 4px 10px !important;
         border-radius: 8px !important;
         gap: 4px !important;
+        min-width: 90px !important;
+        flex-shrink: 0 !important;
+        font-variant-numeric: tabular-nums !important;
       }
     }
 
@@ -368,8 +371,11 @@
       <li><a href="#skills" data-info="See my tech skills">Skills</a></li>
       <li><a href="#experience" data-info="Check out my experience">Experience</a></li>
       <li><a href="#projects" data-info="Check out my projects">Projects</a></li>
+      <li><a href="#work" data-info="Check out my work showcase">Work</a></li>
+      <li><a href="#website" data-info="Explore my live websites">Websites</a></li>
+      <li><a href="#games" data-info="Play my web games">Games</a></li>
       <li><a href="#certificate" data-info="See my certificates">Certificates</a></li>
-      <li><a href="graphics.html" data-info="See my graphic design work">Graphics Design</a></li>
+      <li><a href="graphics.html" data-info="See my graphic design work">Graphics</a></li>
       <li><a href="#contact" data-info="Get in touch with me">Contact</a></li>
     </ul>
   </nav>
@@ -1963,8 +1969,9 @@
       // Convert to 12-hour format
       hours = hours % 12;
       hours = hours ? hours : 12; // the hour '0' should be '12'
+      const formattedHours = String(hours).padStart(2, '0');
 
-      document.getElementById('time').textContent = `${hours}:${minutes}:${seconds}`;
+      document.getElementById('time').textContent = `${formattedHours}:${minutes}:${seconds}`;
       document.getElementById('ampm').textContent = ampm;
     }
 
