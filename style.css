@@ -383,27 +383,31 @@
     }
   }
 
- /* Navigation */
- .navbar {
-   position: sticky;
-   top: 0;
-   width: 100%;
-   background-color: var(--navbar-bg-color);
-   padding: 1.25rem 2rem;
-   z-index: 999;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
- }
+  /* Navigation */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: var(--navbar-bg-color);
+    padding: 1.5rem 2.5rem;
+    min-height: 84px;
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
- .navbar.scrolled {
-   background-color: color-mix(in srgb, var(--navbar-bg-color) 85%, #000000) !important;
-   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-   border-bottom: 1.5px solid color-mix(in srgb, var(--primary-color) 35%, transparent);
-   padding-top: 0.85rem;
-   padding-bottom: 0.85rem;
- }
+  .navbar.scrolled {
+    background-color: color-mix(in srgb, var(--navbar-bg-color) 85%, #000000) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    border-bottom: 1.5px solid color-mix(in srgb, var(--primary-color) 35%, transparent);
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+    min-height: 76px;
+  }
 
  #live-clock {
    display: inline-flex;
@@ -531,7 +535,8 @@
 
   @media (min-width: 1200px) and (max-width: 1480px) {
     .navbar {
-      padding: 0.75rem 1rem;
+      padding: 1.3rem 1.8rem;
+      min-height: 78px;
       flex-wrap: nowrap;
       align-items: center;
       gap: 0.25rem;
@@ -644,11 +649,12 @@
   /* Desktop / tablet navbar — compact links so the bar stays on one row */
   @media (min-width: 1481px) {
     .navbar {
-     padding: 0.95rem 1.35rem;
-     flex-wrap: nowrap;
-     align-items: center;
-     gap: 0.35rem;
-   }
+      padding: 1.45rem 2.2rem;
+      min-height: 82px;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 0.35rem;
+    }
 
    .navbar .logo {
      font-size: 1.2rem;
@@ -734,7 +740,9 @@
 
  /* Hero section */
  header#hero {
-   height: 100vh;
+   min-height: 115vh;
+   padding-top: 110px;
+   padding-bottom: 4rem;
    display: flex;
    flex-direction: column;
    justify-content: center;
@@ -745,7 +753,6 @@
    background-position: center;
    background-repeat: no-repeat;
    position: relative;
-   padding: 2rem;
  }
 
  /* Add an overlay to make text more readable */
@@ -4208,12 +4215,13 @@
    }
 
    /* Navbar improvements - three lines icon same line mein, center align */
-   .navbar {
-     padding: 1rem 1.1rem;
-     flex-wrap: nowrap;
-     gap: 0.5rem;
-     align-items: center;
-   }
+    .navbar {
+      padding: 1.3rem 1.5rem;
+      min-height: 75px;
+      flex-wrap: nowrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
 
    .menu-toggle {
      display: flex !important;
@@ -4519,11 +4527,12 @@
    }
 
    /* Navbar - compact */
-   .navbar {
-     padding: 0.85rem 1rem !important;
-     flex-wrap: wrap;
-     gap: 0.3rem;
-   }
+    .navbar {
+      padding: 1.25rem 1.25rem !important;
+      min-height: 72px;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
 
    .logo {
      font-size: 1.2rem !important;
@@ -6372,9 +6381,10 @@ Debug: Ensure certificates 54-57 are visible */
      padding: 1rem !important;
    }
 
-   .navbar {
-     padding: 0.85rem 1rem !important;
-   }
+    .navbar {
+      padding: 1.2rem 1.25rem !important;
+      min-height: 70px;
+    }
 
    .logo {
      font-size: 1.15rem !important;

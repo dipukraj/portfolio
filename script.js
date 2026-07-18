@@ -531,6 +531,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // Toggle navbar background shadow on scroll
+  const navbarEl = document.querySelector('.navbar');
+  if (navbarEl) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        navbarEl.classList.add('scrolled');
+      } else {
+        navbarEl.classList.remove('scrolled');
+      }
+    }, { passive: true });
+  }
+
   // Real-time Visitor Counter
   updateVisitorCount();
 
