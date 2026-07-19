@@ -232,19 +232,26 @@
         display: none !important;
       }
 
-      /* Compact mobile menu items spacing */
+      /* Compact mobile menu items spacing & uniform full-width boxes */
       .nav-links {
         gap: 2px !important;
         padding: 70px 15px 15px 15px !important;
+        align-items: stretch !important;
       }
 
       .nav-links li {
         margin: 2px 0 !important;
+        width: 100% !important;
       }
 
       .nav-links li a {
-        padding: 6px 12px !important;
+        display: flex !important;
+        align-items: center !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 8px 14px !important;
         font-size: 14px !important;
+        border-radius: 8px !important;
       }
 
       .mobile-only-lang {

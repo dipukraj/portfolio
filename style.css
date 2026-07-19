@@ -1491,6 +1491,7 @@
 
    .nav-links li {
      margin: 6px 0 !important;
+     width: 100% !important;
    }
 
    /* Light mode mobile navigation text fix */
@@ -4766,10 +4767,19 @@
      padding: 80px 25px 25px;
    }
 
+   .nav-links li {
+     width: 100% !important;
+   }
+
    .nav-links li a {
+     display: flex !important;
+     align-items: center !important;
+     width: 100% !important;
+     box-sizing: border-box !important;
      padding: 10px 12px !important;
      font-size: 16px !important;
      margin: 4px 0;
+     border-radius: 8px;
    }
 
    .nav-links li a:hover {
@@ -7543,13 +7553,19 @@ Debug: Ensure certificates 54-57 are visible */
    }
 
    .nav-links li {
-     margin: 2px 0 !important;
-   }
+      margin: 2px 0 !important;
+      width: 100% !important;
+    }
 
-   .nav-links li a {
-     padding: 6px 12px !important;
-     font-size: 14px !important;
-   }
+    .nav-links li a {
+      display: flex !important;
+      align-items: center !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      padding: 8px 14px !important;
+      font-size: 14px !important;
+      border-radius: 8px !important;
+    }
  }
 
  /* Theme toggle button inside mobile menu styling */
