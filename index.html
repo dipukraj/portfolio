@@ -373,17 +373,18 @@
         </div>
       </li>
       <li><a href="#hero" data-info="Welcome to my portfolio">Home</a></li>
-      <li><a href="#about" data-info="Learn more about me">About</a></li>
+      <li class="mobile-only-link"><a href="#about" data-info="Learn more about me">About</a></li>
       <li><a href="#services" data-info="Check out my services">Services</a></li>
-      <li><a href="#skills" data-info="See my tech skills">Skills</a></li>
-      <li><a href="#experience" data-info="Check out my experience">Experience</a></li>
-      <li><a href="#projects" data-info="Check out my projects">Projects</a></li>
+      <li class="mobile-only-link"><a href="#skills" data-info="See my tech skills">Skills</a></li>
+      <li class="mobile-only-link"><a href="#experience" data-info="Check out my experience">Experience</a></li>
+      <li class="mobile-only-link"><a href="#projects" data-info="Check out my projects">Projects</a></li>
       <li><a href="#work" data-info="Check out my work showcase">Work</a></li>
       <li><a href="#website" data-info="Explore my live websites">Websites</a></li>
       <li><a href="#games" data-info="Play my web games">Games</a></li>
       <li><a href="#certificate" data-info="See my certificates">Certificates</a></li>
+      <li class="mobile-only-link"><a href="#education" data-info="Check out my education">Education</a></li>
       <li><a href="graphics.html" data-info="See my graphic design work">Graphics</a></li>
-      <li><a href="#contact" data-info="Get in touch with me">Contact</a></li>
+      <li class="mobile-only-link"><a href="#contact" data-info="Get in touch with me">Contact</a></li>
     </ul>
   </nav>
 
@@ -396,6 +397,33 @@
       fetchpriority="high" loading="eager" />
 
     <div id="bgcover"></div>
+
+    <!-- Secondary Floating Capsule Navbar -->
+    <div class="hero-nav-capsule">
+      <a href="https://dipukraj.tech/" class="capsule-logo-link" title="dipukraj.tech">
+        <img src="image/favicon2.png" alt="Dipu K Raj Logo" class="capsule-logo-img" />
+      </a>
+      <ul class="capsule-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Connect</a></li>
+      </ul>
+      <div class="capsule-socials">
+        <a href="https://github.com/dipukraj" target="_blank" rel="noopener noreferrer" title="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/dipukraj" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="mailto:websitedeveloper108@gmail.com" title="Email">
+          <i class="fa-regular fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+
     <h1><span id="hero-greeting-text">Hi, I'm</span> <span id="hero-name-color">Dipu K Raj</span></h1>
     <div class="hero-location-container">
       <span class="location-badge">
@@ -1045,6 +1073,17 @@
       <div onclick="closeCertificate()"
         style="position:absolute; top:30px; right:30px; width:60px; height:60px; background:#ff4444; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:2.5rem; color:white; font-weight:bold; z-index:10000; box-shadow:0 4px 15px rgba(0,0,0,0.3);">
         ×</div>
+
+      <!-- Prev Button -->
+      <div onclick="navigateCertificate(-1); event.stopPropagation();" class="cert-modal-btn cert-prev-btn"
+        title="Previous Certificate">
+        <i class="fa-solid fa-chevron-left"></i>
+      </div>
+      <!-- Next Button -->
+      <div onclick="navigateCertificate(1); event.stopPropagation();" class="cert-modal-btn cert-next-btn"
+        title="Next Certificate">
+        <i class="fa-solid fa-chevron-right"></i>
+      </div>
 
       <!-- Certificate Image -->
       <div
@@ -1715,6 +1754,14 @@
       </div>
     </div>
 
+    <!-- Suggestion Chips -->
+    <div class="chat-suggestions">
+      <button type="button" class="suggestion-chip" onclick="sendSuggestion('📂 Show Projects')">📂 Projects</button>
+      <button type="button" class="suggestion-chip" onclick="sendSuggestion('📄 Download CV')">📄 CV</button>
+      <button type="button" class="suggestion-chip" onclick="sendSuggestion('📞 Contact Info')">📞 Contact</button>
+      <button type="button" class="suggestion-chip" onclick="sendSuggestion('🎮 Play Games')">🎮 Games</button>
+    </div>
+
     <div class="chat-input-container">
       <input type="text" id="chat-input" placeholder="Type your message..." maxlength="200">
       <button id="send-message" class="send-btn">Send</button>
@@ -1897,7 +1944,9 @@
       70: "/image certificate/Data Privacy.jpg",
       71: "/image certificate/Artificial Intelligence.jpg",
     };
+    let currentCertificateNum = 1;
     function showCertificate(num) {
+      currentCertificateNum = num;
       // Debug: Check if function is called for certificate 62
       if (num === 62) {
         console.log('Certificate 62 clicked, path:', certificatePaths[62]);
@@ -1920,6 +1969,18 @@
       }
 
       document.body.style.overflow = 'hidden';
+    }
+
+    function navigateCertificate(direction) {
+      const keys = Object.keys(certificatePaths).map(Number).sort((a, b) => a - b);
+      let currentIndex = keys.indexOf(currentCertificateNum);
+      if (currentIndex === -1) currentIndex = 0;
+
+      let nextIndex = currentIndex + direction;
+      if (nextIndex < 0) nextIndex = keys.length - 1;
+      if (nextIndex >= keys.length) nextIndex = 0;
+
+      showCertificate(keys[nextIndex]);
     }
 
     function closeCertificate() {

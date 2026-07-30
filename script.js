@@ -245,11 +245,12 @@ const translations = {
     navExperience: "Experience",
     navProjects: "Projects",
     navWork: "Work",
-    navContact: "Contact",
+    navContact: "Connect",
     navCertificate: "Certificates",
     navWebsite: "Websites",
     navGames: "Games",
-    navGraphics: "Graphics"
+    navGraphics: "Graphics",
+    navEducation: "Education"
   },
   hi: {
     // Hero Section
@@ -285,7 +286,8 @@ const translations = {
     navCertificate: "प्रमाणपत्र",
     navWebsite: "वेबसाइट",
     navGames: "गेम्स",
-    navGraphics: "ग्राफ़िक्स"
+    navGraphics: "ग्राफ़िक्स",
+    navEducation: "शिक्षा"
   },
   bho: {
     // Hero Section
@@ -357,7 +359,8 @@ const translations = {
     navCertificate: "प्रमाणपत्र",
     navWebsite: "वेबसाइट",
     navGames: "गेम",
-    navGraphics: "ग्राफ़िक्स"
+    navGraphics: "ग्राफ़िक्स",
+    navEducation: "शिक्षा"
   }
 };
 
@@ -417,17 +420,18 @@ function updateLanguage(lang) {
   // Update navigation links
   const navLinks = {
     'navHome': '.nav-links a[href="#hero"]',
-    'navAbout': '.nav-links a[href="#about"]',
+    'navAbout': '.nav-links a[href="#about"], .capsule-links a[href="#about"]',
     'navServices': '.nav-links a[href="#services"]',
-    'navSkills': '.nav-links a[href="#skills"]',
-    'navExperience': '.nav-links a[href="#experience"]',
-    'navProjects': '.nav-links a[href="#projects"]',
+    'navSkills': '.nav-links a[href="#skills"], .capsule-links a[href="#skills"]',
+    'navExperience': '.nav-links a[href="#experience"], .capsule-links a[href="#experience"]',
+    'navProjects': '.nav-links a[href="#projects"], .capsule-links a[href="#projects"]',
     'navWork': '.nav-links a[href="#work"]',
-    'navContact': '.nav-links a[href="#contact"]',
+    'navContact': '.nav-links a[href="#contact"], .capsule-links a[href="#contact"]',
     'navCertificate': '.nav-links a[href="#certificate"]',
     'navWebsite': '.nav-links a[href="#website"]',
     'navGames': '.nav-links a[href="#games"]',
-    'navGraphics': '.nav-links a[href*="graphics.html"]'
+    'navGraphics': '.nav-links a[href*="graphics.html"]',
+    'navEducation': '.capsule-links a[href="#education"]'
   };
   
   Object.entries(navLinks).forEach(([key, selector]) => {
@@ -540,6 +544,40 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         navbarEl.classList.remove('scrolled');
       }
+    }, { passive: true });
+  }
+
+  // ScrollSpy active link highlighting
+  const spySections = document.querySelectorAll("section[id], header[id]");
+  const spyNavLinks = document.querySelectorAll(".nav-links li a");
+  
+  if (spySections.length && spyNavLinks.length) {
+    window.addEventListener('scroll', () => {
+      let currentSection = "";
+      const scrollPos = window.scrollY + 150;
+      
+      if (window.scrollY < 100) {
+        currentSection = "hero";
+      } else {
+        spySections.forEach(section => {
+          const top = section.offsetTop;
+          const height = section.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            currentSection = section.getAttribute("id");
+          }
+        });
+      }
+      
+      spyNavLinks.forEach(link => {
+        const href = link.getAttribute("href");
+        if (href && href.startsWith("#")) {
+          if (href === `#${currentSection}` || (currentSection === "hero" && href === "#hero")) {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
+        }
+      });
     }, { passive: true });
   }
 
@@ -1287,5 +1325,17 @@ document.addEventListener("DOMContentLoaded", function () {
     navigator.serviceWorker.register('/service-worker.js').catch(() => { });
   }
 });
+
+// Chat suggestion sender
+window.sendSuggestion = function(text) {
+  const chatInput = document.getElementById('chat-input');
+  if (chatInput) {
+    chatInput.value = text;
+    const sendBtn = document.getElementById('send-message');
+    if (sendBtn) {
+      sendBtn.click();
+    }
+  }
+};
 
 // Certificate functions are now handled in HTML inline scripts
