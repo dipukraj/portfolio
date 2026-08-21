@@ -314,19 +314,52 @@
    color: #0ea5e9;
  }
 
-   /* Mobile adjustments for theme toggle */
-   @media (max-width: 1199px) {
+ /* Ensure contact buttons stay side-by-side on all small displays */
+ @media (max-width: 400px) {
+   .contact-buttons {
+     display: flex !important;
+     flex-direction: row !important;
+     align-items: center !important;
+     justify-content: center !important;
+     flex-wrap: nowrap !important;
+     width: 100% !important;
+     gap: 8px !important;
+     padding: 0 5px !important;
+   }
 
-    /* Hide desktop language selector in navbar */
-    .navbar .language-switcher-container {
+   .contact-btn {
+     flex: 1 1 50% !important;
+     width: auto !important;
+     text-align: center !important;
+     justify-content: center !important;
+     padding: 9px 12px !important;
+     font-size: 0.82rem !important;
+     white-space: nowrap !important;
+   }
+ }
+
+   /* Mobile adjustments for theme toggle */
+   /* ==========================================
+    MOBILE RESPONSIVENESS AND UX IMPROVEMENTS
+    ========================================== */
+
+  /* Hide mobile language switcher on desktop */
+  .mobile-only-lang {
+    display: none !important;
+  }
+
+  @media (max-width: 1199px) {
+
+    /* 1. Hide the desktop language selector wrapper in the header */
+    .navbar .language-switcher-container,
+    .language-switcher-container {
       display: none !important;
     }
 
-    /* Show mobile-only language selector in slide-out menu */
+    /* 2. Show the mobile-only language selector in the slide-out menu */
     .mobile-only-lang {
       display: block !important;
-      margin-bottom: 25px !important;
-      padding: 0 10px;
+      margin: 15px 10px 25px 10px !important;
     }
 
     .mobile-only-lang .language-switcher-container {
@@ -335,7 +368,7 @@
       gap: 8px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 8px 12px;
+      padding: 10px 14px;
       border-radius: 8px;
       width: 100%;
     }
@@ -348,20 +381,34 @@
       width: 100%;
       outline: none;
       cursor: pointer;
+      font-family: 'Outfit', sans-serif;
     }
 
+    /* Light mode styles for mobile language switcher */
     body.light-mode .mobile-only-lang .language-switcher-container {
-      background: rgba(0, 0, 0, 0.03);
-      border-color: rgba(0, 0, 0, 0.1);
+      background: rgba(0, 0, 0, 0.03) !important;
+      border-color: rgba(0, 0, 0, 0.1) !important;
     }
 
     body.light-mode .mobile-only-lang select {
-      color: #0f172a;
+      color: #0f172a !important;
+    }
+
+    body.light-mode .mobile-only-lang .globe-icon {
+      color: var(--primary-color) !important;
+    }
+
+    /* 3. Ensure the Live Clock and Theme Toggle are sized and spaced cleanly next to Hamburger menu */
+    #live-clock {
+      margin-left: auto !important;
+      font-size: 0.75rem !important;
+      padding: 4px 10px !important;
+      border-radius: 8px !important;
+      gap: 4px !important;
     }
 
     #theme-toggle {
       display: inline-flex !important;
-      margin-left: auto !important;
       width: 36px !important;
       height: 36px !important;
       border-radius: 8px !important;
@@ -4535,8 +4582,9 @@
     .navbar {
        padding: 0.9rem 1.25rem !important;
        min-height: 62px;
-       flex-wrap: wrap;
+       flex-wrap: nowrap !important;
        gap: 0.3rem;
+       align-items: center !important;
      }
 
    .logo {
@@ -7420,23 +7468,6 @@ Debug: Ensure certificates 54-57 are visible */
    }
  }
 
-
-
- /* Auto-stack contact buttons on very small displays to prevent horizontal scrolling */
- @media (max-width: 400px) {
-   .contact-buttons {
-     flex-direction: column !important;
-     width: 100% !important;
-     gap: 10px !important;
-   }
-
-   .contact-btn {
-     width: 100% !important;
-     text-align: center;
-     justify-content: center;
-   }
- }
-
  /* ==========================================
    MOBILE RESPONSIVENESS AND UX IMPROVEMENTS
    ========================================== */
@@ -7957,64 +7988,68 @@ Debug: Ensure certificates 54-57 are visible */
 
   /* Chat Suggestion Chips Styling */
   .chat-suggestions {
-    display: flex;
-    gap: 8px;
-    padding: 10px 16px;
-    overflow-x: auto;
-    white-space: nowrap;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    background: rgba(15, 23, 42, 0.2);
-    box-sizing: border-box;
-  }
-
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .chat-suggestions::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .chat-suggestions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 10px 14px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    background: rgba(15, 23, 42, 0.4) !important;
+    box-sizing: border-box !important;
+    -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
   }
 
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .chat-suggestions::-webkit-scrollbar {
+    display: none !important;
+  }
+
   .suggestion-chip {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #ccd6f6;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.82rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    outline: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #e2e8f0 !important;
+    padding: 6px 14px !important;
+    border-radius: 20px !important;
+    font-size: 0.8rem !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.25s ease !important;
+    outline: none !important;
+    box-sizing: border-box !important;
+    gap: 5px !important;
   }
 
   .suggestion-chip:hover {
-    background: rgba(56, 189, 248, 0.15);
-    border-color: var(--primary-color);
-    color: #38bdf8;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(56, 189, 248, 0.12);
+    background: rgba(56, 189, 248, 0.2) !important;
+    border-color: var(--primary-color) !important;
+    color: #38bdf8 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2) !important;
   }
 
   body.light-mode .chat-suggestions {
-    border-top-color: rgba(0, 0, 0, 0.05);
-    background: rgba(0, 0, 0, 0.01);
+    border-top-color: rgba(0, 0, 0, 0.05) !important;
+    background: rgba(0, 0, 0, 0.02) !important;
   }
 
   body.light-mode .suggestion-chip {
-    background: rgba(0, 0, 0, 0.03);
-    border-color: rgba(0, 0, 0, 0.08);
-    color: #475569;
+    background: rgba(0, 0, 0, 0.04) !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
+    color: #334155 !important;
   }
 
   body.light-mode .suggestion-chip:hover {
-    background: color-mix(in srgb, var(--primary-color) 10%, transparent);
-    border-color: var(--primary-color);
-    color: var(--primary-color);
+    background: color-mix(in srgb, var(--primary-color) 12%, transparent) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
   }

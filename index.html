@@ -300,34 +300,50 @@
         width: 32px !important;
         height: 32px !important;
         border-radius: 8px !important;
+        flex-shrink: 0 !important;
       }
 
       #live-clock {
-        margin-left: 0.5rem !important;
-        font-size: 0.75rem !important;
-        padding: 4px 10px !important;
-        border-radius: 8px !important;
-        gap: 4px !important;
-        min-width: 90px !important;
+        margin-left: 0.35rem !important;
+        font-size: 0.72rem !important;
+        padding: 3px 6px !important;
+        border-radius: 6px !important;
+        gap: 3px !important;
+        min-width: unset !important;
         flex-shrink: 0 !important;
         font-variant-numeric: tabular-nums !important;
       }
+
+      .menu-toggle {
+        margin-left: 0.35rem !important;
+        flex-shrink: 0 !important;
+      }
     }
 
-    @media (max-width: 400px) {
+    /* Force Call Me & Message Me to stay side-by-side on all mobile devices (no vertical stacking) */
+    @media (max-width: 768px) {
       .contact-buttons {
-        flex-direction: column !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-wrap: nowrap !important;
         width: 100% !important;
-        gap: 10px !important;
-        padding: 0 10px;
+        max-width: 380px !important;
+        gap: 8px !important;
+        margin: 15px auto 0 auto !important;
+        padding: 0 10px !important;
       }
 
       .contact-btn {
-        width: 100% !important;
-        text-align: center;
-        justify-content: center;
-        padding: 12px 20px !important;
-        font-size: 0.9rem !important;
+        flex: 1 1 50% !important;
+        width: auto !important;
+        padding: 9px 12px !important;
+        font-size: 0.82rem !important;
+        white-space: nowrap !important;
+        text-align: center !important;
+        justify-content: center !important;
+        border-radius: 12px !important;
       }
     }
   </style>
