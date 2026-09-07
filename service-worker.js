@@ -1,8 +1,10 @@
-const CACHE_NAME = 'dipukraj-portfolio-cache-v3';
+const CACHE_NAME = 'dipukraj-portfolio-cache-v4';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
   '/graphics.html',
+  '/privacy',
+  '/privacy.html',
   '/style.css',
   '/script.js',
   '/manifest.webmanifest',
