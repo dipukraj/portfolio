@@ -979,22 +979,24 @@
 
  /* Project Title Highlight */
  .project h3 a {
-   color: #38bdf8;
+   color: #f8fafc;
    text-decoration: none;
-   font-weight: bold;
-   transition: all 0.3s ease;
-   background: linear-gradient(145deg, rgba(56, 189, 248, 0.2), rgba(15, 23, 42, 0.3));
-   padding: 8px 15px;
-   border-radius: 10px;
-   display: inline-block;
-   box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
+   font-weight: 700;
+   transition: all 0.25s ease;
+   background: transparent;
+   padding: 0;
+   border-radius: 0;
+   display: inline-flex;
+   align-items: center;
+   gap: 6px;
+   box-shadow: none;
  }
 
  .project h3 a:hover {
-   color: #0ea5e9;
-   background: linear-gradient(145deg, rgba(56, 189, 248, 0.3), rgba(15, 23, 42, 0.4));
-   transform: translateY(-3px);
-   box-shadow: 0 6px 20px rgba(56, 189, 248, 0.3);
+   color: var(--primary-color, #38bdf8);
+   background: transparent;
+   transform: translateX(2px);
+   box-shadow: none;
  }
 
  /* Keep other project elements unchanged */
@@ -3583,32 +3585,53 @@
  }
 
  h3.project-title-label {
-   font-size: 1.25rem;
-   font-weight: 800;
-   margin-bottom: 0.8rem;
-   letter-spacing: 0.5px;
-   line-height: 1.4;
+   font-size: 1.28rem;
+   font-weight: 700;
+   margin: 0.25rem 0 0.5rem 0;
+   letter-spacing: -0.2px;
+   line-height: 1.35;
    width: 100%;
+   text-align: left;
  }
 
  h3.project-title-label a {
-   color: #38bdf8;
+   color: #f8fafc;
    text-decoration: none;
-   transition: all 0.3s ease;
-   display: inline-block;
+   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+   display: inline-flex;
+   align-items: center;
+   gap: 8px;
+   background: transparent !important;
+   padding: 0 !important;
+   border-radius: 0 !important;
+   box-shadow: none !important;
+ }
+
+ h3.project-title-label a i.title-arrow {
+   font-size: 0.8rem;
+   opacity: 0.6;
+   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+   color: var(--primary-color, #38bdf8);
+ }
+
+ .project:hover h3.project-title-label a i.title-arrow,
+ h3.project-title-label a:hover i.title-arrow {
+   opacity: 1;
+   transform: translate(2px, -2px);
  }
 
  h3.project-title-label a:hover {
-   color: #a855f7;
-   transform: translateY(-1px);
+   color: var(--primary-color, #38bdf8) !important;
  }
 
  body.light-mode h3.project-title-label a {
-   color: var(--primary-color) !important;
+   color: #0f172a !important;
+   background: transparent !important;
+   box-shadow: none !important;
  }
 
  body.light-mode h3.project-title-label a:hover {
-   color: #a855f7 !important;
+   color: var(--primary-color) !important;
  }
 
  .projects-grid {
@@ -3620,29 +3643,30 @@
  }
 
  .project {
-   background: linear-gradient(145deg, rgba(30, 41, 59, 0.45), rgba(15, 23, 42, 0.65));
+   background: linear-gradient(145deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.75));
    border-radius: 20px;
-   padding: 1.4rem;
+   padding: 1.35rem;
    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-   border: 1px solid rgba(56, 189, 248, 0.15);
+   border: 1px solid rgba(255, 255, 255, 0.08);
    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
    backdrop-filter: blur(12px);
    -webkit-backdrop-filter: blur(12px);
    display: flex;
    flex-direction: column;
-   justify-content: space-between;
-   align-items: center;
-   text-align: center;
+   justify-content: flex-start;
+   align-items: stretch;
+   text-align: left;
    height: 100%;
    box-sizing: border-box;
    margin-bottom: 0 !important;
    overflow: hidden;
+   position: relative;
  }
 
  .project:hover {
    transform: translateY(-8px);
-   box-shadow: 0 18px 40px rgba(56, 189, 248, 0.22);
-   border-color: rgba(56, 189, 248, 0.45);
+   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), 0 0 25px color-mix(in srgb, var(--primary-color, #38bdf8) 22%, transparent);
+   border-color: color-mix(in srgb, var(--primary-color, #38bdf8) 45%, transparent);
  }
 
  body.light-mode .project {
@@ -3741,21 +3765,21 @@
  .project-content {
    display: flex;
    flex-direction: column;
-   align-items: center;
-   text-align: center;
+   align-items: flex-start;
+   text-align: left;
    flex-grow: 1;
    width: 100%;
-   justify-content: space-between;
  }
 
  /* Project title styling is handled by h3.project-title-label rules */
 
  .project p {
    color: #94a3b8;
-   font-size: 1rem;
-   margin: 1rem 0;
-   line-height: 1.6;
+   font-size: 0.93rem;
+   margin: 0.25rem 0 1.25rem 0;
+   line-height: 1.65;
    flex-grow: 1;
+   text-align: left;
  }
 
  body.light-mode .project p {
@@ -3763,18 +3787,47 @@
  }
 
  .project-tech {
-   font-size: 0.9rem !important;
-   color: #38bdf8 !important;
-   font-weight: 600;
-   background: rgba(56, 189, 248, 0.1);
-   padding: 4px 12px;
-   border-radius: 8px;
-   margin-bottom: 1rem !important;
-   display: inline-block;
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   gap: 6px;
+   margin-bottom: 0.65rem !important;
+   background: transparent !important;
+   padding: 0 !important;
+   border-radius: 0 !important;
+   width: 100%;
  }
 
- body.light-mode .project-tech {
-   background: rgba(56, 189, 248, 0.08);
+ .project-tag {
+   display: inline-flex;
+   align-items: center;
+   gap: 5px;
+   font-size: 0.74rem;
+   font-weight: 600;
+   letter-spacing: 0.3px;
+   padding: 3px 10px;
+   border-radius: 20px;
+   background: color-mix(in srgb, var(--primary-color, #38bdf8) 10%, transparent);
+   border: 1px solid color-mix(in srgb, var(--primary-color, #38bdf8) 25%, transparent);
+   color: var(--primary-color, #38bdf8);
+   transition: all 0.25s ease;
+   line-height: 1.4;
+ }
+
+ .project-tag i {
+   font-size: 0.68rem;
+   opacity: 0.85;
+ }
+
+ .project:hover .project-tag {
+   background: color-mix(in srgb, var(--primary-color, #38bdf8) 18%, transparent);
+   border-color: color-mix(in srgb, var(--primary-color, #38bdf8) 45%, transparent);
+ }
+
+ body.light-mode .project-tag {
+   background: color-mix(in srgb, var(--primary-color, #0284c7) 8%, #ffffff);
+   border-color: color-mix(in srgb, var(--primary-color, #0284c7) 22%, transparent);
+   color: var(--primary-color, #0284c7);
  }
 
  .highlight-btn {
@@ -8104,8 +8157,17 @@ Debug: Ensure certificates 54-57 are visible */
   /* Project Links Styling */
   .project-links {
     display: flex;
-    gap: 12px;
-    margin-top: 15px;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 100%;
+    margin-top: auto;
+    padding-top: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  body.light-mode .project-links {
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
   }
 
   .project-links a {
@@ -8119,7 +8181,7 @@ Debug: Ensure certificates 54-57 are visible */
     border-radius: 50%;
     color: var(--primary-color) !important;
     font-size: 1.1rem;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
   }
 
@@ -8127,8 +8189,8 @@ Debug: Ensure certificates 54-57 are visible */
     background: var(--primary-color);
     color: white !important;
     border-color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px color-mix(in srgb, var(--primary-color) 40%, transparent);
+    transform: translateY(-3px) scale(1.06);
+    box-shadow: 0 4px 15px color-mix(in srgb, var(--primary-color) 40%, transparent);
   }
 
   body.light-mode .project-links a {

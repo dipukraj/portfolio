@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dipukraj-portfolio-cache-v4';
+const CACHE_NAME = 'dipukraj-portfolio-cache-v5';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -64,7 +64,7 @@ self.addEventListener('fetch', (event) => {
             });
           }
         }).catch(() => { /* Ignore background fetch errors */ });
-        
+
         return cachedResponse;
       }
 

@@ -1322,7 +1322,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Register Service Worker
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js').catch(() => { });
+    navigator.serviceWorker.register('/service-worker.js?v=5').catch(() => { });
   }
 });
 
