@@ -320,8 +320,123 @@
       }
     }
 
-    /* Force Call Me & Message Me to stay side-by-side on all mobile devices (no vertical stacking) */
+    /* Universal Mobile Alignment & Typography Fixes (prevents overflow, ensures uniform look across all phones) */
+    html,
+    body {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+    }
+
     @media (max-width: 768px) {
+
+      /* 1. Header & Navbar Alignment */
+      .navbar {
+        padding: 0.65rem 0.85rem !important;
+        gap: 6px !important;
+        min-height: 58px !important;
+      }
+
+      .navbar .logo {
+        font-size: clamp(0.95rem, 3.2vw, 1.15rem) !important;
+        max-width: 130px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex-shrink: 1 !important;
+      }
+
+      #live-clock {
+        font-size: clamp(0.66rem, 2vw, 0.74rem) !important;
+        padding: 3px 6px !important;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+        font-variant-numeric: tabular-nums !important;
+        letter-spacing: -0.2px !important;
+      }
+
+      #theme-toggle {
+        width: 32px !important;
+        height: 32px !important;
+        flex-shrink: 0 !important;
+      }
+
+      .menu-toggle {
+        width: 32px !important;
+        height: 32px !important;
+        flex-shrink: 0 !important;
+      }
+
+      /* 2. Hero Section - Fluid, Proportional Sizing */
+      #hero {
+        padding-top: 85px !important;
+        padding-bottom: 2.5rem !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        min-height: 100svh !important;
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
+      }
+
+      #hero h1 {
+        font-size: clamp(1.65rem, 5.2vw, 2.25rem) !important;
+        line-height: 1.25 !important;
+        margin-bottom: 0.75rem !important;
+        padding: 0 4px !important;
+        word-break: break-word !important;
+        text-align: center !important;
+      }
+
+      .hero-location-container {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8px !important;
+        flex-wrap: wrap !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin-bottom: 1rem !important;
+        box-sizing: border-box !important;
+      }
+
+      .location-badge {
+        font-size: clamp(0.74rem, 2.4vw, 0.86rem) !important;
+        padding: 5px 12px !important;
+        border-radius: 20px !important;
+        gap: 5px !important;
+        max-width: 95% !important;
+        line-height: 1.3 !important;
+        text-align: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+        white-space: normal !important;
+      }
+
+      #hero h2,
+      #typewriter-title {
+        font-size: clamp(1.15rem, 3.8vw, 1.5rem) !important;
+        line-height: 1.35 !important;
+        text-align: center !important;
+        margin-bottom: 0.5rem !important;
+        padding: 0 8px !important;
+      }
+
+      #hero p,
+      #typewriter-subtitle {
+        font-size: clamp(0.85rem, 2.8vw, 1rem) !important;
+        line-height: 1.5 !important;
+        text-align: center !important;
+        margin-bottom: 1.25rem !important;
+        padding: 0 10px !important;
+        max-width: 95% !important;
+      }
+
+      .contact-circle-btn {
+        width: clamp(90px, 24vw, 115px) !important;
+        height: clamp(90px, 24vw, 115px) !important;
+      }
+
+      /* Call Me & Message Me side-by-side */
       .contact-buttons {
         display: flex !important;
         flex-direction: row !important;
@@ -329,21 +444,180 @@
         justify-content: center !important;
         flex-wrap: nowrap !important;
         width: 100% !important;
-        max-width: 380px !important;
-        gap: 8px !important;
+        max-width: 340px !important;
+        gap: 10px !important;
         margin: 15px auto 0 auto !important;
-        padding: 0 10px !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
       }
 
       .contact-btn {
         flex: 1 1 50% !important;
+        min-width: 0 !important;
         width: auto !important;
-        padding: 9px 12px !important;
-        font-size: 0.82rem !important;
+        padding: 10px 10px !important;
+        font-size: clamp(0.76rem, 2.4vw, 0.88rem) !important;
         white-space: nowrap !important;
         text-align: center !important;
         justify-content: center !important;
         border-radius: 12px !important;
+      }
+
+      /* 3. Contact Section Redesign for Mobile */
+      #contact {
+        padding: 3rem 12px !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
+      }
+
+      .contact-card-wrapper {
+        padding: 1.6rem 1.1rem !important;
+        gap: 2rem !important;
+        border-radius: 18px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+      }
+
+      .contact-info-panel {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+      }
+
+      .contact-info-panel h3 {
+        font-size: clamp(1.4rem, 4.5vw, 1.8rem) !important;
+        text-align: left !important;
+        margin-bottom: 0.75rem !important;
+      }
+
+      .contact-desc {
+        font-size: 0.95rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 1.5rem !important;
+        text-align: left !important;
+      }
+
+      .contact-details {
+        gap: 1.1rem !important;
+        margin-bottom: 1.5rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .contact-detail-item {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.9rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .contact-detail-icon {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        font-size: 1.15rem !important;
+        border-radius: 10px !important;
+        flex-shrink: 0 !important;
+      }
+
+      .contact-detail-content {
+        min-width: 0 !important;
+        flex: 1 1 auto !important;
+        overflow: hidden !important;
+      }
+
+      .contact-detail-content h4 {
+        font-size: 0.8rem !important;
+        margin-bottom: 2px !important;
+      }
+
+      .contact-detail-content a,
+      .contact-detail-content span {
+        font-size: clamp(0.78rem, 2.9vw, 0.98rem) !important;
+        word-break: break-all !important;
+        overflow-wrap: anywhere !important;
+        display: inline-block !important;
+        max-width: 100% !important;
+        line-height: 1.35 !important;
+      }
+
+      /* Social icons grid - 4 columns, perfectly aligned and contained */
+      .contact-info-panel .social-icons,
+      .social-icons {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 10px 8px !important;
+        width: 100% !important;
+        max-width: 260px !important;
+        margin: 1.25rem 0 0 0 !important;
+        justify-items: start !important;
+        box-sizing: border-box !important;
+      }
+
+      .social-icon-link {
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+
+      .social-icon-link i {
+        font-size: 1.05rem !important;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        font-size: 0.95rem !important;
+        padding: 0.9rem 1rem !important;
+      }
+
+      .contact-submit-btn {
+        width: 100% !important;
+        padding: 12px 20px !important;
+        font-size: 0.92rem !important;
+      }
+
+      /* 4. Force ALL Section Headings to Center on Mobile */
+      h2,
+      .section h2,
+      section h2,
+      #about h2,
+      #services h2,
+      #skills h2,
+      #experience h2,
+      #education h2,
+      #design h2,
+      #achievements h2,
+      #certificate h2,
+      #extra-curricular h2,
+      #work h2,
+      #website h2,
+      #games h2,
+      #cv h2,
+      #projects h2,
+      #contact h2 {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        width: 100% !important;
+        display: block !important;
+      }
+
+      h2::after,
+      .section h2::after,
+      section h2::after {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
       }
     }
   </style>
@@ -472,18 +746,15 @@
     <h2 id="about-title">About <span class="text-accent">Me.</span></h2>
     <div class="about-container">
       <div class="about-text">
-        <p id="about-description-1">I am a Full Stack Developer currently pursuing an MCA through the collaborative
-          program offered by IIIT Ranchi &amp; IIT Patna. I have hands-on experience in building modern, scalable web
-          applications using the MERN stack, with expertise in responsive frontend development, secure backend APIs,
-          database management, and complete end-to-end application development.</p>
-        <p id="about-description-2">Alongside my technical journey, I gained one year of professional experience at NTPC
-          Limited in Corporate Communication, where I worked on digital magazines, branding materials, creative designs,
-          and corporate communication initiatives. This experience strengthened my creativity, communication, teamwork,
-          and problem-solving abilities while providing valuable exposure to real-world organizational workflows.</p>
-        <p id="about-description-3">I am passionate about building technology that solves real-world problems and
-          delivers meaningful user experiences. I enjoy learning new technologies, optimizing application performance,
-          and writing clean, maintainable code. My goal is to continuously grow as a developer while creating reliable,
-          scalable, and impactful digital products that make a difference.</p>
+        <p id="about-description-1">I’m a Full Stack Developer pursuing an MCA at IIT Patna & IIIT Ranchi. I build
+          complete products with the MERN stack, from responsive UI to secure APIs, databases, and deployment, and I
+          also develop cross-platform mobile apps with React Native.</p>
+        <p id="about-description-2">Recently, I published IIT PG HUB, an academic companion app on the Play Store for
+          IIT Patna & IIIT Ranchi students, and built SBC Pharma, a full-stack e-pharmacy platform with payments,
+          shipping, prescription verification, and role-based panels.</p>
+        <p id="about-description-3">Before this, I spent a year at NTPC Limited in Corporate Communication, designing
+          e-magazines and branding materials. That design experience gives me a strong eye for clean, user-friendly
+          interfaces, and working with multiple departments taught me to deliver on deadlines.</p>
 
         <div class="about-stats">
           <div class="stat-item">
@@ -517,26 +788,26 @@
       <div class="service-box">
         <div class="service-icon"><i class="fa-solid fa-laptop-code"></i></div>
         <h3 id="service-webdev-title">Full-Stack Web Development</h3>
-        <p id="service-webdev-desc">Building fast, scalable, and responsive web applications using React, Node.js,
-          Express.js, and MongoDB.</p>
+        <p id="service-webdev-desc">Building scalable, responsive, and user-friendly web applications using React.js,
+          Node.js, Express.js, and MongoDB, with a focus on clean code, performance, and seamless user experiences.</p>
       </div>
       <div class="service-box">
         <div class="service-icon"><i class="fa-solid fa-palette"></i></div>
         <h3 id="service-uiux-title">UI/UX & Web Design</h3>
-        <p id="service-uiux-desc">Designing modern, responsive, and user-friendly interfaces that enhance usability and
-          deliver seamless digital experiences.</p>
+        <p id="service-uiux-desc">Designing intuitive, visually engaging, and responsive user interfaces with a focus on
+          usability, accessibility, and consistent user experiences across devices.</p>
       </div>
       <div class="service-box">
         <div class="service-icon"><i class="fa-solid fa-server"></i></div>
         <h3 id="service-backend-title">Backend & API Solutions</h3>
-        <p id="service-backend-desc">Developing secure backend systems, RESTful APIs, and database solutions for
-          scalable and high-performance applications.</p>
+        <p id="service-backend-desc">Developing reliable backend systems and RESTful APIs with secure authentication,
+          efficient database integration, and scalable server-side architecture.</p>
       </div>
       <div class="service-box">
         <div class="service-icon"><i class="fa-solid fa-lightbulb"></i></div>
         <h3 id="service-creative-title">Creative & Digital Solutions</h3>
-        <p id="service-creative-desc">Creating professional graphics, digital content, branding materials, and visual
-          assets that strengthen communication and engagement.</p>
+        <p id="service-creative-desc">Creating impactful visual content, professional graphics, digital creatives, and
+          branding materials to communicate ideas effectively and enhance brand identity.</p>
       </div>
     </div>
   </section>
@@ -580,7 +851,7 @@
 
       <!-- Box 3: Developer Tools -->
       <div class="skill-card">
-        <h3 id="skill-tools-title">Developer Tools</h3>
+        <h3 id="skill-tools-title">Developer Tools & Platforms</h3>
         <div class="skills-badge-container">
           <span class="skill-badge">Git</span>
           <span class="skill-badge">GitHub</span>
@@ -594,9 +865,9 @@
         </div>
       </div>
 
-      <!-- Box 4: AI Tools for Developers -->
+      <!-- Box 4: AI-Powered Tools for Developers -->
       <div class="skill-card">
-        <h3 id="skill-ai-title">AI Tools for Developers</h3>
+        <h3 id="skill-ai-title">AI-Powered Development Tools</h3>
         <div class="skills-badge-container">
           <span class="skill-badge">ChatGPT</span>
           <span class="skill-badge">GitHub Copilot</span>
@@ -1383,8 +1654,14 @@
       <p id="cv-subtitle" class="cv-subtitle">Get a copy of my professional resume to see my detailed qualifications,
         experience, and projects.</p>
       <div class="cv-button-wrapper">
-        <a href="cv.pdf" id="download-cv-btn" class="cv-btn" download>
-          <i class="fa-solid fa-file-pdf"></i> <span id="cv-btn-text">Download CV</span> <i
+        <a href="pdf/Resume%20Dipu.pdf" id="download-cv-btn" class="cv-btn" download="Resume Dipu.pdf" target="_blank"
+          title="Download Resume in PDF Format">
+          <i class="fa-solid fa-file-pdf"></i> <span id="cv-btn-text">Download CV (PDF)</span> <i
+            class="fa-solid fa-arrow-down-long download-arrow"></i>
+        </a>
+        <a href="pdf/Resume%20Dipu.jpg" id="download-cv-img-btn" class="cv-btn cv-btn-img" download="Resume Dipu.jpg"
+          target="_blank" title="Download Resume as Image">
+          <i class="fa-solid fa-image"></i> <span>Download (Image)</span> <i
             class="fa-solid fa-arrow-down-long download-arrow"></i>
         </a>
       </div>
@@ -1397,84 +1674,207 @@
     <div class="projects-grid">
       <!-- Project 1 -->
       <div class="project" id="project1">
-        <h3 class="project-title-label">
-          <a href="https://ccmportal.netlify.app/login" target="_blank" rel="noopener noreferrer">Corporate
-            Communication Management Portal</a>
-        </h3>
-        <div class="project-tech">MERN Stack</div>
-        <p>A secure role-based platform that helps organizations manage digital communication assets including
-          magazines, posters, banners, and certificates with centralized content management.</p>
-        <div class="project-links">
-          <a href="https://github.com/dipukraj/Corporate-Communication-Management-Portal" target="_blank"
-            rel="noopener noreferrer" title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
-          <a href="https://ccmportal.netlify.app/login" target="_blank" rel="noopener noreferrer" title="Live Demo"><i
-              class="fa-solid fa-link"></i></a>
+        <div class="project-img-wrapper">
+          <a href="https://play.google.com/store/apps/details?id=com.dipukraj.iitpghub" target="_blank"
+            rel="noopener noreferrer" class="project-img-link" title="IIT PG Hub">
+            <img src="projects-image/iit-pg-hub.jpg" alt="IIT PG Hub Android App" loading="lazy" class="project-img">
+            <div class="project-img-overlay">
+              <span class="project-view-badge"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+                Preview</span>
+            </div>
+          </a>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title-label">
+            <a href="https://play.google.com/store/apps/details?id=com.dipukraj.iitpghub" target="_blank"
+              rel="noopener noreferrer">IIT PG Hub</a>
+          </h3>
+          <div class="project-tech">Android App | Academic Platform</div>
+          <p>A dedicated academic companion designed for postgraduate students at IIT, providing academic tools,
+            timetable
+            schedules, and campus utilities with a privacy-first architecture.</p>
+          <div class="project-links">
+            <a href="https://github.com/dipukraj" target="_blank" rel="noopener noreferrer" title="GitHub Repository"><i
+                class="fa-brands fa-github"></i></a>
+            <a href="https://play.google.com/store/apps/details?id=com.dipukraj.iitpghub" target="_blank"
+              rel="noopener noreferrer" title="Google Play Store"><i class="fa-brands fa-google-play"></i></a>
+          </div>
         </div>
       </div>
 
       <!-- Project 2 -->
       <div class="project" id="project2">
-        <h3 class="project-title-label">
-          <a href="https://thedeliciousfastfoods.netlify.app/" target="_blank" rel="noopener noreferrer">The Delicious
-            Fast Foods</a>
-        </h3>
-        <div class="project-tech">HTML | CSS | JavaScript</div>
-        <p>A beautiful, modern, and highly responsive restaurant website featuring an attractive food menu showcase and
-          interactive user interfaces.</p>
-        <div class="project-links">
-          <a href="https://github.com/dipukraj/DELICIOUS-FAST-FOOD" target="_blank" rel="noopener noreferrer"
-            title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
-          <a href="https://thedeliciousfastfoods.netlify.app/" target="_blank" rel="noopener noreferrer"
-            title="Live Demo"><i class="fa-solid fa-link"></i></a>
+        <div class="project-img-wrapper">
+          <a href="https://sbcpharma.com/" target="_blank" rel="noopener noreferrer" class="project-img-link"
+            title="SBC Pharma">
+            <img src="projects-image/sbc-pharma.jpg" alt="SBC Pharma Website" loading="lazy" class="project-img">
+            <div class="project-img-overlay">
+              <span class="project-view-badge"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+                Preview</span>
+            </div>
+          </a>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title-label">
+            <a href="https://sbcpharma.com/" target="_blank" rel="noopener noreferrer">SBC Pharma</a>
+          </h3>
+          <div class="project-tech">MERN Stack | Healthcare</div>
+          <p>A comprehensive pharmaceutical web portal and management system designed for managing medicine inventories,
+            billing, prescriptions, and healthcare operations.</p>
+          <div class="project-links">
+            <a href="https://github.com/dipukraj" target="_blank" rel="noopener noreferrer" title="GitHub Repository"><i
+                class="fa-brands fa-github"></i></a>
+            <a href="https://sbcpharma.com/" target="_blank" rel="noopener noreferrer" title="Live Demo"><i
+                class="fa-solid fa-link"></i></a>
+          </div>
         </div>
       </div>
 
       <!-- Project 3 -->
       <div class="project" id="project3">
-        <h3 class="project-title-label">
-          <a href="https://dipukraj.tech/" target="_blank" rel="noopener noreferrer">My Portfolio Profile</a>
-        </h3>
-        <div class="project-tech">Web Portfolio</div>
-        <p>My official professional portfolio website showcasing my skills, experiences, certificates, games, and web
-          projects with multilingual support.</p>
-        <div class="project-links">
-          <a href="https://github.com/dipukraj/portfolio" target="_blank" rel="noopener noreferrer"
-            title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
-          <a href="https://dipukraj.tech/" target="_blank" rel="noopener noreferrer" title="Live Demo"><i
-              class="fa-solid fa-link"></i></a>
+        <div class="project-img-wrapper">
+          <a href="https://ccmportal.netlify.app/login" target="_blank" rel="noopener noreferrer"
+            class="project-img-link" title="Corporate Communication Management Portal">
+            <img src="projects-image/ccm-portal.jpg" alt="Corporate Communication Management Portal" loading="lazy"
+              class="project-img">
+            <div class="project-img-overlay">
+              <span class="project-view-badge"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+                Preview</span>
+            </div>
+          </a>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title-label">
+            <a href="https://ccmportal.netlify.app/login" target="_blank" rel="noopener noreferrer">Corporate
+              Communication Management Portal</a>
+          </h3>
+          <div class="project-tech">MERN Stack</div>
+          <p>A secure role-based platform that helps organizations manage digital communication assets including
+            magazines, posters, banners, and certificates with centralized content management.</p>
+          <div class="project-links">
+            <a href="https://github.com/dipukraj/Corporate-Communication-Management-Portal" target="_blank"
+              rel="noopener noreferrer" title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+            <a href="https://ccmportal.netlify.app/login" target="_blank" rel="noopener noreferrer" title="Live Demo"><i
+                class="fa-solid fa-link"></i></a>
+          </div>
         </div>
       </div>
 
       <!-- Project 4 -->
       <div class="project" id="project4">
-        <h3 class="project-title-label">
-          <a href="https://pradeepsir.netlify.app/" target="_blank" rel="noopener noreferrer">Professor Website</a>
-        </h3>
-        <div class="project-tech">Educational Platform</div>
-        <p>A clean and professional academic profile website designed for educators to share resource materials, course
-          updates, and achievements with students.</p>
-        <div class="project-links">
-          <a href="https://github.com/dipukraj/Pradeep-Sir-website" target="_blank" rel="noopener noreferrer"
-            title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
-          <a href="https://pradeepsir.netlify.app/" target="_blank" rel="noopener noreferrer" title="Live Demo"><i
-              class="fa-solid fa-link"></i></a>
+        <div class="project-img-wrapper">
+          <a href="https://thedeliciousfastfoods.netlify.app/" target="_blank" rel="noopener noreferrer"
+            class="project-img-link" title="The Delicious Fast Foods">
+            <img src="projects-image/fast-food.jpg" alt="The Delicious Fast Foods" loading="lazy" class="project-img">
+            <div class="project-img-overlay">
+              <span class="project-view-badge"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+                Preview</span>
+            </div>
+          </a>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title-label">
+            <a href="https://thedeliciousfastfoods.netlify.app/" target="_blank" rel="noopener noreferrer">The Delicious
+              Fast Foods</a>
+          </h3>
+          <div class="project-tech">HTML | CSS | JavaScript</div>
+          <p>A beautiful, modern, and highly responsive restaurant website featuring an attractive food menu showcase
+            and
+            interactive user interfaces.</p>
+          <div class="project-links">
+            <a href="https://github.com/dipukraj/DELICIOUS-FAST-FOOD" target="_blank" rel="noopener noreferrer"
+              title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+            <a href="https://thedeliciousfastfoods.netlify.app/" target="_blank" rel="noopener noreferrer"
+              title="Live Demo"><i class="fa-solid fa-link"></i></a>
+          </div>
         </div>
       </div>
 
       <!-- Project 5 -->
       <div class="project" id="project5">
-        <h3 class="project-title-label">
-          <a href="https://certificatedesigne.netlify.app/" target="_blank" rel="noopener noreferrer">Certificate
-            Design</a>
-        </h3>
-        <div class="project-tech">Graphic Design</div>
-        <p>An interactive and responsive web layout showcasing certificate templates, designs, and automated certificate
-          generation layout structures.</p>
-        <div class="project-links">
-          <a href="https://github.com/dipukraj/Certificate-Design" target="_blank" rel="noopener noreferrer"
-            title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+        <div class="project-img-wrapper">
+          <a href="https://dipukraj.tech/" target="_blank" rel="noopener noreferrer" class="project-img-link"
+            title="My Portfolio Profile">
+            <img src="projects-image/portfolio.jpg" alt="My Portfolio Profile" loading="lazy" class="project-img">
+            <div class="project-img-overlay">
+              <span class="project-view-badge"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+                Preview</span>
+            </div>
+          </a>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title-label">
+            <a href="https://dipukraj.tech/" target="_blank" rel="noopener noreferrer">My Portfolio Profile</a>
+          </h3>
+          <div class="project-tech">Web Portfolio</div>
+          <p>My official professional portfolio website showcasing my skills, experiences, certificates, games, and web
+            projects with multilingual support.</p>
+          <div class="project-links">
+            <a href="https://github.com/dipukraj/portfolio" target="_blank" rel="noopener noreferrer"
+              title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+            <a href="https://dipukraj.tech/" target="_blank" rel="noopener noreferrer" title="Live Demo"><i
+                class="fa-solid fa-link"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="project" id="project6">
+        <div class="project-img-wrapper">
+          <a href="https://pradeepsir.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-img-link"
+            title="Professor Website">
+            <img src="projects-image/professor-website.jpg" alt="Professor Website" loading="lazy" class="project-img">
+            <div class="project-img-overlay">
+              <span class="project-view-badge"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+                Preview</span>
+            </div>
+          </a>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title-label">
+            <a href="https://pradeepsir.netlify.app/" target="_blank" rel="noopener noreferrer">Professor Website</a>
+          </h3>
+          <div class="project-tech">Educational Platform</div>
+          <p>A clean and professional academic profile website designed for educators to share resource materials,
+            course
+            updates, and achievements with students.</p>
+          <div class="project-links">
+            <a href="https://github.com/dipukraj/Pradeep-Sir-website" target="_blank" rel="noopener noreferrer"
+              title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+            <a href="https://pradeepsir.netlify.app/" target="_blank" rel="noopener noreferrer" title="Live Demo"><i
+                class="fa-solid fa-link"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 7 -->
+      <div class="project" id="project7">
+        <div class="project-img-wrapper">
           <a href="https://certificatedesigne.netlify.app/" target="_blank" rel="noopener noreferrer"
-            title="Live Demo"><i class="fa-solid fa-link"></i></a>
+            class="project-img-link" title="Certificate Design">
+            <img src="projects-image/certificate-design.jpg" alt="Certificate Design" loading="lazy"
+              class="project-img">
+            <div class="project-img-overlay">
+              <span class="project-view-badge"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+                Preview</span>
+            </div>
+          </a>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title-label">
+            <a href="https://certificatedesigne.netlify.app/" target="_blank" rel="noopener noreferrer">Certificate
+              Design</a>
+          </h3>
+          <div class="project-tech">Graphic Design</div>
+          <p>An interactive and responsive web layout showcasing certificate templates, designs, and automated
+            certificate
+            generation layout structures.</p>
+          <div class="project-links">
+            <a href="https://github.com/dipukraj/Certificate-Design" target="_blank" rel="noopener noreferrer"
+              title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+            <a href="https://certificatedesigne.netlify.app/" target="_blank" rel="noopener noreferrer"
+              title="Live Demo"><i class="fa-solid fa-link"></i></a>
+          </div>
         </div>
       </div>
     </div>

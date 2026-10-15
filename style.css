@@ -3622,8 +3622,8 @@
  .project {
    background: linear-gradient(145deg, rgba(30, 41, 59, 0.45), rgba(15, 23, 42, 0.65));
    border-radius: 20px;
-   padding: 2.2rem 2rem;
-   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+   padding: 1.4rem;
+   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
    border: 1px solid rgba(56, 189, 248, 0.15);
    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
    backdrop-filter: blur(12px);
@@ -3636,12 +3636,13 @@
    height: 100%;
    box-sizing: border-box;
    margin-bottom: 0 !important;
+   overflow: hidden;
  }
 
  .project:hover {
    transform: translateY(-8px);
-   box-shadow: 0 15px 35px rgba(56, 189, 248, 0.18);
-   border-color: rgba(56, 189, 248, 0.4);
+   box-shadow: 0 18px 40px rgba(56, 189, 248, 0.22);
+   border-color: rgba(56, 189, 248, 0.45);
  }
 
  body.light-mode .project {
@@ -3651,8 +3652,100 @@
  }
 
  body.light-mode .project:hover {
-   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12) !important;
+   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12) !important;
    border-color: var(--primary-color) !important;
+ }
+
+ /* Project Image Card Preview & Animations */
+ .project-img-wrapper {
+   position: relative;
+   width: 100%;
+   aspect-ratio: 16 / 10;
+   border-radius: 14px;
+   overflow: hidden;
+   background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8));
+   border: 1px solid rgba(255, 255, 255, 0.08);
+   margin-bottom: 1.25rem;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+ }
+
+ body.light-mode .project-img-wrapper {
+   background: #f1f5f9;
+   border-color: rgba(0, 0, 0, 0.08);
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+ }
+
+ .project-img-link {
+   display: block;
+   width: 100%;
+   height: 100%;
+   position: relative;
+   overflow: hidden;
+   text-decoration: none;
+ }
+
+ .project-img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   object-position: top center;
+   display: block;
+   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s ease;
+ }
+
+ .project:hover .project-img {
+   transform: scale(1.08);
+ }
+
+ .project-img-overlay {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.35) 100%);
+   backdrop-filter: blur(2px);
+   -webkit-backdrop-filter: blur(2px);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   opacity: 0;
+   transition: opacity 0.35s ease;
+   z-index: 2;
+ }
+
+ .project:hover .project-img-overlay {
+   opacity: 1;
+ }
+
+ .project-view-badge {
+   background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
+   color: #ffffff !important;
+   padding: 8px 18px;
+   border-radius: 30px;
+   font-size: 0.88rem;
+   font-weight: 700;
+   display: inline-flex;
+   align-items: center;
+   gap: 8px;
+   box-shadow: 0 4px 18px rgba(56, 189, 248, 0.45);
+   transform: translateY(12px);
+   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+   letter-spacing: 0.5px;
+ }
+
+ .project:hover .project-view-badge {
+   transform: translateY(0);
+ }
+
+ .project-content {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
+   flex-grow: 1;
+   width: 100%;
+   justify-content: space-between;
  }
 
  /* Project title styling is handled by h3.project-title-label rules */
@@ -3721,7 +3814,8 @@
 
    #projects h2 {
      font-size: 2rem;
-     padding-left: 40px;
+     text-align: center !important;
+     padding-left: 0 !important;
    }
 
    .project {
@@ -6192,9 +6286,19 @@ Debug: Ensure certificates 54-57 are visible */
    }
 
    h1,
-   h2,
    h3 {
      text-align: left;
+     word-wrap: break-word;
+     overflow-wrap: break-word;
+   }
+
+   h2,
+   .section h2,
+   section h2 {
+     text-align: center !important;
+     width: 100% !important;
+     margin-left: auto !important;
+     margin-right: auto !important;
      word-wrap: break-word;
      overflow-wrap: break-word;
    }
@@ -6536,6 +6640,9 @@ Debug: Ensure certificates 54-57 are visible */
  .cv-button-wrapper {
    display: flex;
    justify-content: center;
+   align-items: center;
+   gap: 16px;
+   flex-wrap: wrap;
  }
 
  .cv-btn {
@@ -6544,9 +6651,9 @@ Debug: Ensure certificates 54-57 are visible */
    gap: 12px;
    background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%) !important;
    color: white !important;
-   padding: 14px 36px;
+   padding: 14px 32px;
    text-decoration: none;
-   font-size: 1.1rem;
+   font-size: 1.05rem;
    font-weight: 700;
    border-radius: 50px;
    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2), 0 0 30px rgba(168, 85, 247, 0.1);
@@ -6562,13 +6669,27 @@ Debug: Ensure certificates 54-57 are visible */
    box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4), 0 0 40px rgba(168, 85, 247, 0.2);
  }
 
- .cv-btn .fa-file-pdf {
+ .cv-btn-img {
+   background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%) !important;
+   box-shadow: 0 4px 15px rgba(16, 185, 129, 0.25), 0 0 30px rgba(6, 182, 212, 0.15) !important;
+ }
+
+ .cv-btn-img:hover {
+   box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4), 0 0 40px rgba(6, 182, 212, 0.25) !important;
+ }
+
+ .cv-btn .fa-file-pdf,
+ .cv-btn .fa-image {
    font-size: 1.2rem;
    transition: transform 0.3s ease;
  }
 
  .cv-btn:hover .fa-file-pdf {
    transform: scale(1.15) rotate(-5deg);
+ }
+
+ .cv-btn:hover .fa-image {
+   transform: scale(1.15) rotate(5deg);
  }
 
  .cv-btn .download-arrow {
@@ -6744,6 +6865,10 @@ Debug: Ensure certificates 54-57 are visible */
    font-weight: 600;
    transition: color 0.3s;
    text-align: left;
+   word-break: break-word;
+   overflow-wrap: anywhere;
+   max-width: 100%;
+   display: inline-block;
  }
 
  body.light-mode .contact-detail-content a,
@@ -6757,6 +6882,9 @@ Debug: Ensure certificates 54-57 are visible */
 
  .contact-info-panel .social-icons {
    margin: 1.5rem 0 0 0;
+   display: flex;
+   flex-wrap: wrap;
+   gap: 12px;
    justify-content: flex-start;
    max-width: 100%;
  }
@@ -6928,8 +7056,36 @@ Debug: Ensure certificates 54-57 are visible */
  }
 
  @media (max-width: 768px) {
+   #contact {
+     padding: 3rem 12px !important;
+   }
+
+   .contact-card-wrapper {
+     padding: 1.6rem 1.1rem !important;
+     gap: 2rem !important;
+     border-radius: 18px !important;
+     overflow: hidden !important;
+   }
+
    .contact-info-panel h3 {
-     text-align: center;
+     text-align: left !important;
+     font-size: clamp(1.4rem, 4.5vw, 1.8rem) !important;
+   }
+
+   .contact-detail-content a,
+   .contact-detail-content span {
+     font-size: clamp(0.78rem, 2.9vw, 0.98rem) !important;
+     word-break: break-all !important;
+     overflow-wrap: anywhere !important;
+   }
+
+   .contact-info-panel .social-icons {
+     display: grid !important;
+     grid-template-columns: repeat(4, 1fr) !important;
+     gap: 10px 8px !important;
+     max-width: 260px !important;
+     justify-items: start !important;
+     margin-top: 1.25rem !important;
    }
  }
 

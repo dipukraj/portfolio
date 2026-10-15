@@ -26,7 +26,7 @@ firebase.auth().onAuthStateChanged((user) => {
   } else {
     isUserAuthenticated = true;
     localStorage.setItem('visitorId', user.uid);
-    
+
     // Execute deferred callbacks
     while (authCallbacks.length > 0) {
       const cb = authCallbacks.shift();
@@ -225,18 +225,18 @@ const translations = {
     heroButton: "Contact Me",
     callMe: "Call Me",
     messageMe: "Message Me",
-    
+
     // Sections
     about: "About <span class=\"text-accent\">Me.</span>",
-    aboutText1: "I am a Full Stack Developer currently pursuing an MCA through the collaborative program offered by IIIT Ranchi & IIT Patna. I have hands-on experience in building modern, scalable web applications using the MERN stack, with expertise in responsive frontend development, secure backend APIs, database management, and complete end-to-end application development.",
-    aboutText2: "Alongside my technical journey, I gained one year of professional experience at NTPC Limited in Corporate Communication, where I worked on digital magazines, branding materials, creative designs, and corporate communication initiatives. This experience strengthened my creativity, communication, teamwork, and problem-solving abilities while providing valuable exposure to real-world organizational workflows.",
-    aboutText3: "I am passionate about building technology that solves real-world problems and delivers meaningful user experiences. I enjoy learning new technologies, optimizing application performance, and writing clean, maintainable code. My goal is to continuously grow as a developer while creating reliable, scalable, and impactful digital products that make a difference.",
-    
+    aboutText1: "I’m a Full Stack Developer pursuing an MCA at IIT Patna & IIIT Ranchi. I build complete products with the MERN stack, from responsive UI to secure APIs, databases, and deployment, and I also develop cross-platform mobile apps with React Native.",
+    aboutText2: "Recently, I published IIT PG HUB, an academic companion app on the Play Store for IIT Patna & IIIT Ranchi students, and built SBC Pharma, a full-stack e-pharmacy platform with payments, shipping, prescription verification, and role-based panels.",
+    aboutText3: "Before this, I spent a year at NTPC Limited in Corporate Communication, designing e-magazines and branding materials. That design experience gives me a strong eye for clean, user-friendly interfaces, and working with multiple departments taught me to deliver on deadlines.",
+
     servicesHeading: "My <span class=\"text-accent\">Services.</span>",
     skills: "Technical <span class=\"text-accent\">Skills.</span>",
     contact: "Contact <span class=\"text-accent\">Me.</span>",
     email: "Have a question, want to discuss a project, or just want to say hello? My inbox is always open. Drop me a message and I'll get back to you as soon as possible!",
-    
+
     // Navigation
     navHome: "Home",
     navAbout: "About",
@@ -262,18 +262,18 @@ const translations = {
     heroButton: "संपर्क करें",
     callMe: "कॉल करें",
     messageMe: "मैसेज करें",
-    
+
     // Sections
     about: "मेरे <span class=\"text-accent\">बारे में.</span>",
-    aboutText1: "मैं एक फुल स्टैक डेवलपर हूँ और वर्तमान में IIIT रांची और IIT पटना द्वारा संचालित सहयोगात्मक कार्यक्रम के माध्यम से MCA कर रहा हूँ। मेरे पास MERN स्टैक का उपयोग करके आधुनिक, स्केलेबल वेब एप्लिकेशन बनाने का व्यावहारिक अनुभव है, जिसमें रिस्पॉन्सिव फ्रंटएंड डेवलपमेंट, सुरक्षित बैकएंड APIs, डेटाबेस मैनेजमेंट और एंड-टू-एंड एप्लिकेशन डेवलपमेंट में विशेषज्ञता शामिल है।",
-    aboutText2: "अपनी तकनीकी यात्रा के साथ-साथ, मैंने NTPC लिमिटेड में कॉर्पोरेट कम्युनिकेशन विभाग में एक वर्ष का व्यावसायिक अनुभव प्राप्त किया है, जहाँ मैंने डिजिटल पत्रिकाओं, ब्रांडिंग सामग्रियों, रचनात्मक डिज़ाइनों और कॉर्पोरेट संचार पहलों पर काम किया। इस अनुभव ने मेरी रचनात्मकता, संचार कौशल, टीमवर्क और समस्या-समाधान क्षमताओं को मजबूत किया, साथ ही वास्तविक संगठनात्मक कार्यप्रणालियों का बहुमूल्य अनुभव भी प्रदान किया।",
-    aboutText3: "मैं ऐसी तकनीक बनाने के लिए जुनूनी हूँ जो वास्तविक दुनिया की समस्याओं का समाधान करे और सार्थक उपयोगकर्ता अनुभव प्रदान करे। मुझे नई तकनीकों को सीखने, एप्लिकेशन प्रदर्शन को अनुकूलित करने और साफ, रखरखाव योग्य कोड लिखने में आनंद आता है। मेरा लक्ष्य एक डेवलपर के रूप में लगातार आगे बढ़ना है और ऐसे विश्वसनीय, स्केलेबल और प्रभावशाली डिजिटल उत्पाद बनाना है जो बदलाव ला सकें।",
-    
+    aboutText1: "मैं IIT पटना और IIIT रांची से MCA कर रहा एक Full Stack Developer हूँ। मैं MERN stack से पूरे प्रोडक्ट बनाता हूँ, responsive UI से लेकर secure API, database और deployment तक, और React Native से cross-platform मोबाइल ऐप भी डेवलप करता हूँ।",
+    aboutText2: "हाल ही में मैंने IIT PG HUB पब्लिश किया, जो IIT पटना और IIIT रांची के छात्रों के लिए Play Store पर उपलब्ध एक academic companion ऐप है, और SBC Pharma बनाया, जो payments, shipping, prescription verification और role-based panels वाला full-stack e-pharmacy प्लेटफ़ॉर्म है।",
+    aboutText3: "इससे पहले मैंने NTPC Limited में Corporate Communication के साथ एक साल काम किया, जहाँ ई-मैगज़ीन और ब्रांडिंग मटीरियल डिज़ाइन किए। इस डिज़ाइन अनुभव से मुझे साफ़-सुथरे, यूज़र-फ्रेंडली इंटरफ़ेस की अच्छी समझ मिली, और कई विभागों के साथ काम करने से मैंने समय पर डिलीवर करना सीखा।",
+
     servicesHeading: "हमारी <span class=\"text-accent\">सेवाएं.</span>",
     skills: "तकनीकी <span class=\"text-accent\">कौशल.</span>",
     contact: "संपर्क <span class=\"text-accent\">करें.</span>",
     email: "कोई सवाल है, किसी प्रोजेक्ट पर चर्चा करना चाहते हैं, या बस नमस्ते कहना चाहते हैं? मेरा इनबॉक्स हमेशा खुला है। मुझे संदेश भेजें और मैं जल्द से जल्द आपसे संपर्क करूँगा!",
-    
+
     // Navigation
     navHome: "होम",
     navAbout: "परिचय",
@@ -299,18 +299,18 @@ const translations = {
     heroButton: "हमरा से बात करीं",
     callMe: "कॉल करीं",
     messageMe: "मैसेज करीं",
-    
+
     // Sections
     about: "हमरा <span class=\"text-accent\">बारे में.</span>",
-    aboutText1: "हम एगो फुल स्टैक डेवलपर बानी आ वर्तमान में IIIT रांची आ IIT पटना द्वारा संचालित सहयोगात्मक कार्यक्रम के माध्यम से MCA करत बानी। हमरा MERN स्टैक के प्रयोग से आधुनिक आ स्केलेबल वेब एप्लीकेशन बनावे के व्यावहारिक अनुभव बा, जवना में रिस्पॉन्सिव फ्रंटएंड डेवलपमेंट, सुरक्षित बैकएंड APIs, डेटाबेस मैनेजमेंट आ एंड-टू-एंड एप्लिकेशन डेवलपमेंट में विशेषज्ञता बा।",
-    aboutText2: "अपना तकनीकी यात्रा के साथ-साथ, हम NTPC लिमिटेड में कॉर्पोरेट कम्युनिकेशन विभाग में एक साल के व्यावसायिक अनुभव प्राप्त कइले बानी, जहाँ हम डिजिटल पत्रिका, ब्रांडिंग सामग्री, रचनात्मक डिज़ाइन आ कॉर्पोरेट संचार पहल पर काम कइलीं। एहि अनुभव से हमार रचनात्मकता, बातचीत करे के तरीका, टीमवर्क आ समस्या-समाधान के क्षमता अउरी मजबूत भइल, आ साथ ही संगठन के असली कामकाज के सीखे के मौका मिलल।",
-    aboutText3: "हम अइसन तकनीक बनावे खातिर जुनूनी बानी जे असल दुनिया के समस्या के समाधान करे। हमरा नया तकनीक सीखल, एप्लिकेशन के परफॉर्मेंस बेहतर बनावल आ साफ़, रखरखाव योग्य कोड लिखल बहुत पसंद बा। हमार लक्ष्य एगो डेवलपर के रूप में लगातार आगे बढ़ल बा आ अइसन विश्वसनीय, स्केलेबल आ प्रभावशाली डिजिटल उत्पाद बनावल बा जे बदलाव ला सके।",
-    
+    aboutText1: "हम IIT पटना आ IIIT राँची से MCA करत एगो Full Stack Developer हईं। हम MERN stack से पूरा प्रोडक्ट बनावेनी, responsive UI से लेके secure API, database आ deployment तक, आ React Native से cross-platform मोबाइल ऐप भी बनावेनी।",
+    aboutText2: "अभी हाले में हम IIT PG HUB पब्लिश कइनी, जवन IIT पटना आ IIIT राँची के विद्यार्थी लोग खातिर Play Store पर मौजूद एगो academic companion ऐप बा, आ SBC Pharma बनउनी, जवन payments, shipping, prescription verification आ role-based panels वाला full-stack e-pharmacy प्लेटफ़ॉर्म बा।",
+    aboutText3: "एकरा पहिले हम NTPC Limited में Corporate Communication में एक साल काम कइनी, जहाँ ई-मैगज़ीन आ ब्रांडिंग मटीरियल डिज़ाइन कइनी। एह डिज़ाइन के अनुभव से साफ-सुथरा, यूज़र-फ्रेंडली इंटरफ़ेस के बढ़िया समझ मिलल, आ कई विभाग संगे काम करके समय पर काम पूरा करे के सीखनी।",
+
     servicesHeading: "हमार <span class=\"text-accent\">सेवा.</span>",
     skills: "तकनीकी <span class=\"text-accent\">कौशल.</span>",
     contact: "संपर्क <span class=\"text-accent\">करीं.</span>",
     email: "कोनो सवाल बा, कवनो प्रोजेक्ट पर चर्चा करे के बा, चाहे खाली प्रणाम करे के बा? हमार इनबॉक्स हमेशा खुलल बा। हमरा के संदेश भेजीं आ हम जल्द से जल्द रउआ से संपर्क करब!",
-    
+
     // Navigation
     navHome: "घर",
     navAbout: "हमार बारे में",
@@ -335,18 +335,18 @@ const translations = {
     heroButton: "हमरा संगे जुड़ू",
     callMe: "कॉल करू",
     messageMe: "संदेश भेजू",
-    
+
     // Sections
     about: "हमर <span class=\"text-accent\">बारे में.</span>",
-    aboutText1: "हम एकटा फुल स्टैक डेवलपर छी आ वर्तमान में IIIT रांची आ IIT पटना द्वारा संचालित सहयोगात्मक कार्यक्रमक माध्यम स MCA क रहल छी। हमरा MERN स्टैक क प्रयोग स आधुनिक आ स्केलेबल वेब एप्लीकेशन बनेबाक व्यावहारिक अनुभव अछि, जाहि में रिस्पॉन्सिव फ्रंटएंड डेवलपमेंट, सुरक्षित बैकएंड APIs, डेटाबेस मैनेजमेंट आ एंड-टू-एंड एप्लिकेशन डेवलपमेंट में विशेषज्ञता अछि।",
-    aboutText2: "अपन तकनीकी यात्रा क संग-संग, हम NTPC लिमिटेड में कॉर्पोरेट कम्युनिकेशन विभाग में एक वर्षक व्यावसायिक अनुभव प्राप्त कयने छी, जतय हम डिजिटल पत्रिका, ब्रांडिंग सामग्री, रचनात्मक डिज़ाइन आ कॉर्पोरेट संचार पहल पर काज कयलों। एहि अनुभव स हमर रचनात्मकता, संचार कौशल, टीमवर्क आ समस्या-समाधान क्षमता आओर मजबूत भेल, संगहि संगठनक असली कार्यप्रणाली क सीखबाक मौका भेटल।",
-    aboutText3: "हम एहेन तकनीक बनेबाक लेल जुनूनी छी जे असल दुनियाक समस्या सभ क समाधान करैत अछि। हमरा नव तकनीक सीखब, एप्लिकेशन क परफॉर्मेंस बेहतर बनाबब आ साफ़, रख-रखाव योग्य कोड लिखब बहुत नीक लगैत अछि। हमर लक्ष्य एकटा डेवलपर क रूप में लगातार आगा बढ़ब अछि आ एहेन विश्वसनीय, स्केलेबल आ प्रभावशाली डिजिटल उत्पाद बनेब अछि जे बदलाव आनि सकय।",
-    
+    aboutText1: "हम IIT पटना आ IIIT राँचीसँ MCA कऽ रहल एकटा Full Stack Developer छी। हम MERN stackसँ पूरा प्रोडक्ट बनबैत छी, responsive UI सँ secure API, database आ deployment धरि, आ React Nativeसँ cross-platform मोबाइल ऐप सेहो बनबैत छी।",
+    aboutText2: "हालहि मे हम IIT PG HUB पब्लिश कएलहुँ, जे IIT पटना आ IIIT राँचीक विद्यार्थी सभक लेल Play Store पर उपलब्ध एकटा academic companion ऐप अछि, आ SBC Pharma बनओलहुँ, जे payments, shipping, prescription verification आ role-based panels बला full-stack e-pharmacy प्लेटफ़ॉर्म अछि।",
+    aboutText3: "एकरा सँ पहिने हम NTPC Limited मे Corporate Communication मे एक साल काज कएलहुँ, जतय ई-मैगज़ीन आ ब्रांडिंग मटीरियल डिज़ाइन कएलहुँ। एहि डिज़ाइन अनुभवसँ हमरा साफ-सुथरा, यूज़र-फ्रेंडली इंटरफ़ेसक नीक बुझ भेटल, आ कएक विभाग संग काज कऽ कऽ समय पर डिलीवर करब सिखलहुँ।",
+
     servicesHeading: "हमर <span class=\"text-accent\">सेवा.</span>",
     skills: "तकनीकी <span class=\"text-accent\">कौशल.</span>",
     contact: "सम्पर्क <span class=\"text-accent\">करू.</span>",
     email: "कोनो प्रश्न अछि, ककरो प्रोजेक्ट पर विमर्श करय चाहैत छी, या बस प्रणाम करय चाहैत छी? हमर इनबॉक्स सदा खुजल अछि। हमरा संदेश पठाउ आ हम जल्द स जल्द अहाँ स सम्पर्क करब!",
-    
+
     // Navigation
     navHome: "मुख्यपृष्ठ",
     navAbout: "हमर बारे में",
@@ -367,56 +367,56 @@ const translations = {
 function updateLanguage(lang) {
   // Get the translations for the selected language, default to English if not found
   const t = translations[lang] || translations['en'];
-  
+
   // Update hero section
   const heroGreeting = document.querySelector('#hero-greeting-text');
   if (heroGreeting) heroGreeting.textContent = t.heroGreeting;
-  
+
   const heroLocation = document.getElementById('hero-location-text');
   if (heroLocation) heroLocation.textContent = t.heroLocation;
-  
+
   const heroEducation = document.getElementById('hero-education-text');
   if (heroEducation) heroEducation.textContent = t.heroEducation;
-  
+
   startTypewriter(t.heroTitle, t.heroSubTitle);
-  
+
   const heroButtonText = document.querySelector('.get-in-touch-btn span');
   if (heroButtonText) heroButtonText.textContent = t.heroButton;
-  
+
   const callMe = document.querySelector('.call-btn');
   if (callMe) callMe.innerHTML = `<i class="fas fa-phone"></i> ${t.callMe}`;
-  
+
   const messageMe = document.querySelector('.message-btn');
   if (messageMe) messageMe.innerHTML = `<i class="fas fa-comment"></i> ${t.messageMe}`;
-  
+
   // Update about section
   const aboutH2 = document.querySelector('#about h2');
   if (aboutH2) aboutH2.innerHTML = t.about;
-  
+
   const aboutP1 = document.getElementById('about-description-1');
   if (aboutP1) aboutP1.textContent = t.aboutText1;
-  
+
   const aboutP2 = document.getElementById('about-description-2');
   if (aboutP2) aboutP2.textContent = t.aboutText2;
 
   const aboutP3 = document.getElementById('about-description-3');
   if (aboutP3) aboutP3.textContent = t.aboutText3;
-  
+
   // Update services section heading
   const servicesH2 = document.querySelector('#services h2');
   if (servicesH2) servicesH2.innerHTML = t.servicesHeading;
-  
+
   // Update skills section heading
   const skillsH2 = document.querySelector('#skills h2');
   if (skillsH2) skillsH2.innerHTML = t.skills;
-  
+
   // Update contact section
   const contactH2 = document.querySelector('#contact h2');
   if (contactH2) contactH2.innerHTML = t.contact;
-  
+
   const contactEmail = document.querySelector('#contact p');
   if (contactEmail) contactEmail.innerHTML = t.email;
-  
+
   // Update navigation links
   const navLinks = {
     'navHome': '.nav-links a[href="#hero"]',
@@ -433,7 +433,7 @@ function updateLanguage(lang) {
     'navGraphics': '.nav-links a[href*="graphics.html"]',
     'navEducation': '.capsule-links a[href="#education"]'
   };
-  
+
   Object.entries(navLinks).forEach(([key, selector]) => {
     const elements = document.querySelectorAll(selector);
     elements.forEach(element => {
@@ -442,20 +442,20 @@ function updateLanguage(lang) {
       }
     });
   });
-  
+
   // Update HTML lang attribute
   document.documentElement.lang = lang;
-  
+
   // Save selected language to localStorage
   localStorage.setItem('preferredLanguage', lang);
-  
+
   // Debug log
   console.log(`Language changed to: ${lang}`);
 }
 
 function initializeLanguageSwitcher() {
   const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
-  
+
   const languageSwitcher = document.getElementById('language-switcher');
   if (languageSwitcher) {
     languageSwitcher.value = savedLanguage;
@@ -480,7 +480,7 @@ function initializeLanguageSwitcher() {
 function loadPreferredLanguage() {
   const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
   updateLanguage(savedLanguage);
-  
+
   const languageSwitcher = document.getElementById('language-switcher');
   if (languageSwitcher) {
     languageSwitcher.value = savedLanguage;
@@ -496,7 +496,7 @@ function loadPreferredLanguage() {
 document.addEventListener("DOMContentLoaded", function () {
   // Initialize language switcher
   initializeLanguageSwitcher();
-  
+
   // Load preferred language
   loadPreferredLanguage();
   // Show first image by default
@@ -550,12 +550,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // ScrollSpy active link highlighting
   const spySections = document.querySelectorAll("section[id], header[id]");
   const spyNavLinks = document.querySelectorAll(".nav-links li a");
-  
+
   if (spySections.length && spyNavLinks.length) {
     window.addEventListener('scroll', () => {
       let currentSection = "";
       const scrollPos = window.scrollY + 150;
-      
+
       if (window.scrollY < 100) {
         currentSection = "hero";
       } else {
@@ -567,7 +567,7 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         });
       }
-      
+
       spyNavLinks.forEach(link => {
         const href = link.getAttribute("href");
         if (href && href.startsWith("#")) {
@@ -733,7 +733,7 @@ function initializeLiveChat() {
   if (chatListenerRegistered) {
     return;
   }
-  
+
   const chatToggle = document.getElementById('chat-toggle');
   const chatWindow = document.getElementById('chat-window');
   const closeChat = document.getElementById('close-chat');
@@ -800,7 +800,7 @@ function initializeLiveChat() {
 
   // Track processed messages to prevent duplicate responses
   const processedMessages = new Set();
-  
+
   // Register listener and setup auto-response after auth
   runWithAuth((user) => {
     const visitorId = user.uid;
@@ -812,16 +812,16 @@ function initializeLiveChat() {
       chatRef.on('child_added', (snapshot) => {
         const message = snapshot.val();
         const messageId = snapshot.key;
-        
+
         // Display message
         displayMessage(message);
-        
+
         // Auto-response only for visitor messages sent in the current session (and only once per message)
-        if (message.sender === 'visitor' && 
-            message.timestamp >= sessionStartTime && 
-            !processedMessages.has(messageId)) {
+        if (message.sender === 'visitor' &&
+          message.timestamp >= sessionStartTime &&
+          !processedMessages.has(messageId)) {
           processedMessages.add(messageId);
-          
+
           // Add auto-response after 2 seconds
           setTimeout(() => {
             const autoResponse = {
@@ -834,7 +834,7 @@ function initializeLiveChat() {
           }, 2000);
         }
       });
-      
+
       chatListenerRegistered = true; // Mark as registered
     }
   });
@@ -846,7 +846,7 @@ function initializeLiveChat() {
     if (document.getElementById(messageId)) {
       return; // Already displayed
     }
-    
+
     const messageDiv = document.createElement('div');
     messageDiv.id = messageId;
     messageDiv.className = `message ${message.sender}`;
@@ -876,7 +876,7 @@ function initializeLiveChat() {
     const lower = (message || '').toLowerCase();
 
     // Priority-based matching (first match wins - prevents multiple responses)
-    
+
     // 1) Greetings / small talk (highest priority)
     if (
       /\b(hi|hello|hey|hii|namaste|namaskar|pranam|pranam ji)\b/.test(lower)
@@ -1327,7 +1327,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Chat suggestion sender
-window.sendSuggestion = function(text) {
+window.sendSuggestion = function (text) {
   const chatInput = document.getElementById('chat-input');
   if (chatInput) {
     chatInput.value = text;
