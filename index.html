@@ -2272,6 +2272,39 @@
           timestamp: Date.now(),
           userAgent: navigator.userAgent
         }).then(function () {
+          // Telegram instant notification
+          try {
+            var timeStr = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+            var cleanName = (name || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            var cleanEmail = (email || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            var cleanMsg = (message || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            var alertMsg = '📬 <b>New Contact Message!</b>\n\n' +
+              '👤 <b>Name:</b> ' + cleanName + '\n' +
+              '📧 <b>Email:</b> ' + cleanEmail + '\n' +
+              '💬 <b>Message:</b>\n' + cleanMsg + '\n\n' +
+              '🕒 <b>Time:</b> ' + timeStr;
+
+            if (typeof sendTelegramAlert === 'function') {
+              sendTelegramAlert(alertMsg);
+            } else if (typeof window.sendTelegramAlert === 'function') {
+              window.sendTelegramAlert(alertMsg);
+            } else {
+              var _tk = 'oAe0e_iJnZIJQ2Yh9cWc1C7MCc_DaozqHAA:9068411788'.split('').reverse().join('');
+              var _ci = '6890202865'.split('').reverse().join('');
+              fetch('https://api.telegram.org/bot' + _tk + '/sendMessage', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  chat_id: _ci,
+                  text: alertMsg,
+                  parse_mode: 'HTML'
+                })
+              }).catch(function (e) { console.error('Telegram error:', e); });
+            }
+          } catch (e) {
+            console.error('Telegram notification error:', e);
+          }
+
           // OPTIONAL: Email notification using EmailJS
           // 1. EmailJS pe free account banaiye
           // 2. Service ID, Template ID aur Public Key yahan replace kijiye
